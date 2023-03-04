@@ -2,7 +2,7 @@
 Projeto denvolvido para gerenciar as reservas de armarios no ambiente institucional.
 
 
-Projeto onde será desenvolvida a ideia trabalhada na disiplina de programação orientada a objetos.
+Projeto onde será desenvolvida a ideia trabalhada na disciplina de programação orientada a objetos.
 
 Allan Fernando Oliveira de Andrade - Desenvolvedor
 
