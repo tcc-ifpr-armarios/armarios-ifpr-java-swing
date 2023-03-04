@@ -1,5 +1,5 @@
 # ArmariosIFPR
-Projeto denvolvido para gerenciar a reserva de armarios no ambiente institucional.
+Projeto denvolvido para gerenciar as reservas de armarios no ambiente institucional.
 
 
 Projeto onde será desenvolvida a ideia trabalhada na disiplina de programação orientada a objetos.
