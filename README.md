@@ -9,6 +9,7 @@ Allan Fernando Oliveira de Andrade - Desenvolvedor
 Tecnologias utilizadas
 
 Linguagem - Java.
+
 Framework para persistência de dados - Hibernate.
 
 Padrão de desenvolvimento - MVC.
