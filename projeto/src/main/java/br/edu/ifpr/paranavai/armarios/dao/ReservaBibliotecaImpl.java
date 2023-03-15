@@ -92,6 +92,7 @@ public class ReservaBibliotecaImpl implements ReservaBibliotecaDao {
             query.setParameter("ativo", ativo);
             reservas = (List<ReservaBiblioteca>) query.list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

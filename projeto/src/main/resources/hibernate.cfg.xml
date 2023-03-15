@@ -19,13 +19,22 @@
         <property name="hbm2ddl.auto">update</property>
               
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao" />
         
-       
-       
-    </session-factory>
+        
+        
+        
+        
+        
+           </session-factory>
 </hibernate-configuration>
+        
+
+       
+ 
 

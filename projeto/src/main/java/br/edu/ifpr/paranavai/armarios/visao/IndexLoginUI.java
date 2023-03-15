@@ -7,26 +7,26 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.controle.LoginControlador;
 import br.edu.ifpr.paranavai.armarios.modelo.Login;
 import java.awt.Graphics;
-import java.awt.Image;  
-import java.awt.Toolkit;  
-import javax.swing.JPanel;  
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
 import org.hibernate.event.spi.RefreshEvent;
 import org.hibernate.event.spi.RefreshEventListener;
+
 /**
  *
  * @author suporte
  */
 public class IndexLoginUI extends javax.swing.JFrame {
-    
-    
+
     /**
      * Creates new form IndexloginUI
      */
     public IndexLoginUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
-    
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,40 +220,46 @@ public class IndexLoginUI extends javax.swing.JFrame {
         String email = this.txtFieldEmail.getText();
         String senha = String.copyValueOf(this.passFieldSenha.getPassword());
         String resposta = controle.verificaAdm(email, senha);
+        
         lblResposta.setText(resposta);
-        if(resposta.equals("Sucesso no login!")){
-            ServidorControleUI servidor = new ServidorControleUI();
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ServidorControleUI().setVisible(true);
-            }
-            });
-        }
-        
-        else{
-            LoginControlador controleAluno = new LoginControlador();
-            String emailAluno = this.txtFieldEmail.getText();
-            String senhaAluno = String.copyValueOf(this.passFieldSenha.getPassword());
-            String respostaAluno = controle.verificaAluno(emailAluno, senhaAluno);
-            lblResposta.setText(respostaAluno);
-            if(respostaAluno.equals("Sucesso no login!!")){
-                System.setProperty("email", email);
-                AlunoReservaUI reserva = new AlunoReservaUI();
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                new AlunoReservaUI().setVisible(true);
+        switch (resposta) {
+            case "Senha inválida!":
+                lblResposta.setText(resposta);
                 
-            }
-            });
-            }
-            
+                
+                
+                break;
+            case "Sucesso no login!":
+                ServidorControleUI servidor = new ServidorControleUI();
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new ServidorControleUI().setVisible(true);
+                    }
+                }); break;
+            case "aluno":       
+                LoginControlador controleAluno = new LoginControlador();
+                String emailAluno = this.txtFieldEmail.getText();
+                String senhaAluno = String.copyValueOf(this.passFieldSenha.getPassword());
+                String respostaAluno = controle.verificaAluno(emailAluno, senhaAluno);
+                lblResposta.setText(respostaAluno);
+                if (respostaAluno.equals("Sucesso no login!!")) {
+                    System.setProperty("email", email);
+                    AlunoReservaUI reserva = new AlunoReservaUI();
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new AlunoReservaUI().setVisible(true);
+                            
+                        }
+                    });
+                }   break;
         }
-        
-        
+
+
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
     private void passFieldSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passFieldSenhaMouseClicked
         passFieldSenha.setText("");
+        lblResposta.setText("");
     }//GEN-LAST:event_passFieldSenhaMouseClicked
 
     private void txtFieldEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFieldEmailMouseClicked
@@ -287,15 +293,15 @@ public class IndexLoginUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IndexLoginUI().setVisible(true);
             }
-            
+
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
