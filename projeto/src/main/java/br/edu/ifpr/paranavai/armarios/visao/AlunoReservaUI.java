@@ -5,10 +5,14 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
+import br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao;
 import br.edu.ifpr.paranavai.armarios.modelo.Login;
 import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
 import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.servico.HistoricoBibliotecaServico;
+import br.edu.ifpr.paranavai.armarios.servico.HistoricoSaguaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ public class AlunoReservaUI extends javax.swing.JFrame {
      */
     public AlunoReservaUI() {
         initComponents();
+        setLocationRelativeTo(null);
 
         List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarPorAluno(estudante.getId());
         atualizarTabelaMeusSaguao(armariosSaguao);
@@ -461,8 +466,10 @@ public class AlunoReservaUI extends javax.swing.JFrame {
                 reserva.setDataHoraEmprestimo(data);
                 reserva.setEstudante(estudante);
                 reserva.setNumero(codigo);
+                
                 ReservaSaguaoServico.apagaPorNumero(codigo);
                 ReservaSaguaoServico.inserir(reserva);
+                
                 List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodosAtivos(true);
                 atualizarTabelaSaguao(armariosSaguao);
                 List<ReservaSaguao> armariosSaguaos = ReservaSaguaoServico.buscarPorAluno(estudante.getId());
@@ -475,8 +482,21 @@ public class AlunoReservaUI extends javax.swing.JFrame {
     private void liberadorSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liberadorSActionPerformed
         int dadosLinha = meusArmariosSaguaoTb.getSelectedRow();
         int codigo = (int) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 0);
+        
         int a = JOptionPane.showConfirmDialog(null, "Deseja liberar o armario " + codigo + " no saguão ?");
         if (a == JOptionPane.YES_OPTION) {
+            
+            // cria o registro 
+            HistoricoSaguao registro = new HistoricoSaguao();
+            registro.setDataHoraEmprestimo((Date) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 1));
+            registro.setData_Hora_Devolucao(data);
+            registro.setNumero(codigo);
+            registro.setRa(estudante.getRa());
+            HistoricoSaguaoServico.inserir(registro);
+            
+            
+            
+            // redisponibiliza o armario para reserva
             ReservaSaguaoServico.apagaPorNumero(codigo);
             ReservaSaguao reserva = new ReservaSaguao();
             reserva.setNumero(codigo);
@@ -497,6 +517,16 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         int codigo = (int) meusArmariosBibliotecaTb.getModel().getValueAt(dadosLinha, 0);
         int a = JOptionPane.showConfirmDialog(null, "Deseja liberar o armario " + codigo + " na biblioteca ?");
         if (a == JOptionPane.YES_OPTION) {
+            
+            HistoricoBiblioteca registro = new HistoricoBiblioteca();
+            registro.setDataHoraEmprestimo((Date) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 1));
+            registro.setData_Hora_Devolucao(data);
+            registro.setNumero(codigo);
+            registro.setRa(estudante.getRa());
+            HistoricoBibliotecaServico.inserir(registro);
+            
+            
+            
             ReservaBibliotecaServico.apagaPorNumero(codigo);
             ReservaBiblioteca reserva = new ReservaBiblioteca();
             reserva.setNumero(codigo);

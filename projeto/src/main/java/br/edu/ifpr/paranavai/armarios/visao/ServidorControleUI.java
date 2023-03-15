@@ -25,6 +25,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
      */
     public ServidorControleUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -48,11 +49,11 @@ public class ServidorControleUI extends javax.swing.JFrame {
         marcadorSaguao = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         selecionaNumero = new javax.swing.JSpinner();
+        botaoHistorico = new javax.swing.JButton();
         alunos = new javax.swing.JPanel();
         botaoCadAluno = new javax.swing.JToggleButton();
         nomeAluno = new javax.swing.JTextField();
         emailAluno = new javax.swing.JTextField();
-        senhaAluno = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -63,6 +64,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         lblrespostacad = new javax.swing.JLabel();
         telefoneAluno = new javax.swing.JFormattedTextField();
+        senhaAluno = new javax.swing.JPasswordField();
 
         jLabel6.setText("jLabel2");
 
@@ -107,7 +109,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
-        botaoOcupados.setText("Armarios ");
+        botaoOcupados.setText("Armários ");
         botaoOcupados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         botaoOcupados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,27 +151,47 @@ public class ServidorControleUI extends javax.swing.JFrame {
 
         jLabel1.setText("Número do Armário:");
 
+        botaoHistorico.setText("Histórico de reservas");
+        botaoHistorico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        botaoHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoHistoricoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                botaoHistoricoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botaoHistoricoMouseReleased(evt);
+            }
+        });
+        botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistoricoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(selecionaNumero)
-                            .addGap(18, 18, 18)
-                            .addComponent(marcadorSaguao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(marcadorBiblioteca))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selecionaNumero)
+                        .addGap(18, 18, 18)
+                        .addComponent(marcadorSaguao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(marcadorBiblioteca))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +206,9 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336))
         );
 
         alunos.setBackground(new java.awt.Color(255, 255, 255));
@@ -275,36 +299,50 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
+        senhaAluno.setText("jPasswordField1");
+        senhaAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                senhaAlunoMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                senhaAlunoMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout alunosLayout = new javax.swing.GroupLayout(alunos);
         alunos.setLayout(alunosLayout);
         alunosLayout.setHorizontalGroup(
             alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
+                .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(alunosLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel8)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
+                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(emailAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                            .addComponent(nomeAluno))
+                        .addContainerGap())
+                    .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(senhaAluno, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(raAluno, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(telefoneAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))))
             .addGroup(alunosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
-                                .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(emailAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                                    .addComponent(nomeAluno))
-                                .addContainerGap())
-                            .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(raAluno, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(senhaAluno, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(telefoneAluno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))))
+                        .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
                         .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botaoAlunosCadastrados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -327,8 +365,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
                     .addComponent(telefoneAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(senhaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(senhaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(raAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,9 +377,12 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addComponent(botaoAlunosCadastrados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addGroup(alunosLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(alunosLayout.createSequentialGroup()
+                        .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -349,20 +390,18 @@ public class ServidorControleUI extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(alunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -375,9 +414,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -535,6 +572,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             aluno.setTelefone(telefoneAluno.getText());
             aluno.setRa(raAluno.getText());
             aluno.setSenha(senhaAluno.getText());
+            aluno.setAtivo(true);
             EstudanteServico estudante = new EstudanteServico();
             estudante.inserir(aluno);
             lblrespostacad.setText("Aluno cadastrado com sucesso!");
@@ -544,6 +582,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             telefoneAluno.setText("");
             senhaAluno.setText("");
             raAluno.setText("");
+            
 
         }
     }//GEN-LAST:event_botaoCadAlunoMouseClicked
@@ -553,11 +592,9 @@ public class ServidorControleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_telefoneAlunoActionPerformed
 
     private void botaoOcupadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoOcupadosMouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaArmarioUI().setVisible(true);
-            }
-        });
+  
+           
+           
     }//GEN-LAST:event_botaoOcupadosMouseClicked
 
     private void botaoAlunosCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlunosCadastradosMouseClicked
@@ -567,6 +604,41 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_botaoAlunosCadastradosMouseClicked
+
+    private void senhaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaAlunoMouseClicked
+        // TODO add your handling code here:
+        senhaAluno.setText("");
+        
+        
+        
+    }//GEN-LAST:event_senhaAlunoMouseClicked
+
+    private void senhaAlunoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaAlunoMouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_senhaAlunoMouseReleased
+
+    private void botaoHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoHistoricoMouseClicked
+
+    private void botaoHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoHistoricoMousePressed
+
+    private void botaoHistoricoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoHistoricoMouseReleased
+
+    private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
+        // TODO add your handling code here:
+                java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new HistoricoUI().setVisible(true);
+            }
+        });
+        
+    }//GEN-LAST:event_botaoHistoricoActionPerformed
 
     /**
      *
@@ -610,6 +682,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JButton botaoAlunosCadastrados;
     private javax.swing.JToggleButton botaoCadAluno;
     private javax.swing.JToggleButton botaoCadArmario;
+    private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoOcupados;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField emailAluno;
@@ -631,7 +704,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JTextField raAluno;
     private javax.swing.JSpinner selecionaNumero;
-    private javax.swing.JTextField senhaAluno;
+    private javax.swing.JPasswordField senhaAluno;
     private javax.swing.JFormattedTextField telefoneAluno;
     // End of variables declaration//GEN-END:variables
 }

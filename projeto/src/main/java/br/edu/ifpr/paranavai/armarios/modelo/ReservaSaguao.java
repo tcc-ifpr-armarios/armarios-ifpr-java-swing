@@ -9,12 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "tb_reserva_saguao")
@@ -36,11 +36,9 @@ public class ReservaSaguao {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column (name = "dataHoraDevolucao")
-    private Date data_Hora_Devolucao;
-    @Temporal(TemporalType.TIMESTAMP)
     
+    
+    @Temporal(TemporalType.TIMESTAMP)
     @Column (name = "data_Hora_Emprestimo")
     private Date dataHoraEmprestimo;
     
@@ -59,7 +57,7 @@ public class ReservaSaguao {
         this.estudante = estudante;
         this.numero = numero;
         this.ativo = ativo;
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
+       
         this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
     
@@ -95,18 +93,13 @@ public class ReservaSaguao {
         this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
 
-    public void setData_Hora_Devolucao(Date data_Hora_Devolucao) {
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
-    }
+    
 
     public Date getDataHoraEmprestimo() {
         return dataHoraEmprestimo;
     }
 
-    public Date getData_Hora_Devolucao() {
-        return data_Hora_Devolucao;
-    }
-
+    
     public Estudante getEstudante() {
         return estudante;
     }

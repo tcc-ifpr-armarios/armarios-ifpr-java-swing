@@ -4,9 +4,13 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+
+import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
+import br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao;
 import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
 import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
+import br.edu.ifpr.paranavai.armarios.servico.HistoricoBibliotecaServico;
+import br.edu.ifpr.paranavai.armarios.servico.HistoricoSaguaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
 import java.util.List;
@@ -17,22 +21,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author suporte
  */
-public class ListaArmarioUI extends javax.swing.JFrame {
+public class HistoricoUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ListaArmarioUI
      */
-    public ListaArmarioUI() {
+    public HistoricoUI() {
+       
+    initComponents();
+    setLocationRelativeTo(null);
 
-        initComponents();
-        setLocationRelativeTo(null);
-
-        populaTabela();
-
-        populaTabelaSaguao();
-    }
+    populaTabela();
+    
+    populaTabelaSaguao();
+}
     // </editor-fold>
-    Estudante estudante = new Estudante();
 
     @SuppressWarnings("unchecked")
     private void populaTabela() {
@@ -41,34 +44,21 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<ReservaBiblioteca> reservas = ReservaBibliotecaServico.buscarTodosAtivos(true);
+        List<HistoricoBiblioteca> reservas = HistoricoBibliotecaServico.buscarTodos();
 
         for (int i = 0; i < reservas.size(); i++) {
-            ReservaBiblioteca reserva = reservas.get(i);
-            if (reserva.getEstudante() == null) {
-                estudante.setNome("Disponível");
-                reserva.setEstudante(estudante);
+            HistoricoBiblioteca reserva = reservas.get(i);
+            Object[] dadosLinha = new Object[4];
+            dadosLinha[0] = reserva.getNumero();
+            dadosLinha[1] = reserva.getDataHoraEmprestimo();
+            dadosLinha[2] = reserva.getData_Hora_Devolucao();
+            dadosLinha[3] = reserva.getRa();
+            
 
-                Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getNumero();
-                dadosLinha[1] = reserva.getEstudante().getNome();
-                dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                dadosLinha[3] = reserva.isAtivo();
-
-                modeloDeColunasDaTabela.addRow(dadosLinha);
-            } else {
-
-                Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getNumero();
-                dadosLinha[1] = reserva.getEstudante().getNome();
-                dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                dadosLinha[3] = !reserva.isAtivo();
-                modeloDeColunasDaTabela.addRow(dadosLinha);
-
-            }
+            modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     private void populaTabelaSaguao() {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel();
@@ -76,37 +66,26 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<ReservaSaguao> reservasS = ReservaSaguaoServico.buscarTodosAtivos(true);
+        List<HistoricoSaguao> reservasS = HistoricoSaguaoServico.buscarTodos();
 
         for (int i = 0; i < reservasS.size(); i++) {
-            ReservaSaguao reservaSS = reservasS.get(i);
-            if (reservaSS.getEstudante() == null) {
-                estudante.setNome("Disponível");
-                reservaSS.setEstudante(estudante);
-                Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reservaSS.getNumero();
-                dadosLinha[1] = reservaSS.getEstudante().getNome();
-                dadosLinha[2] = reservaSS.getDataHoraEmprestimo();
-                dadosLinha[3] = reservaSS.isAtivo();
-
-                modeloDeColunasDaTabela.addRow(dadosLinha);
-            } else {
+            HistoricoSaguao reservaSS = reservasS.get(i);
             Object[] dadosLinha = new Object[4];
             dadosLinha[0] = reservaSS.getNumero();
-            dadosLinha[1] = reservaSS.getEstudante().getNome();
-            dadosLinha[2] = reservaSS.getDataHoraEmprestimo();
-            dadosLinha[3] = !reservaSS.isAtivo();
+            dadosLinha[1] = reservaSS.getDataHoraEmprestimo();
+            dadosLinha[2] = reservaSS.getData_Hora_Devolucao();
+            dadosLinha[3] = reservaSS.getRa();
+            
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
-        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
+   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -138,27 +117,31 @@ public class ListaArmarioUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Número", "Aluno", "Data", "Ativo"
+                "Número", "Reserva", "Devolução", "RA"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Short.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Short.class, java.lang.Short.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        tableBiblioteca.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableBiblioteca);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +177,22 @@ public class ListaArmarioUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Número", "Aluno", "Data", "Ativo"
+                "Número", "Reserva", "Devolução", "RA"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Short.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Short.class, java.lang.Short.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane3.setViewportView(tableSaguao);
@@ -285,30 +275,35 @@ public class ListaArmarioUI extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaArmarioUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistoricoUI.class  
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaArmarioUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaArmarioUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HistoricoUI.class  
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaArmarioUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HistoricoUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HistoricoUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaArmarioUI().setVisible(true);
+                new HistoricoUI().setVisible(true);
             }
         });
     }
