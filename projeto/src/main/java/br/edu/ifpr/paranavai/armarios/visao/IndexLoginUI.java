@@ -12,13 +12,13 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 import org.hibernate.event.spi.RefreshEvent;
 import org.hibernate.event.spi.RefreshEventListener;
+
 /**
  *
  * @author suporte
  */
 public class IndexLoginUI extends javax.swing.JFrame {
-    
-    
+
     /**
      * Creates new form IndexloginUI
      */
