@@ -4,23 +4,6 @@
  */
 package br.edu.ifpr.teste.servico;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao;
-
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
-import br.edu.ifpr.paranavai.armarios.servico.BibliotecarioServico;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoSaguaoServico;
-
-import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
-
-import java.util.ArrayList;
-
-import java.util.Date;
-import java.util.List;
 
 public class ServicoTeste {
 
@@ -114,15 +97,15 @@ public class ServicoTeste {
             System.out.println(reserva.getNumero());
             }
             
-            ReservaSaguaoServico.apagaPorNumero(1);**/
-          
+            ReservaSaguaoServico.apagaPorNumero(1);
           
           
          HistoricoSaguao registro = new HistoricoSaguao();
          
          registro.setId(10);
          registro.setRa("101010");
-         HistoricoSaguaoServico.inserir(registro);
+         HistoricoSaguaoServico.inserir(registro**/
+          
         }
         
     
