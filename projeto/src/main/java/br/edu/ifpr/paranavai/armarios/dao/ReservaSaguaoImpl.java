@@ -27,6 +27,7 @@ public class ReservaSaguaoImpl implements ReservaSaguaoDao {
             sessao.beginTransaction();
             reservas = (List<ReservaSaguao>) this.sessao.createQuery("from ReservaSaguao").list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,6 +89,7 @@ public class ReservaSaguaoImpl implements ReservaSaguaoDao {
             query.setParameter("ativo", ativo);
             reservas = (List<ReservaSaguao>) query.list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

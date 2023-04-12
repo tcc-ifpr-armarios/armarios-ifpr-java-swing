@@ -21,6 +21,7 @@ public class ListaAlunoUI extends javax.swing.JFrame {
     public ListaAlunoUI() {
 
         initComponents();
+        setLocationRelativeTo(null);
         
         populaTabela();
     }
@@ -200,7 +201,7 @@ public class ListaAlunoUI extends javax.swing.JFrame {
             modeloDeColunasDaTabela.removeRow(0);
         }
         List<Estudante> estudantes =  EstudanteServico.buscarPorNome(busca);
-
+            System.out.println(busca);
         for (int i = 0; i < estudantes.size(); i++) {     
             Estudante aluno = estudantes.get(i);
             Object[] dadosLinha = new Object[6];
@@ -210,10 +211,11 @@ public class ListaAlunoUI extends javax.swing.JFrame {
             dadosLinha[3] = aluno.getEmail();
             dadosLinha[4] = aluno.getSenha();
             dadosLinha[5] = aluno.isAtivo();
-
+            
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void raBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raBotaoActionPerformed
@@ -248,7 +250,7 @@ public class ListaAlunoUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void listaAluno(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -287,6 +289,7 @@ public class ListaAlunoUI extends javax.swing.JFrame {
         });
 
     }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

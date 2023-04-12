@@ -6,7 +6,7 @@ package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
-import java.util.ArrayList;
+
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -17,7 +17,7 @@ import org.hibernate.query.Query;
  */
 public class BibliotecarioDaoImpl implements BibliotecarioDao {
     private Session sessao;
-
+    
     public BibliotecarioDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
@@ -101,8 +101,12 @@ public class BibliotecarioDaoImpl implements BibliotecarioDao {
             query.setParameter("email", email);
             bibliotecarios = (Bibliotecario) query.getSingleResult();
             sessao.getTransaction().commit();
+            
+            sessao.cancelQuery();
         } catch (Exception e) {
             e.printStackTrace();
+            sessao.clear();
+            
         }
         return bibliotecarios;
     }

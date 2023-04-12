@@ -26,6 +26,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
             sessao.beginTransaction();
             estudantes = (List<Estudante>) this.sessao.createQuery("from Estudante").list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,6 +45,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
             sessao.beginTransaction();
             estudante = (Estudante) sessao.get(Estudante.class, id);
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,6 +113,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
+            
         }
         return estudantes;
     }
@@ -126,8 +129,11 @@ public class EstudanteDaoImpl implements EstudanteDao {
             query.setParameter("email", email);
             estudantes = (Estudante)query.getSingleResult();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
+            
+            sessao.clear();
         }
         return estudantes;
     }

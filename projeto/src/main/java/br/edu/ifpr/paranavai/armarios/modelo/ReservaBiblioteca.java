@@ -36,9 +36,7 @@ public class ReservaBiblioteca {
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
     
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column (name = "dataHoraDevolucao")
-    private Date data_Hora_Devolucao;
+   
     @Temporal(TemporalType.TIMESTAMP)
     
     @Column (name = "data_Hora_Emprestimo")
@@ -59,7 +57,7 @@ public class ReservaBiblioteca {
         this.estudante = estudante;
         this.numero = numero;
         this.ativo = ativo;
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
+        
         this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
     
@@ -95,33 +93,18 @@ public class ReservaBiblioteca {
         this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
 
-    public void setData_Hora_Devolucao(Date data_Hora_Devolucao) {
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
-    }
+    
+    
 
     public Date getDataHoraEmprestimo() {
         return dataHoraEmprestimo;
     }
 
-    public Date getData_Hora_Devolucao() {
-        return data_Hora_Devolucao;
-    }
+    
 
     public Estudante getEstudante() {
         return estudante;
     }
 
-    
-
-
-    
-
-    
-    
-   
-
-    
-    
-    
     
 }

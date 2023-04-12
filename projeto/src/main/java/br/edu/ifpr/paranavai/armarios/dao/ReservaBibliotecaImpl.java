@@ -30,6 +30,7 @@ public class ReservaBibliotecaImpl implements ReservaBibliotecaDao {
             sessao.beginTransaction();
             reservas = (List<ReservaBiblioteca>) this.sessao.createQuery("from ReservaBiblioteca").list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,6 +93,7 @@ public class ReservaBibliotecaImpl implements ReservaBibliotecaDao {
             query.setParameter("ativo", ativo);
             reservas = (List<ReservaBiblioteca>) query.list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
