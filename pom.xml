@@ -5,7 +5,7 @@
 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.edu.ifpr.paranavai</groupId>
-    <artifactId>armarios</artifactId>
+    <artifactId>ArmariosIFPR</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
@@ -33,6 +33,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.30</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -50,16 +56,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </archive>
                 </configuration>
             </plugin>
-            
-            
-            
-            
-            
-            
-            
         </plugins>
-        
     </build>
-    
-       
 </project>
