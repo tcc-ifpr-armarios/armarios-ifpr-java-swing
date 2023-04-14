@@ -4,15 +4,15 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.controle.LoginControlador;
-import br.edu.ifpr.paranavai.armarios.modelo.Login;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.hibernate.event.spi.RefreshEvent;
-import org.hibernate.event.spi.RefreshEventListener;
-
+import org.apache.logging.log4j.core.config.Configurator;
 /**
  *
  * @author suporte
@@ -301,15 +301,23 @@ public class IndexLoginUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        Configurator.initialize(null, "log4j2.xml");
+        
+        try {
+            HibernateUtil.getSession();
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new IndexLoginUI().setVisible(true);
+                }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IndexLoginUI().setVisible(true);
-            }
+            });
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
 
-        });
-
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

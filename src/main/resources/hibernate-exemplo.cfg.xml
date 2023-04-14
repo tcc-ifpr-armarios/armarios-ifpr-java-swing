@@ -11,16 +11,14 @@
             com.mysql.jdbc.Driver
         </property>
         
-        
-        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost/banco_armario
         </property>
         <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
         
         <property name="connection.pool_size">3</property>
         
-        <property name="hibernate.connection.username">root</property>
         
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQL8Dialect

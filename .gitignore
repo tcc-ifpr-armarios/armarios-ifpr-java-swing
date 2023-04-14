@@ -24,6 +24,7 @@ tomcat
 
 # Maven 
 target/
+dependency-reduced-pom.xml
 
 # IntelliJ project files 
 *.iml
@@ -45,6 +46,9 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+# Hibernate
+hibernate.cfg.xml
+
 
 # OS
 .DS_Store
@@ -55,3 +59,17 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 /bin/
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
