@@ -4,9 +4,7 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
@@ -14,13 +12,8 @@ public class HibernateUtil {
 
     static {
         try {
-            // Cria um registro de serviço com o arquivo de configuração específico
-            StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml")
-                    .build();
-            
-            SESSION_FACTORY = new MetadataSources(registry)
-                .buildMetadata().buildSessionFactory();
+            // Criação da SessionFactory a partir do hibernate.cfg.xml
+            SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
             getSession();
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(null, MensagemUtil.ERRO_CONFIGURACAO_BANCO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
