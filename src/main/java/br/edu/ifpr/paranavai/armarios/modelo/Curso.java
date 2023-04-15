@@ -1,23 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Objects;
 
 /**
  *
- * @author teren
+ * @author Professor Marcelo F. Terenciani
  */
+
 @Entity
 @Table(name = "tb_curso")
 public class Curso {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_curso", unique = true, nullable = false) 
+    private Integer id;
+    
+    @Column(name = "nome", unique = true, nullable = false)
     private String nome;
+    
+    @Basic
+    @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
     private boolean ativo;
 
     public Curso() {
@@ -70,12 +80,14 @@ public class Curso {
             return false;
         }
         final Curso other = (Curso) obj;
-        if (this.id != other.id) {
-            return false;
-        }
         if (this.ativo != other.ativo) {
             return false;
         }
-        return Objects.equals(this.nome, other.nome);
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
     }
+
+    
 }

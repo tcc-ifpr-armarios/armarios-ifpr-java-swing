@@ -11,4 +11,8 @@ package br.edu.ifpr.paranavai.armarios.utils;
 public class MensagemUtil {
     public static String ERRO_CONFIGURACAO_BANCO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
     public static String TITULO_ERRO_FATAL = "Erro Fatal!";
+    
+    
+    public static String CURSO_NOME_DUPLICADO = "Nome do curso duplicado";
+    public static String CURSO_ERRO_PADRAO_DE_INSERCAO = "Erro não identificado ao inserir um novo curso";
 }

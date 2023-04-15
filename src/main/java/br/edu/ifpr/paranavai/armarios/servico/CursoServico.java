@@ -4,6 +4,9 @@
  */
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
+import br.edu.ifpr.paranavai.armarios.dao.impl.CursoDaoImpl;
+import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 
 /**
@@ -11,9 +14,12 @@ import br.edu.ifpr.paranavai.armarios.modelo.Curso;
  * @author teren
  */
 public class CursoServico {
+    private static CursoDao dao = new CursoDaoImpl();
+    public static Curso inserir(Curso curso) throws CursoException{
+        return dao.inserir(curso);
+    }    
 
-    public static Curso inserir(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static void excluir(Curso curso) {
+        dao.excluir(curso);
     }
-    
 }
