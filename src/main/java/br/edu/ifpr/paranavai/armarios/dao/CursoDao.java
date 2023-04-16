@@ -15,7 +15,7 @@ public interface CursoDao {
 
     public Curso atualizar(Curso curso);
 
-    public void excluir(Curso curso);
+    public void excluir(Curso curso) throws CursoException;
 
     public Curso inserir(Curso curso) throws CursoException;
 }

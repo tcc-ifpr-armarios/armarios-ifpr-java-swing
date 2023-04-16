@@ -15,4 +15,5 @@ public class MensagemUtil {
     
     public static String CURSO_NOME_DUPLICADO = "Nome do curso duplicado";
     public static String CURSO_ERRO_PADRAO_DE_INSERCAO = "Erro não identificado ao inserir um novo curso";
+    public static String CURSO_NAO_ENCONTRADO = "Registro não encontrado";
 }

@@ -13,22 +13,21 @@ import java.util.Objects;
  *
  * @author Professor Marcelo F. Terenciani
  */
-
 @Entity
 @Table(name = "tb_curso")
 public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_curso", unique = true, nullable = false) 
+    @Column(name = "id_curso", unique = true, nullable = false)
     private Integer id;
-    
+
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
-    
+
     @Basic
     @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
-    private boolean ativo;
+    private boolean ativo = true;
 
     public Curso() {
     }
@@ -39,12 +38,16 @@ public class Curso {
         this.ativo = ativo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -88,6 +91,4 @@ public class Curso {
         }
         return Objects.equals(this.id, other.id);
     }
-
-    
 }

@@ -5,9 +5,11 @@ import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -23,12 +25,14 @@ public class CursoDaoImpl implements CursoDao {
 
     @Override
     public List<Curso> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Query<Curso> query = this.sessao.createQuery("from Curso", Curso.class);
+        List<Curso> resultado = query.getResultList();
+        return resultado;
     }
 
     @Override
-    public Curso buscarPorId(Integer inteiro) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Curso buscarPorId(Integer id) {
+        return this.sessao.find(Curso.class, id);
     }
 
     @Override
@@ -37,13 +41,13 @@ public class CursoDaoImpl implements CursoDao {
     }
 
     @Override
-    public void excluir(Curso curso) {
+    public void excluir(Curso curso) throws CursoException {
         try {
             sessao.beginTransaction();
             sessao.remove(curso);
             sessao.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (EntityNotFoundException e) {
+            throw new CursoException(MensagemUtil.CURSO_NAO_ENCONTRADO);
         }
     }
 
@@ -53,10 +57,9 @@ public class CursoDaoImpl implements CursoDao {
             sessao.beginTransaction();
             sessao.persist(curso);
             sessao.getTransaction().commit();
-        } catch (ConstraintViolationException e){
+        } catch (ConstraintViolationException e) {
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new CursoException(MensagemUtil.CURSO_ERRO_PADRAO_DE_INSERCAO);
         }
         return curso;

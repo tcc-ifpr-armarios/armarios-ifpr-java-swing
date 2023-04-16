@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.CursoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import java.util.List;
 
 /**
  *
- * @author teren
+ * @author Professor Marcelo F. Terenciani
  */
 public class CursoServico {
     private static CursoDao dao = new CursoDaoImpl();
@@ -19,7 +16,15 @@ public class CursoServico {
         return dao.inserir(curso);
     }    
 
-    public static void excluir(Curso curso) {
+    public static void excluir(Curso curso) throws CursoException {
         dao.excluir(curso);
+    }
+
+    public static List<Curso> buscarTodos() {
+        return dao.buscarTodos();
+    }
+
+    public static Curso buscarPorId(Integer id) {
+        return dao.buscarPorId(id);
     }
 }
