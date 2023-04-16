@@ -1,5 +1,6 @@
 package br.edu.ifpr.paranavai.servico.curso;
 
+import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
@@ -98,16 +99,35 @@ public class CursoServicoTest {
         assertNull(cursoEncontrado);
     }
     /*
+    TODO
     @Test
-    public void naoDeveExcluirCursoNaoEncontrado() {
-        System.out.println("Executando teste naoDeveExcluirCursoNaoEncontrado");
+    public void naoDeveExcluirCursoJaRemovido() throws CursoException {
+        System.out.println("Executando teste naoDeveExcluirCursoJaRemovido");
 
+        this.curso = CursoServico.inserir(this.curso);
+        
+        CursoServico.excluir(this.curso);
+        
         CursoException cursoException = assertThrows(CursoException.class, () -> {
-            Curso cursoASerExcluido = new Curso();
-            cursoASerExcluido.setId(-5);
-            cursoASerExcluido.setNome("Curso Não Existente");
-            CursoServico.excluir(cursoASerExcluido);
+            CursoServico.excluir(this.curso);
         });
-        assertEquals(MensagemUtil.CURSO_NAO_ENCONTRADO, cursoException.getMessage());
-    }&/
+        
+        assertTrue(MensagemUtil.CURSO_ATUALIZADO_OU_REMOVIDO.equals(cursoException.getMessage()));
+    }
+    */
+    
+    @Test
+    public void deveAtualizarOCursoComIdInserido() throws CursoException {
+        System.out.println("Executando teste deveExcluirOCursoComIdInserido");
+
+        this.curso = CursoServico.inserir(this.curso);
+
+        this.curso.setNome("Curso Teste Atualizado");
+        this.curso.setAtivo(false);
+        
+        Curso cursoAtualizado = CursoServico.atualizar(this.curso);
+
+        assertTrue(this.curso.getNome().equals(cursoAtualizado.getNome()));
+        assertTrue(!cursoAtualizado.isAtivo());
+    }
 }

@@ -11,10 +11,12 @@ import java.util.List;
  * @author Professor Marcelo F. Terenciani
  */
 public class CursoServico {
+
     private static CursoDao dao = new CursoDaoImpl();
-    public static Curso inserir(Curso curso) throws CursoException{
+
+    public static Curso inserir(Curso curso) throws CursoException {
         return dao.inserir(curso);
-    }    
+    }
 
     public static void excluir(Curso curso) throws CursoException {
         dao.excluir(curso);
@@ -26,5 +28,9 @@ public class CursoServico {
 
     public static Curso buscarPorId(Integer id) {
         return dao.buscarPorId(id);
+    }
+
+    public static Curso atualizar(Curso curso) throws CursoException{
+        return dao.atualizar(curso);
     }
 }

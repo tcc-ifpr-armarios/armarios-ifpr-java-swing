@@ -6,6 +6,7 @@ import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.OptimisticLockException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
@@ -36,8 +37,15 @@ public class CursoDaoImpl implements CursoDao {
     }
 
     @Override
-    public Curso atualizar(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Curso atualizar(Curso curso) throws CursoException {
+        try {
+            sessao.beginTransaction();
+            sessao.merge(curso);
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            throw new CursoException(MensagemUtil.CURSO_ERRO_PADRAO_DE_ATUALIZACAO);
+        }
+        return curso;
     }
 
     @Override
@@ -48,6 +56,8 @@ public class CursoDaoImpl implements CursoDao {
             sessao.getTransaction().commit();
         } catch (EntityNotFoundException e) {
             throw new CursoException(MensagemUtil.CURSO_NAO_ENCONTRADO);
+        } catch (OptimisticLockException e) {
+            throw new CursoException(MensagemUtil.CURSO_ATUALIZADO_OU_REMOVIDO);
         }
     }
 

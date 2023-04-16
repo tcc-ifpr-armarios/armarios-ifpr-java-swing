@@ -13,7 +13,7 @@ public interface CursoDao {
 
     public Curso buscarPorId(Integer inteiro);
 
-    public Curso atualizar(Curso curso);
+    public Curso atualizar(Curso curso) throws CursoException;
 
     public void excluir(Curso curso) throws CursoException;
 
