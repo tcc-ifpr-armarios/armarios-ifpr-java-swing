@@ -3,6 +3,9 @@ package br.edu.ifpr.paranavai.armarios.visao.curso;
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.EditorDasAcoesDaCelula;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.RenderizadorDasAcoesDaCelula;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +26,12 @@ public class IndexCursoUI extends javax.swing.JFrame {
     }
 
     private void populaTabela(List<Curso> lista) {
+        
+        AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
+        
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
+        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelula());
+        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelula(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -31,12 +39,10 @@ public class IndexCursoUI extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             Curso mostraCurso = lista.get(i);
-            Object[] dadosLinha = new Object[5];
+            Object[] dadosLinha = new Object[3];
             dadosLinha[0] = mostraCurso.getId();
             dadosLinha[1] = mostraCurso.getNome();
-            dadosLinha[2] = OperacaoUtil.EDITAR;
-            dadosLinha[3] = OperacaoUtil.EXCLUIR;
-            dadosLinha[4] = OperacaoUtil.DETALHES;
+            dadosLinha[2] = mostraCurso.isAtivo() ? "Ativo" : "Inativo";
             
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -62,9 +68,11 @@ public class IndexCursoUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCurso = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        getContentPane().setLayout(new java.awt.BorderLayout(6, 6));
 
-        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0)));
+        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelSuperior.setLayout(new java.awt.BorderLayout());
 
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
@@ -101,25 +109,23 @@ public class IndexCursoUI extends javax.swing.JFrame {
 
         getContentPane().add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
-        painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 204, 0)));
+        painelInferior.setBackground(new java.awt.Color(0, 153, 0));
+        painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
         tblCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Identificador", "Nome", "#", "#", "#"
+                "Identificador", "Nome", "Ativo", "Ações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -130,6 +136,8 @@ public class IndexCursoUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCurso.setRowHeight(30);
+        tblCurso.setSelectionBackground(new java.awt.Color(57, 137, 111));
         tblCurso.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCurso);
 
