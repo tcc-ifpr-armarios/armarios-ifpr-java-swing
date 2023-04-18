@@ -27,8 +27,13 @@ public class HistoricoBiblioteca {
     @Column(name = "id_reserva", unique = true, nullable = false) 
     private Integer id;
     
+    
+   
     @Column (name = "numero", nullable = false) 
     private int numero;
+    
+    @Column (name = "localizacao_id", nullable = false )  
+    private int localId;
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column (name = "dataHoraDevolucao")

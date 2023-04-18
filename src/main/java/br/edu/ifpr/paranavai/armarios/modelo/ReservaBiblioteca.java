@@ -29,6 +29,9 @@ public class ReservaBiblioteca {
     @ManyToOne(cascade=CascadeType.MERGE)
     private Estudante estudante; 
     
+    @Column (name = "localizacao_id", nullable = false )  
+    private int localId;
+    
     @Column (name = "numero", unique = true, nullable = false) 
     private int numero;
     
@@ -52,15 +55,16 @@ public class ReservaBiblioteca {
         
     }
 
-    public ReservaBiblioteca(Integer id, Estudante estudante, int numero, boolean ativo, Date data_Hora_Devolucao, Date dataHoraEmprestimo) {
+    public ReservaBiblioteca(Integer id, Estudante estudante, int localId, int numero, boolean ativo, Date dataHoraEmprestimo) {
         this.id = id;
         this.estudante = estudante;
+        this.localId = localId;
         this.numero = numero;
         this.ativo = ativo;
-        
         this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
-    
+
+ 
     
 
     public boolean isAtivo() {
@@ -104,6 +108,14 @@ public class ReservaBiblioteca {
 
     public Estudante getEstudante() {
         return estudante;
+    }
+
+    public int getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(int localId) {
+        this.localId = localId;
     }
 
     
