@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.OptimisticLockException;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
@@ -63,13 +64,16 @@ public class CursoDaoImpl implements CursoDao {
 
     @Override
     public Curso inserir(Curso curso) throws CursoException {
+        Transaction transacao = null;
         try {
             sessao.beginTransaction();
             sessao.persist(curso);
             sessao.getTransaction().commit();
-        } catch (ConstraintViolationException e) {
+        } catch (ConstraintViolationException e) {            
+            sessao.evict(curso);
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
         } catch (Exception e) {
+            sessao.evict(curso);
             throw new CursoException(MensagemUtil.CURSO_ERRO_PADRAO_DE_INSERCAO);
         }
         return curso;

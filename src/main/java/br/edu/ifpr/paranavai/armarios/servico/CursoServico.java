@@ -4,6 +4,7 @@ import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.CursoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.util.List;
 
 /**
@@ -15,6 +16,9 @@ public class CursoServico {
     private static CursoDao dao = new CursoDaoImpl();
 
     public static Curso inserir(Curso curso) throws CursoException {
+        if(curso.getNome() == null || curso.getNome().isEmpty())
+            throw new CursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
+        
         return dao.inserir(curso);
     }
 

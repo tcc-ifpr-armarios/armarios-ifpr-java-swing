@@ -42,6 +42,24 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals("Curso Teste"));
         assertTrue(this.curso.isAtivo());
     }
+    
+     @Test
+    public void naoDeveSalvarNomeVazioOuNulo() {
+        System.out.println("Executando teste naoDeveSalvarNomeVazioOuNulo");
+
+        CursoException cursoExceptionVazio = assertThrows(CursoException.class, () -> {
+            this.curso.setNome("");
+            this.curso = CursoServico.inserir(this.curso);
+        });
+        
+        CursoException cursoExceptionNulo = assertThrows(CursoException.class, () -> {
+            this.curso.setNome(null);
+            this.curso = CursoServico.inserir(this.curso);
+        });
+        assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, cursoExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, cursoExceptionNulo.getMessage());
+    }
+
 
     @Test
     public void naoDeveSalvarNomeDuplicado() {

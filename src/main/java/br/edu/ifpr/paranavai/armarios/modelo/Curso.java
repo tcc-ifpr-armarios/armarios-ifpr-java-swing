@@ -18,10 +18,11 @@ import java.util.Objects;
 public class Curso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_curso", unique = true, nullable = false)
     private Integer id;
 
+    
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 
