@@ -15,12 +15,14 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
 
     private Curso curso;
     private boolean estaAtualizando;
+    private IndexCursoUI indexCursoUI;
 
     /**
      * Creates new form CriacaoEdicaoCurso
      */
-    public CriacaoEdicaoCurso() {
+    public CriacaoEdicaoCurso(IndexCursoUI indexCursoUI) {
         initComponents();
+        this.indexCursoUI = indexCursoUI;
         this.curso = new Curso();
         this.estaAtualizando = false;
         this.setTitle("Novo Curso");
@@ -35,7 +37,6 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
         this.setTitle("Edição do Curso " + curso.getId());
         txtNomeCurso.setText(curso.getNome());
         ckbAtivo.setSelected(curso.isAtivo());
-        
     }
 
     /**
@@ -57,6 +58,11 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
 
@@ -154,7 +160,7 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
         try {
             CursoControle.inserir(curso);
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_SUCESSO_INSERCAO);
-            this.dispose();
+            fecharFormulario();
         } catch (CursoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
@@ -166,45 +172,20 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
     private void atualizar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    private void fecharFormulario(){
+        this.dispose();
+        this.indexCursoUI.init();
+    }
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CriacaoEdicaoCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CriacaoEdicaoCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CriacaoEdicaoCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CriacaoEdicaoCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CriacaoEdicaoCurso().setVisible(true);
-            }
-        });
-    }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        fecharFormulario();
+    }//GEN-LAST:event_formWindowClosing
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
