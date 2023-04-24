@@ -1,9 +1,10 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
 @Entity
 @Table(name = "tb_bibliotecario")
 public class Bibliotecario extends Pessoa{

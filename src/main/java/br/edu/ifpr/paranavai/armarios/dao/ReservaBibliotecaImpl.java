@@ -5,14 +5,10 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import java.util.List;
-import javax.persistence.EntityManager;
-import org.hibernate.internal.AbstractSessionImpl;
-import org.hibernate.internal.SessionImpl;
 import org.hibernate.query.Query;
 
 public class ReservaBibliotecaImpl implements ReservaBibliotecaDao {

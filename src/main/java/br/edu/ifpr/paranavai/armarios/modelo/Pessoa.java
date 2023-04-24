@@ -1,16 +1,16 @@
  package br.edu.ifpr.paranavai.armarios.modelo;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.hibernate.annotations.Type;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
@@ -28,7 +28,7 @@ public abstract class Pessoa {
     private String telefone;
     @Column(name = "senha", unique = false, nullable = false, length = 100)
     private String senha;
-    @Type(type="true_false")
+    @Basic
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
     
