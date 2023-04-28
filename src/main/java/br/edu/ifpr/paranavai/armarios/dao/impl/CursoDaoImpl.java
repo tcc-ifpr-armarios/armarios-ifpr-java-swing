@@ -1,17 +1,15 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.OptimisticLockException;
-import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
-import org.hibernate.query.Query;
 
 /**
  *
@@ -55,28 +53,29 @@ public class CursoDaoImpl implements CursoDao {
             sessao.beginTransaction();
             sessao.remove(curso);
             sessao.getTransaction().commit();
-        } catch (EntityNotFoundException e) {
-            throw new CursoException(MensagemUtil.CURSO_NAO_ENCONTRADO);
-        } catch (OptimisticLockException e) {
-            throw new CursoException(MensagemUtil.CURSO_ATUALIZADO_OU_REMOVIDO);
+        } catch (Exception e) {
+            throw new CursoException(MensagemUtil.CURSO_ERRO_PADRAO_DE_EXCLUSAO);
         }
     }
 
     @Override
     public Curso inserir(Curso curso) throws CursoException {
-        Transaction transacao = null;
         try {
             sessao.beginTransaction();
             sessao.persist(curso);
             sessao.getTransaction().commit();
-        } catch (ConstraintViolationException e) {            
-            sessao.evict(curso);
-            throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
         } catch (Exception e) {
-            sessao.evict(curso);
             throw new CursoException(MensagemUtil.CURSO_ERRO_PADRAO_DE_INSERCAO);
         }
         return curso;
+    }
+
+    @Override
+    public Curso buscarPorNomeExato(String nome) {
+        Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome", Curso.class);
+        query.setParameter("nome", nome);
+        Curso resultado = query.uniqueResult();
+        return resultado;
     }
 
 }

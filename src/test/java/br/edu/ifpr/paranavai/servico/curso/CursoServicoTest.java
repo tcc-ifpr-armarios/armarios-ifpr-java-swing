@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.servico.curso;
 
-import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
@@ -29,8 +28,19 @@ public class CursoServicoTest {
     }
 
     @AfterEach
-    public void aposCadaTeste() throws CursoException{
-        CursoServico.excluir(this.curso);
+    public void aposCadaTeste() throws CursoException {
+        if (this.curso != null) {
+            if (this.curso.getId() != null) {
+                Curso c = CursoServico.buscarPorId(this.curso.getId());
+                if (c != null)
+                    CursoServico.excluir(c);
+            } else {
+                Curso c = CursoServico.buscarPorNomeExato(this.curso.getNome());
+                if (c != null)
+                    CursoServico.excluir(c);
+            }
+        }
+        this.curso = null;
     }
 
     @Test
@@ -42,8 +52,8 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals("Curso Teste"));
         assertTrue(this.curso.isAtivo());
     }
-    
-     @Test
+
+    @Test
     public void naoDeveSalvarNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveSalvarNomeVazioOuNulo");
 
@@ -51,7 +61,7 @@ public class CursoServicoTest {
             this.curso.setNome("");
             this.curso = CursoServico.inserir(this.curso);
         });
-        
+
         CursoException cursoExceptionNulo = assertThrows(CursoException.class, () -> {
             this.curso.setNome(null);
             this.curso = CursoServico.inserir(this.curso);
@@ -59,7 +69,6 @@ public class CursoServicoTest {
         assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, cursoExceptionVazio.getMessage());
         assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, cursoExceptionNulo.getMessage());
     }
-
 
     @Test
     public void naoDeveSalvarNomeDuplicado() {
@@ -116,24 +125,22 @@ public class CursoServicoTest {
         Curso cursoEncontrado = CursoServico.buscarPorId(cursoASerExcluido.getId());
         assertNull(cursoEncontrado);
     }
-    /*
-    TODO
+
     @Test
     public void naoDeveExcluirCursoJaRemovido() throws CursoException {
         System.out.println("Executando teste naoDeveExcluirCursoJaRemovido");
 
         this.curso = CursoServico.inserir(this.curso);
-        
+
         CursoServico.excluir(this.curso);
-        
+
         CursoException cursoException = assertThrows(CursoException.class, () -> {
             CursoServico.excluir(this.curso);
         });
-        
-        assertTrue(MensagemUtil.CURSO_ATUALIZADO_OU_REMOVIDO.equals(cursoException.getMessage()));
+
+        assertTrue(MensagemUtil.CURSO_REMOVIDO.equals(cursoException.getMessage()));
     }
-    */
-    
+
     @Test
     public void deveAtualizarOCursoComIdInserido() throws CursoException {
         System.out.println("Executando teste deveExcluirOCursoComIdInserido");
@@ -142,7 +149,7 @@ public class CursoServicoTest {
 
         this.curso.setNome("Curso Teste Atualizado");
         this.curso.setAtivo(false);
-        
+
         Curso cursoAtualizado = CursoServico.atualizar(this.curso);
 
         assertTrue(this.curso.getNome().equals(cursoAtualizado.getNome()));
