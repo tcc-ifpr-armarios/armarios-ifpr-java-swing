@@ -1,14 +1,12 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.EditorDasAcoesDaCelula;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.RenderizadorDasAcoesDaCelula;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import javax.swing.JTable;
 
 /**
  *
@@ -19,6 +17,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
     /**
      * Creates new form EditorCursoUI
      */
+    
     public IndexCursoUI() {
         initComponents();
         init();
@@ -34,8 +33,8 @@ public class IndexCursoUI extends javax.swing.JFrame {
         AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
-        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelula());
-        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelula(evento));
+        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
+        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -74,6 +73,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
         tblCurso = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciamento de Cursos");
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -191,7 +191,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoCurso criacaoEdicaoCurso = new CriacaoEdicaoCurso(this);
+        CriacaoEdicaoCursoUI criacaoEdicaoCurso = new CriacaoEdicaoCursoUI(this);
         criacaoEdicaoCurso.setLocationRelativeTo(this);
         criacaoEdicaoCurso.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -251,4 +251,5 @@ public class IndexCursoUI extends javax.swing.JFrame {
     private javax.swing.JTable tblCurso;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
+
 }

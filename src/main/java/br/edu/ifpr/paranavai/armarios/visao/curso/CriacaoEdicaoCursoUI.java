@@ -1,17 +1,19 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
+import java.awt.HeadlessException;
+
+import javax.swing.JOptionPane;
+
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.awt.HeadlessException;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class CriacaoEdicaoCurso extends javax.swing.JFrame {
+public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
 
     private Curso curso;
     private boolean estaAtualizando;
@@ -20,7 +22,7 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
     /**
      * Creates new form CriacaoEdicaoCurso
      */
-    public CriacaoEdicaoCurso(IndexCursoUI indexCursoUI) {
+    public CriacaoEdicaoCursoUI(IndexCursoUI indexCursoUI) {
         initComponents();
         this.indexCursoUI = indexCursoUI;
         this.curso = new Curso();
@@ -28,9 +30,10 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
         this.setTitle("Novo Curso");
     }
 
-    public CriacaoEdicaoCurso(Curso curso) {
+    public CriacaoEdicaoCursoUI(IndexCursoUI indexCursoUI, Curso curso) {
         initComponents();
         this.curso = curso;
+        this.indexCursoUI = indexCursoUI;
         this.estaAtualizando = true;
 
         lblTitulo.setText("Edição do Curso " + curso.getId());
@@ -159,18 +162,25 @@ public class CriacaoEdicaoCurso extends javax.swing.JFrame {
     private void salvar() throws HeadlessException {
         try {
             CursoControle.inserir(curso);
-            JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_SUCESSO_INSERCAO);
+            JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_INSERCAO_SUCESSO);
             fecharFormulario();
         } catch (CursoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_ERRO_PADRAO_DE_INSERCAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void atualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            CursoControle.atualizar(curso);
+            JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_ATUALIZACAO_SUCESSO);
+            fecharFormulario();
+        } catch (CursoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void fecharFormulario(){

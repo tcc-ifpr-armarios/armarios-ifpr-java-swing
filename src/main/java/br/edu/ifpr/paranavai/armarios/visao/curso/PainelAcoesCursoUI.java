@@ -1,42 +1,41 @@
-/*
- * https://www.youtube.com/watch?v=RMwufjRRHBU&ab_channel=RaVen
- * https://www.iconfinder.com/search/icons?family=unicons-line
- */
-package br.edu.ifpr.paranavai.armarios.visao.tabela.acoes;
+package br.edu.ifpr.paranavai.armarios.visao.curso;
 
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author professor Marcelo Figueiredo Terenciani
  */
-public class PanelAcoes extends javax.swing.JPanel {
+public class PainelAcoesCursoUI extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAcoes
      */
-    public PanelAcoes() {
+    public PainelAcoesCursoUI() {
         initComponents();
     }
 
-    public void iniciarEventos(AcoesEventoTabela evento, int linha){
+    public void iniciarEventos(IndexCursoUI indexCursoUI, AcoesEventoTabela evento, JTable tabela, int linha){
         btnEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evento.aoEditar(linha);
+                evento.aoEditar(tabela, linha);
             }
         });
         btnExcluir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evento.aoExcluir(linha);
+                evento.aoExcluir(tabela, linha);
             }
         });
         btnVisualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evento.aoVisualizar(linha);
+                evento.aoVisualizar(tabela, linha);
             }
         });
     }

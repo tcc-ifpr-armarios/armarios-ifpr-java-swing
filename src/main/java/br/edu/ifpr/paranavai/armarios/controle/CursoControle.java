@@ -18,5 +18,13 @@ public class CursoControle {
     public static Curso inserir(Curso curso) throws CursoException {
         return CursoServico.inserir(curso);
     }
+
+    public static Curso buscarPorId(int idCurso) {
+        return CursoServico.buscarPorId(idCurso);
+    }
+
+    public static Curso atualizar(Curso curso) throws CursoException {
+        return CursoServico.atualizar(curso);
+    }
     
 }
