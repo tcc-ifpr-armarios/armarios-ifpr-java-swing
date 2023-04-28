@@ -26,5 +26,9 @@ public class CursoControle {
     public static Curso atualizar(Curso curso) throws CursoException {
         return CursoServico.atualizar(curso);
     }
+
+    public static void excluir(Curso curso) throws CursoException {
+        CursoServico.excluir(curso);
+    }
     
 }

@@ -1,18 +1,12 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import br.edu.ifpr.paranavai.armarios.visao.curso.PainelAcoesCursoUI;
 import java.awt.Component;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.event.AncestorListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *

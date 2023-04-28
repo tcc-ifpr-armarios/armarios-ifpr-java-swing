@@ -191,7 +191,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoCursoUI criacaoEdicaoCurso = new CriacaoEdicaoCursoUI(this);
+        CriacaoEdicaoCursoUIModal criacaoEdicaoCurso = new CriacaoEdicaoCursoUIModal(this);
         criacaoEdicaoCurso.setLocationRelativeTo(this);
         criacaoEdicaoCurso.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed

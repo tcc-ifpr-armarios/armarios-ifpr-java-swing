@@ -1,45 +1,68 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package br.edu.ifpr.paranavai.armarios.visao.curso;
-
-import java.awt.HeadlessException;
-
-import javax.swing.JOptionPane;
 
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author teren
  */
-public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
+public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
 
     private Curso curso;
     private boolean estaAtualizando;
     private IndexCursoUI indexCursoUI;
-
     /**
-     * Creates new form CriacaoEdicaoCurso
+     * Creates new form CriacaoEdicaoCursoUIModal
      */
-    public CriacaoEdicaoCursoUI(IndexCursoUI indexCursoUI) {
+    
+    public CriacaoEdicaoCursoUIModal(IndexCursoUI indexCursoUI) {
+        super(indexCursoUI, true);
         initComponents();
         this.indexCursoUI = indexCursoUI;
         this.curso = new Curso();
         this.estaAtualizando = false;
         this.setTitle("Novo Curso");
+        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
 
-    public CriacaoEdicaoCursoUI(IndexCursoUI indexCursoUI, Curso curso) {
+    public CriacaoEdicaoCursoUIModal(IndexCursoUI indexCursoUI, Curso curso, boolean estaAtualizando) {
+        super(indexCursoUI, true);
         initComponents();
         this.curso = curso;
         this.indexCursoUI = indexCursoUI;
-        this.estaAtualizando = true;
+        this.estaAtualizando = estaAtualizando;
 
-        lblTitulo.setText("Edição do Curso " + curso.getId());
-        this.setTitle("Edição do Curso " + curso.getId());
+        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        
+        String titulo = estaAtualizando ? "Edição do Curso " : "Dados do Curso ";
+        
+        lblTitulo.setText(titulo + curso.getId());
+        this.setTitle(titulo + curso.getId());
         txtNomeCurso.setText(curso.getNome());
         ckbAtivo.setSelected(curso.isAtivo());
+        
+        if(!estaAtualizando)
+            desabilitarComponentes();
+    }
+
+    private void desabilitarComponentes() {
+        btnCancelar.setVisible(false);
+        btnSalvar.setVisible(false);
+        panelGeral.setEnabled(false);
+        txtNomeCurso.setEnabled(false);
+        txtNomeCurso.setDisabledTextColor(Color.BLACK);
+        ckbAtivo.setEnabled(false);
     }
 
     /**
@@ -61,13 +84,16 @@ public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
+        setMinimumSize(new java.awt.Dimension(394, 290));
+        setModal(true);
+        setName("dialogo"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(394, 290));
+        setResizable(false);
+        setSize(new java.awt.Dimension(394, 290));
 
         panelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
+        panelGeral.setMinimumSize(new java.awt.Dimension(394, 237));
+        panelGeral.setRequestFocusEnabled(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -154,12 +180,16 @@ public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
         this.curso.setAtivo(ckbAtivo.isSelected());
 
         if (estaAtualizando)
-            atualizar();
+        atualizar();
         else
-            salvar();
+        salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void salvar() throws HeadlessException {
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        fecharFormulario();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+        private void salvar() throws HeadlessException {
         try {
             CursoControle.inserir(curso);
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_INSERCAO_SUCESSO);
@@ -188,15 +218,6 @@ public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
         this.indexCursoUI.init();
     }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        fecharFormulario();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        fecharFormulario();
-    }//GEN-LAST:event_formWindowClosing
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
@@ -207,5 +228,4 @@ public class CriacaoEdicaoCursoUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelGeral;
     private javax.swing.JTextField txtNomeCurso;
     // End of variables declaration//GEN-END:variables
-
 }
