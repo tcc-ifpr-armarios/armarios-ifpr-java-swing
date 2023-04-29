@@ -1,10 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 
 /**
  *

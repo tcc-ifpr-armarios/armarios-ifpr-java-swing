@@ -22,5 +22,8 @@ public class MensagemUtil {
     public static final String CURSO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo curso";
     public static final String CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     public static final String CURSO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
+    
+    public static final String ESTUDANTE_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o estudante";
+    public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 
 }

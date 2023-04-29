@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import javax.swing.JTable;
 
 /**
  *

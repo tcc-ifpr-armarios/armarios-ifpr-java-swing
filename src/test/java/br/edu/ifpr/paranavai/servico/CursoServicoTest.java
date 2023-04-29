@@ -1,4 +1,4 @@
-package br.edu.ifpr.paranavai.servico.curso;
+package br.edu.ifpr.paranavai.servico;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;

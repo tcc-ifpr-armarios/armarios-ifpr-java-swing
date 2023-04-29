@@ -1,8 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.visao.curso.PainelAcoesCursoUI;
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 

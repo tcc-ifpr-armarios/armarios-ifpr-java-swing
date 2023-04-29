@@ -4,6 +4,8 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.visao.aluno.ListaAlunoUI;
 import javax.swing.JOptionPane;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
@@ -14,6 +16,8 @@ import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -564,7 +568,11 @@ public class ServidorControleUI extends javax.swing.JFrame {
             aluno.setSenha(senhaAluno.getText());
             aluno.setAtivo(true);
             EstudanteServico estudante = new EstudanteServico();
-            estudante.inserir(aluno);
+            try {
+                estudante.inserir(aluno);
+            } catch (EstudanteException ex) {
+                ex.printStackTrace();
+            }
             lblrespostacad.setText("Aluno cadastrado com sucesso!");
             lblrespostacad.setVisible(true);
             nomeAluno.setText("");

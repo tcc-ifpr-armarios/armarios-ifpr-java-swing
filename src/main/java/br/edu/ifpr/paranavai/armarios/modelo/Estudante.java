@@ -1,54 +1,48 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_estudante")
 public class Estudante extends Pessoa implements Serializable {
 
-    @Column
+    @Column(name = "ra", unique = true, nullable = false, length = 100)
     private String ra;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
-    /**@JoinColumn(name = "id_reserva")**/
-    private List<ReservaBiblioteca> reservasB;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
-    /**@JoinColumn(name = "id_reserva")**/
-    private List<ReservaSaguao> reservasS;
-    
-    
-    /**
-     * @param ra * @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
-     * @param nome
-     * @param email
-     * @param dataCriacao
-     * @param senha
-     * @param ativo
-     * @param dataAtualizacao
-     * @param telefone
-    @JoinColumn(name = "reserva_id")
-    public ReservaBiblioteca reservaB;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
-    @JoinColumn(name = "reserva_id")
-    public ReservaSaguao reservaS;**/
 
-    
-    public Estudante(String ra, String nome, String email, String telefone, String senha, boolean ativo, Date dataAtualizacao, Date dataCriacao) {
-        super(nome, email, telefone, senha, ativo, dataAtualizacao, dataCriacao);
-        this.ra = ra;
-        
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
+    /**
+     * @JoinColumn(name = "id_reserva")*
+     */
+    private List<ReservaBiblioteca> reservasB;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
+    /**
+     * @JoinColumn(name = "id_reserva")*
+     */
+    private List<ReservaSaguao> reservasS;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_curso", nullable = false)
+    private Curso curso;
 
     public Estudante() {
+    }
+
+    public Estudante(String ra, Curso curso, String nome, String sobrenome, String email, String telefone, String senha, boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
+        super(nome, sobrenome, email, telefone, senha, ativo, dataAtualizacao, dataCriacao);
+        this.ra = ra;
+        this.curso = curso;
     }
 
     public String getRa() {
@@ -73,5 +67,13 @@ public class Estudante extends Pessoa implements Serializable {
 
     public List<ReservaSaguao> getReservasS() {
         return reservasS;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 }
