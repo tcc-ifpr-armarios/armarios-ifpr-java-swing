@@ -35,19 +35,18 @@ public abstract class Pessoa {
     private String email;
 
     @Column(name = "telefone", unique = true, nullable = false, length = 100)
+    @ColumnTransformer(read = "telefone", write = "TRIM(?)")
     private String telefone;
 
-    @ColumnTransformer(
-            read = "senha",
-            write = "SHA2(CONCAT('" + AutenticacaoUtil.CHAVE_PRIVADA + "', ?, '" + AutenticacaoUtil.CHAVE_PRIVADA + "'), 256)"
-    )
+    @ColumnTransformer(read = "senha", write = "SHA2(CONCAT('" + AutenticacaoUtil.CHAVE_PRIVADA + "', ?, '"
+            + AutenticacaoUtil.CHAVE_PRIVADA + "'), 256)")
     @Column(name = "senha", unique = false, nullable = false, length = 100)
     private String senha;
 
     @Basic
     @Column(name = "ativo", columnDefinition = "boolean default true")
     private boolean ativo = true;
-    
+
     @CreationTimestamp
     @Column(name = "data_criacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dataCriacao = LocalDateTime.now();
@@ -55,11 +54,12 @@ public abstract class Pessoa {
     @UpdateTimestamp
     @Column(name = "data_atualizacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
-    
+
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String sobrenome, String email, String telefone, String senha, boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
+    public Pessoa(String nome, String sobrenome, String email, String telefone, String senha, boolean ativo,
+            LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;

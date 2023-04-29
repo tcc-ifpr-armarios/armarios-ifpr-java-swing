@@ -86,5 +86,13 @@ public class EstudanteDaoImpl implements EstudanteDao {
         query.setParameter("email", email);
         Estudante estudante = query.uniqueResult();
         return estudante;
+    }
+
+    @Override
+    public Estudante buscarPorTelefone(String telefone) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where telefone = :telefone", Estudante.class);
+        query.setParameter("telefone", telefone);
+        Estudante estudante = query.uniqueResult();
+        return estudante;
     }    
 }

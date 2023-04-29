@@ -17,6 +17,8 @@ public interface EstudanteDao {
     
     public Estudante buscarPorEmail (String email);
 
+    public Estudante buscarPorTelefone (String telefone);
+
     public Estudante atualizar(Estudante estudante);
 
     public void excluir(Estudante estudante)  throws EstudanteException;

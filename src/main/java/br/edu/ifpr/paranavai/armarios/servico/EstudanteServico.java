@@ -32,6 +32,11 @@ public class EstudanteServico {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
         }
 
+        e = dao.buscarPorTelefone(estudante.getTelefone());
+        if (e != null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
+        }
+
         return dao.inserir(estudante);
     }
 

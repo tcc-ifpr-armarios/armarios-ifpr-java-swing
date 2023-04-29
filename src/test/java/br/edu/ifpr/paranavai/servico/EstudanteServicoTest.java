@@ -187,6 +187,19 @@ public class EstudanteServicoTest {
         });
         assertEquals(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO, estudanteException.getMessage());
     }
+
+    @Test
+    public void naoDeveInserirTelefoneDuplicado() {
+        System.out.println("Executando teste naoDeveInserirTelefoneDuplicado");
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            Estudante estudanteDuplicado = this.estudante;
+            this.estudante = EstudanteServico.inserir(this.estudante);
+            estudanteDuplicado.setEmail("teste.telefone@teste.com");
+            EstudanteServico.inserir(estudanteDuplicado);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO, estudanteException.getMessage());
+    }
     /*
      * 
      * @Test
