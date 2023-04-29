@@ -12,6 +12,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
+import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
 import java.awt.Color;
 
 /**
@@ -51,6 +52,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         selecionaNumero = new javax.swing.JSpinner();
         botaoHistorico = new javax.swing.JButton();
+        btnCursos = new javax.swing.JButton();
         alunos = new javax.swing.JPanel();
         botaoCadAluno = new javax.swing.JToggleButton();
         nomeAluno = new javax.swing.JTextField();
@@ -137,31 +139,15 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 marcadorBibliotecaMouseClicked(evt);
             }
         });
-        marcadorBiblioteca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marcadorBibliotecaActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(marcadorSaguao);
         marcadorSaguao.setText("Saguão");
-        marcadorSaguao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                marcadorSaguaoActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Número do Armário:");
 
         botaoHistorico.setText("Histórico de reservas");
         botaoHistorico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         botaoHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoHistoricoMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                botaoHistoricoMousePressed(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 botaoHistoricoMouseReleased(evt);
             }
@@ -169,6 +155,14 @@ public class ServidorControleUI extends javax.swing.JFrame {
         botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoHistoricoActionPerformed(evt);
+            }
+        });
+
+        btnCursos.setText("Gestão de Cursos");
+        btnCursos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCursosActionPerformed(evt);
             }
         });
 
@@ -192,7 +186,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,7 +205,9 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(336, 336, 336))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(297, 297, 297))
         );
 
         alunos.setBackground(new java.awt.Color(255, 255, 255));
@@ -402,7 +399,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -434,16 +431,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         });
 
     }//GEN-LAST:event_botaoOcupadosActionPerformed
-
-    private void marcadorBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcadorBibliotecaActionPerformed
-        // TODO add your handling code here:
-        // botão biblioteca
-    }//GEN-LAST:event_marcadorBibliotecaActionPerformed
-
-    private void marcadorSaguaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcadorSaguaoActionPerformed
-        // TODO add your handling code here:
-        // botão  saguao
-    }//GEN-LAST:event_marcadorSaguaoActionPerformed
 
     private void botaoCadArmarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadArmarioMouseClicked
 
@@ -621,14 +608,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_senhaAlunoMouseReleased
 
-    private void botaoHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoHistoricoMouseClicked
-
-    private void botaoHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoHistoricoMousePressed
-
     private void botaoHistoricoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoHistoricoMouseReleased
@@ -642,6 +621,14 @@ public class ServidorControleUI extends javax.swing.JFrame {
         });
         
     }//GEN-LAST:event_botaoHistoricoActionPerformed
+
+    private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IndexCursoUI().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnCursosActionPerformed
 
     /**
      *
@@ -687,6 +674,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton botaoCadArmario;
     private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoOcupados;
+    private javax.swing.JButton btnCursos;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField emailAluno;
     private javax.swing.JLabel jLabel1;

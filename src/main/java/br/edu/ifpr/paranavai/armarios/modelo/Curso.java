@@ -22,6 +22,7 @@ public class Curso {
     @Column(name = "id_curso", unique = true, nullable = false)
     private Integer id;
 
+    
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 

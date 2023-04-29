@@ -1,14 +1,12 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.EditorDasAcoesDaCelula;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.RenderizadorDasAcoesDaCelula;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import javax.swing.JTable;
 
 /**
  *
@@ -19,8 +17,13 @@ public class IndexCursoUI extends javax.swing.JFrame {
     /**
      * Creates new form EditorCursoUI
      */
+    
     public IndexCursoUI() {
         initComponents();
+        init();
+    }
+    
+    public void init(){
         listaDeCursos = CursoControle.listarTodosCursos();
         populaTabela(listaDeCursos);
     }
@@ -30,8 +33,8 @@ public class IndexCursoUI extends javax.swing.JFrame {
         AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
-        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelula());
-        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelula(evento));
+        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
+        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -57,6 +60,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        painelGeral = new javax.swing.JPanel();
         painelSuperior = new javax.swing.JPanel();
         panelBusca = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
@@ -69,8 +73,12 @@ public class IndexCursoUI extends javax.swing.JFrame {
         tblCurso = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciamento de Cursos");
         setBackground(new java.awt.Color(0, 0, 0));
-        getContentPane().setLayout(new java.awt.BorderLayout(6, 6));
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+
+        painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
 
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelSuperior.setLayout(new java.awt.BorderLayout());
@@ -103,11 +111,18 @@ public class IndexCursoUI extends javax.swing.JFrame {
         panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
         btnNovo.setText("Novo");
+        btnNovo.setMaximumSize(new java.awt.Dimension(72, 72));
+        btnNovo.setMinimumSize(new java.awt.Dimension(72, 72));
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
         panelNovo.add(btnNovo);
 
         painelSuperior.add(panelNovo, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(painelSuperior, java.awt.BorderLayout.PAGE_START);
+        painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
@@ -140,10 +155,22 @@ public class IndexCursoUI extends javax.swing.JFrame {
         tblCurso.setSelectionBackground(new java.awt.Color(57, 137, 111));
         tblCurso.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCurso);
+        if (tblCurso.getColumnModel().getColumnCount() > 0) {
+            tblCurso.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblCurso.getColumnModel().getColumn(0).setMaxWidth(200);
+            tblCurso.getColumnModel().getColumn(2).setMinWidth(100);
+            tblCurso.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblCurso.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblCurso.getColumnModel().getColumn(3).setMinWidth(100);
+            tblCurso.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblCurso.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(painelInferior, java.awt.BorderLayout.CENTER);
+        painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(painelGeral);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,47 +190,18 @@ public class IndexCursoUI extends javax.swing.JFrame {
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IndexCursoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IndexCursoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IndexCursoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IndexCursoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IndexCursoUI().setVisible(true);
-            }
-        });
-    }
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        CriacaoEdicaoCursoUIModal criacaoEdicaoCurso = new CriacaoEdicaoCursoUIModal(this);
+        criacaoEdicaoCurso.setLocationRelativeTo(this);
+        criacaoEdicaoCurso.setVisible(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;

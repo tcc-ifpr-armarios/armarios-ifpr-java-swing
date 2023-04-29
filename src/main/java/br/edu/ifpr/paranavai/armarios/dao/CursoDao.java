@@ -11,7 +11,11 @@ import java.util.List;
 public interface CursoDao {
     public List<Curso> buscarTodos();
 
-    public Curso buscarPorId(Integer inteiro);
+    public Curso buscarPorId(Integer idCurso);
+
+    public Curso buscarPorNomeExato(String nome);
+    
+    public Curso buscarPorNomeExatoComIdDiferente(String nome, Integer idCurso);
 
     public Curso atualizar(Curso curso) throws CursoException;
 
