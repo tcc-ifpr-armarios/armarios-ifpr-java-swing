@@ -4,13 +4,13 @@
  */
 package br.edu.ifpr.paranavai.armarios.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import org.hibernate.annotations.Type;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  *
@@ -30,8 +30,8 @@ public class Localizacao {
     @Column (name = "descricao", unique = true, nullable = false) 
     private String descricao;
     
-    @Type(type="true_false")
-    @Column(name = "ativo", nullable = false)
+    @Basic
+    @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
     private boolean ativo;
 
     public Localizacao() {
