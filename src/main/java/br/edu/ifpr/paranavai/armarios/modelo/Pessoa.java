@@ -31,10 +31,10 @@ public abstract class Pessoa {
     @Column(name = "sobrenome", unique = false, nullable = false, length = 100)
     private String sobrenome;
 
-    @Column(name = "email", unique = true, nullable = false, length = 100)
+    @Column(name = "email", unique = true, nullable = false, length = 50)
     private String email;
 
-    @Column(name = "telefone", unique = true, nullable = false, length = 100)
+    @Column(name = "telefone", unique = true, nullable = false, length = 20)
     @ColumnTransformer(read = "telefone", write = "TRIM(?)")
     private String telefone;
 
