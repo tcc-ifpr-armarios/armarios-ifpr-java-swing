@@ -28,7 +28,7 @@ public abstract class Pessoa {
     @Column(name = "nome", unique = false, nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(name = "sobrenome", unique = false, nullable = false, length = 100)
     private String sobrenome;
 
     @Column(name = "email", unique = true, nullable = false, length = 100)
@@ -45,7 +45,7 @@ public abstract class Pessoa {
     private String senha;
 
     @Basic
-    @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
+    @Column(name = "ativo", columnDefinition = "boolean default true")
     private boolean ativo = true;
     
     @CreationTimestamp

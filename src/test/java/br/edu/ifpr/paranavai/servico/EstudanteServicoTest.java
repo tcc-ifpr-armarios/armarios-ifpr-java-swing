@@ -87,21 +87,94 @@ public class EstudanteServicoTest {
     }
     
     @Test
-    public void naoDeveInserirCamposObritagoriosVazioOuNulo() {
+    public void naoDeveInserirNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirNomeVazioOuNulo");
 
-        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+        EstudanteException ex = assertThrows(EstudanteException.class, () -> {
             this.estudante.setNome("");
             this.estudante = EstudanteServico.inserir(this.estudante);
         });
 
-        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+
+        ex = assertThrows(EstudanteException.class, () -> {
             this.estudante.setNome(null);
             this.estudante = EstudanteServico.inserir(this.estudante);
         });
-        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, estudanteExceptionVazio.getMessage());
-        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, estudanteExceptionNulo.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
     }
+
+    @Test
+    public void naoDeveInserirSobrenomeVazioOuNulo() {
+        System.out.println("Executando teste naoDeveInserirSobrenomeVazioOuNulo");
+
+        EstudanteException ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSobrenome("");
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+
+        ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSobrenome(null);
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+    }
+
+    @Test
+    public void naoDeveInserirEmailVazioOuNulo() {
+        System.out.println("Executando teste naoDeveInserirEmailVazioOuNulo");
+
+        EstudanteException ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setEmail("");
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+
+        ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setEmail(null);
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+    }
+    @Test
+    public void naoDeveInserirSenhaVazioOuNulo() {
+        System.out.println("Executando teste naoDeveInserirSenhaVazioOuNulo");
+
+        EstudanteException ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSenha("");
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+
+        ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSenha(null);
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+    }
+
+    @Test
+    public void naoDeveInserirTelefoneVazioOuNulo() {
+        System.out.println("Executando teste naoDeveInserirTelefoneVazioOuNulo");
+
+        EstudanteException ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setTelefone("");
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+
+        ex = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setTelefone(null);
+            this.estudante = EstudanteServico.inserir(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
+    }
+
     /*
 
     @Test

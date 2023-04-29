@@ -25,10 +25,26 @@ public class EstudanteServico {
     }
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
+        verificaCamposObrigatorios(estudante);
+        return dao.inserir(estudante);
+    }
+
+    private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {
         if (estudante.getNome() == null || estudante.getNome().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
-        return dao.inserir(estudante);
+        if (estudante.getSobrenome() == null || estudante.getSobrenome().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getEmail() == null || estudante.getEmail().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getSenha() == null || estudante.getSenha().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getTelefone() == null || estudante.getTelefone().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
     }
 
     public static void atualizar(Estudante estudante) {
