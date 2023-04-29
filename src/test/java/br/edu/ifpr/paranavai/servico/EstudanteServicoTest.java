@@ -1,7 +1,13 @@
 package br.edu.ifpr.paranavai.servico;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +20,6 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.security.NoSuchAlgorithmException;
-import org.junit.jupiter.api.AfterAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -200,68 +202,49 @@ public class EstudanteServicoTest {
         });
         assertEquals(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO, estudanteException.getMessage());
     }
+
+    @Test
+    public void deveListarAoMenosUm() throws EstudanteException {
+        System.out.println("Executando teste deveListarAoMenosUm");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        List<Estudante> listaDeEstudantes = EstudanteServico.buscarTodos();
+        assertTrue(!listaDeEstudantes.isEmpty());
+    }
+
+    @Test
+    public void deveEncontrarOEstudanteComIdInserido() throws EstudanteException {
+        System.out.println("Executando teste deveEncontrarOEstudanteComIdInserido");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(this.estudante.getId());
+        assertEquals(this.estudante.getId(), estudanteEncontrado.getId());
+    }
+
+    @Test
+    public void naoDeveEncontrarOId() throws EstudanteException {
+        System.out.println("Executando teste naoDeveEncontrarOId");
+
+        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(-1);
+        assertNull(estudanteEncontrado);
+    }
+
+    @Test
+    public void deveExcluirOEstudanteComIdInserido() throws EstudanteException {
+        System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteServico.excluir(this.estudante);
+
+        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(this.estudante.getId());
+        assertNull(estudanteEncontrado);
+    }
     /*
      * 
-     * @Test
-     * public void naoDeveInserirNomeDuplicado() {
-     * System.out.println("Executando teste naoDeveInserirNomeDuplicado");
      * 
-     * EstudanteException estudanteException =
-     * assertThrows(EstudanteException.class, () -> {
-     * this.estudante = EstudanteServico.inserir(this.estudante);
-     * Estudante estudanteDuplicado = new Estudante();
-     * estudanteDuplicado.setNome("Estudante Teste");
-     * EstudanteServico.inserir(estudanteDuplicado);
-     * });
-     * assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO,
-     * estudanteException.getMessage());
-     * }
-     * 
-     * @Test
-     * public void deveListarAoMenosUm() throws EstudanteException {
-     * System.out.println("Executando teste deveListarAoMenosUm");
-     * 
-     * this.estudante = EstudanteServico.inserir(this.estudante);
-     * 
-     * List<Estudante> listaDeEstudantes = EstudanteServico.buscarTodos();
-     * assertTrue(!listaDeEstudantes.isEmpty());
-     * }
-     * 
-     * @Test
-     * public void deveEncontrarOEstudanteComIdInserido() throws EstudanteException
-     * {
-     * System.out.println("Executando teste deveEncontrarOEstudanteComIdInserido");
-     * 
-     * this.estudante = EstudanteServico.inserir(this.estudante);
-     * 
-     * Estudante estudanteEncontrado =
-     * EstudanteServico.buscarPorId(this.estudante.getId());
-     * assertEquals(this.estudante.getId(), estudanteEncontrado.getId());
-     * }
-     * 
-     * @Test
-     * public void naoDeveEncontrarOId() throws EstudanteException {
-     * System.out.println("Executando teste naoDeveEncontrarOId");
-     * 
-     * Estudante estudanteEncontrado = EstudanteServico.buscarPorId(-1);
-     * assertNull(estudanteEncontrado);
-     * }
-     * 
-     * @Test
-     * public void deveExcluirOEstudanteComIdInserido() throws EstudanteException {
-     * System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
-     * 
-     * Estudante estudanteASerExcluido = new Estudante();
-     * estudanteASerExcluido.setNome("Estudante Exclusão");
-     * 
-     * estudanteASerExcluido = EstudanteServico.inserir(estudanteASerExcluido);
-     * 
-     * EstudanteServico.excluir(estudanteASerExcluido);
-     * 
-     * Estudante estudanteEncontrado =
-     * EstudanteServico.buscarPorId(estudanteASerExcluido.getId());
-     * assertNull(estudanteEncontrado);
-     * }
      * 
      * @Test
      * public void naoDeveExcluirEstudanteJaRemovido() throws EstudanteException {

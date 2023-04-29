@@ -116,14 +116,11 @@ public class CursoServicoTest {
     public void deveExcluirOCursoComIdInserido() throws CursoException {
         System.out.println("Executando teste deveExcluirOCursoComIdInserido");
 
-        Curso cursoASerExcluido = new Curso();
-        cursoASerExcluido.setNome("Curso Exclusão");
+        this.curso = CursoServico.inserir(this.curso);
 
-        cursoASerExcluido = CursoServico.inserir(cursoASerExcluido);
+        CursoServico.excluir(this.curso);
 
-        CursoServico.excluir(cursoASerExcluido);
-
-        Curso cursoEncontrado = CursoServico.buscarPorId(cursoASerExcluido.getId());
+        Curso cursoEncontrado = CursoServico.buscarPorId(this.curso.getId());
         assertNull(cursoEncontrado);
     }
 
