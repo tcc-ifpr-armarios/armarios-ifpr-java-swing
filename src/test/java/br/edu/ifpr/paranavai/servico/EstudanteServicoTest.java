@@ -77,15 +77,15 @@ public class EstudanteServicoTest {
     }
 
     @Test
-    public void deveInserirUmNovoEstudante() throws EstudanteException, NoSuchAlgorithmException {
+    public void deveInserirUmNovoEstudante() throws EstudanteException {
         System.out.println("Executando teste deveInserirUmNovoEstudante");
         this.estudante = EstudanteServico.inserir(this.estudante);
-        
+
         assertTrue(this.estudante.getId() > 0);
         assertTrue(this.estudante.getNomeCompleto().equals("Estudante Teste"));
         assertTrue(this.estudante.isAtivo());
     }
-    
+
     @Test
     public void naoDeveInserirNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirNomeVazioOuNulo");
@@ -139,6 +139,7 @@ public class EstudanteServicoTest {
         });
         assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
     }
+
     @Test
     public void naoDeveInserirSenhaVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirSenhaVazioOuNulo");
@@ -175,146 +176,173 @@ public class EstudanteServicoTest {
         assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO, ex.getMessage());
     }
 
-    /*
-
     @Test
-    public void naoDeveInserirNomeDuplicado() {
-        System.out.println("Executando teste naoDeveInserirNomeDuplicado");
+    public void naoDeveInserirEmailDuplicado() {
+        System.out.println("Executando teste naoDeveInserirEmailDuplicado");
 
         EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            Estudante estudanteDuplicado = this.estudante;
             this.estudante = EstudanteServico.inserir(this.estudante);
-            Estudante estudanteDuplicado = new Estudante();
-            estudanteDuplicado.setNome("Estudante Teste");
             EstudanteServico.inserir(estudanteDuplicado);
         });
-        assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO, estudanteException.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO, estudanteException.getMessage());
     }
-
-    @Test
-    public void deveListarAoMenosUm() throws EstudanteException {
-        System.out.println("Executando teste deveListarAoMenosUm");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-
-        List<Estudante> listaDeEstudantes = EstudanteServico.buscarTodos();
-        assertTrue(!listaDeEstudantes.isEmpty());
-    }
-
-    @Test
-    public void deveEncontrarOEstudanteComIdInserido() throws EstudanteException {
-        System.out.println("Executando teste deveEncontrarOEstudanteComIdInserido");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(this.estudante.getId());
-        assertEquals(this.estudante.getId(), estudanteEncontrado.getId());
-    }
-
-    @Test
-    public void naoDeveEncontrarOId() throws EstudanteException {
-        System.out.println("Executando teste naoDeveEncontrarOId");
-
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(-1);
-        assertNull(estudanteEncontrado);
-    }
-
-    @Test
-    public void deveExcluirOEstudanteComIdInserido() throws EstudanteException {
-        System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
-
-        Estudante estudanteASerExcluido = new Estudante();
-        estudanteASerExcluido.setNome("Estudante Exclusão");
-
-        estudanteASerExcluido = EstudanteServico.inserir(estudanteASerExcluido);
-
-        EstudanteServico.excluir(estudanteASerExcluido);
-
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(estudanteASerExcluido.getId());
-        assertNull(estudanteEncontrado);
-    }
-
-    @Test
-    public void naoDeveExcluirEstudanteJaRemovido() throws EstudanteException {
-        System.out.println("Executando teste naoDeveExcluirEstudanteJaRemovido");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-
-        EstudanteServico.excluir(this.estudante);
-
-        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
-            EstudanteServico.excluir(this.estudante);
-        });
-
-        assertTrue(MensagemUtil.CURSO_REMOVIDO.equals(estudanteException.getMessage()));
-    }
-
-    @Test
-    public void deveAtualizarOEstudanteComIdInserido() throws EstudanteException {
-        System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-
-        this.estudante.setNome("Estudante Teste Atualizado");
-        this.estudante.setAtivo(false);
-
-        Estudante estudanteAtualizado = EstudanteServico.atualizar(this.estudante);
-
-        assertTrue(this.estudante.getNome().equals(estudanteAtualizado.getNome()));
-        assertTrue(!estudanteAtualizado.isAtivo());
-    }
-
-    @Test
-    public void deveAtualizarMudandoSomenteUmAtributo() throws EstudanteException {
-        System.out.println("Executando teste deveAtualizarMudandoSomenteUmAtributo");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-
-        this.estudante.setNome("Estudante Teste");
-        this.estudante.setAtivo(false);
-
-        Estudante estudanteAtualizado = EstudanteServico.atualizar(this.estudante);
-
-        assertTrue(this.estudante.getNome().equals(estudanteAtualizado.getNome()));
-        assertTrue(!estudanteAtualizado.isAtivo());
-    }
-    
-    @Test
-    public void naoDeveAtualizarParaNomeVazioOuNulo() throws EstudanteException {
-        System.out.println("Executando teste naoDeveAtualizarParaNomeVazioOuNulo");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-        
-        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
-            this.estudante.setNome("");
-            this.estudante = EstudanteServico.atualizar(this.estudante);
-        });
-
-        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
-            this.estudante.setNome(null);
-            this.estudante = EstudanteServico.atualizar(this.estudante);
-        });
-        assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, estudanteExceptionVazio.getMessage());
-        assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, estudanteExceptionNulo.getMessage());
-    }
-
-    @Test
-    public void naoDeveAtualizarParaNomeDuplicado() throws EstudanteException{
-        System.out.println("Executando teste naoDeveAtualizarParaNomeDuplicado");
-        
-        this.estudanteAtualizacao = new Estudante();
-        this.estudanteAtualizacao.setNome("Para atualizar");
-
-        this.estudante = EstudanteServico.inserir(this.estudante);
-        this.estudanteAtualizacao = EstudanteServico.inserir(this.estudanteAtualizacao);
-        
-        this.estudanteAtualizacao.setNome(this.estudante.getNome());
-        
-        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
-            EstudanteServico.atualizar(this.estudanteAtualizacao);
-        });
-        
-        EstudanteServico.excluir(this.estudanteAtualizacao);
-        assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO, estudanteException.getMessage());
-    }
+    /*
+     * 
+     * @Test
+     * public void naoDeveInserirNomeDuplicado() {
+     * System.out.println("Executando teste naoDeveInserirNomeDuplicado");
+     * 
+     * EstudanteException estudanteException =
+     * assertThrows(EstudanteException.class, () -> {
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * Estudante estudanteDuplicado = new Estudante();
+     * estudanteDuplicado.setNome("Estudante Teste");
+     * EstudanteServico.inserir(estudanteDuplicado);
+     * });
+     * assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO,
+     * estudanteException.getMessage());
+     * }
+     * 
+     * @Test
+     * public void deveListarAoMenosUm() throws EstudanteException {
+     * System.out.println("Executando teste deveListarAoMenosUm");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * List<Estudante> listaDeEstudantes = EstudanteServico.buscarTodos();
+     * assertTrue(!listaDeEstudantes.isEmpty());
+     * }
+     * 
+     * @Test
+     * public void deveEncontrarOEstudanteComIdInserido() throws EstudanteException
+     * {
+     * System.out.println("Executando teste deveEncontrarOEstudanteComIdInserido");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * Estudante estudanteEncontrado =
+     * EstudanteServico.buscarPorId(this.estudante.getId());
+     * assertEquals(this.estudante.getId(), estudanteEncontrado.getId());
+     * }
+     * 
+     * @Test
+     * public void naoDeveEncontrarOId() throws EstudanteException {
+     * System.out.println("Executando teste naoDeveEncontrarOId");
+     * 
+     * Estudante estudanteEncontrado = EstudanteServico.buscarPorId(-1);
+     * assertNull(estudanteEncontrado);
+     * }
+     * 
+     * @Test
+     * public void deveExcluirOEstudanteComIdInserido() throws EstudanteException {
+     * System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
+     * 
+     * Estudante estudanteASerExcluido = new Estudante();
+     * estudanteASerExcluido.setNome("Estudante Exclusão");
+     * 
+     * estudanteASerExcluido = EstudanteServico.inserir(estudanteASerExcluido);
+     * 
+     * EstudanteServico.excluir(estudanteASerExcluido);
+     * 
+     * Estudante estudanteEncontrado =
+     * EstudanteServico.buscarPorId(estudanteASerExcluido.getId());
+     * assertNull(estudanteEncontrado);
+     * }
+     * 
+     * @Test
+     * public void naoDeveExcluirEstudanteJaRemovido() throws EstudanteException {
+     * System.out.println("Executando teste naoDeveExcluirEstudanteJaRemovido");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * EstudanteServico.excluir(this.estudante);
+     * 
+     * EstudanteException estudanteException =
+     * assertThrows(EstudanteException.class, () -> {
+     * EstudanteServico.excluir(this.estudante);
+     * });
+     * 
+     * assertTrue(MensagemUtil.CURSO_REMOVIDO.equals(estudanteException.getMessage()
+     * ));
+     * }
+     * 
+     * @Test
+     * public void deveAtualizarOEstudanteComIdInserido() throws EstudanteException
+     * {
+     * System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * this.estudante.setNome("Estudante Teste Atualizado");
+     * this.estudante.setAtivo(false);
+     * 
+     * Estudante estudanteAtualizado = EstudanteServico.atualizar(this.estudante);
+     * 
+     * assertTrue(this.estudante.getNome().equals(estudanteAtualizado.getNome()));
+     * assertTrue(!estudanteAtualizado.isAtivo());
+     * }
+     * 
+     * @Test
+     * public void deveAtualizarMudandoSomenteUmAtributo() throws EstudanteException
+     * {
+     * System.out.println("Executando teste deveAtualizarMudandoSomenteUmAtributo");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * this.estudante.setNome("Estudante Teste");
+     * this.estudante.setAtivo(false);
+     * 
+     * Estudante estudanteAtualizado = EstudanteServico.atualizar(this.estudante);
+     * 
+     * assertTrue(this.estudante.getNome().equals(estudanteAtualizado.getNome()));
+     * assertTrue(!estudanteAtualizado.isAtivo());
+     * }
+     * 
+     * @Test
+     * public void naoDeveAtualizarParaNomeVazioOuNulo() throws EstudanteException {
+     * System.out.println("Executando teste naoDeveAtualizarParaNomeVazioOuNulo");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * 
+     * EstudanteException estudanteExceptionVazio =
+     * assertThrows(EstudanteException.class, () -> {
+     * this.estudante.setNome("");
+     * this.estudante = EstudanteServico.atualizar(this.estudante);
+     * });
+     * 
+     * EstudanteException estudanteExceptionNulo =
+     * assertThrows(EstudanteException.class, () -> {
+     * this.estudante.setNome(null);
+     * this.estudante = EstudanteServico.atualizar(this.estudante);
+     * });
+     * assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO,
+     * estudanteExceptionVazio.getMessage());
+     * assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO,
+     * estudanteExceptionNulo.getMessage());
+     * }
+     * 
+     * @Test
+     * public void naoDeveAtualizarParaNomeDuplicado() throws EstudanteException{
+     * System.out.println("Executando teste naoDeveAtualizarParaNomeDuplicado");
+     * 
+     * this.estudanteAtualizacao = new Estudante();
+     * this.estudanteAtualizacao.setNome("Para atualizar");
+     * 
+     * this.estudante = EstudanteServico.inserir(this.estudante);
+     * this.estudanteAtualizacao =
+     * EstudanteServico.inserir(this.estudanteAtualizacao);
+     * 
+     * this.estudanteAtualizacao.setNome(this.estudante.getNome());
+     * 
+     * EstudanteException estudanteException =
+     * assertThrows(EstudanteException.class, () -> {
+     * EstudanteServico.atualizar(this.estudanteAtualizacao);
+     * });
+     * 
+     * EstudanteServico.excluir(this.estudanteAtualizacao);
+     * assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO,
+     * estudanteException.getMessage());
+     * }
      */
 }

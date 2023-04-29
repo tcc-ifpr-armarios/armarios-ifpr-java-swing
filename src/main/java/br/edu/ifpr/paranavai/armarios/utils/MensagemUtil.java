@@ -25,5 +25,6 @@ public class MensagemUtil {
     
     public static final String ESTUDANTE_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o estudante";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
+    public static final String ESTUDANTE_EMAIL_DUPLICADO = "E-mail já cadastrado";
 
 }

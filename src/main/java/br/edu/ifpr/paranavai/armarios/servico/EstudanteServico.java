@@ -26,6 +26,12 @@ public class EstudanteServico {
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
+
+        Estudante e = dao.buscarPorEmail(estudante.getEmail());
+        if (e != null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
+        }
+
         return dao.inserir(estudante);
     }
 
