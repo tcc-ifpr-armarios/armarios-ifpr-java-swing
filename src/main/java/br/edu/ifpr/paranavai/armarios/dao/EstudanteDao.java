@@ -19,9 +19,13 @@ public interface EstudanteDao {
 
     public Estudante buscarPorTelefone (String telefone);
 
-    public Estudante atualizar(Estudante estudante);
+    public Estudante buscarPorEmailComIdDiferente(String email, Integer id);
+
+    public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer id);
+
+    public Estudante atualizar(Estudante estudante) throws EstudanteException;
 
     public void excluir(Estudante estudante)  throws EstudanteException;
 
-    public Estudante inserir(Estudante estudante);
+    public Estudante inserir(Estudante estudante) throws EstudanteException;
 }

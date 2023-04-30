@@ -32,25 +32,25 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public Estudante inserir(Estudante estudante) {
+    public Estudante inserir(Estudante estudante) throws EstudanteException {
         try {
             sessao.beginTransaction();
             sessao.persist(estudante);
             sessao.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO);
         }
         return estudante;
     }
 
     @Override
-    public Estudante atualizar(Estudante estudante) {
+    public Estudante atualizar(Estudante estudante) throws EstudanteException {
         try {
             sessao.beginTransaction();
             sessao.merge(estudante);
             sessao.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_ATUALIZACAO_ERRO_PADRAO);
         }
         return estudante;
     }
@@ -94,5 +94,23 @@ public class EstudanteDaoImpl implements EstudanteDao {
         query.setParameter("telefone", telefone);
         Estudante estudante = query.uniqueResult();
         return estudante;
-    }    
+    }
+
+    @Override
+    public Estudante buscarPorEmailComIdDiferente(String email, Integer idEstudante) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where email = :email and id != :id", Estudante.class);
+        query.setParameter("email", email);
+        query.setParameter("id", idEstudante);
+        Estudante resultado = query.uniqueResult();
+        return resultado;
+    }
+
+    @Override
+    public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer idEstudante) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where telefone = :telefone and id != :id", Estudante.class);
+        query.setParameter("telefone", telefone);
+        query.setParameter("id", idEstudante);
+        Estudante resultado = query.uniqueResult();
+        return resultado;
+    }
 }

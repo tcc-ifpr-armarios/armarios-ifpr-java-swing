@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
@@ -28,16 +24,48 @@ public class EstudanteServico {
         verificaCamposObrigatorios(estudante);
 
         Estudante e = dao.buscarPorEmail(estudante.getEmail());
-        if (e != null) {
+        if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
-        }
 
         e = dao.buscarPorTelefone(estudante.getTelefone());
-        if (e != null) {
+        if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
-        }
 
         return dao.inserir(estudante);
+    }
+
+    public static Estudante atualizar(Estudante estudante) throws EstudanteException {
+        verificaCamposObrigatorios(estudante);
+
+        Estudante e = dao.buscarPorEmailComIdDiferente(estudante.getEmail(), estudante.getId());
+        if (e != null)
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
+
+        e = dao.buscarPorTelefoneComIdDiferente(estudante.getTelefone(), estudante.getId());
+        if (e != null)
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
+
+        return dao.atualizar(estudante);
+    }
+
+    public static void excluir(Estudante estudante) throws EstudanteException {
+        Estudante c = dao.buscarPorId(estudante.getId());
+        if (c == null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
+        }
+        dao.excluir(estudante);
+    }
+
+    public static List<Estudante> buscarPorNome(String nome) {
+        return dao.buscarPorNome(nome);
+    }
+
+    public static List<Estudante> buscarPorRa(String ra) {
+        return dao.buscarPorRa(ra);
+    }
+
+    public static Estudante buscarPorEmail(String email) {
+        return dao.buscarPorEmail(email);
     }
 
     private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {
@@ -56,25 +84,5 @@ public class EstudanteServico {
         if (estudante.getTelefone() == null || estudante.getTelefone().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
-    }
-
-    public static void atualizar(Estudante estudante) {
-        dao.atualizar(estudante);
-    }
-
-    public static void excluir(Estudante estudante) throws EstudanteException {
-        dao.excluir(estudante);
-    }
-
-    public static List<Estudante> buscarPorNome(String nome) {
-        return dao.buscarPorNome(nome);
-    }
-
-    public static List<Estudante> buscarPorRa(String ra) {
-        return dao.buscarPorRa(ra);
-    }
-
-    public static Estudante buscarPorEmail(String email) {
-        return dao.buscarPorEmail(email);
     }
 }
