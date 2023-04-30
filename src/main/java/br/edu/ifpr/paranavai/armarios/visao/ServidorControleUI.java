@@ -13,6 +13,7 @@ import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
+import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import java.awt.Color;
 
 /**
@@ -53,6 +54,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         selecionaNumero = new javax.swing.JSpinner();
         botaoHistorico = new javax.swing.JButton();
         btnCursos = new javax.swing.JButton();
+        btnLocalizacoes = new javax.swing.JButton();
         alunos = new javax.swing.JPanel();
         botaoCadAluno = new javax.swing.JToggleButton();
         nomeAluno = new javax.swing.JTextField();
@@ -166,6 +168,14 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
+        btnLocalizacoes.setText("Gestão de localizações");
+        btnLocalizacoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnLocalizacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocalizacoesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -187,7 +197,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
                             .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLocalizacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,7 +218,9 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(297, 297, 297))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLocalizacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(258, 258, 258))
         );
 
         alunos.setBackground(new java.awt.Color(255, 255, 255));
@@ -399,7 +412,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -630,6 +643,14 @@ public class ServidorControleUI extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnCursosActionPerformed
 
+    private void btnLocalizacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizacoesActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IndexLocalizacaoUI().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnLocalizacoesActionPerformed
+
     /**
      *
      * @param args
@@ -675,6 +696,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoOcupados;
     private javax.swing.JButton btnCursos;
+    private javax.swing.JButton btnLocalizacoes;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField emailAluno;
     private javax.swing.JLabel jLabel1;

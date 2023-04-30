@@ -22,5 +22,17 @@ public class MensagemUtil {
     public static final String CURSO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo curso";
     public static final String CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     public static final String CURSO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
+    
+    public static final String LOCALIZACAO_NOME_DUPLICADO = "Nome da localização duplicada";
+    public static final String LOCALIZACAO_NAO_ENCONTRADO = "Registro não encontrado";
+    public static final String LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
+    public static final String LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
+    public static final String LOCALIZACAO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir a localização";
+    public static final Object LOCALIZACAO_EXCLUSAO_SUCESSO = "Localização Excluída com Sucesso!";
+    public static final String LOCALIZACAO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão da localização";
+    public static final String LOCALIZACAO_REMOVIDO = "Não foi possível realizar essa operação! Essa localização já foi removida!";
+    public static final String LOCALIZACAO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir uma nova localização";
+    public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrado com Sucesso!";
+    public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 
 }

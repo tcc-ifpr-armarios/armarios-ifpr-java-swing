@@ -1,51 +1,53 @@
-package br.edu.ifpr.paranavai.armarios.visao.curso;
+package br.edu.ifpr.paranavai.armarios.visao.localizacao;
+
 
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+
+import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import javax.swing.JTable;
 
 /**
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class IndexCursoUI extends javax.swing.JFrame {
-    List<Curso> listaDeCursos;
+public class IndexLocalizacaoUI extends javax.swing.JFrame {
+    List<Localizacao> listaDeLocalizacoes;
     /**
-     * Creates new form EditorCursoUI
+     * Creates new form EditorLocalizacaoUI
      */
     
-    public IndexCursoUI() {
+    public IndexLocalizacaoUI() {
         initComponents();
         init();
     }
     
     public void init(){
-        listaDeCursos = CursoControle.listarTodosCursos();
-        populaTabela(listaDeCursos);
+        listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
+        populaTabela(listaDeLocalizacoes);
     }
 
-    private void populaTabela(List<Curso> lista) {
+    private void populaTabela(List<Localizacao> lista) {
         
-        AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
+        AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacao();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
-        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
-        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento, this));
+        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
+        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
         
         for (int i = 0; i < lista.size(); i++) {
-            Curso mostraCurso = lista.get(i);
+            Localizacao mostraLocalizacao = lista.get(i);
             Object[] dadosLinha = new Object[3];
-            dadosLinha[0] = mostraCurso.getId();
-            dadosLinha[1] = mostraCurso.getNome();
-            dadosLinha[2] = mostraCurso.isAtivo() ? "Ativo" : "Inativo";
+            dadosLinha[0] = mostraLocalizacao.getId();
+            dadosLinha[1] = mostraLocalizacao.getDescricao();
+            dadosLinha[2] = mostraLocalizacao.isAtivo() ? "Ativo" : "Inativo";
             
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -126,6 +128,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
+        painelInferior.setLayout(new java.awt.BorderLayout());
 
         tblCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,16 +168,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
             tblCurso.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        javax.swing.GroupLayout painelInferiorLayout = new javax.swing.GroupLayout(painelInferior);
-        painelInferior.setLayout(painelInferiorLayout);
-        painelInferiorLayout.setHorizontalGroup(
-            painelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        painelInferiorLayout.setVerticalGroup(
-            painelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 
@@ -188,10 +182,10 @@ public class IndexCursoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Curso> filtrado = new ArrayList<>();
+        ArrayList<Localizacao> filtrado = new ArrayList<>();
         
-        for (Curso localizacao : listaDeCursos) {
-            if(localizacao.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
+        for (Localizacao localizacao : listaDeLocalizacoes) {
+            if(localizacao.getDescricao().toUpperCase().contains(txtNome.getText().toUpperCase()))
                 filtrado.add(localizacao);
         }
         
@@ -199,9 +193,9 @@ public class IndexCursoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoCursoUIModal criacaoEdicaoCurso = new CriacaoEdicaoCursoUIModal(this);
-        criacaoEdicaoCurso.setLocationRelativeTo(this);
-        criacaoEdicaoCurso.setVisible(true);
+        CriacaoEdicaoLocalizacaoUIModal criacaoEdicaoLocalizacao = new CriacaoEdicaoLocalizacaoUIModal(this);
+        criacaoEdicaoLocalizacao.setLocationRelativeTo(this);
+        criacaoEdicaoLocalizacao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

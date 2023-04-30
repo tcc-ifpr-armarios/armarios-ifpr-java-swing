@@ -58,6 +58,11 @@ public class Localizacao {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Integer getId() {
+        return id;
+    }
+    
     
     
     
