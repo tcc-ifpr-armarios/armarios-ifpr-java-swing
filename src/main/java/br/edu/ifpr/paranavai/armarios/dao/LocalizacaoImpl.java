@@ -97,7 +97,13 @@ public class LocalizacaoImpl implements LocalizacaoDao {
     }
     
     
-    
+    @Override
+    public Localizacao buscarPorNomeExato(String descricao) {
+        Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao", Localizacao.class);
+        query.setParameter("descricao", descricao);
+        Localizacao resultado = query.uniqueResult();
+        return resultado;
+    }
     
    
     

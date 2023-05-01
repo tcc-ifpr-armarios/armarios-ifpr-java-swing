@@ -32,6 +32,7 @@
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Localizacao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao" />     
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Curso" />

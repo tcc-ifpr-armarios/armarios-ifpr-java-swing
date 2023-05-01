@@ -42,6 +42,8 @@ public class LocalizacaoServico {
     }
     
     
-    
+    public static Localizacao buscarPorNomeExato(String descricao) {
+        return dao.buscarPorNomeExato(descricao);
+    }
     
 }

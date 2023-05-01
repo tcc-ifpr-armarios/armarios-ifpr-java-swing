@@ -126,6 +126,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
+        painelInferior.setLayout(new java.awt.BorderLayout());
 
         tblCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,16 +166,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
             tblCurso.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
-        javax.swing.GroupLayout painelInferiorLayout = new javax.swing.GroupLayout(painelInferior);
-        painelInferior.setLayout(painelInferiorLayout);
-        painelInferiorLayout.setHorizontalGroup(
-            painelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        painelInferiorLayout.setVerticalGroup(
-            painelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 

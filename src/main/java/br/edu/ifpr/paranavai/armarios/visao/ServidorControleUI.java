@@ -13,7 +13,7 @@ import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
+//import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import java.awt.Color;
 
 /**
@@ -646,7 +646,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private void btnLocalizacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizacoesActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IndexLocalizacaoUI().setVisible(true);
+ //               new IndexLocalizacaoUI().setVisible(true);
             }
         });
     }//GEN-LAST:event_btnLocalizacoesActionPerformed

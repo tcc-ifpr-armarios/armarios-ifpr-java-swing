@@ -24,9 +24,9 @@ public interface LocalizacaoDao {
 
     public void inserir(Localizacao localizacao);
     
+    public Localizacao buscarPorNomeExato(String descricao);
     
-    
-    
+ 
     
 }
 
