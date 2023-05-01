@@ -31,6 +31,10 @@ public class EstudanteServico {
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
 
+        e = dao.buscarPorRa(estudante.getRa());
+        if (e != null)
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
+
         return dao.inserir(estudante);
     }
 
@@ -44,6 +48,10 @@ public class EstudanteServico {
         e = dao.buscarPorTelefoneComIdDiferente(estudante.getTelefone(), estudante.getId());
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
+
+        e = dao.buscarPorRaComIdDiferente(estudante.getTelefone(), estudante.getId());
+        if (e != null)
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
 
         return dao.atualizar(estudante);
     }
@@ -60,7 +68,7 @@ public class EstudanteServico {
         return dao.buscarPorNome(nome);
     }
 
-    public static List<Estudante> buscarPorRa(String ra) {
+    public static Estudante buscarPorRa(String ra) {
         return dao.buscarPorRa(ra);
     }
 

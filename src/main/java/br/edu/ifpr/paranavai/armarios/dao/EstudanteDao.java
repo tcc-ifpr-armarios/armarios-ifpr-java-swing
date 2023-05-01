@@ -13,7 +13,7 @@ public interface EstudanteDao {
     
     public List<Estudante> buscarPorNome (String nomee);
     
-    public List<Estudante> buscarPorRa (String ra);
+    public Estudante buscarPorRa (String ra);
     
     public Estudante buscarPorEmail (String email);
 
@@ -22,6 +22,8 @@ public interface EstudanteDao {
     public Estudante buscarPorEmailComIdDiferente(String email, Integer id);
 
     public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer id);
+
+    public Estudante buscarPorRaComIdDiferente(String ra, Integer id);
 
     public Estudante atualizar(Estudante estudante) throws EstudanteException;
 

@@ -28,6 +28,7 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 public class EstudanteServicoTest {
 
     private Estudante estudante;
+    private Estudante estudanteAtualizacao;
     private Curso curso;
 
     @BeforeAll
@@ -184,7 +185,9 @@ public class EstudanteServicoTest {
 
         EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
             Estudante estudanteDuplicado = this.estudante;
-            this.estudante = EstudanteServico.inserir(this.estudante);
+            this.estudante = EstudanteServico.inserir(this.estudante);            
+            estudanteDuplicado.setTelefone("44 9 9999-9998");
+            estudanteDuplicado.setRa("2023232325");
             EstudanteServico.inserir(estudanteDuplicado);
         });
         assertEquals(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO, estudanteException.getMessage());
@@ -198,9 +201,24 @@ public class EstudanteServicoTest {
             Estudante estudanteDuplicado = this.estudante;
             this.estudante = EstudanteServico.inserir(this.estudante);
             estudanteDuplicado.setEmail("teste.telefone@teste.com");
+            estudanteDuplicado.setRa("2023232325");
             EstudanteServico.inserir(estudanteDuplicado);
         });
         assertEquals(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO, estudanteException.getMessage());
+    }
+
+    @Test
+    public void naoDeveInserirRaDuplicado() {
+        System.out.println("Executando teste naoDeveInserirRaDuplicado");
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            Estudante estudanteDuplicado = this.estudante;
+            this.estudante = EstudanteServico.inserir(this.estudante);
+            estudanteDuplicado.setEmail("teste.telefone@teste.com");
+            estudanteDuplicado.setTelefone("44 9 9999-9997");
+            EstudanteServico.inserir(estudanteDuplicado);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO, estudanteException.getMessage());
     }
 
     @Test
@@ -288,52 +306,189 @@ public class EstudanteServicoTest {
         assertTrue(!estudanteAtualizado.isAtivo());
     }
 
-    /*     
-     * 
-     * @Test
-     * public void naoDeveAtualizarParaNomeVazioOuNulo() throws EstudanteException {
-     * System.out.println("Executando teste naoDeveAtualizarParaNomeVazioOuNulo");
-     * 
-     * this.estudante = EstudanteServico.inserir(this.estudante);
-     * 
-     * EstudanteException estudanteExceptionVazio =
-     * assertThrows(EstudanteException.class, () -> {
-     * this.estudante.setNome("");
-     * this.estudante = EstudanteServico.atualizar(this.estudante);
-     * });
-     * 
-     * EstudanteException estudanteExceptionNulo =
-     * assertThrows(EstudanteException.class, () -> {
-     * this.estudante.setNome(null);
-     * this.estudante = EstudanteServico.atualizar(this.estudante);
-     * });
-     * assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO,
-     * estudanteExceptionVazio.getMessage());
-     * assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO,
-     * estudanteExceptionNulo.getMessage());
-     * }
-     * 
-     * @Test
-     * public void naoDeveAtualizarParaNomeDuplicado() throws EstudanteException{
-     * System.out.println("Executando teste naoDeveAtualizarParaNomeDuplicado");
-     * 
-     * this.estudanteAtualizacao = new Estudante();
-     * this.estudanteAtualizacao.setNome("Para atualizar");
-     * 
-     * this.estudante = EstudanteServico.inserir(this.estudante);
-     * this.estudanteAtualizacao =
-     * EstudanteServico.inserir(this.estudanteAtualizacao);
-     * 
-     * this.estudanteAtualizacao.setNome(this.estudante.getNome());
-     * 
-     * EstudanteException estudanteException =
-     * assertThrows(EstudanteException.class, () -> {
-     * EstudanteServico.atualizar(this.estudanteAtualizacao);
-     * });
-     * 
-     * EstudanteServico.excluir(this.estudanteAtualizacao);
-     * assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO,
-     * estudanteException.getMessage());
-     * }
-     */
+    @Test
+    public void naoDeveAtualizarParaNomeVazioOuNulo() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaNomeVazioOuNulo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setNome("");
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+
+        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setNome(null);
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionNulo.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaSobrenomeVazioOuNulo() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaSobrenomeVazioOuNulo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSobrenome("");
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+
+        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSobrenome(null);
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionNulo.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaEmailVazioOuNulo() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaEmailVazioOuNulo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setEmail("");
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+
+        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setEmail(null);
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionNulo.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaSenhaVazioOuNulo() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaSenhaVazioOuNulo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSenha("");
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+
+        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setSenha(null);
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionNulo.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaTelefoneVazioOuNulo() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaTelefoneVazioOuNulo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        EstudanteException estudanteExceptionVazio = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setTelefone("");
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+
+        EstudanteException estudanteExceptionNulo = assertThrows(EstudanteException.class, () -> {
+            this.estudante.setTelefone(null);
+            this.estudante = EstudanteServico.atualizar(this.estudante);
+        });
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionVazio.getMessage());
+        assertEquals(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO,
+                estudanteExceptionNulo.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaEmailDuplicado() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaEmailDuplicado");
+
+        this.estudanteAtualizacao = new Estudante();
+        this.estudanteAtualizacao.setNome("Estudante");
+        this.estudanteAtualizacao.setSobrenome("Teste");
+        this.estudanteAtualizacao.setEmail("teste.atualizacao@teste.com");
+        this.estudanteAtualizacao.setTelefone("44 9 9999-9998");
+        this.estudanteAtualizacao.setRa("20232323233");
+        this.estudanteAtualizacao.setSenha("123456");
+        this.estudanteAtualizacao.setCurso(curso);
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+        this.estudanteAtualizacao = EstudanteServico.inserir(this.estudanteAtualizacao);
+
+        this.estudanteAtualizacao.setEmail(this.estudante.getEmail());
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            EstudanteServico.atualizar(this.estudanteAtualizacao);
+        });
+
+        EstudanteServico.excluir(this.estudanteAtualizacao);
+        assertEquals(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO,
+                estudanteException.getMessage());
+    }
+
+    @Test
+    public void naoDeveAtualizarParaTelefoneDuplicado() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaTelefoneDuplicado");
+
+        this.estudanteAtualizacao = new Estudante();
+        this.estudanteAtualizacao.setNome("Estudante");
+        this.estudanteAtualizacao.setSobrenome("Teste");
+        this.estudanteAtualizacao.setEmail("teste.atualizacao@teste.com");
+        this.estudanteAtualizacao.setTelefone("44 9 9999-9998");
+        this.estudanteAtualizacao.setRa("20232323233");
+        this.estudanteAtualizacao.setSenha("123456");
+        this.estudanteAtualizacao.setCurso(curso);
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+        this.estudanteAtualizacao = EstudanteServico.inserir(this.estudanteAtualizacao);
+
+        this.estudanteAtualizacao.setTelefone(this.estudante.getTelefone());
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            EstudanteServico.atualizar(this.estudanteAtualizacao);
+        });
+
+        EstudanteServico.excluir(this.estudanteAtualizacao);
+        assertEquals(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO,
+                estudanteException.getMessage());
+    }
+    /*
+    @Test
+    public void naoDeveAtualizarParaRaDuplicado() throws EstudanteException {
+        System.out.println("Executando teste naoDeveAtualizarParaRaDuplicado");
+
+        this.estudanteAtualizacao = new Estudante();
+        this.estudanteAtualizacao.setNome("Estudante");
+        this.estudanteAtualizacao.setSobrenome("Teste");
+        this.estudanteAtualizacao.setEmail("teste.atualizacao@teste.com");
+        this.estudanteAtualizacao.setTelefone("44 9 9999-9998");
+        this.estudanteAtualizacao.setRa("20232323233");
+        this.estudanteAtualizacao.setSenha("123456");
+        this.estudanteAtualizacao.setCurso(curso);
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+        this.estudanteAtualizacao = EstudanteServico.inserir(this.estudanteAtualizacao);
+
+        this.estudanteAtualizacao.setRa(this.estudante.getRa());
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            EstudanteServico.atualizar(this.estudanteAtualizacao);
+        });
+
+        EstudanteServico.excluir(this.estudanteAtualizacao);
+        assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO,
+                estudanteException.getMessage());
+    }*/
 }

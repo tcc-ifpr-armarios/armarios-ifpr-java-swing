@@ -62,6 +62,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
             sessao.remove(estudante);
             sessao.getTransaction().commit();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new EstudanteException(MensagemUtil.ESTUDANTE_EXCLUSAO_ERRO_PADRAO);
         }
     }
@@ -74,10 +75,11 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public List<Estudante> buscarPorRa(String ra) {
+    public Estudante buscarPorRa(String ra) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra", Estudante.class);
-        List<Estudante> estudantes = query.getResultList();
-        return estudantes;
+        query.setParameter("ra", ra);
+        Estudante estudante = query.uniqueResult();
+        return estudante;
     }
 
     @Override
@@ -109,6 +111,15 @@ public class EstudanteDaoImpl implements EstudanteDao {
     public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer idEstudante) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where telefone = :telefone and id != :id", Estudante.class);
         query.setParameter("telefone", telefone);
+        query.setParameter("id", idEstudante);
+        Estudante resultado = query.uniqueResult();
+        return resultado;
+    }
+
+    @Override
+    public Estudante buscarPorRaComIdDiferente(String ra, Integer idEstudante) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra and id != :id", Estudante.class);
+        query.setParameter("ra", ra);
         query.setParameter("id", idEstudante);
         Estudante resultado = query.uniqueResult();
         return resultado;

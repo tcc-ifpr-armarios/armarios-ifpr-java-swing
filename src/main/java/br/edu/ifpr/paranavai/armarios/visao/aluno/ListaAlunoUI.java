@@ -22,7 +22,7 @@ public class ListaAlunoUI extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
-        
+
         populaTabela();
     }
 
@@ -167,64 +167,58 @@ public class ListaAlunoUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String busca = buscador.getText();
-        if(buscador.getText().equals("")){
+        if (buscador.getText().equals("")) {
             populaTabela();
-        } else
-        if(raBotao.isSelected()){
-            
-            
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) alunosLista.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        List<Estudante> estudantes =  EstudanteServico.buscarPorRa(busca);
+        } else if (raBotao.isSelected()) {
 
-        for (int i = 0; i < estudantes.size(); i++) {
-            Estudante aluno = estudantes.get(i);
-            Object[] dadosLinha = new Object[6];
-            dadosLinha[0] = aluno.getRa();
-            dadosLinha[1] = aluno.getNome();
-            dadosLinha[2] = aluno.getTelefone();
-            dadosLinha[3] = aluno.getEmail();
-            dadosLinha[4] = aluno.getSenha();
-            dadosLinha[5] = aluno.isAtivo();
-
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-            
-        }
-        } else
-        if(nomeBotao.isSelected()){
             DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) alunosLista.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        List<Estudante> estudantes =  EstudanteServico.buscarPorNome(busca);
+            //  Primeiro limpa a tabela
+            while (modeloDeColunasDaTabela.getRowCount() != 0) {
+                modeloDeColunasDaTabela.removeRow(0);
+            }
+            Estudante estudante = EstudanteServico.buscarPorRa(busca);
+
+            if (estudante != null) {
+
+                Object[] dadosLinha = new Object[6];
+                dadosLinha[0] = estudante.getRa();
+                dadosLinha[1] = estudante.getNome();
+                dadosLinha[2] = estudante.getTelefone();
+                dadosLinha[3] = estudante.getEmail();
+                dadosLinha[4] = estudante.getSenha();
+                dadosLinha[5] = estudante.isAtivo();
+
+                modeloDeColunasDaTabela.addRow(dadosLinha);
+
+            }
+        } else if (nomeBotao.isSelected()) {
+            DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) alunosLista.getModel();
+            //  Primeiro limpa a tabela
+            while (modeloDeColunasDaTabela.getRowCount() != 0) {
+                modeloDeColunasDaTabela.removeRow(0);
+            }
+            List<Estudante> estudantes = EstudanteServico.buscarPorNome(busca);
             System.out.println(busca);
-        for (int i = 0; i < estudantes.size(); i++) {     
-            Estudante aluno = estudantes.get(i);
-            Object[] dadosLinha = new Object[6];
-            dadosLinha[0] = aluno.getRa();
-            dadosLinha[1] = aluno.getNome();
-            dadosLinha[2] = aluno.getTelefone();
-            dadosLinha[3] = aluno.getEmail();
-            dadosLinha[4] = aluno.getSenha();
-            dadosLinha[5] = aluno.isAtivo();
-            
-            modeloDeColunasDaTabela.addRow(dadosLinha);
+            for (int i = 0; i < estudantes.size(); i++) {
+                Estudante aluno = estudantes.get(i);
+                Object[] dadosLinha = new Object[6];
+                dadosLinha[0] = aluno.getRa();
+                dadosLinha[1] = aluno.getNome();
+                dadosLinha[2] = aluno.getTelefone();
+                dadosLinha[3] = aluno.getEmail();
+                dadosLinha[4] = aluno.getSenha();
+                dadosLinha[5] = aluno.isAtivo();
+
+                modeloDeColunasDaTabela.addRow(dadosLinha);
+            }
         }
-        }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void raBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raBotaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_raBotaoActionPerformed
-    
-    
-   
-    
+
     private void populaTabela() {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) alunosLista.getModel();
         //  Primeiro limpa a tabela
@@ -289,7 +283,6 @@ public class ListaAlunoUI extends javax.swing.JFrame {
         });
 
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
