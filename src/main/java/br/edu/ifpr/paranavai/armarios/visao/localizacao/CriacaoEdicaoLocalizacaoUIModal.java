@@ -79,7 +79,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
         panelGeral = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         txtNomeLocalizacao = new javax.swing.JTextField();
-        lblNomeCurso = new javax.swing.JLabel();
+        lblNomeLocalizacao = new javax.swing.JLabel();
         lblAtivo = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
@@ -100,7 +100,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Nova localização de armários");
 
-        lblNomeCurso.setText("Nome da localização *:");
+        lblNomeLocalizacao.setText("Nome da localização *:");
 
         lblAtivo.setText("Ativo?");
 
@@ -138,7 +138,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
                             .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                             .addComponent(txtNomeLocalizacao)
-                            .addComponent(lblNomeCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNomeLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ckbAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelGeralLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
@@ -153,7 +153,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(lblNomeCurso)
+                .addComponent(lblNomeLocalizacao)
                 .addGap(5, 5, 5)
                 .addComponent(txtNomeLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -224,7 +224,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox ckbAtivo;
     private javax.swing.JLabel lblAtivo;
-    private javax.swing.JLabel lblNomeCurso;
+    private javax.swing.JLabel lblNomeLocalizacao;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelGeral;
     private javax.swing.JTextField txtNomeLocalizacao;

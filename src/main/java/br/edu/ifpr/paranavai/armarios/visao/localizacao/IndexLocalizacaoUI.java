@@ -21,6 +21,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
      */
     
     public IndexLocalizacaoUI() {
+        
         initComponents();
         init();
     }
@@ -28,22 +29,23 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
     public void init(){
         listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
         populaTabela(listaDeLocalizacoes);
+        
     }
 
-    private void populaTabela(List<Localizacao> lista) {
+    private void populaTabela(List<Localizacao> listaDeLocalizacoes) {
         
         AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacao();
         
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
-        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
-        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento, this));
+        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
+        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
+        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
         
-        for (int i = 0; i < lista.size(); i++) {
-            Localizacao mostraLocalizacao = lista.get(i);
+        for (int i = 0; i < listaDeLocalizacoes.size(); i++) {
+            Localizacao mostraLocalizacao = listaDeLocalizacoes.get(i);
             Object[] dadosLinha = new Object[3];
             dadosLinha[0] = mostraLocalizacao.getId();
             dadosLinha[1] = mostraLocalizacao.getDescricao();
@@ -72,10 +74,10 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCurso = new javax.swing.JTable();
+        tblLocalizacao = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciamento de Cursos");
+        setTitle("Gerenciamento de Localizações");
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -130,7 +132,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
-        tblCurso.setModel(new javax.swing.table.DefaultTableModel(
+        tblLocalizacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -153,19 +155,19 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblCurso.setRowHeight(30);
-        tblCurso.setSelectionBackground(new java.awt.Color(57, 137, 111));
-        tblCurso.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblCurso);
-        if (tblCurso.getColumnModel().getColumnCount() > 0) {
-            tblCurso.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(0).setMaxWidth(200);
-            tblCurso.getColumnModel().getColumn(2).setMinWidth(100);
-            tblCurso.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setMinWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setMaxWidth(200);
+        tblLocalizacao.setRowHeight(30);
+        tblLocalizacao.setSelectionBackground(new java.awt.Color(57, 137, 111));
+        tblLocalizacao.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblLocalizacao);
+        if (tblLocalizacao.getColumnModel().getColumnCount() > 0) {
+            tblLocalizacao.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(0).setMaxWidth(200);
+            tblLocalizacao.getColumnModel().getColumn(2).setMinWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(2).setMaxWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(3).setMinWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblLocalizacao.getColumnModel().getColumn(3).setMaxWidth(200);
         }
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -208,7 +210,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblCurso;
+    private javax.swing.JTable tblLocalizacao;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

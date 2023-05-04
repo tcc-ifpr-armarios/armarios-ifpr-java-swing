@@ -63,7 +63,7 @@
                               <Component id="lblAtivo" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="lblTitulo" alignment="0" pref="342" max="32767" attributes="0"/>
                               <Component id="txtNomeLocalizacao" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblNomeCurso" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblNomeLocalizacao" alignment="0" max="32767" attributes="0"/>
                               <Component id="ckbAtivo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -84,7 +84,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblTitulo" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblNomeCurso" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNomeLocalizacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="txtNomeLocalizacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeLocalizacao">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNomeCurso">
+        <Component class="javax.swing.JLabel" name="lblNomeLocalizacao">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome da localiza&#xe7;&#xe3;o *:"/>
           </Properties>
