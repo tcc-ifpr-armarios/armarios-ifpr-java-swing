@@ -100,7 +100,8 @@ public class EstudanteDaoImpl implements EstudanteDao {
 
     @Override
     public Estudante buscarPorEmailComIdDiferente(String email, Integer idEstudante) {
-        Query<Estudante> query = this.sessao.createQuery("from Estudante where email = :email and id != :id", Estudante.class);
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where email = :email and id != :id",
+                Estudante.class);
         query.setParameter("email", email);
         query.setParameter("id", idEstudante);
         Estudante resultado = query.uniqueResult();
@@ -109,7 +110,8 @@ public class EstudanteDaoImpl implements EstudanteDao {
 
     @Override
     public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer idEstudante) {
-        Query<Estudante> query = this.sessao.createQuery("from Estudante where telefone = :telefone and id != :id", Estudante.class);
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where telefone = :telefone and id != :id",
+                Estudante.class);
         query.setParameter("telefone", telefone);
         query.setParameter("id", idEstudante);
         Estudante resultado = query.uniqueResult();
@@ -118,10 +120,19 @@ public class EstudanteDaoImpl implements EstudanteDao {
 
     @Override
     public Estudante buscarPorRaComIdDiferente(String ra, Integer idEstudante) {
-        Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra and id != :id", Estudante.class);
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra and id != :id",
+                Estudante.class);
         query.setParameter("ra", ra);
         query.setParameter("id", idEstudante);
         Estudante resultado = query.uniqueResult();
+        return resultado;
+    }
+
+    @Override
+    public List<Estudante> buscarPorIdCurso(Integer idCurso) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante e where e.curso.id != :id", Estudante.class);
+        query.setParameter("id", idCurso);
+        List<Estudante> resultado = query.getResultList();
         return resultado;
     }
 }

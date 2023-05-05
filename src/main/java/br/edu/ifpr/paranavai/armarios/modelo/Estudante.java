@@ -32,14 +32,16 @@ public class Estudante extends Pessoa implements Serializable {
      */
     private List<ReservaSaguao> reservasS;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    // @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_curso", nullable = false)
     private Curso curso;
 
     public Estudante() {
     }
 
-    public Estudante(String ra, Curso curso, String nome, String sobrenome, String email, String telefone, String senha, boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
+    public Estudante(String ra, Curso curso, String nome, String sobrenome, String email, String telefone, String senha,
+            boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
         super(nome, sobrenome, email, telefone, senha, ativo, dataAtualizacao, dataCriacao);
         this.ra = ra;
         this.curso = curso;

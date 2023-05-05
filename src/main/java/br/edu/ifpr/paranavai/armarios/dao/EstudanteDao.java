@@ -9,15 +9,15 @@ public interface EstudanteDao {
 
     public List<Estudante> buscarTodos();
 
-    public Estudante buscarPorId(Integer inteiro);    
-    
-    public List<Estudante> buscarPorNome (String nomee);
-    
-    public Estudante buscarPorRa (String ra);
-    
-    public Estudante buscarPorEmail (String email);
+    public Estudante buscarPorId(Integer inteiro);
 
-    public Estudante buscarPorTelefone (String telefone);
+    public List<Estudante> buscarPorNome(String nomee);
+
+    public Estudante buscarPorRa(String ra);
+
+    public Estudante buscarPorEmail(String email);
+
+    public Estudante buscarPorTelefone(String telefone);
 
     public Estudante buscarPorEmailComIdDiferente(String email, Integer id);
 
@@ -25,9 +25,11 @@ public interface EstudanteDao {
 
     public Estudante buscarPorRaComIdDiferente(String ra, Integer id);
 
+    public List<Estudante> buscarPorIdCurso(Integer idCurso);
+
     public Estudante atualizar(Estudante estudante) throws EstudanteException;
 
-    public void excluir(Estudante estudante)  throws EstudanteException;
+    public void excluir(Estudante estudante) throws EstudanteException;
 
     public Estudante inserir(Estudante estudante) throws EstudanteException;
 }

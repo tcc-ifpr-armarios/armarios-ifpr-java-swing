@@ -9,6 +9,7 @@ import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
@@ -80,12 +81,10 @@ public class CursoDaoImpl implements CursoDao {
 
     @Override
     public Curso buscarPorNomeExatoComIdDiferente(String nome, Integer idCurso) {
-        // buscar por nome exato com id difente
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome and id != :id", Curso.class);
         query.setParameter("nome", nome);
         query.setParameter("id", idCurso);
         Curso resultado = query.uniqueResult();
         return resultado;
     }
-
 }
