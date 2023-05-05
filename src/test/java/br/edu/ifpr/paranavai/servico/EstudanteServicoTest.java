@@ -464,7 +464,7 @@ public class EstudanteServicoTest {
         assertEquals(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO,
                 estudanteException.getMessage());
     }
-    /*
+    
     @Test
     public void naoDeveAtualizarParaRaDuplicado() throws EstudanteException {
         System.out.println("Executando teste naoDeveAtualizarParaRaDuplicado");
@@ -490,5 +490,5 @@ public class EstudanteServicoTest {
         EstudanteServico.excluir(this.estudanteAtualizacao);
         assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO,
                 estudanteException.getMessage());
-    }*/
+    }
 }

@@ -49,7 +49,7 @@ public class EstudanteServico {
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
 
-        e = dao.buscarPorRaComIdDiferente(estudante.getTelefone(), estudante.getId());
+        e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
 
