@@ -130,7 +130,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
 
     @Override
     public List<Estudante> buscarPorIdCurso(Integer idCurso) {
-        Query<Estudante> query = this.sessao.createQuery("from Estudante e where e.curso.id != :id", Estudante.class);
+        Query<Estudante> query = this.sessao.createQuery("from Estudante e where e.curso.id = :id", Estudante.class);
         query.setParameter("id", idCurso);
         List<Estudante> resultado = query.getResultList();
         return resultado;

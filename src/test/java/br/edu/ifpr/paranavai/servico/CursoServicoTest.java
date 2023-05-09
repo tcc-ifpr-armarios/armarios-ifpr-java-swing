@@ -47,7 +47,7 @@ public class CursoServicoTest {
         this.curso = null;
     }
 
-    /* @Test
+    @Test
     public void deveInserirUmNovoCurso() throws CursoException {
         System.out.println("Executando teste deveInserirUmNovoCurso");
         this.curso = CursoServico.inserir(this.curso);
@@ -209,7 +209,7 @@ public class CursoServicoTest {
 
         CursoServico.excluir(this.cursoAtualizacao);
         assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO, cursoException.getMessage());
-    }*/
+    }
 
     @Test
     public void naoDeveExcluirCursoVinculadoAUmEstudante() throws CursoException, EstudanteException {
