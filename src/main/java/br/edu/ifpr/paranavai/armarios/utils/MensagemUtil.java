@@ -16,14 +16,14 @@ public class MensagemUtil {
     public static final String CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
     public static final String CURSO_ATUALIZACAO_SUCESSO = "Curso Atualizado com Sucesso!";
     public static final String CURSO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o curso";
-    public static final Object CURSO_EXCLUSAO_SUCESSO = "Curso Excluído com Sucesso!";
+    public static final String CURSO_EXCLUSAO_SUCESSO = "Curso Excluído com Sucesso!";
     public static final String CURSO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do curso";
     public static final String CURSO_REMOVIDO = "Não foi possível realizar essa operação! Este curso já foi removido!";
     public static final String CURSO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo curso";
     public static final String CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     public static final String CURSO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
     public static final String CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
-    
+
     public static final String ESTUDANTE_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o estudante";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
     public static final String ESTUDANTE_EMAIL_DUPLICADO = "E-mail já cadastrado";
@@ -31,5 +31,9 @@ public class MensagemUtil {
     public static final String ESTUDANTE_RA_DUPLICADO = "Ra já cadastrado";
     public static final String ESTUDANTE_REMOVIDO = "Não foi possível realizar essa operação! Este estudante já foi removido!";
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
+    public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
     public static final String ESTUDANTE_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo estudante";
+    public static final String ESTUDANTE_INSERCAO_SUCESSO = "Estudante Cadastrado com Sucesso!";
+    public static final String ESTUDANTE_EXCLUSAO_SUCESSO = "Estudante Excluído com Sucesso!";
+    public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";
 }

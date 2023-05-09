@@ -5,7 +5,7 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
-import br.edu.ifpr.paranavai.armarios.visao.aluno.ListaAlunoUI;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.ListaAlunoUI;
 import javax.swing.JOptionPane;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
