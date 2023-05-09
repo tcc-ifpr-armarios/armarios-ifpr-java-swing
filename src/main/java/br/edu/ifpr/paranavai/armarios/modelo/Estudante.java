@@ -32,8 +32,7 @@ public class Estudante extends Pessoa implements Serializable {
      */
     private List<ReservaSaguao> reservasS;
 
-    // @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_curso", nullable = false)
     private Curso curso;
 

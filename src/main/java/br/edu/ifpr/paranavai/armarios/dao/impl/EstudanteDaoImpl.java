@@ -13,7 +13,7 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 public class EstudanteDaoImpl implements EstudanteDao {
 
-    private Session sessao;
+    private Session sessao = null;
 
     public EstudanteDaoImpl() {
         this.sessao = HibernateUtil.getSession();
@@ -62,7 +62,6 @@ public class EstudanteDaoImpl implements EstudanteDao {
             sessao.remove(estudante);
             sessao.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new EstudanteException(MensagemUtil.ESTUDANTE_EXCLUSAO_ERRO_PADRAO);
         }
     }
