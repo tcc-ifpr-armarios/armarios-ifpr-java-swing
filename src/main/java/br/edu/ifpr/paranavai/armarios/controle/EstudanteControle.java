@@ -1,7 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.controle;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import java.util.List;
 
@@ -29,5 +31,9 @@ public class EstudanteControle {
     
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         return EstudanteServico.inserir(estudante);
+    }
+
+    public static List<Curso> buscarCursos() {
+        return CursoServico.buscarTodos();
     }
 }

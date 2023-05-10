@@ -29,8 +29,8 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         AcoesEventoTabela evento = new AcoesEventoTabelaEstudante();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudante.getModel();
-        tblEstudante.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaEstudante());
-        tblEstudante.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento, this));
+        tblEstudante.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaEstudante());
+        tblEstudante.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -38,10 +38,14 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             Estudante mostraEstudante = lista.get(i);
-            Object[] dadosLinha = new Object[3];
+            Object[] dadosLinha = new Object[7];
             dadosLinha[0] = mostraEstudante.getId();
-            dadosLinha[1] = mostraEstudante.getNome();
-            dadosLinha[2] = mostraEstudante.isAtivo() ? "Ativo" : "Inativo";
+            dadosLinha[1] = mostraEstudante.getRa();
+            dadosLinha[2] = mostraEstudante.getNomeCompleto();
+            dadosLinha[3] = mostraEstudante.getTelefone();
+            dadosLinha[4] = mostraEstudante.getEmail();
+            dadosLinha[5] = mostraEstudante.getCurso().getNome();
+            dadosLinha[6] = mostraEstudante.isAtivo() ? "Ativo" : "Inativo";
             
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
