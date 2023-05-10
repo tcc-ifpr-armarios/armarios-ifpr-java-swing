@@ -2,7 +2,6 @@ package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 import java.util.List;
 
@@ -24,4 +23,6 @@ public interface CursoDao {
     public void excluir(Curso curso) throws CursoException;
 
     public Curso inserir(Curso curso) throws CursoException;
+
+    public List<Curso> buscarTodosAtivos();
 }

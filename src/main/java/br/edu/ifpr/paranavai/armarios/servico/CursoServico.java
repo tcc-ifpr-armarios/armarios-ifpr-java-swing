@@ -68,4 +68,8 @@ public class CursoServico {
 
         return dao.atualizar(curso);
     }
+
+    public static List<Curso> buscarTodosAtivos() {
+        return dao.buscarTodosAtivos();
+    }
 }

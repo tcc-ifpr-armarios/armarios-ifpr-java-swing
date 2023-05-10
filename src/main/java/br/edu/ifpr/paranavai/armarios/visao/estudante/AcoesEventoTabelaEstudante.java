@@ -23,7 +23,7 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         Estudante curso = EstudanteControle.buscarPorId(identificador);
 
-        CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(indexEstudanteUI, curso, true);
+        CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(indexEstudanteUI, curso);
 
         form.setLocationRelativeTo(indexEstudanteUI);
         form.setVisible(true);
@@ -61,7 +61,7 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         Estudante curso = EstudanteControle.buscarPorId(identificador);
         
-        CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(indexEstudanteUI, curso, false);
+        CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(indexEstudanteUI, curso);
 
         form.setLocationRelativeTo(indexEstudanteUI);
         form.setVisible(true);

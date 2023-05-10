@@ -9,7 +9,6 @@ import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
@@ -85,6 +84,14 @@ public class CursoDaoImpl implements CursoDao {
         query.setParameter("nome", nome);
         query.setParameter("id", idCurso);
         Curso resultado = query.uniqueResult();
+        return resultado;
+    }
+
+    @Override
+    public List<Curso> buscarTodosAtivos() {
+        Query<Curso> query = this.sessao.createQuery("from Curso where ativo = :ativo", Curso.class);
+        query.setParameter("ativo", true);
+        List<Curso> resultado = query.getResultList();
         return resultado;
     }
 }

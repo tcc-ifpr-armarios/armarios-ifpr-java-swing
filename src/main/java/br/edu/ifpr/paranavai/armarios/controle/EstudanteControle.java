@@ -5,6 +5,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.CursoComboBoxModel;
 import java.util.List;
 
 /**
@@ -33,7 +34,14 @@ public class EstudanteControle {
         return EstudanteServico.inserir(estudante);
     }
 
-    public static List<Curso> buscarCursos() {
-        return CursoServico.buscarTodos();
+    public static CursoComboBoxModel inicializaComboBoxCurso() {
+        CursoComboBoxModel cursoComboBoxModel = new CursoComboBoxModel();
+        
+        List<Curso> cursos = CursoServico.buscarTodosAtivos();
+        
+        for (Curso curso : cursos) {
+            cursoComboBoxModel.addCurso(curso);
+        }
+        return cursoComboBoxModel;
     }
 }

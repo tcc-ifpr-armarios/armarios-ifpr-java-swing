@@ -5,11 +5,9 @@ import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.HeadlessException;
 import java.util.Arrays;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,50 +28,38 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante = new Estudante();
         this.estaAtualizando = false;
         
-        this.cursoComboBoxModel = new CursoComboBoxModel();
-        
-        
-        List<Curso> cursos = EstudanteControle.buscarCursos();
-        
-        for (Curso curso : cursos) {
-            this.cursoComboBoxModel.addCurso(curso);
-        }
-        
+        this.cursoComboBoxModel = EstudanteControle.inicializaComboBoxCurso();
         cbxCursoEstudante.setModel(cursoComboBoxModel);
         
         this.setTitle("Novo Estudante");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
 
-    public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI, Estudante estudante, boolean estaAtualizando) {
+    public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI, Estudante estudante) {
         super(indexEstudanteUI, true);
         initComponents();
         this.estudante = estudante;
         this.indexEstudanteUI = indexEstudanteUI;
-        this.estaAtualizando = estaAtualizando;
+        this.estaAtualizando = true;
+        this.cursoComboBoxModel = EstudanteControle.inicializaComboBoxCurso();
+        cbxCursoEstudante.setModel(cursoComboBoxModel);
 
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        
-        String titulo = estaAtualizando ? "Edição do Estudante " : "Dados do Estudante ";
-        
-        lblTitulo.setText(titulo + estudante.getId());
-        this.setTitle(titulo + estudante.getId());
+                
+        lblTitulo.setText("Edição do Estudante " + estudante.getId());
+        this.setTitle("Edição do Estudante " + estudante.getId());
         txtNomeEstudante.setText(estudante.getNome());
+        txtSobrenomeEstudante.setText(estudante.getSobrenome());
+        txtRaEstudante.setText(estudante.getRa());
+        txtTelefoneEstudante.setText(estudante.getTelefone());
+        txtEmailEstudante.setText(estudante.getEmail());
+        cbxCursoEstudante.setSelectedItem(estudante.getCurso());
+        txtSenhaEstudante.setText(estudante.getSenha());
+        txtConfirmaSenhaEstudante.setText(estudante.getSenha());
+        this.estudante.setAtivo(ckbAtivo.isSelected());
         ckbAtivo.setSelected(estudante.isAtivo());
         
-        if(!estaAtualizando)
-            desabilitarComponentes();
     }
-
-    private void desabilitarComponentes() {
-        btnCancelar.setVisible(false);
-        btnSalvar.setVisible(false);
-        panelGeral.setEnabled(false);
-        txtNomeEstudante.setEnabled(false);
-        txtNomeEstudante.setDisabledTextColor(Color.BLACK);
-        ckbAtivo.setEnabled(false);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

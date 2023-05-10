@@ -56,7 +56,7 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals("Curso Teste"));
         assertTrue(this.curso.isAtivo());
     }
-
+    
     @Test
     public void naoDeveInserirNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirNomeVazioOuNulo");
@@ -94,6 +94,16 @@ public class CursoServicoTest {
         this.curso = CursoServico.inserir(this.curso);
 
         List<Curso> listaDeCursos = CursoServico.buscarTodos();
+        assertTrue(!listaDeCursos.isEmpty());
+    }
+    
+    @Test
+    public void deveListarSomenteAtivos() throws CursoException {
+        System.out.println("Executando teste deveListarAoMenosUm");
+
+        this.curso = CursoServico.inserir(this.curso);
+
+        List<Curso> listaDeCursos = CursoServico.buscarTodosAtivos();
         assertTrue(!listaDeCursos.isEmpty());
     }
 

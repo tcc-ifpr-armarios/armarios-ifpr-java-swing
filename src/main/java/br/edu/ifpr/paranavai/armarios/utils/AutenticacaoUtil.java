@@ -14,4 +14,6 @@ public class AutenticacaoUtil {
         String senhaComChavePrivada = CHAVE_PRIVADA + senha + CHAVE_PRIVADA;
         return DigestUtils.sha256Hex(senhaComChavePrivada);
     }
+    
+    
 }
