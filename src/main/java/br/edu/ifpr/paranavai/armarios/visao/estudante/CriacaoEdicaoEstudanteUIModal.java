@@ -75,8 +75,23 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         ckbAtivo = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        lblSobrenomeEstudante = new javax.swing.JLabel();
+        txtSobrenomeEstudante = new javax.swing.JTextField();
+        lblEmailEstudante = new javax.swing.JLabel();
+        txtEmailEstudante = new javax.swing.JTextField();
+        lblMatriculaEstudante = new javax.swing.JLabel();
+        txtMatriculaEstudante = new javax.swing.JTextField();
+        lblNomeEstudante2 = new javax.swing.JLabel();
+        txtNomeEstudante3 = new javax.swing.JTextField();
+        lblNomeEstudante3 = new javax.swing.JLabel();
+        lblNomeEstudante4 = new javax.swing.JLabel();
+        txtNomeEstudante4 = new javax.swing.JTextField();
+        lblNomeEstudante6 = new javax.swing.JLabel();
+        txtNomeEstudante6 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Estudante");
         setMinimumSize(new java.awt.Dimension(394, 290));
         setModal(true);
         setName("dialogo"); // NOI18N
@@ -89,9 +104,9 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Novo Curso");
+        lblTitulo.setText("Novo Estudante");
 
-        lblNomeEstudante.setText("Nome do Curso *:");
+        lblNomeEstudante.setText("Nome*:");
 
         lblAtivo.setText("Ativo?");
 
@@ -117,25 +132,71 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
             }
         });
 
+        lblSobrenomeEstudante.setText("Sobrenome*:");
+
+        lblEmailEstudante.setText("E-mail*:");
+
+        lblMatriculaEstudante.setText("Matrícula (RA)*:");
+
+        lblNomeEstudante2.setText("Curso*:");
+
+        lblNomeEstudante3.setText("Confirmação de Senha*:");
+
+        lblNomeEstudante4.setText("Senha*:");
+
+        lblNomeEstudante6.setText("Confirmação de Senha*:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout panelGeralLayout = new javax.swing.GroupLayout(panelGeral);
         panelGeral.setLayout(panelGeralLayout);
         panelGeralLayout.setHorizontalGroup(
             panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeralLayout.createSequentialGroup()
-                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(20, 20, 20)
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtMatriculaEstudante)
+                            .addComponent(lblMatriculaEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(txtNomeEstudante)
-                            .addComponent(lblNomeEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ckbAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblNomeEstudante2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNomeEstudante3)
+                            .addComponent(lblNomeEstudante3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(163, 163, 163)
                         .addComponent(btnSalvar)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnCancelar)))
+                        .addGap(134, 134, 134)
+                        .addComponent(btnCancelar))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeralLayout.createSequentialGroup()
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNomeEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(lblNomeEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSobrenomeEstudante)
+                            .addComponent(lblSobrenomeEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmailEstudante)
+                            .addComponent(lblEmailEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNomeEstudante4)
+                            .addComponent(lblNomeEstudante4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNomeEstudante6)
+                            .addComponent(lblNomeEstudante6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ckbAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
         );
         panelGeralLayout.setVerticalGroup(
@@ -144,17 +205,51 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(lblNomeEstudante)
-                .addGap(5, 5, 5)
-                .addComponent(txtNomeEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelGeralLayout.createSequentialGroup()
+                            .addComponent(lblNomeEstudante)
+                            .addGap(5, 5, 5)
+                            .addComponent(txtNomeEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeralLayout.createSequentialGroup()
+                            .addComponent(lblSobrenomeEstudante)
+                            .addGap(5, 5, 5)
+                            .addComponent(txtSobrenomeEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addComponent(lblEmailEstudante)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtEmailEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
-                .addComponent(lblAtivo)
-                .addGap(5, 5, 5)
-                .addComponent(ckbAtivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addComponent(lblMatriculaEstudante)
+                        .addGap(5, 5, 5)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMatriculaEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblNomeEstudante2)
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addComponent(lblNomeEstudante3)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtNomeEstudante3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addComponent(lblNomeEstudante4)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtNomeEstudante4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGeralLayout.createSequentialGroup()
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNomeEstudante6)
+                            .addComponent(lblAtivo))
+                        .addGap(5, 5, 5)
+                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomeEstudante6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ckbAtivo))))
+                .addGap(20, 20, 20)
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSalvar))
                 .addGap(20, 20, 20))
         );
 
@@ -163,9 +258,9 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ckbAtivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckbAtivoItemStateChanged
-        ckbAtivo.setText((evt.getStateChange() == 1 ? "Sim!" : "Não!"));
-    }//GEN-LAST:event_ckbAtivoItemStateChanged
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        fecharFormulario();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         this.estudante.setNome(txtNomeEstudante.getText());
@@ -177,9 +272,9 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        fecharFormulario();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void ckbAtivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckbAtivoItemStateChanged
+        ckbAtivo.setText((evt.getStateChange() == 1 ? "Sim!" : "Não!"));
+    }//GEN-LAST:event_ckbAtivoItemStateChanged
 
         private void salvar() throws HeadlessException {
         try {
@@ -214,10 +309,24 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox ckbAtivo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblAtivo;
+    private javax.swing.JLabel lblEmailEstudante;
+    private javax.swing.JLabel lblMatriculaEstudante;
     private javax.swing.JLabel lblNomeEstudante;
+    private javax.swing.JLabel lblNomeEstudante2;
+    private javax.swing.JLabel lblNomeEstudante3;
+    private javax.swing.JLabel lblNomeEstudante4;
+    private javax.swing.JLabel lblNomeEstudante6;
+    private javax.swing.JLabel lblSobrenomeEstudante;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelGeral;
+    private javax.swing.JTextField txtEmailEstudante;
+    private javax.swing.JTextField txtMatriculaEstudante;
     private javax.swing.JTextField txtNomeEstudante;
+    private javax.swing.JTextField txtNomeEstudante3;
+    private javax.swing.JTextField txtNomeEstudante4;
+    private javax.swing.JTextField txtNomeEstudante6;
+    private javax.swing.JTextField txtSobrenomeEstudante;
     // End of variables declaration//GEN-END:variables
 }
