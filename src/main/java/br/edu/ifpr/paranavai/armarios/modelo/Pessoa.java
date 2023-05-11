@@ -22,25 +22,25 @@ public abstract class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_pessoa", unique = true, nullable = false)
+    @Column(name = "id_pessoa")
     private Integer id;
 
-    @Column(name = "nome", unique = false, nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "sobrenome", unique = false, nullable = false, length = 100)
+    @Column(name = "sobrenome", nullable = false, length = 100)
     private String sobrenome;
 
-    @Column(name = "email", unique = true, nullable = false, length = 50)
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "telefone", unique = true, nullable = false, length = 20)
+    @Column(name = "telefone", length = 20)
     @ColumnTransformer(read = "telefone", write = "TRIM(?)")
     private String telefone;
 
     @ColumnTransformer(read = "senha", write = "SHA2(CONCAT('" + AutenticacaoUtil.CHAVE_PRIVADA + "', ?, '"
             + AutenticacaoUtil.CHAVE_PRIVADA + "'), 256)")
-    @Column(name = "senha", unique = false, nullable = false, length = 100)
+    @Column(name = "senha", nullable = false, length = 100)
     private String senha;
 
     @Basic

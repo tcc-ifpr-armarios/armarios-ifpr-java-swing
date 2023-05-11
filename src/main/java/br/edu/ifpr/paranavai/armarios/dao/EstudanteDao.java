@@ -17,12 +17,6 @@ public interface EstudanteDao {
 
     public Estudante buscarPorEmail(String email);
 
-    public Estudante buscarPorTelefone(String telefone);
-
-    public Estudante buscarPorEmailComIdDiferente(String email, Integer id);
-
-    public Estudante buscarPorTelefoneComIdDiferente(String telefone, Integer id);
-
     public Estudante buscarPorRaComIdDiferente(String ra, Integer id);
 
     public List<Estudante> buscarPorIdCurso(Integer idCurso);

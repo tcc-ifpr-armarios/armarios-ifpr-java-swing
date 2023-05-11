@@ -23,15 +23,7 @@ public class EstudanteServico {
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
 
-        Estudante e = dao.buscarPorEmail(estudante.getEmail());
-        if (e != null)
-            throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
-
-        e = dao.buscarPorTelefone(estudante.getTelefone());
-        if (e != null)
-            throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
-
-        e = dao.buscarPorRa(estudante.getRa());
+        Estudante e = dao.buscarPorRa(estudante.getRa());
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
 
@@ -41,15 +33,7 @@ public class EstudanteServico {
     public static Estudante atualizar(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
 
-        Estudante e = dao.buscarPorEmailComIdDiferente(estudante.getEmail(), estudante.getId());
-        if (e != null)
-            throw new EstudanteException(MensagemUtil.ESTUDANTE_EMAIL_DUPLICADO);
-
-        e = dao.buscarPorTelefoneComIdDiferente(estudante.getTelefone(), estudante.getId());
-        if (e != null)
-            throw new EstudanteException(MensagemUtil.ESTUDANTE_TELEFONE_DUPLICADO);
-
-        e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
+        Estudante e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
 
