@@ -11,6 +11,9 @@ public class MensagemUtil {
     public static final String TITULO_ATENCAO = "Atenção!";
     public static final String TITULO_INFORMACAO = "Informação";
 
+    public static final String EMAIL_INVALIDO = "E-mail inválido!";
+    public static final String TELEFONE_INVALIDO = "Telefone inválido!";
+    
     public static final String CURSO_NOME_DUPLICADO = "Nome do curso duplicado";
     public static final String CURSO_NAO_ENCONTRADO = "Registro não encontrado";
     public static final String CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
@@ -33,5 +36,5 @@ public class MensagemUtil {
     public static final String ESTUDANTE_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo estudante";
     public static final String ESTUDANTE_INSERCAO_SUCESSO = "Estudante Cadastrado com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_SUCESSO = "Estudante Excluído com Sucesso!";
-    public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";
+    public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";    
 }
