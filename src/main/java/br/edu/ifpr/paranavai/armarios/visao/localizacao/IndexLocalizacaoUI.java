@@ -24,6 +24,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         
         initComponents();
         init();
+        setLocationRelativeTo(this);
     }
     
     public void init(){

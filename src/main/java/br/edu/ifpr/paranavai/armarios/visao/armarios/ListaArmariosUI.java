@@ -68,38 +68,20 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     private void initComponents() {
 
         painelGeral = new javax.swing.JPanel();
-        painelSuperior = new javax.swing.JPanel();
-        panelNovo = new javax.swing.JPanel();
-        novoArmario = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblArmarios = new javax.swing.JTable();
+        panelNovo = new javax.swing.JPanel();
+        novoArmario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciamento de Cursos");
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
+        painelGeral.setBackground(new java.awt.Color(0, 153, 0));
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
-
-        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-        painelSuperior.setLayout(new java.awt.BorderLayout());
-
-        panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
-
-        novoArmario.setText("Novo Armário");
-        novoArmario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoArmarioActionPerformed(evt);
-            }
-        });
-        panelNovo.add(novoArmario);
-
-        painelSuperior.add(panelNovo, java.awt.BorderLayout.CENTER);
-
-        painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
@@ -135,6 +117,20 @@ public class ListaArmariosUI extends javax.swing.JFrame {
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        panelNovo.setBackground(new java.awt.Color(204, 204, 204));
+        panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
+
+        novoArmario.setText("Novo Armário");
+        novoArmario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoArmarioActionPerformed(evt);
+            }
+        });
+        panelNovo.add(novoArmario);
+
+        painelInferior.add(panelNovo, java.awt.BorderLayout.PAGE_END);
+
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(painelGeral);
@@ -153,7 +149,6 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     private javax.swing.JButton novoArmario;
     private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
-    private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelNovo;
     private javax.swing.JTable tblArmarios;
     // End of variables declaration//GEN-END:variables

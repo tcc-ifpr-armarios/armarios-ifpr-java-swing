@@ -38,7 +38,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
         super(listaArmariosUI, true);
         initComponents();
         this.listaArmariosUI = listaArmariosUI;
-        this.reserva = new Reserva();
+        
 
         this.setTitle("Novo armário");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -169,7 +169,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+        this.reserva = new Reserva();
         String numero = selecionaNumero.getValue().toString();
         int convertido = Integer.parseInt(numero);
 

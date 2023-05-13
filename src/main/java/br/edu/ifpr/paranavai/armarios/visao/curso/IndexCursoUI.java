@@ -21,6 +21,8 @@ public class IndexCursoUI extends javax.swing.JFrame {
     public IndexCursoUI() {
         initComponents();
         init();
+        
+        setLocationRelativeTo(this);
     }
     
     public void init(){
