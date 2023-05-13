@@ -5,7 +5,7 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
+import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -13,20 +13,20 @@ import org.hibernate.Session;
  *
  * @author suporte
  */
-public class HistoricoBibliotecaImpl implements HistoricoBibliotecaDao {
+public class HistoricoImpl implements HistoricoDao {
     
     private Session sessao;
     
-    public HistoricoBibliotecaImpl(){
+    public HistoricoImpl(){
         this.sessao = HibernateUtil.getSession();
     }
     
     
      @Override
-    public void inserir(HistoricoBiblioteca historicoBiblioteca) {
+    public void inserir(Historico historico) {
         try {
             sessao.beginTransaction();
-            sessao.persist(historicoBiblioteca);
+            sessao.persist(historico);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,11 +35,11 @@ public class HistoricoBibliotecaImpl implements HistoricoBibliotecaDao {
     
     
     @Override
-    public List<HistoricoBiblioteca> buscarTodos() {
-        List<HistoricoBiblioteca> reservas = null;
+    public List<Historico> buscarTodos() {
+        List<Historico> reservas = null;
         try {
             sessao.beginTransaction();
-            reservas = (List<HistoricoBiblioteca>) this.sessao.createQuery("from HistoricoBiblioteca").list();
+            reservas = (List<Historico>) this.sessao.createQuery("from Historico").list();
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,9 +4,9 @@ package br.edu.ifpr.paranavai.armarios.excecoes;
  *
  * @author Allan Fernando O. de Andrade
  */
-public class LocalizacaoException extends Exception {
+public class ArmarioException extends Exception {
 
-    public LocalizacaoException(String mensagem) {
+    public ArmarioException(String mensagem) {
         super(mensagem);
     }
 }

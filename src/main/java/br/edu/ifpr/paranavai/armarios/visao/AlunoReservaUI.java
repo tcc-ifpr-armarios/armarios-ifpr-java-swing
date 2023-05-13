@@ -4,51 +4,17 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao;
-import br.edu.ifpr.paranavai.armarios.modelo.Login;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoSaguaoServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
-import java.util.ArrayList;
-import java.util.Date;
-
-import java.util.List;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public class AlunoReservaUI extends javax.swing.JFrame {
-
-    Estudante estudante = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-    Date data = new Date();
 
     /**
      * Creates new form AlunoReservaUI
      */
     public AlunoReservaUI() {
         initComponents();
-        setLocationRelativeTo(null);
-
-        List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarPorAluno(estudante.getId());
-        atualizarTabelaMeusSaguao(armariosSaguao);
-
-        List<ReservaBiblioteca> armarioBiblioteca = ReservaBibliotecaServico.buscarPorAluno(estudante.getId());
-        atualizarTabelaMeusBiblioteca(armarioBiblioteca);
-
-        List<ReservaBiblioteca> armariosBiblioteca = ReservaBibliotecaServico.buscarTodosAtivos(true);
-        atualizarTabela(armariosBiblioteca);
-        this.dispose();
     }
 
     /**
@@ -60,204 +26,13 @@ public class AlunoReservaUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botoes = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        armariosDisponiveis = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        armariosTb = new javax.swing.JTable();
-        botaoReserva = new javax.swing.JButton();
-        bibliotecaBotao = new javax.swing.JRadioButton();
-        saguaoBotao = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        meusArmariosSaguaoTb = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        meusArmariosBibliotecaTb = new javax.swing.JTable();
-        liberadorS = new javax.swing.JButton();
-        liberadorB = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reserva", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
-        armariosDisponiveis.setBackground(new java.awt.Color(255, 255, 255));
-        armariosDisponiveis.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        armariosTb.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Número"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        armariosTb.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(armariosTb);
-        armariosTb.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        botaoReserva.setText("Reservar");
-        botaoReserva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoReservaMouseClicked(evt);
-            }
-        });
-        botaoReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoReservaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout armariosDisponiveisLayout = new javax.swing.GroupLayout(armariosDisponiveis);
-        armariosDisponiveis.setLayout(armariosDisponiveisLayout);
-        armariosDisponiveisLayout.setHorizontalGroup(
-            armariosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(armariosDisponiveisLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(armariosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, armariosDisponiveisLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaoReserva)))
-                .addContainerGap())
-        );
-        armariosDisponiveisLayout.setVerticalGroup(
-            armariosDisponiveisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(armariosDisponiveisLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoReserva)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        botoes.add(bibliotecaBotao);
-        bibliotecaBotao.setSelected(true);
-        bibliotecaBotao.setText("Biblioteca");
-        bibliotecaBotao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bibliotecaBotaoActionPerformed(evt);
-            }
-        });
-
-        botoes.add(saguaoBotao);
-        saguaoBotao.setText("Saguão");
-        saguaoBotao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saguaoBotaoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(armariosDisponiveis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(bibliotecaBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saguaoBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saguaoBotao)
-                    .addComponent(bibliotecaBotao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(armariosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Minhas Reservas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
-        meusArmariosSaguaoTb.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Número", "Data", "Saguão"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        meusArmariosSaguaoTb.setColumnSelectionAllowed(true);
-        meusArmariosSaguaoTb.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(meusArmariosSaguaoTb);
-        meusArmariosSaguaoTb.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (meusArmariosSaguaoTb.getColumnModel().getColumnCount() > 0) {
-            meusArmariosSaguaoTb.getColumnModel().getColumn(0).setPreferredWidth(5);
-        }
-
-        meusArmariosBibliotecaTb.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Número", "Data", "Biblioteca"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        meusArmariosBibliotecaTb.setColumnSelectionAllowed(true);
-        jScrollPane3.setViewportView(meusArmariosBibliotecaTb);
-        meusArmariosBibliotecaTb.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (meusArmariosBibliotecaTb.getColumnModel().getColumnCount() > 0) {
-            meusArmariosBibliotecaTb.getColumnModel().getColumn(0).setPreferredWidth(5);
-        }
-
-        liberadorS.setText("Liberar");
-        liberadorS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                liberadorSActionPerformed(evt);
-            }
-        });
-
-        liberadorB.setText("Liberar");
-        liberadorB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                liberadorBActionPerformed(evt);
-            }
-        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iflogomenor.png"))); // NOI18N
 
@@ -265,291 +40,46 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(liberadorS))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(liberadorB)))))
-                .addContainerGap())
+                .addComponent(jLabel5)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(liberadorB)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(liberadorS)
-                    .addComponent(jLabel5))
+                .addGap(217, 217, 217)
+                .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(19, 19, 19)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(19, 19, 19)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 351, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bibliotecaBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBotaoActionPerformed
-
-        List<ReservaBiblioteca> armariosBiblioteca = ReservaBibliotecaServico.buscarTodosAtivos(true);
-        atualizarTabela(armariosBiblioteca);
-
-
-    }//GEN-LAST:event_bibliotecaBotaoActionPerformed
-
-    private void atualizarTabela(List<ReservaBiblioteca> armariosBiblioteca) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) armariosTb.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        for (int i = 0; i < armariosBiblioteca.size(); i++) {
-
-            ReservaBiblioteca armario = armariosBiblioteca.get(i);
-            JRadioButton marcadores = new JRadioButton();
-            Object[] dadosLinha = new Object[2];
-            dadosLinha[0] = armario.getNumero();
-            dadosLinha[1] = marcadores.isDisplayable();
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-
-        }
-    }
-
-    private void atualizarTabelaSaguao(List<ReservaSaguao> armariosSaguao) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) armariosTb.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        for (int i = 0; i < armariosSaguao.size(); i++) {
-
-            ReservaSaguao armario = armariosSaguao.get(i);
-            JRadioButton marcadores = new JRadioButton();
-            Object[] dadosLinha = new Object[2];
-            dadosLinha[0] = armario.getNumero();
-            dadosLinha[1] = marcadores.isDisplayable();
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-
-        }
-    }
-
-    private void atualizarTabelaMeusSaguao(List<ReservaSaguao> armariosSaguao) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) meusArmariosSaguaoTb.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        for (int i = 0; i < armariosSaguao.size(); i++) {
-
-            ReservaSaguao armario = armariosSaguao.get(i);
-            JRadioButton marcadores = new JRadioButton();
-            Object[] dadosLinha = new Object[3];
-            dadosLinha[0] = armario.getNumero();         
-            dadosLinha[1] = armario.getDataHoraEmprestimo();
-            dadosLinha[2] = marcadores.isDisplayable();
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-
-        }
-    }
-
-    private void atualizarTabelaMeusBiblioteca(List<ReservaBiblioteca> armariosBiblioteca) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) meusArmariosBibliotecaTb.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        for (int i = 0; i < armariosBiblioteca.size(); i++) {
-
-            ReservaBiblioteca armario = armariosBiblioteca.get(i);
-            JRadioButton marcadores = new JRadioButton();
-            Object[] dadosLinha = new Object[3];
-            dadosLinha[0] = armario.getNumero();         
-            dadosLinha[1] = armario.getDataHoraEmprestimo();
-            dadosLinha[2] = marcadores.isDisplayable();
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-
-        }
-    }
-
-    private void saguaoBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saguaoBotaoActionPerformed
-
-        List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodosAtivos(true);
-        atualizarTabelaSaguao(armariosSaguao);
-
-
-    }//GEN-LAST:event_saguaoBotaoActionPerformed
-
-    private void botaoReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoReservaMouseClicked
-
-
-    }//GEN-LAST:event_botaoReservaMouseClicked
-
-    private void botaoReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReservaActionPerformed
-        if (bibliotecaBotao.isSelected()) {
-            int a = 0;
-            int dadosLinha = armariosTb.getSelectedRow();
-            int codigo = (int) armariosTb.getModel().getValueAt(dadosLinha, 0);
-            a = JOptionPane.showConfirmDialog(null, "Deseja reservar o armario " + codigo + " na biblioteca ?");
-
-            Estudante estudante = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-            if (a == JOptionPane.YES_OPTION) {
-                ReservaBiblioteca reserva = new ReservaBiblioteca();
-
-                reserva.setAtivo(false);
-                reserva.setDataHoraEmprestimo(data);
-                reserva.setEstudante(estudante);
-                reserva.setNumero(codigo);
-                ReservaBibliotecaServico.apagaPorNumero(codigo);
-                ReservaBibliotecaServico.inserir(reserva);
-                List<ReservaBiblioteca> armariosBiblioteca = ReservaBibliotecaServico.buscarTodosAtivos(true);
-                atualizarTabela(armariosBiblioteca);
-                List<ReservaBiblioteca> armarioBiblioteca = ReservaBibliotecaServico.buscarPorAluno(estudante.getId());
-                atualizarTabelaMeusBiblioteca(armarioBiblioteca);
-            }
-
-        } else {
-            int a = 0;
-            int dadosLinha = armariosTb.getSelectedRow();
-            int codigo = (int) armariosTb.getModel().getValueAt(dadosLinha, 0);
-            a = JOptionPane.showConfirmDialog(null, "Deseja reservar o armario " + codigo + " no saguão ?");
-            Estudante estudante = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-            System.out.println(codigo);
-            if (a == JOptionPane.YES_OPTION) {
-                ReservaSaguao reserva = new ReservaSaguao();
-
-                reserva.setAtivo(false);
-                reserva.setDataHoraEmprestimo(data);
-                reserva.setEstudante(estudante);
-                reserva.setNumero(codigo);
-                
-                ReservaSaguaoServico.apagaPorNumero(codigo);
-                ReservaSaguaoServico.inserir(reserva);
-                
-                List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodosAtivos(true);
-                atualizarTabelaSaguao(armariosSaguao);
-                List<ReservaSaguao> armariosSaguaos = ReservaSaguaoServico.buscarPorAluno(estudante.getId());
-                atualizarTabelaMeusSaguao(armariosSaguaos);
-                
-            }
-        }
-
-    }//GEN-LAST:event_botaoReservaActionPerformed
-
-    private void liberadorSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liberadorSActionPerformed
-        int dadosLinha = meusArmariosSaguaoTb.getSelectedRow();
-        int codigo = (int) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 0);
-        
-        int a = JOptionPane.showConfirmDialog(null, "Deseja liberar o armario " + codigo + " no saguão ?");
-        if (a == JOptionPane.YES_OPTION) {
-            
-            // cria o registro 
-            HistoricoSaguao registro = new HistoricoSaguao();
-            registro.setDataHoraEmprestimo((Date) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 1));
-            registro.setData_Hora_Devolucao(data);
-            registro.setNumero(codigo);
-            registro.setRa(estudante.getRa());
-            HistoricoSaguaoServico.inserir(registro);
-            
-            
-            
-            // redisponibiliza o armario para reserva
-            ReservaSaguaoServico.apagaPorNumero(codigo);
-            ReservaSaguao reserva = new ReservaSaguao();
-            reserva.setNumero(codigo);
-            reserva.setAtivo(true);
-            ReservaSaguaoServico.inserir(reserva);
-            List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarPorAluno(estudante.getId());
-            atualizarTabelaMeusSaguao(armariosSaguao);
-            List<ReservaSaguao> armariosSaguaoS = ReservaSaguaoServico.buscarTodosAtivos(true);
-            atualizarTabelaSaguao(armariosSaguaoS);
-            saguaoBotao.setSelected(true);
-
-        }
-
-
-    }//GEN-LAST:event_liberadorSActionPerformed
-
-    private void liberadorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liberadorBActionPerformed
-        int dadosLinha = meusArmariosBibliotecaTb.getSelectedRow();
-        int codigo = (int) meusArmariosBibliotecaTb.getModel().getValueAt(dadosLinha, 0);
-        int a = JOptionPane.showConfirmDialog(null, "Deseja liberar o armario " + codigo + " na biblioteca ?");
-        if (a == JOptionPane.YES_OPTION) {
-            
-            HistoricoBiblioteca registro = new HistoricoBiblioteca();
-            registro.setDataHoraEmprestimo((Date) meusArmariosSaguaoTb.getModel().getValueAt(dadosLinha, 1));
-            registro.setData_Hora_Devolucao(data);
-            registro.setNumero(codigo);
-            registro.setRa(estudante.getRa());
-            HistoricoBibliotecaServico.inserir(registro);
-            
-            
-            
-            ReservaBibliotecaServico.apagaPorNumero(codigo);
-            ReservaBiblioteca reserva = new ReservaBiblioteca();
-            reserva.setNumero(codigo);
-            reserva.setAtivo(true);
-            ReservaBibliotecaServico.inserir(reserva);
-            List<ReservaBiblioteca> armariosBiblioteca = ReservaBibliotecaServico.buscarPorAluno(estudante.getId());
-            atualizarTabelaMeusBiblioteca(armariosBiblioteca);
-            List<ReservaBiblioteca> armariosBibliotecaB = ReservaBibliotecaServico.buscarTodosAtivos(true);
-            atualizarTabela(armariosBibliotecaB);
-            bibliotecaBotao.setSelected(true);
-            
-
-        }
-    }//GEN-LAST:event_liberadorBActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    public static void alunoReservaUI(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -577,28 +107,12 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AlunoReservaUI().setVisible(true);
-               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel armariosDisponiveis;
-    private javax.swing.JTable armariosTb;
-    private javax.swing.JRadioButton bibliotecaBotao;
-    private javax.swing.JButton botaoReserva;
-    private javax.swing.ButtonGroup botoes;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JButton liberadorB;
-    private javax.swing.JButton liberadorS;
-    private javax.swing.JTable meusArmariosBibliotecaTb;
-    private javax.swing.JTable meusArmariosSaguaoTb;
-    private javax.swing.JRadioButton saguaoBotao;
     // End of variables declaration//GEN-END:variables
 }

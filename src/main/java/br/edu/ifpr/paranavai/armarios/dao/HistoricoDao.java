@@ -4,16 +4,16 @@
  */
 package br.edu.ifpr.paranavai.armarios.dao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
+import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import java.util.List;
 
 /**
  *
  * @author suporte
  */
-public interface HistoricoBibliotecaDao {
+public interface HistoricoDao {
 
-    public void inserir(HistoricoBiblioteca historico);
+    public void inserir(Historico historico);
 
-    public List<HistoricoBiblioteca> buscarTodos();
+    public List<Historico> buscarTodos();
 }

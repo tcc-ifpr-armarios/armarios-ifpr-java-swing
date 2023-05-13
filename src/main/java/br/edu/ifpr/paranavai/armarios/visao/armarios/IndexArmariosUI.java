@@ -1,6 +1,7 @@
-package br.edu.ifpr.paranavai.armarios.visao.localizacao;
+package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 
+import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +13,20 @@ import javax.swing.JTable;
 
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author Allan Fernando O de Andrade
  */
-public class IndexLocalizacaoUI extends javax.swing.JFrame {
+public class IndexArmariosUI extends javax.swing.JFrame {
     List<Localizacao> listaDeLocalizacoes;
+    
     /**
      * Creates new form EditorLocalizacaoUI
      */
     
-    public IndexLocalizacaoUI() {
+    public IndexArmariosUI() {
         
         initComponents();
         init();
+        setLocationRelativeTo(this);
     }
     
     public void init(){
@@ -34,11 +37,11 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
 
     private void populaTabela(List<Localizacao> listaDeLocalizacoes) {
         
-        AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacao();
+        AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacaoEmIndexUI();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
-        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
-        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento, this));
+        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacaoEmIndexUI());
+        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacaoEmIndexUI(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -65,68 +68,17 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
     private void initComponents() {
 
         painelGeral = new javax.swing.JPanel();
-        painelSuperior = new javax.swing.JPanel();
-        panelBusca = new javax.swing.JPanel();
-        lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        panelNovo = new javax.swing.JPanel();
-        btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLocalizacao = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciamento de Localizações");
+        setTitle("Gerenciamento de Armários");
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
-
-        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-        painelSuperior.setLayout(new java.awt.BorderLayout());
-
-        panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
-        panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
-
-        lblNome.setText("Nome: ");
-        panelBusca.add(lblNome);
-
-        txtNome.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-        panelBusca.add(txtNome);
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        panelBusca.add(btnBuscar);
-
-        painelSuperior.add(panelBusca, java.awt.BorderLayout.PAGE_START);
-
-        panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
-
-        btnNovo.setText("Novo");
-        btnNovo.setMaximumSize(new java.awt.Dimension(72, 72));
-        btnNovo.setMinimumSize(new java.awt.Dimension(72, 72));
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
-        panelNovo.add(btnNovo);
-
-        painelSuperior.add(panelNovo, java.awt.BorderLayout.CENTER);
-
-        painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
@@ -137,7 +89,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificador", "Nome", "Ativo", "Ações"
+                "Identificador", "Nome", "Ativo", "Ver Armários"
             }
         ) {
             Class[] types = new Class [] {
@@ -179,38 +131,10 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Localizacao> filtrado = new ArrayList<>();
-        
-        for (Localizacao localizacao : listaDeLocalizacoes) {
-            if(localizacao.getDescricao().toUpperCase().contains(txtNome.getText().toUpperCase()))
-                filtrado.add(localizacao);
-        }
-        
-        populaTabela(filtrado);
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoLocalizacaoUIModal criacaoEdicaoLocalizacao = new CriacaoEdicaoLocalizacaoUIModal(this);
-        criacaoEdicaoLocalizacao.setLocationRelativeTo(this);
-        criacaoEdicaoLocalizacao.setVisible(true);
-    }//GEN-LAST:event_btnNovoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblNome;
     private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
-    private javax.swing.JPanel painelSuperior;
-    private javax.swing.JPanel panelBusca;
-    private javax.swing.JPanel panelNovo;
     private javax.swing.JTable tblLocalizacao;
-    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

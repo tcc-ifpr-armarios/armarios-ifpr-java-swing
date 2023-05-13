@@ -15,8 +15,8 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 @Entity
-@Table(name = "tb_reserva_biblioteca")
-public class ReservaBiblioteca {
+@Table(name = "tb_reserva")
+public class Reserva {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,10 +27,10 @@ public class ReservaBiblioteca {
     @ManyToOne(cascade=CascadeType.MERGE)
     private Estudante estudante; 
     
-    @Column (name = "localizacao_id", nullable = false )  
-    private int localId;
+    @ManyToOne(cascade=CascadeType.MERGE)
+    private Localizacao localizacao;
     
-    @Column (name = "numero", unique = true, nullable = false) 
+    @Column (name = "numero", nullable = false) 
     private int numero;
     
     @Basic
@@ -44,19 +44,20 @@ public class ReservaBiblioteca {
     private Date dataHoraEmprestimo;
     
 
-    public ReservaBiblioteca() {
+    public Reserva() {
     }
 
-    public ReservaBiblioteca( int numero, boolean ativo) {
+    public Reserva( int numero, boolean ativo, Localizacao localizacao) {
         this.numero = numero;
         this.ativo = ativo;
+        this.localizacao = localizacao;
         
     }
 
-    public ReservaBiblioteca(Integer id, Estudante estudante, int localId, int numero, boolean ativo, Date dataHoraEmprestimo) {
+    public Reserva(Integer id, Estudante estudante, Localizacao localizacao, int numero, boolean ativo, Date dataHoraEmprestimo) {
         this.id = id;
         this.estudante = estudante;
-        this.localId = localId;
+        this.localizacao = localizacao;
         this.numero = numero;
         this.ativo = ativo;
         this.dataHoraEmprestimo = dataHoraEmprestimo;
@@ -108,13 +109,15 @@ public class ReservaBiblioteca {
         return estudante;
     }
 
-    public int getLocalId() {
-        return localId;
+    public Localizacao getLocalizacao() {
+        return localizacao;
     }
 
-    public void setLocalId(int localId) {
-        this.localId = localId;
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
     }
+
+ 
 
     
 }

@@ -1,6 +1,7 @@
-package br.edu.ifpr.paranavai.armarios.visao.localizacao;
+package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 
+import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Component;
 
@@ -13,21 +14,21 @@ import javax.swing.JTable;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class EditorDasAcoesDaCelulaLocalizacao extends DefaultCellEditor{
+public class EditorDasAcoesDaCelulaReservaEmArmariosUI extends DefaultCellEditor{
 
     private AcoesEventoTabela evento;
-    private IndexLocalizacaoUI indexLocalizacaoUI;
-    public EditorDasAcoesDaCelulaLocalizacao(AcoesEventoTabela evento, IndexLocalizacaoUI indexLocalizacaoUI) {
+    private ListaArmariosUI listaArmariosUI;
+    public EditorDasAcoesDaCelulaReservaEmArmariosUI(AcoesEventoTabela evento, ListaArmariosUI listaArmariosUI) {
         super(new JCheckBox());
-        this.indexLocalizacaoUI = indexLocalizacaoUI;
+        this.listaArmariosUI = listaArmariosUI;
         this.evento = evento;
     }
     
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesLocalizacaoUI acoes = new PainelAcoesLocalizacaoUI();
+        PainelAcoesReservasEmArmariosUI acoes = new PainelAcoesReservasEmArmariosUI();
 
-        acoes.iniciarEventos(indexLocalizacaoUI, evento, table, row);
+        acoes.iniciarEventos(listaArmariosUI, evento, table, row);
         acoes.setBackground(table.getSelectionBackground());
         
         return acoes;

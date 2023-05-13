@@ -18,11 +18,9 @@ public class Estudante extends Pessoa implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
     /**@JoinColumn(name = "id_reserva")**/
-    private List<ReservaBiblioteca> reservasB;
+    private List<Reserva> reservasB;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudante")
-    /**@JoinColumn(name = "id_reserva")**/
-    private List<ReservaSaguao> reservasS;
+    
     
     
     /**
@@ -59,19 +57,13 @@ public class Estudante extends Pessoa implements Serializable {
         this.ra = ra;
     }
 
-    public void setReservasB(List<ReservaBiblioteca> reservasB) {
+    public void setReservasB(List<Reserva> reservasB) {
         this.reservasB = reservasB;
     }
 
-    public List<ReservaBiblioteca> getReservasB() {
+    public List<Reserva> getReservasB() {
         return reservasB;
     }
 
-    public void setReservasS(List<ReservaSaguao> reservasS) {
-        this.reservasS = reservasS;
-    }
-
-    public List<ReservaSaguao> getReservasS() {
-        return reservasS;
-    }
+    
 }

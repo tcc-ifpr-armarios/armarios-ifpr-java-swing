@@ -7,11 +7,12 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import javax.swing.JOptionPane;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
+import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
+import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
+
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 //import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
@@ -28,7 +29,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
      */
     public ServidorControleUI() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -49,10 +50,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botaoCadArmario = new javax.swing.JToggleButton();
         botaoOcupados = new javax.swing.JButton();
-        marcadorBiblioteca = new javax.swing.JRadioButton();
-        marcadorSaguao = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        selecionaNumero = new javax.swing.JSpinner();
         botaoHistorico = new javax.swing.JButton();
         btnCursos = new javax.swing.JButton();
         btnLocalizacoes = new javax.swing.JButton();
@@ -135,20 +132,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(marcadorBiblioteca);
-        marcadorBiblioteca.setText("Biblioteca");
-        marcadorBiblioteca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                marcadorBibliotecaMouseClicked(evt);
-            }
-        });
-
-        buttonGroup1.add(marcadorSaguao);
-        marcadorSaguao.setText("Saguão");
-
-        jLabel1.setText("Número do Armário:");
-
-        botaoHistorico.setText("Histórico de reservas");
+        botaoHistorico.setText("Histórico de Empréstimos");
         botaoHistorico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         botaoHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -169,7 +153,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
-        btnLocalizacoes.setText("Gestão de localizações");
+        btnLocalizacoes.setText("Gestão de Localizações");
         btnLocalizacoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLocalizacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,36 +166,19 @@ public class ServidorControleUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selecionaNumero)
-                        .addGap(18, 18, 18)
-                        .addComponent(marcadorSaguao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(marcadorBiblioteca))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLocalizacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLocalizacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(marcadorBiblioteca)
-                    .addComponent(marcadorSaguao)
-                    .addComponent(selecionaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
                 .addComponent(botaoCadArmario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,7 +359,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -413,10 +380,10 @@ public class ServidorControleUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -447,7 +414,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoOcupadosActionPerformed
 
     private void botaoCadArmarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadArmarioMouseClicked
-
+       /**
         if (marcadorBiblioteca.isSelected() == false && marcadorSaguao.isSelected() == false) {
             JOptionPane.showMessageDialog(null, "Selecione um local onde o armário será disponibilizado.");
         } else if (marcadorBiblioteca.isSelected()) {
@@ -471,7 +438,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             /**
              * ALTERAR OS BOTÕES PARA PISCAR AS CORES QUANDO CLICADOS DEIXAR
              * BRANCO*
-             */
+             
         } else if (marcadorSaguao.isSelected()) {
             ReservaSaguao reserva = new ReservaSaguao();
             String numero = selecionaNumero.getValue().toString();
@@ -490,13 +457,16 @@ public class ServidorControleUI extends javax.swing.JFrame {
 
             
         }
+        */
+       
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IndexArmariosUI().setVisible(true);
+            }
+        });
 
 
     }//GEN-LAST:event_botaoCadArmarioMouseClicked
-
-    private void marcadorBibliotecaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marcadorBibliotecaMouseClicked
-
-    }//GEN-LAST:event_marcadorBibliotecaMouseClicked
 
     private void nomeAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeAlunoActionPerformed
         // TODO add your handling code here:
@@ -700,7 +670,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLocalizacoes;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField emailAluno;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -713,11 +682,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JLabel lblrespostacad;
-    private javax.swing.JRadioButton marcadorBiblioteca;
-    private javax.swing.JRadioButton marcadorSaguao;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JTextField raAluno;
-    private javax.swing.JSpinner selecionaNumero;
     private javax.swing.JPasswordField senhaAluno;
     private javax.swing.JFormattedTextField telefoneAluno;
     // End of variables declaration//GEN-END:variables

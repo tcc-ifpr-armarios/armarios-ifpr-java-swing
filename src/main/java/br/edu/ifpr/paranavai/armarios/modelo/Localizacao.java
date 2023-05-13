@@ -5,12 +5,15 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 /**
  *
@@ -24,7 +27,7 @@ public class Localizacao {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_reserva", unique = true, nullable = false) 
+    @Column(name = "id_localizacao", unique = true, nullable = false) 
     private Integer id;
     
     @Column (name = "descricao", unique = true, nullable = false) 
@@ -33,6 +36,10 @@ public class Localizacao {
     @Basic
     @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
     private boolean ativo;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localizacao")
+    /**@JoinColumn(name = "id_reserva")**/
+    private List<Reserva> reservas;
 
     public Localizacao() {
     }
@@ -61,6 +68,19 @@ public class Localizacao {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
     }
     
     

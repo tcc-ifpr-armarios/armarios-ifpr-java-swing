@@ -35,4 +35,16 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrado com Sucesso!";
     public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 
+    
+    public static final String ARMARIO_NUMERO_DUPLICADO = "Numero do armário duplicado";
+    public static final String ARMARIO_NAO_ENCONTRADO = "Registro não encontrado";
+    public static final String ARMARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o armário";
+    public static final String ARMARIO_ATUALIZACAO_SUCESSO = "Armário Atualizado com Sucesso!";
+    public static final String ARMARIO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o armário";
+    public static final Object ARMARIO_EXCLUSAO_SUCESSO = "Armário Excluído com Sucesso!";
+    public static final String ARMARIO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do armário número ";
+    public static final String ARMARIO_REMOVIDO = "Não foi possível realizar essa operação! Esse armário já foi removido!";
+    public static final String ARMARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um armário";
+    public static final String ARMARIO_INSERCAO_SUCESSO = "Armário Cadastrado com Sucesso!";
+    public static final String ARMARIO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 }

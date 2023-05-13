@@ -5,14 +5,12 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.HistoricoSaguao;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoSaguaoServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
+import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+
+import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+
+import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
+import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +31,7 @@ public class HistoricoUI extends javax.swing.JFrame {
 
     populaTabela();
     
-    populaTabelaSaguao();
+    
 }
     // </editor-fold>
 
@@ -44,10 +42,10 @@ public class HistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<HistoricoBiblioteca> reservas = HistoricoBibliotecaServico.buscarTodos();
+        List<Historico> reservas = HistoricoServico.buscarTodos();
 
         for (int i = 0; i < reservas.size(); i++) {
-            HistoricoBiblioteca reserva = reservas.get(i);
+            Historico reserva = reservas.get(i);
             Object[] dadosLinha = new Object[4];
             dadosLinha[0] = reserva.getNumero();
             dadosLinha[1] = reserva.getDataHoraEmprestimo();
@@ -59,27 +57,8 @@ public class HistoricoUI extends javax.swing.JFrame {
         }
     }
     
-    @SuppressWarnings("unchecked")
-    private void populaTabelaSaguao() {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-        List<HistoricoSaguao> reservasS = HistoricoSaguaoServico.buscarTodos();
-
-        for (int i = 0; i < reservasS.size(); i++) {
-            HistoricoSaguao reservaSS = reservasS.get(i);
-            Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = reservaSS.getNumero();
-            dadosLinha[1] = reservaSS.getDataHoraEmprestimo();
-            dadosLinha[2] = reservaSS.getData_Hora_Devolucao();
-            dadosLinha[3] = reservaSS.getRa();
-            
-
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-        }
-    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

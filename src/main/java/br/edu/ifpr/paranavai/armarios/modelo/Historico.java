@@ -19,8 +19,8 @@ import java.util.Date;
  * @author suporte
  */
 @Entity
-@Table(name = "tb_historico_biblioteca")
-public class HistoricoBiblioteca {
+@Table(name = "tb_historico")
+public class Historico {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,10 +46,10 @@ public class HistoricoBiblioteca {
     @Column
     private String ra;
 
-    public HistoricoBiblioteca() {
+    public Historico() {
     }
 
-    public HistoricoBiblioteca(Integer id, int numero, Date data_Hora_Devolucao, Date dataHoraEmprestimo, String ra) {
+    public Historico(Integer id, int numero, Date data_Hora_Devolucao, Date dataHoraEmprestimo, String ra) {
         this.id = id;
         this.numero = numero;
         this.data_Hora_Devolucao = data_Hora_Devolucao;

@@ -5,10 +5,10 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaBiblioteca;
-import br.edu.ifpr.paranavai.armarios.modelo.ReservaSaguao;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaBibliotecaServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaSaguaoServico;
+import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+
+import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -16,8 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
+
+
+ // Falta refatorar depois da localização
 public class ListaArmarioUI extends javax.swing.JFrame {
 
     /**
@@ -28,10 +31,10 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-        List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodos();
-        populaTabelaSaguao(armariosSaguao);
+        //List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodos();
+        //populaTabelaSaguao(armariosSaguao);
 
-        List<ReservaBiblioteca> armarioBiblioteca = ReservaBibliotecaServico.buscarTodos();
+        List<Reserva> armarioBiblioteca = ReservaServico.buscarTodos();
         populaTabela(armarioBiblioteca);
 
         
@@ -40,7 +43,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
     Estudante estudante = new Estudante();
 
     @SuppressWarnings("unchecked")
-    private void populaTabela(List<ReservaBiblioteca> reservas) {
+    private void populaTabela(List<Reserva> reservas) {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableBiblioteca.getModel();
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
@@ -49,7 +52,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         
 
         for (int i = 0; i < reservas.size(); i++) {
-            ReservaBiblioteca reserva = reservas.get(i);
+            Reserva reserva = reservas.get(i);
             if (reserva.getEstudante() == null) {
                 estudante.setNome("Disponível");
                 reserva.setEstudante(estudante);
@@ -73,7 +76,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
             }
         }
     }
-
+/**
     @SuppressWarnings("unchecked")
     private void populaTabelaSaguao(List<ReservaSaguao> reservasS) {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel();
@@ -106,7 +109,8 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         }
         }
     }
-
+*/
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -301,6 +305,8 @@ public class ListaArmarioUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desativaSaguaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desativaSaguaoActionPerformed
+        
+        /*
         int dadosLinha = tableSaguao.getSelectedRow();
         int codigo = (int) tableSaguao.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableSaguao.getModel().getValueAt(dadosLinha, 1);
@@ -311,6 +317,9 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Armário em uso, impossível deletar");
         }
+        */
+        
+      
     }//GEN-LAST:event_desativaSaguaoActionPerformed
 
     private void desativaBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desativaBibliotecaActionPerformed
@@ -318,8 +327,8 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         int codigo = (int) tableBiblioteca.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 1);
         if(status.equals("Disponível")){
-            ReservaBibliotecaServico.apagaPorNumero(codigo);
-            List<ReservaBiblioteca> armarioBiblioteca = ReservaBibliotecaServico.buscarTodos();
+            ReservaServico.apagaPorNumero(codigo);
+            List<Reserva> armarioBiblioteca = ReservaServico.buscarTodos();
             populaTabela(armarioBiblioteca);
             
         } else {

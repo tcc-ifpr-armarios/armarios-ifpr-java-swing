@@ -1,5 +1,4 @@
-package br.edu.ifpr.paranavai.armarios.visao.localizacao;
-
+package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.event.ActionEvent;
@@ -11,36 +10,26 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Allan Fernando O de Andrade
  */
-public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
+public class PainelAcoesLocalizacaoEmIndexUI extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAcoes
      */
-    public PainelAcoesLocalizacaoUI() {
+    public PainelAcoesLocalizacaoEmIndexUI() {
         initComponents();
     }
 
-    public void iniciarEventos(IndexLocalizacaoUI indexLocalizacaoUI, AcoesEventoTabela evento, JTable tabela, int linha){
-        btnEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                evento.aoEditar(tabela, linha);
-            }
-        });
-        btnExcluir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                evento.aoExcluir(tabela, linha);
-            }
-        });
+    public void iniciarEventos(IndexArmariosUI indexArmariosUI, AcoesEventoTabela evento, JTable tabela, int linha) {
+
         btnVisualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 evento.aoVisualizar(tabela, linha);
             }
         });
+        
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,27 +40,11 @@ public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
     private void initComponents() {
 
         btnVisualizar = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
-        btnEditar = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
-        btnExcluir = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
 
         btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/visualizar-16.png"))); // NOI18N
         btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarActionPerformed(evt);
-            }
-        });
-
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/editar-16.png"))); // NOI18N
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/excluir-16.png"))); // NOI18N
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -82,40 +55,23 @@ public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnVisualizarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao btnEditar;
-    private br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao btnExcluir;
     private br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao btnVisualizar;
     // End of variables declaration//GEN-END:variables
 }
