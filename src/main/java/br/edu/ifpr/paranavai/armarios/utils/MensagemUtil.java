@@ -13,6 +13,7 @@ public class MensagemUtil {
 
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";
+    public static final String SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
     
     public static final String CURSO_NOME_DUPLICADO = "Nome do curso duplicado";
     public static final String CURSO_NAO_ENCONTRADO = "Registro não encontrado";
@@ -37,4 +38,5 @@ public class MensagemUtil {
     public static final String ESTUDANTE_INSERCAO_SUCESSO = "Estudante Cadastrado com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_SUCESSO = "Estudante Excluído com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";    
+    
 }

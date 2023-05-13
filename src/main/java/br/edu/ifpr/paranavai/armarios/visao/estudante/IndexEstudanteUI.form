@@ -119,20 +119,17 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="lblNome">
+                <Component class="javax.swing.JLabel" name="lblBusca">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Nome: "/>
+                    <Property name="text" type="java.lang.String" value="RA: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNome">
+                <Component class="javax.swing.JTextField" name="txtBusca">
                   <Properties>
                     <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscar">
                   <Properties>

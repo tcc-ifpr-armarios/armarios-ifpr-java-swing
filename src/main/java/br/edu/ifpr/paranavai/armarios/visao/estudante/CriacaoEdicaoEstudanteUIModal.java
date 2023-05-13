@@ -99,6 +99,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         txtSenhaEstudante = new javax.swing.JPasswordField();
         lblConfirmaSenhaEstudante = new javax.swing.JLabel();
         txtConfirmaSenhaEstudante = new javax.swing.JPasswordField();
+        lblSenhaInvalida = new javax.swing.JLabel();
         lblAtivo = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
@@ -160,7 +161,25 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
         lblSenhaEstudante.setText("Senha*:");
 
+        txtSenhaEstudante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSenhaEstudanteKeyReleased(evt);
+            }
+        });
+
         lblConfirmaSenhaEstudante.setText("Confirmação de Senha*:");
+
+        txtConfirmaSenhaEstudante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtConfirmaSenhaEstudanteKeyReleased(evt);
+            }
+        });
+
+        lblSenhaInvalida.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblSenhaInvalida.setForeground(new java.awt.Color(255, 51, 51));
+        lblSenhaInvalida.setMaximumSize(new java.awt.Dimension(30, 20));
+        lblSenhaInvalida.setMinimumSize(new java.awt.Dimension(30, 20));
+        lblSenhaInvalida.setPreferredSize(new java.awt.Dimension(30, 20));
 
         lblAtivo.setText("Ativo?");
 
@@ -196,18 +215,6 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGeralLayout.createSequentialGroup()
                         .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGeralLayout.createSequentialGroup()
-                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblSenhaEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtSenhaEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblConfirmaSenhaEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtConfirmaSenhaEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
-                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ckbAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelGeralLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -239,7 +246,21 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
                                                 .addGap(20, 20, 20)
                                                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(lblCursoEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(cbxCursoEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                                    .addComponent(cbxCursoEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGeralLayout.createSequentialGroup()
+                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblSenhaEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtSenhaEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblSenhaInvalida, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblConfirmaSenhaEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtConfirmaSenhaEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
+                                .addGap(20, 20, 20)
+                                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ckbAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(20, 20, 20))
                     .addGroup(panelGeralLayout.createSequentialGroup()
                         .addGap(163, 163, 163)
@@ -283,10 +304,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
                         .addComponent(txtEmailEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEmailInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(lblTelefoneInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                    .addComponent(lblTelefoneInvalido, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGeralLayout.createSequentialGroup()
                         .addComponent(lblSenhaEstudante)
@@ -300,7 +318,9 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
                             .addComponent(lblAtivo))
                         .addGap(6, 6, 6)
                         .addComponent(ckbAtivo)))
-                .addGap(20, 20, 20)
+                .addGap(0, 0, 0)
+                .addComponent(lblSenhaInvalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar))
@@ -319,7 +339,11 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        if(!Arrays.equals(txtConfirmaSenhaEstudante.getPassword(), txtSenhaEstudante.getPassword())){
+            JOptionPane.showMessageDialog(this, MensagemUtil.SENHAS_NAO_CONFEREM);
+            return;
+        }
+        
         Curso curso = (Curso) cbxCursoEstudante.getSelectedItem();
         this.estudante.setNome(txtNomeEstudante.getText());
         this.estudante.setSobrenome(txtSobrenomeEstudante.getText());
@@ -327,9 +351,12 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante.setTelefone(txtTelefoneEstudante.getText());
         this.estudante.setEmail(txtEmailEstudante.getText());
         this.estudante.setCurso(curso);
-        this.estudante.setSenha(Arrays.toString(txtSenhaEstudante.getPassword()));
-
         this.estudante.setAtivo(ckbAtivo.isSelected());
+        
+        if(!Arrays.toString(txtSenhaEstudante.getPassword()).equals(this.estudante.getSenha()))
+            this.estudante.setSenha(Arrays.toString(txtSenhaEstudante.getPassword()));
+
+        
 
         if (estaAtualizando)
             atualizar();
@@ -354,6 +381,22 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         else
             lblTelefoneInvalido.setText(MensagemUtil.TELEFONE_INVALIDO);
     }//GEN-LAST:event_txtTelefoneEstudanteFocusLost
+
+    private void txtSenhaEstudanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaEstudanteKeyReleased
+        if (Arrays.equals(txtConfirmaSenhaEstudante.getPassword(), txtSenhaEstudante.getPassword())) {
+            lblSenhaInvalida.setText("");
+        } else {
+            lblSenhaInvalida.setText(MensagemUtil.SENHAS_NAO_CONFEREM);
+        }
+    }//GEN-LAST:event_txtSenhaEstudanteKeyReleased
+
+    private void txtConfirmaSenhaEstudanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmaSenhaEstudanteKeyReleased
+        if (Arrays.equals(txtConfirmaSenhaEstudante.getPassword(), txtSenhaEstudante.getPassword())) {
+            lblSenhaInvalida.setText("");
+        } else {
+            lblSenhaInvalida.setText(MensagemUtil.SENHAS_NAO_CONFEREM);
+        }
+    }//GEN-LAST:event_txtConfirmaSenhaEstudanteKeyReleased
 
     private void salvar() throws HeadlessException {
         try {
@@ -397,6 +440,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     private javax.swing.JLabel lblNomeEstudante;
     private javax.swing.JLabel lblRaEstudante;
     private javax.swing.JLabel lblSenhaEstudante;
+    private javax.swing.JLabel lblSenhaInvalida;
     private javax.swing.JLabel lblSobrenomeEstudante;
     private javax.swing.JLabel lblTelefoneEstudante;
     private javax.swing.JLabel lblTelefoneInvalido;

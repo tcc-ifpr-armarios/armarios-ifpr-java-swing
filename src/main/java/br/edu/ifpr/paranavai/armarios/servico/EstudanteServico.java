@@ -5,8 +5,10 @@ import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class EstudanteServico {
 
@@ -22,7 +24,8 @@ public class EstudanteServico {
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
-
+        validaCamposRegex(estudante);
+        
         Estudante e = dao.buscarPorRa(estudante.getRa());
         if (e != null)
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
@@ -32,6 +35,7 @@ public class EstudanteServico {
 
     public static Estudante atualizar(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
+        validaCamposRegex(estudante);
 
         Estudante e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null)
@@ -67,14 +71,31 @@ public class EstudanteServico {
         if (estudante.getSobrenome() == null || estudante.getSobrenome().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
+        if (estudante.getRa() == null || estudante.getRa().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
         if (estudante.getEmail() == null || estudante.getEmail().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
         if (estudante.getSenha() == null || estudante.getSenha().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
+        System.out.println("Senha" + estudante.getSenha());
+        if (estudante.getCurso() == null || estudante.getCurso().getId() == 0) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
         if (estudante.getTelefone() == null || estudante.getTelefone().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+    }
+
+    private static void validaCamposRegex(Estudante estudante) throws EstudanteException {
+        
+        if (!OperacaoUtil.ehEmailValido(estudante.getEmail())){
+            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
+        }
+        if(!OperacaoUtil.ehTelefoneValido(estudante.getTelefone())){
+            throw new EstudanteException(MensagemUtil.TELEFONE_INVALIDO);
         }
     }
 }

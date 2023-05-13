@@ -67,8 +67,8 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         radioRa = new javax.swing.JRadioButton();
         radioNome = new javax.swing.JRadioButton();
         panelBusca = new javax.swing.JPanel();
-        lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        lblBusca = new javax.swing.JLabel();
+        txtBusca = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -118,16 +118,11 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblNome.setText("Nome: ");
-        panelBusca.add(lblNome);
+        lblBusca.setText("RA: ");
+        panelBusca.add(lblBusca);
 
-        txtNome.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-        panelBusca.add(txtNome);
+        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        panelBusca.add(txtBusca);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -211,16 +206,19 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Estudante> filtrado = new ArrayList<>();
-        
-        for (Estudante localizacao : listaDeEstudantes) {
-            if(localizacao.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
-                filtrado.add(localizacao);
+        if(radioNome.isSelected()){
+        for (Estudante estudante : listaDeEstudantes) {
+            if(estudante.getNomeCompleto().toUpperCase().contains(txtBusca.getText().toUpperCase()))
+                filtrado.add(estudante);
+        }
+        } else if(radioRa.isSelected())
+        {
+            for (Estudante estudante : listaDeEstudantes) {
+            if(estudante.getRa().toUpperCase().contains(txtBusca.getText().toUpperCase()))
+                filtrado.add(estudante);
+        }
         }
         
         populaTabela(filtrado);
@@ -233,11 +231,15 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void radioRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRaActionPerformed
-        // TODO add your handling code here:
+        radioRa.setSelected(true);
+        lblBusca.setText("RA:");
+        radioNome.setSelected(false);
     }//GEN-LAST:event_radioRaActionPerformed
 
     private void radioNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomeActionPerformed
-        // TODO add your handling code here:
+        radioNome.setSelected(true);
+        lblBusca.setText("Nome:");
+        radioRa.setSelected(false);
     }//GEN-LAST:event_radioNomeActionPerformed
 
     /**
@@ -288,7 +290,7 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblBusca;
     private javax.swing.JLabel lblTipoFiltro;
     private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
@@ -299,6 +301,6 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioNome;
     private javax.swing.JRadioButton radioRa;
     private javax.swing.JTable tblEstudante;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
