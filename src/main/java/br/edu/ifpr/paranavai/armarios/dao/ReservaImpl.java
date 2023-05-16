@@ -122,6 +122,7 @@ public class ReservaImpl implements ReservaDao {
             
             reservas = (List<Reserva>) query.list();
             sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +164,51 @@ public class ReservaImpl implements ReservaDao {
         Reserva resultado = query.uniqueResult();
         return resultado;
     }
+    /*
+    @Override
+    public List<Reserva> buscarAtivoPorLocalizacao(Integer idLocal, boolean estado) {
+        // buscar por estado de cada localização
+        // Como funciona: reservas ativas e disponíveis ficam com o ativo=true, ficam false quando reservado. 
+        Query<Reserva> query = this.sessao.createQuery("from Reserva where localizacao.id = :idLocalizacao and ativo = :estado");
+        query.setParameter("idLocalizacao", idLocal);
+        query.setParameter("ativo", estado);
+        List<Reserva> resultado = query.getResultList();
+        sessao.clear();
+        return resultado;
+    }*/
+    @Override
+    public List<Reserva> buscarAtivoPorLocalizacao(Integer idLocal, boolean ativo) {
+        List<Reserva> reservas = new ArrayList<>();
+        try {
+            sessao.beginTransaction();
+            Query query =  this.sessao.createQuery("from Reserva where localizacao.id = :idLocalizacao and ativo = : ativo order by numero ASC");
+            query.setParameter("idLocalizacao", idLocal);
+            query.setParameter("ativo", ativo);
+            reservas = (List<Reserva>) query.list();
+            sessao.getTransaction().commit();
+            sessao.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservas;
+    }
     
+    @Override
+    public void apagaPorNumeroNaLocalizacao(Integer numero, Integer idLocal) {
+        
+        try {
+        sessao.beginTransaction();
+        Query query = sessao.createQuery("delete Reserva where numero = :numero and localizacao.id = :idLocalizacao");
+        query.setParameter("numero", numero);
+        query.setParameter("idLocalizacao", idLocal);
+        int result = query.executeUpdate();
+        sessao.getTransaction().commit(); 
+        sessao.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
         
 }
     

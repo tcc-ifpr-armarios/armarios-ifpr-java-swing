@@ -72,4 +72,12 @@ public class ReservaServico {
     public static Reserva buscarNumeroPorLocalizacao(Integer idLocal, Integer numero) {
         return dao.buscarNumeroPorLocalizacao(idLocal, numero);
     }
+    
+     public static List<Reserva> buscarAtivoPorLocalizacao(Integer idLocal, boolean estado) {
+        return dao.buscarAtivoPorLocalizacao(idLocal, estado);
+    }
+     
+     public static void apagaPorNumeroNaLocalizacao(Integer numero, Integer idLocal) {
+        dao.apagaPorNumeroNaLocalizacao(numero, idLocal);
+     }
 }

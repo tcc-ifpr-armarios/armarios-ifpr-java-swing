@@ -31,5 +31,9 @@ public interface ReservaDao {
     public List<Reserva> buscarPorLocalizacao(Integer id);
     
     public Reserva buscarNumeroPorLocalizacao(Integer idLocal, Integer numero);
+    
+    public List<Reserva> buscarAtivoPorLocalizacao(Integer idLocal, boolean estado);
+
+    public void apagaPorNumeroNaLocalizacao(Integer numero, Integer idLocal);
 }
 

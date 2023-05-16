@@ -1,14 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.CriacaoEdicaoLocalizacaoUIModal;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import javax.swing.JTable;
 
 /**
  *
@@ -18,21 +15,33 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     List<Reserva> listaDeArmarios;
     
     
-    int localId =  Integer.parseInt(System.getProperty("localId"));
+    //int localId =  Integer.parseInt(System.getProperty("localId"));
+    private int localId;
+
+    public int getLocalId() {
+        return localId;
+    }
     
     /**
      * Creates new form EditorCursoUI
      */
     
-    public ListaArmariosUI() {
+    public ListaArmariosUI(IndexArmariosUI indexArmariosUI) {
+        
         initComponents();
         init();
         System.out.print(localId);
-        setLocationRelativeTo(this);
+        setLocationRelativeTo(indexArmariosUI);
+    }
+
+    ListaArmariosUI(IndexArmariosUI indexArmariosUI, int identificador) {
+        this(indexArmariosUI);
+        this.localId = identificador;
+        init();
     }
     
     public void init(){
-        listaDeArmarios = ReservaServico.buscarPorLocalizacao(localId);
+        listaDeArmarios = ReservaServico.buscarAtivoPorLocalizacao(localId, true);
         populaTabela(listaDeArmarios);
     }
 
@@ -42,7 +51,7 @@ public class ListaArmariosUI extends javax.swing.JFrame {
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblArmarios.getModel();
         tblArmarios.getColumnModel().getColumn(1).setCellRenderer(new RenderizadorDasAcoesDaCelulaReservasEmArmarios());
-        tblArmarios.getColumnModel().getColumn(1).setCellEditor(new EditorDasAcoesDaCelulaReservaEmArmariosUI(evento, this));
+        tblArmarios.getColumnModel().getColumn(1).setCellEditor(new EditorDasAcoesDaCelulaReservaEmArmariosUI(evento, this, localId));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -139,7 +148,7 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void novoArmarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoArmarioActionPerformed
-        CadastraArmarioEmArmariosUI cadastraArmarioEmArmariosUI = new CadastraArmarioEmArmariosUI(this);
+        CadastraArmarioEmArmariosUI cadastraArmarioEmArmariosUI = new CadastraArmarioEmArmariosUI(this, localId);
         cadastraArmarioEmArmariosUI.setLocationRelativeTo(this);
         cadastraArmarioEmArmariosUI.setVisible(true);
     }//GEN-LAST:event_novoArmarioActionPerformed

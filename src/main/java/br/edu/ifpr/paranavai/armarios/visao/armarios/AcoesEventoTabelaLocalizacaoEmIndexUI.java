@@ -5,9 +5,7 @@ package br.edu.ifpr.paranavai.armarios.visao.armarios;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
-import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
@@ -42,7 +40,10 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
         
         
         int identificador = (int) tabela.getValueAt(linha, 0);
-        String passa =  String.valueOf(identificador);
+        IndexArmariosUI indexArmariosUI = (IndexArmariosUI) SwingUtilities.getWindowAncestor(tabela);
+        ListaArmariosUI armarios = new ListaArmariosUI(indexArmariosUI, identificador);
+        armarios.setVisible(true);
+        /*String passa =  String.valueOf(identificador);
         System.setProperty("localId", passa);
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -50,8 +51,14 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
                 
             }
 
-        });
+        });*/
+        
 
+    }
+
+    @Override
+    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

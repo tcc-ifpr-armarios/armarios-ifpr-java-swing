@@ -5,20 +5,13 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
-import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
-import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.awt.Color;
 import java.awt.Dialog;
-import java.awt.HeadlessException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
 
-    int localId = Integer.parseInt(System.getProperty("localId"));
+    //int localId = Integer.parseInt(System.getProperty("localId"));
+    private int localId;
     private Reserva reserva;
     Localizacao local = new Localizacao();
     private ListaArmariosUI listaArmariosUI;
@@ -34,7 +28,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
     /**
      * Creates new form CriacaoEdicaoLocalizacaoUIModal
      */
-    public CadastraArmarioEmArmariosUI(ListaArmariosUI listaArmariosUI) {
+    public CadastraArmarioEmArmariosUI(ListaArmariosUI listaArmariosUI, Integer localId) {
         super(listaArmariosUI, true);
         initComponents();
         this.listaArmariosUI = listaArmariosUI;
@@ -42,6 +36,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
 
         this.setTitle("Novo armário");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        this.localId = localId;
     }
 
     /**

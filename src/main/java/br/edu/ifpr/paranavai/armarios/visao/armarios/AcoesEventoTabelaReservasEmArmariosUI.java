@@ -1,9 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -13,14 +10,14 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author Allan Fernando O de Andrade
  */
 public class AcoesEventoTabelaReservasEmArmariosUI implements AcoesEventoTabela {
 
    
-
-    @Override
-    public void aoExcluir(JTable tabela, int linha) {
+   
+   
+    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
         ListaArmariosUI listaArmariosUI = (ListaArmariosUI) SwingUtilities.getWindowAncestor(tabela);
@@ -32,7 +29,7 @@ public class AcoesEventoTabelaReservasEmArmariosUI implements AcoesEventoTabela 
 
         if (opcao == 0) {
             try {
-                ReservaServico.apagaPorNumero(identificador);
+                ReservaServico.apagaPorNumeroNaLocalizacao(identificador, idLocal);
                 JOptionPane.showMessageDialog(listaArmariosUI, MensagemUtil.ARMARIO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -51,6 +48,15 @@ public class AcoesEventoTabelaReservasEmArmariosUI implements AcoesEventoTabela 
     public void aoVisualizar(JTable tabela, int linha) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void aoExcluir(JTable tabela, int linha) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
+    
 
     
 }

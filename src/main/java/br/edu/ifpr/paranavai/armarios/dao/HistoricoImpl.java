@@ -6,8 +6,10 @@ package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -41,6 +43,41 @@ public class HistoricoImpl implements HistoricoDao {
             sessao.beginTransaction();
             reservas = (List<Historico>) this.sessao.createQuery("from Historico").list();
             sessao.getTransaction().commit();
+            sessao.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservas;
+    }
+    
+    @Override
+    public List<Historico> buscarPorAluno(String raAluno) {
+        List<Historico> reservas = new ArrayList<>();
+        try {
+            sessao.beginTransaction();
+            Query query =  this.sessao.createQuery("from Historico where ra = :ra");
+            query.setParameter("ra", raAluno);
+            
+            reservas = (List<Historico>) query.list();
+            sessao.getTransaction().commit();
+            sessao.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reservas;
+    }
+    
+     @Override
+    public List<Historico> buscarPorLocalizacao(Integer idLocal) {
+        List<Historico> reservas = new ArrayList<>();
+        try {
+            sessao.beginTransaction();
+            Query query =  this.sessao.createQuery("from Historico where localId = :localizacao_id");
+            query.setParameter("localizacao_id", idLocal);
+            
+            reservas = (List<Historico>) query.list();
+            sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }

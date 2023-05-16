@@ -17,26 +17,27 @@ public class ReservasServicoTest {
     
      public static void main(String[] args) {
     // Retorna armarios de cada localização
-   /*
-        List<ReservaBiblioteca> reservas = ReservaBibliotecaServico.buscarPorLocalizacao(2);
+   
+        List<Reserva> reservas;
+         reservas = ReservaServico.buscarAtivoPorLocalizacao(1, false);
        
-        for(ReservaBiblioteca reserva : reservas){
+        for(Reserva reserva : reservas){
             System.out.println(reserva.getNumero());
             
         }
         
     }
      
-
+/*
         List<ReservaBiblioteca> reservas = ReservaBibliotecaServico.buscarPorAluno(1);
        
         for(ReservaBiblioteca reserva : reservas){
             System.out.println(reserva.getNumero());
             
         }
-       */
+       
         Reserva reservas = ReservaServico.buscarNumeroPorLocalizacao(1, 4);
          System.out.println(reservas.getNumero());
-    
+    */
 
-     }}
+     }

@@ -44,4 +44,8 @@ public class EstudanteServico {
     public static Estudante buscarPorEmail(String email){
         return dao.buscarPorEmail(email);
     }
+    
+     public static Estudante buscarPorRaUnico(String ra){
+         return dao.buscarPorRaUnico(ra);
+     }
 }

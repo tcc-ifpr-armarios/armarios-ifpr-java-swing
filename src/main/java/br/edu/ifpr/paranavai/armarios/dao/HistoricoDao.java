@@ -16,4 +16,8 @@ public interface HistoricoDao {
     public void inserir(Historico historico);
 
     public List<Historico> buscarTodos();
+    
+    public List<Historico> buscarPorAluno(String raAluno);
+    
+    public List<Historico> buscarPorLocalizacao(Integer idLocal);
 }

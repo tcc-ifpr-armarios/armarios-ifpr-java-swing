@@ -14,4 +14,6 @@ public interface AcoesEventoTabela {
 
     public void aoVisualizar(JTable tabela,  int linha);
 
+    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal);
+
 }

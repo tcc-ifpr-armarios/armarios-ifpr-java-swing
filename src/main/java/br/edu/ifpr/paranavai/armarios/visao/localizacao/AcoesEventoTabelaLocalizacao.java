@@ -68,4 +68,9 @@ public class AcoesEventoTabelaLocalizacao implements AcoesEventoTabela {
         form.setVisible(true);
         
     }
+
+    @Override
+    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

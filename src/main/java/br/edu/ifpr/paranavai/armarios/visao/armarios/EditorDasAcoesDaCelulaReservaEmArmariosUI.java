@@ -18,17 +18,23 @@ public class EditorDasAcoesDaCelulaReservaEmArmariosUI extends DefaultCellEditor
 
     private AcoesEventoTabela evento;
     private ListaArmariosUI listaArmariosUI;
-    public EditorDasAcoesDaCelulaReservaEmArmariosUI(AcoesEventoTabela evento, ListaArmariosUI listaArmariosUI) {
+    private int idLocal;
+    public EditorDasAcoesDaCelulaReservaEmArmariosUI(AcoesEventoTabela evento, ListaArmariosUI listaArmariosUI, Integer idLocal) {
         super(new JCheckBox());
+        this.idLocal = idLocal;
         this.listaArmariosUI = listaArmariosUI;
+        this.listaArmariosUI.getLocalId();
         this.evento = evento;
+        
     }
+
+   
     
-    @Override
+
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         PainelAcoesReservasEmArmariosUI acoes = new PainelAcoesReservasEmArmariosUI();
 
-        acoes.iniciarEventos(listaArmariosUI, evento, table, row);
+        acoes.iniciarEventos(listaArmariosUI, evento, table, row, idLocal);
         acoes.setBackground(table.getSelectionBackground());
         
         return acoes;

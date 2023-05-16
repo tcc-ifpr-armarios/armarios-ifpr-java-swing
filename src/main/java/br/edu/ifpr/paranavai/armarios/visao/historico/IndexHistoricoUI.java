@@ -1,4 +1,4 @@
-package br.edu.ifpr.paranavai.armarios.visao.armarios;
+package br.edu.ifpr.paranavai.armarios.visao.historico;
 
 
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -12,19 +12,20 @@ import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
  *
  * @author Allan Fernando O de Andrade
  */
-public class IndexArmariosUI extends javax.swing.JFrame {
+public class IndexHistoricoUI extends javax.swing.JFrame {
     List<Localizacao> listaDeLocalizacoes;
-    
     /**
      * Creates new form EditorLocalizacaoUI
      */
     
-    public IndexArmariosUI() {
+    public IndexHistoricoUI() {
         
         initComponents();
         init();
         setLocationRelativeTo(this);
     }
+
+    
     
     public void init(){
         listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
@@ -34,11 +35,11 @@ public class IndexArmariosUI extends javax.swing.JFrame {
 
     private void populaTabela(List<Localizacao> listaDeLocalizacoes) {
         
-        AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacaoEmIndexUI();
+        AcoesEventoTabela evento = new AcoesEventoTabelaHistorico();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
-        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacaoEmIndexUI());
-        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacaoEmIndexUI(evento, this));
+        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaHistorico());
+        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaHistoricoUI(evento, this));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -70,7 +71,7 @@ public class IndexArmariosUI extends javax.swing.JFrame {
         tblLocalizacao = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciamento de Armários");
+        setTitle("Gerenciamento de Localizações");
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -86,7 +87,7 @@ public class IndexArmariosUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificador", "Nome", "Ativo", "Ver Armários"
+                "Identificador", "Nome", "Ativo", "Ações"
             }
         ) {
             Class[] types = new Class [] {

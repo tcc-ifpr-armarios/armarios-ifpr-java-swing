@@ -138,6 +138,29 @@ public class EstudanteDaoImpl implements EstudanteDao {
         return estudantes;
     }
     
+    /*
+    @Override
+    public Estudante buscarPorRaUnico(String ra) {
+        Estudante estudante = null;
+        try {
+            sessao.beginTransaction();
+            estudante = (Estudante) sessao.get(Estudante.class, ra);
+            sessao.getTransaction().commit();
+            sessao.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return estudante;
+    }*/
+    
+    @Override
+    public Estudante buscarPorRaUnico(String ra) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra");
+        query.setParameter("ra", ra);
+        Estudante resultado = query.uniqueResult();
+        return resultado;
+    }
+    
 }
     
     

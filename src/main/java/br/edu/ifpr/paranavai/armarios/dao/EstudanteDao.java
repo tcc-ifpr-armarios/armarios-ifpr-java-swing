@@ -20,4 +20,6 @@ public interface EstudanteDao {
     public List<Estudante> buscarPorRa (String ra);
     
     public Estudante buscarPorEmail (String email);
+    
+    public Estudante buscarPorRaUnico(String ra);
 }

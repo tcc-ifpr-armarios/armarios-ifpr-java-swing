@@ -11,10 +11,13 @@ import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.utils.CarregarAluno;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
 
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
+import br.edu.ifpr.paranavai.armarios.visao.historico.IndexHistoricoUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
+import br.edu.ifpr.paranavai.armarios.visao.ocupados.IndexOcupadosUI;
 //import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import java.awt.Color;
 
@@ -68,6 +71,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         lblrespostacad = new javax.swing.JLabel();
         telefoneAluno = new javax.swing.JFormattedTextField();
         senhaAluno = new javax.swing.JPasswordField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         jLabel6.setText("jLabel2");
 
@@ -113,7 +117,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
-        botaoOcupados.setText("Armários ");
+        botaoOcupados.setText("Armários Ocupados");
         botaoOcupados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         botaoOcupados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -289,6 +293,13 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout alunosLayout = new javax.swing.GroupLayout(alunos);
         alunos.setLayout(alunosLayout);
         alunosLayout.setHorizontalGroup(
@@ -322,7 +333,11 @@ public class ServidorControleUI extends javax.swing.JFrame {
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                            .addGroup(alunosLayout.createSequentialGroup()
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
                         .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botaoAlunosCadastrados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -362,6 +377,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButton1)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -380,8 +397,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(alunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -407,7 +424,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private void botaoOcupadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOcupadosActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaArmarioUI().setVisible(true);
+                //new ListaArmarioUI().setVisible(true);
+                new IndexOcupadosUI().setVisible(true);
             }
         });
 
@@ -600,7 +618,8 @@ public class ServidorControleUI extends javax.swing.JFrame {
         // TODO add your handling code here:
                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistoricoUI().setVisible(true);
+                //new HistoricoUI().setVisible(true);
+                new IndexHistoricoUI().setVisible(true);
             }
         });
         
@@ -622,11 +641,19 @@ public class ServidorControleUI extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnLocalizacoesActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+       java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CarregarAluno(EstudanteServico.buscarPorId(1)).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     /**
      *
      * @param args
      */
-    public static void servidorControleUI(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -652,6 +679,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ServidorControleUI().setVisible(true);
@@ -681,6 +709,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblrespostacad;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JTextField raAluno;

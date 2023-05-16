@@ -49,13 +49,16 @@ public class Historico {
     public Historico() {
     }
 
-    public Historico(Integer id, int numero, Date data_Hora_Devolucao, Date dataHoraEmprestimo, String ra) {
+    public Historico(Integer id, int numero, int localId, Date data_Hora_Devolucao, Date dataHoraEmprestimo, String ra) {
         this.id = id;
         this.numero = numero;
+        this.localId = localId;
         this.data_Hora_Devolucao = data_Hora_Devolucao;
         this.dataHoraEmprestimo = dataHoraEmprestimo;
         this.ra = ra;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -96,6 +99,15 @@ public class Historico {
     public void setRa(String ra) {
         this.ra = ra;
     }
+
+    public int getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(int localId) {
+        this.localId = localId;
+    }
+    
     
     
 }

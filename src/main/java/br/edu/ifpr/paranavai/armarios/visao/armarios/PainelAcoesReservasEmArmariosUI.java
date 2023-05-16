@@ -21,12 +21,12 @@ public class PainelAcoesReservasEmArmariosUI extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void iniciarEventos(ListaArmariosUI listaArmariosUI, AcoesEventoTabela evento, JTable tabela, int linha){
+    public void iniciarEventos(ListaArmariosUI listaArmariosUI, AcoesEventoTabela evento, JTable tabela, int linha, Integer idLocal){
         
         btnExcluir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evento.aoExcluir(tabela, linha);
+                evento.aoExcluirArmario(tabela, linha, idLocal);
             }
         });
         
@@ -69,11 +69,15 @@ public class PainelAcoesReservasEmArmariosUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        System.out.println("toaaqui");
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao btnExcluir;
     // End of variables declaration//GEN-END:variables
+
+    
+
+   
 }

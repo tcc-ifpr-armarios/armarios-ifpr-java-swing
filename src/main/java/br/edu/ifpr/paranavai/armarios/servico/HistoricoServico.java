@@ -24,5 +24,13 @@ public class HistoricoServico {
     public static void inserir(Historico historicoBiblioteca) {
         dao.inserir(historicoBiblioteca);
     }
+    
+    public static List<Historico> buscarPorAluno(String id) {
+        return dao.buscarPorAluno(id);
+    }
+    
+    public static List<Historico> buscarPorLocalizacao(Integer idLocal) {
+        return dao.buscarPorLocalizacao(idLocal);
+    }
 }
 
