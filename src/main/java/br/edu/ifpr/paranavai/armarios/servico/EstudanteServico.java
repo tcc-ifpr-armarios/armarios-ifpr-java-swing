@@ -80,7 +80,6 @@ public class EstudanteServico {
         if (estudante.getSenha() == null || estudante.getSenha().isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
-        System.out.println("Senha" + estudante.getSenha());
         if (estudante.getCurso() == null || estudante.getCurso().getId() == 0) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
@@ -91,11 +90,11 @@ public class EstudanteServico {
 
     private static void validaCamposRegex(Estudante estudante) throws EstudanteException {
         
-        if (!OperacaoUtil.ehEmailValido(estudante.getEmail())){
-            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
-        }
         if(!OperacaoUtil.ehTelefoneValido(estudante.getTelefone())){
             throw new EstudanteException(MensagemUtil.TELEFONE_INVALIDO);
+        }
+        if (!OperacaoUtil.ehEmailValido(estudante.getEmail())){
+            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
         }
     }
 }

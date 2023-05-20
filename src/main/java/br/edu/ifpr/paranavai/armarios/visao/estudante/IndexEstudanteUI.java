@@ -12,22 +12,23 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
  * @author Professor Marcelo Figueiredo Terenciani
  */
 public class IndexEstudanteUI extends javax.swing.JFrame {
+
     List<Estudante> listaDeEstudantes;
-    
+
     public IndexEstudanteUI() {
         initComponents();
         init();
     }
-    
-    public void init(){
+
+    public void init() {
         listaDeEstudantes = EstudanteControle.listarTodosEstudantes();
         populaTabela(listaDeEstudantes);
     }
 
     private void populaTabela(List<Estudante> lista) {
-        
+
         AcoesEventoTabela evento = new AcoesEventoTabelaEstudante();
-        
+
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudante.getModel();
         tblEstudante.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaEstudante());
         tblEstudante.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento, this));
@@ -35,7 +36,7 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        
+
         for (int i = 0; i < lista.size(); i++) {
             Estudante mostraEstudante = lista.get(i);
             Object[] dadosLinha = new Object[7];
@@ -46,7 +47,7 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
             dadosLinha[4] = mostraEstudante.getEmail();
             dadosLinha[5] = mostraEstudante.getCurso().getNome();
             dadosLinha[6] = mostraEstudante.isAtivo() ? "Ativo" : "Inativo";
-            
+
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -80,7 +81,6 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         setTitle("Gerenciamento de Estudantes");
         setBackground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -119,6 +119,9 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
         lblBusca.setText("RA: ");
+        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
         panelBusca.add(lblBusca);
 
         txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -208,19 +211,20 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Estudante> filtrado = new ArrayList<>();
-        if(radioNome.isSelected()){
-        for (Estudante estudante : listaDeEstudantes) {
-            if(estudante.getNomeCompleto().toUpperCase().contains(txtBusca.getText().toUpperCase()))
-                filtrado.add(estudante);
-        }
-        } else if(radioRa.isSelected())
-        {
+        if (radioNome.isSelected()) {
             for (Estudante estudante : listaDeEstudantes) {
-            if(estudante.getRa().toUpperCase().contains(txtBusca.getText().toUpperCase()))
-                filtrado.add(estudante);
+                if (estudante.getNomeCompleto().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
+                    filtrado.add(estudante);
+                }
+            }
+        } else if (radioRa.isSelected()) {
+            for (Estudante estudante : listaDeEstudantes) {
+                if (estudante.getRa().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
+                    filtrado.add(estudante);
+                }
+            }
         }
-        }
-        
+
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -285,7 +289,7 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
 
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
