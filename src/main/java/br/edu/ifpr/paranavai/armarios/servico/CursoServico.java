@@ -1,9 +1,12 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.CursoDao;
+import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.CursoDaoImpl;
+import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.util.List;
 
@@ -29,10 +32,17 @@ public class CursoServico {
     }
 
     public static void excluir(Curso curso) throws CursoException {
+        EstudanteDao estudanteDao = new EstudanteDaoImpl();
         Curso c = dao.buscarPorId(curso.getId());
         if (c == null) {
             throw new CursoException(MensagemUtil.CURSO_REMOVIDO);
         }
+
+        List<Estudante> e = estudanteDao.buscarPorIdCurso(curso.getId());
+        if (!e.isEmpty()) {
+            throw new CursoException(MensagemUtil.CURSO_VINCULADO_ESTUDANTE);
+        }
+
         dao.excluir(curso);
     }
 
@@ -55,8 +65,11 @@ public class CursoServico {
         Curso c = dao.buscarPorNomeExatoComIdDiferente(curso.getNome(), curso.getId());
         if (c != null)
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
-        
+
         return dao.atualizar(curso);
     }
 
+    public static List<Curso> buscarTodosAtivos() {
+        return dao.buscarTodosAtivos();
+    }
 }

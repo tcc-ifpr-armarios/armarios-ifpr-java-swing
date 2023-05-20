@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
@@ -22,10 +18,11 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
     private Curso curso;
     private boolean estaAtualizando;
     private IndexCursoUI indexCursoUI;
+
     /**
      * Creates new form CriacaoEdicaoCursoUIModal
      */
-    
+
     public CriacaoEdicaoCursoUIModal(IndexCursoUI indexCursoUI) {
         super(indexCursoUI, true);
         initComponents();
@@ -44,16 +41,17 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
         this.estaAtualizando = estaAtualizando;
 
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        
+
         String titulo = estaAtualizando ? "Edição do Curso " : "Dados do Curso ";
-        
+
         lblTitulo.setText(titulo + curso.getId());
         this.setTitle(titulo + curso.getId());
         txtNomeCurso.setText(curso.getNome());
         ckbAtivo.setSelected(curso.isAtivo());
-        
-        if(!estaAtualizando)
+
+        if (!estaAtualizando) {
             desabilitarComponentes();
+        }
     }
 
     private void desabilitarComponentes() {
@@ -180,24 +178,24 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
         this.curso.setAtivo(ckbAtivo.isSelected());
 
         if (estaAtualizando)
-        atualizar();
+            atualizar();
         else
-        salvar();
+            salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-        private void salvar() throws HeadlessException {
+    private void salvar() throws HeadlessException {
         try {
             CursoControle.inserir(curso);
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_INSERCAO_SUCESSO);
             fecharFormulario();
         } catch (CursoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -207,13 +205,13 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_ATUALIZACAO_SUCESSO);
             fecharFormulario();
         } catch (CursoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(this, MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void fecharFormulario(){
+
+    private void fecharFormulario() {
         this.dispose();
         this.indexCursoUI.init();
     }

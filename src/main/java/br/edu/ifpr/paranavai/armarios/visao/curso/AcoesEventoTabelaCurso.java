@@ -1,6 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
+import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -45,8 +46,8 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
             try {
                 CursoControle.excluir(curso);
                 JOptionPane.showMessageDialog(indexCursoUI, MensagemUtil.CURSO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (CursoException e) {
+                JOptionPane.showMessageDialog(indexCursoUI, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
             } finally {
                 indexCursoUI.init();
             }
@@ -60,16 +61,11 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
         IndexCursoUI indexCursoUI = (IndexCursoUI) SwingUtilities.getWindowAncestor(tabela);
 
         Curso curso = CursoControle.buscarPorId(identificador);
-        
+
         CriacaoEdicaoCursoUIModal form = new CriacaoEdicaoCursoUIModal(indexCursoUI, curso, false);
 
         form.setLocationRelativeTo(indexCursoUI);
         form.setVisible(true);
-        
-    }
 
-    @Override
-    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

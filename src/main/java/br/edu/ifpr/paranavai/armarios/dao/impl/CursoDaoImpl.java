@@ -80,7 +80,6 @@ public class CursoDaoImpl implements CursoDao {
 
     @Override
     public Curso buscarPorNomeExatoComIdDiferente(String nome, Integer idCurso) {
-        // buscar por nome exato com id difente
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome and id != :id", Curso.class);
         query.setParameter("nome", nome);
         query.setParameter("id", idCurso);
@@ -88,4 +87,11 @@ public class CursoDaoImpl implements CursoDao {
         return resultado;
     }
 
+    @Override
+    public List<Curso> buscarTodosAtivos() {
+        Query<Curso> query = this.sessao.createQuery("from Curso where ativo = :ativo", Curso.class);
+        query.setParameter("ativo", true);
+        List<Curso> resultado = query.getResultList();
+        return resultado;
+    }
 }

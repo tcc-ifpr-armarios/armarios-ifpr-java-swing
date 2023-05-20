@@ -26,7 +26,7 @@ public class PainelAcoesReservasEmArmariosUI extends javax.swing.JPanel {
         btnExcluir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evento.aoExcluirArmario(tabela, linha, idLocal);
+                evento.aoExcluir(tabela, linha);
             }
         });
         

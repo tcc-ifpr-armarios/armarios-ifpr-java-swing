@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.visao.localizacao;
 
-
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
@@ -38,7 +37,7 @@ public class AcoesEventoTabelaLocalizacao implements AcoesEventoTabela {
 
         Localizacao localizacao = LocalizacaoServico.buscarPorId(identificador);
 
-        String mensagem = MensagemUtil.LOCALIZACAO_EXCLUSAO_CONFIRMACAO + " '" + localizacao.getDescricao()+ "'?";
+        String mensagem = MensagemUtil.LOCALIZACAO_EXCLUSAO_CONFIRMACAO + " '" + localizacao.getDescricao() + "'?";
 
         int opcao = JOptionPane.showConfirmDialog(indexLocalizacaoUI, mensagem, MensagemUtil.TITULO_ATENCAO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
@@ -61,16 +60,11 @@ public class AcoesEventoTabelaLocalizacao implements AcoesEventoTabela {
         IndexLocalizacaoUI indexLocalizacaoUI = (IndexLocalizacaoUI) SwingUtilities.getWindowAncestor(tabela);
 
         Localizacao localizacao = LocalizacaoServico.buscarPorId(identificador);
-        
+
         CriacaoEdicaoLocalizacaoUIModal form = new CriacaoEdicaoLocalizacaoUIModal(indexLocalizacaoUI, localizacao, false);
 
         form.setLocationRelativeTo(indexLocalizacaoUI);
         form.setVisible(true);
-        
-    }
 
-    @Override
-    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

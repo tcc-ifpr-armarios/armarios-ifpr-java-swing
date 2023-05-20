@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
-import br.edu.ifpr.paranavai.armarios.dao.EstudanteDaoImpl;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-
-
 import java.util.List;
+
+import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
+import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 
 public class EstudanteServico {
 
@@ -23,29 +21,81 @@ public class EstudanteServico {
         return dao.buscarPorId(id);
     }
 
-    public static void inserir(Estudante estudante) {
-        dao.inserir(estudante);
+    public static Estudante inserir(Estudante estudante) throws EstudanteException {
+        verificaCamposObrigatorios(estudante);
+        validaCamposRegex(estudante);
+
+        Estudante e = dao.buscarPorRa(estudante.getRa());
+        if (e != null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
+        }
+
+        return dao.inserir(estudante);
     }
 
-    public static void atualizar(Estudante estudante) {
-        dao.atualizar(estudante);
+    public static Estudante atualizar(Estudante estudante) throws EstudanteException {
+        verificaCamposObrigatorios(estudante);
+        validaCamposRegex(estudante);
+
+        Estudante e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
+        if (e != null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
+        }
+
+        return dao.atualizar(estudante);
     }
 
-    public static void excluir(Estudante estudante) {
+    public static void excluir(Estudante estudante) throws EstudanteException {
+        Estudante c = dao.buscarPorId(estudante.getId());
+        if (c == null) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
+        }
         dao.excluir(estudante);
     }
-    
-    public static List<Estudante> buscarPorNome(String nome){
+
+    public static List<Estudante> buscarPorNome(String nome) {
         return dao.buscarPorNome(nome);
     }
-    public static List<Estudante> buscarPorRa(String ra){
+
+    public static Estudante buscarPorRa(String ra) {
         return dao.buscarPorRa(ra);
     }
-    public static Estudante buscarPorEmail(String email){
+
+    public static Estudante buscarPorEmail(String email) {
         return dao.buscarPorEmail(email);
     }
-    
-     public static Estudante buscarPorRaUnico(String ra){
-         return dao.buscarPorRaUnico(ra);
-     }
+
+    private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {
+        if (estudante.getNome() == null || estudante.getNome().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getSobrenome() == null || estudante.getSobrenome().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getRa() == null || estudante.getRa().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getEmail() == null || estudante.getEmail().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getSenha() == null || estudante.getSenha().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getCurso() == null || estudante.getCurso().getId() == 0) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (estudante.getTelefone() == null || estudante.getTelefone().isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+    }
+
+    private static void validaCamposRegex(Estudante estudante) throws EstudanteException {
+
+        if (!OperacaoUtil.ehTelefoneValido(estudante.getTelefone())) {
+            throw new EstudanteException(MensagemUtil.TELEFONE_INVALIDO);
+        }
+        if (!OperacaoUtil.ehEmailValido(estudante.getEmail())) {
+            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
+        }
+    }
 }

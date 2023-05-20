@@ -1,6 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
 import java.util.List;
+
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 public interface EstudanteDao {
@@ -9,17 +11,19 @@ public interface EstudanteDao {
 
     public Estudante buscarPorId(Integer inteiro);
 
-    public void atualizar(Estudante estudante);
+    public List<Estudante> buscarPorNome(String nomee);
 
-    public void excluir(Estudante estudante);
+    public Estudante buscarPorRa(String ra);
 
-    public void inserir(Estudante estudante);
-    
-    public List<Estudante> buscarPorNome (String nomee);
-    
-    public List<Estudante> buscarPorRa (String ra);
-    
-    public Estudante buscarPorEmail (String email);
-    
-    public Estudante buscarPorRaUnico(String ra);
+    public Estudante buscarPorEmail(String email);
+
+    public Estudante buscarPorRaComIdDiferente(String ra, Integer id);
+
+    public List<Estudante> buscarPorIdCurso(Integer idCurso);
+
+    public Estudante atualizar(Estudante estudante) throws EstudanteException;
+
+    public void excluir(Estudante estudante) throws EstudanteException;
+
+    public Estudante inserir(Estudante estudante) throws EstudanteException;
 }

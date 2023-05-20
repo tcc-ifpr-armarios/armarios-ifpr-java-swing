@@ -1,8 +1,11 @@
-package br.edu.ifpr.paranavai.servico.curso;
+package br.edu.ifpr.paranavai.servico;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -53,7 +56,7 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals("Curso Teste"));
         assertTrue(this.curso.isAtivo());
     }
-
+    
     @Test
     public void naoDeveInserirNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirNomeVazioOuNulo");
@@ -93,6 +96,16 @@ public class CursoServicoTest {
         List<Curso> listaDeCursos = CursoServico.buscarTodos();
         assertTrue(!listaDeCursos.isEmpty());
     }
+    
+    @Test
+    public void deveListarSomenteAtivos() throws CursoException {
+        System.out.println("Executando teste deveListarAoMenosUm");
+
+        this.curso = CursoServico.inserir(this.curso);
+
+        List<Curso> listaDeCursos = CursoServico.buscarTodosAtivos();
+        assertTrue(!listaDeCursos.isEmpty());
+    }
 
     @Test
     public void deveEncontrarOCursoComIdInserido() throws CursoException {
@@ -116,14 +129,11 @@ public class CursoServicoTest {
     public void deveExcluirOCursoComIdInserido() throws CursoException {
         System.out.println("Executando teste deveExcluirOCursoComIdInserido");
 
-        Curso cursoASerExcluido = new Curso();
-        cursoASerExcluido.setNome("Curso Exclusão");
+        this.curso = CursoServico.inserir(this.curso);
 
-        cursoASerExcluido = CursoServico.inserir(cursoASerExcluido);
+        CursoServico.excluir(this.curso);
 
-        CursoServico.excluir(cursoASerExcluido);
-
-        Curso cursoEncontrado = CursoServico.buscarPorId(cursoASerExcluido.getId());
+        Curso cursoEncontrado = CursoServico.buscarPorId(this.curso.getId());
         assertNull(cursoEncontrado);
     }
 
@@ -171,13 +181,13 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals(cursoAtualizado.getNome()));
         assertTrue(!cursoAtualizado.isAtivo());
     }
-    
+
     @Test
     public void naoDeveAtualizarParaNomeVazioOuNulo() throws CursoException {
         System.out.println("Executando teste naoDeveAtualizarParaNomeVazioOuNulo");
 
         this.curso = CursoServico.inserir(this.curso);
-        
+
         CursoException cursoExceptionVazio = assertThrows(CursoException.class, () -> {
             this.curso.setNome("");
             this.curso = CursoServico.atualizar(this.curso);
@@ -192,22 +202,47 @@ public class CursoServicoTest {
     }
 
     @Test
-    public void naoDeveAtualizarParaNomeDuplicado() throws CursoException{
+    public void naoDeveAtualizarParaNomeDuplicado() throws CursoException {
         System.out.println("Executando teste naoDeveAtualizarParaNomeDuplicado");
-        
+
         this.cursoAtualizacao = new Curso();
         this.cursoAtualizacao.setNome("Para atualizar");
 
         this.curso = CursoServico.inserir(this.curso);
         this.cursoAtualizacao = CursoServico.inserir(this.cursoAtualizacao);
-        
+
         this.cursoAtualizacao.setNome(this.curso.getNome());
-        
+
         CursoException cursoException = assertThrows(CursoException.class, () -> {
             CursoServico.atualizar(this.cursoAtualizacao);
         });
-        
+
         CursoServico.excluir(this.cursoAtualizacao);
         assertEquals(MensagemUtil.CURSO_NOME_DUPLICADO, cursoException.getMessage());
+    }
+
+    @Test
+    public void naoDeveExcluirCursoVinculadoAUmEstudante() throws CursoException, EstudanteException {
+        System.out.println("Executando teste naoDeveExcluirCursoVinculadoAUmEstudante");
+
+        this.curso = CursoServico.inserir(this.curso);
+
+        Estudante estudante = new Estudante();
+        estudante.setNome("Estudante");
+        estudante.setSobrenome("Teste");
+        estudante.setEmail("teste@teste.com");
+        estudante.setTelefone("44 9 9999-9999");
+        estudante.setRa("2023232323");
+        estudante.setSenha("123456");
+        estudante.setCurso(curso);
+
+        estudante = EstudanteServico.inserir(estudante);
+
+        CursoException cursoException = assertThrows(CursoException.class, () -> {
+            CursoServico.excluir(curso);
+        });
+
+        EstudanteServico.excluir(estudante);
+        assertEquals(MensagemUtil.CURSO_VINCULADO_ESTUDANTE, cursoException.getMessage());
     }
 }

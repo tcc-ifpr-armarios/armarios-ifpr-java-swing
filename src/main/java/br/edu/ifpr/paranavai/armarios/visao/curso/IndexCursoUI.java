@@ -6,34 +6,35 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import javax.swing.JTable;
 
 /**
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
 public class IndexCursoUI extends javax.swing.JFrame {
+
     List<Curso> listaDeCursos;
+
     /**
      * Creates new form EditorCursoUI
      */
-    
+
     public IndexCursoUI() {
         initComponents();
         init();
-        
+
         setLocationRelativeTo(this);
     }
-    
-    public void init(){
+
+    public void init() {
         listaDeCursos = CursoControle.listarTodosCursos();
         populaTabela(listaDeCursos);
     }
 
     private void populaTabela(List<Curso> lista) {
-        
+
         AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
-        
+
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
         tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
         tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento, this));
@@ -41,14 +42,14 @@ public class IndexCursoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        
+
         for (int i = 0; i < lista.size(); i++) {
             Curso mostraCurso = lista.get(i);
             Object[] dadosLinha = new Object[3];
             dadosLinha[0] = mostraCurso.getId();
             dadosLinha[1] = mostraCurso.getNome();
             dadosLinha[2] = mostraCurso.isAtivo() ? "Ativo" : "Inativo";
-            
+
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -183,12 +184,13 @@ public class IndexCursoUI extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Curso> filtrado = new ArrayList<>();
-        
+
         for (Curso localizacao : listaDeCursos) {
-            if(localizacao.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
+            if (localizacao.getNome().toUpperCase().contains(txtNome.getText().toUpperCase())) {
                 filtrado.add(localizacao);
+            }
         }
-        
+
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -197,6 +199,16 @@ public class IndexCursoUI extends javax.swing.JFrame {
         criacaoEdicaoCurso.setLocationRelativeTo(this);
         criacaoEdicaoCurso.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    /*public static void main(String args[]) {
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IndexCursoUI().setVisible(true);
+            }
+        });
+
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

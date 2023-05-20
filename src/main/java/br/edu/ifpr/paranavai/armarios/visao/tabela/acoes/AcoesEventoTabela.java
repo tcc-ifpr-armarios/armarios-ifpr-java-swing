@@ -10,10 +10,8 @@ public interface AcoesEventoTabela {
 
     public void aoEditar(JTable tabela, int linha);
 
-    public void aoExcluir(JTable tabela,  int linha);
+    public void aoExcluir(JTable tabela, int linha);
 
-    public void aoVisualizar(JTable tabela,  int linha);
-
-    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal);
+    public void aoVisualizar(JTable tabela, int linha);
 
 }

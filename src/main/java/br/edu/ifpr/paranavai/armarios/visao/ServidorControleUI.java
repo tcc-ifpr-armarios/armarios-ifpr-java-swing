@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import javax.swing.JOptionPane;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
 import br.edu.ifpr.paranavai.armarios.utils.CarregarAluno;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
 
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudanteUI;
 import br.edu.ifpr.paranavai.armarios.visao.historico.IndexHistoricoUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import br.edu.ifpr.paranavai.armarios.visao.ocupados.IndexOcupadosUI;
@@ -432,51 +428,46 @@ public class ServidorControleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoOcupadosActionPerformed
 
     private void botaoCadArmarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadArmarioMouseClicked
-       /**
-        if (marcadorBiblioteca.isSelected() == false && marcadorSaguao.isSelected() == false) {
-            JOptionPane.showMessageDialog(null, "Selecione um local onde o armário será disponibilizado.");
-        } else if (marcadorBiblioteca.isSelected()) {
+        /**
+         * if (marcadorBiblioteca.isSelected() == false &&
+         * marcadorSaguao.isSelected() == false) {
+         * JOptionPane.showMessageDialog(null, "Selecione um local onde o
+         * armário será disponibilizado."); } else if
+         * (marcadorBiblioteca.isSelected()) {
+         *
+         * ReservaBiblioteca reserva = new ReservaBiblioteca();
+         *
+         * String numero = selecionaNumero.getValue().toString(); int convertido
+         * = Integer.parseInt(numero);
+         *
+         * if (numero.equals("0")) { JOptionPane.showMessageDialog(null, "Defina
+         * o número do novo armário"); } else { reserva.setNumero(convertido);
+         * reserva.setAtivo(true); ReservaBibliotecaServico.inserir(reserva);
+         * lblrespostacad.setText("Cadastrado com sucesso!");
+         *
+         * }
+         *
+         *
+         * /**
+         * ALTERAR OS BOTÕES PARA PISCAR AS CORES QUANDO CLICADOS DEIXAR BRANCO*
+         *
+         * } else if (marcadorSaguao.isSelected()) { ReservaSaguao reserva = new
+         * ReservaSaguao(); String numero =
+         * selecionaNumero.getValue().toString(); int convertido =
+         * Integer.parseInt(numero);
+         *
+         * if (numero.equals("0")) { JOptionPane.showMessageDialog(null, "Defina
+         * o número do novo armário");
+         *
+         * } else { reserva.setNumero(convertido); reserva.setAtivo(true);
+         * ReservaSaguaoServico.inserir(reserva);
+         * lblrespostacad.setText("Cadastrado com sucesso!"); }
+         *
+         *
+         *
+         * }
+         */
 
-            ReservaBiblioteca reserva = new ReservaBiblioteca();
-
-            String numero = selecionaNumero.getValue().toString();
-            int convertido = Integer.parseInt(numero);
-
-            if (numero.equals("0")) {
-                JOptionPane.showMessageDialog(null, "Defina o número do novo armário");
-            } else {
-                reserva.setNumero(convertido);
-                reserva.setAtivo(true);
-                ReservaBibliotecaServico.inserir(reserva);
-                lblrespostacad.setText("Cadastrado com sucesso!");
-                
-            }
-            
-
-            /**
-             * ALTERAR OS BOTÕES PARA PISCAR AS CORES QUANDO CLICADOS DEIXAR
-             * BRANCO*
-             
-        } else if (marcadorSaguao.isSelected()) {
-            ReservaSaguao reserva = new ReservaSaguao();
-            String numero = selecionaNumero.getValue().toString();
-            int convertido = Integer.parseInt(numero);
-
-            if (numero.equals("0")) {
-                JOptionPane.showMessageDialog(null, "Defina o número do novo armário");
-
-            } else {
-                reserva.setNumero(convertido);
-                reserva.setAtivo(true);
-                ReservaSaguaoServico.inserir(reserva);
-                lblrespostacad.setText("Cadastrado com sucesso!");
-            }
-            
-
-            
-        }
-        */
-       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IndexArmariosUI().setVisible(true);
@@ -545,10 +536,10 @@ public class ServidorControleUI extends javax.swing.JFrame {
         if (nomeAluno.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "O campo nome não pode ser vazio");
-            
+
         } else if (emailAluno.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo email não pode ser vazio");
-           
+
         } else if (telefoneAluno.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo telefone não pode ser vazio");
         } else if (senhaAluno.getText().equals("")) {
@@ -566,7 +557,11 @@ public class ServidorControleUI extends javax.swing.JFrame {
             aluno.setSenha(senhaAluno.getText());
             aluno.setAtivo(true);
             EstudanteServico estudante = new EstudanteServico();
-            estudante.inserir(aluno);
+            try {
+                estudante.inserir(aluno);
+            } catch (EstudanteException ex) {
+                ex.printStackTrace();
+            }
             lblrespostacad.setText("Aluno cadastrado com sucesso!");
             lblrespostacad.setVisible(true);
             nomeAluno.setText("");
@@ -574,7 +569,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
             telefoneAluno.setText("");
             senhaAluno.setText("");
             raAluno.setText("");
-            
 
         }
     }//GEN-LAST:event_botaoCadAlunoMouseClicked
@@ -584,15 +578,14 @@ public class ServidorControleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_telefoneAlunoActionPerformed
 
     private void botaoOcupadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoOcupadosMouseClicked
-  
-           
-           
+
+
     }//GEN-LAST:event_botaoOcupadosMouseClicked
 
     private void botaoAlunosCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlunosCadastradosMouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaAlunoUI().setVisible(true);
+                new IndexEstudanteUI().setVisible(true);
             }
         });
     }//GEN-LAST:event_botaoAlunosCadastradosMouseClicked
@@ -600,14 +593,13 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private void senhaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaAlunoMouseClicked
         // TODO add your handling code here:
         senhaAluno.setText("");
-        
-        
-        
+
+
     }//GEN-LAST:event_senhaAlunoMouseClicked
 
     private void senhaAlunoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_senhaAlunoMouseReleased
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_senhaAlunoMouseReleased
 
     private void botaoHistoricoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoHistoricoMouseReleased
@@ -616,13 +608,13 @@ public class ServidorControleUI extends javax.swing.JFrame {
 
     private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
         // TODO add your handling code here:
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new HistoricoUI().setVisible(true);
                 new IndexHistoricoUI().setVisible(true);
             }
         });
-        
+
     }//GEN-LAST:event_botaoHistoricoActionPerformed
 
     private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
@@ -642,7 +634,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalizacoesActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-       java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CarregarAluno(EstudanteServico.buscarPorId(1)).setVisible(true);
             }
@@ -679,7 +671,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ServidorControleUI().setVisible(true);

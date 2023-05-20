@@ -1,7 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
-
-
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
@@ -25,9 +23,8 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
         Reserva reserva = ReservaServico.buscarPorId(identificador);
 
         //CriacaoEdicaoLocalizacaoEmArmariosUIModal form = new CriacaoEdicaoLocalizacaoEmArmariosUIModal(indexArmariosUI, localizacao, true);
-
         //form.setLocationRelativeTo(indexArmariosUI);
-    //    form.setVisible(true);
+        //    form.setVisible(true);
     }
 
     @Override
@@ -37,8 +34,7 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
 
     @Override
     public void aoVisualizar(JTable tabela, int linha) {
-        
-        
+
         int identificador = (int) tabela.getValueAt(linha, 0);
         IndexArmariosUI indexArmariosUI = (IndexArmariosUI) SwingUtilities.getWindowAncestor(tabela);
         ListaArmariosUI armarios = new ListaArmariosUI(indexArmariosUI, identificador);
@@ -52,14 +48,6 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
             }
 
         });*/
-        
 
     }
-
-    @Override
-    public void aoExcluirArmario(JTable tabela, int linha, Integer idLocal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
 }

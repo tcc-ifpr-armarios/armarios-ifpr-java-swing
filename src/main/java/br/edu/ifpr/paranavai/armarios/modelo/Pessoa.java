@@ -1,5 +1,12 @@
- package br.edu.ifpr.paranavai.armarios.modelo;
+package br.edu.ifpr.paranavai.armarios.modelo;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,45 +15,53 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import java.util.Date;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 public abstract class Pessoa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_pessoa", unique = true, nullable = false) 
+    @Column(name = "id_pessoa")
     private Integer id;
-    
-    @Column(name = "nome", unique = false, nullable = false, length = 100)
+
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
-    @Column(name = "email", unique = true, nullable = false, length = 100)
+
+    @Column(name = "sobrenome", nullable = false, length = 100)
+    private String sobrenome;
+
+    @Column(name = "email", length = 50)
     private String email;
-    @Column(name = "telefone", unique = true, nullable = false, length = 100)
+
+    @Column(name = "telefone", length = 20)
+    @ColumnTransformer(read = "telefone", write = "TRIM(?)")
     private String telefone;
-    @Column(name = "senha", unique = false, nullable = false, length = 100)
+
+    @ColumnTransformer(read = "senha", write = "SHA2(CONCAT('" + AutenticacaoUtil.CHAVE_PRIVADA + "', ?, '"
+            + AutenticacaoUtil.CHAVE_PRIVADA + "'), 256)")
+    @Column(name = "senha", nullable = false, length = 100)
     private String senha;
+
     @Basic
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo;
-    
-    @Column(name = "data_atualizacao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataAtualizacao;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_criacao")
-    private Date dataCriacao;
+    @Column(name = "ativo", columnDefinition = "boolean default true")
+    private boolean ativo = true;
+
+    @CreationTimestamp
+    @Column(name = "data_criacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime dataCriacao = LocalDateTime.now();
+
+    @UpdateTimestamp
+    @Column(name = "data_atualizacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
     public Pessoa() {
     }
 
-    
-    
-    public Pessoa(String nome, String email, String telefone, String senha, boolean ativo, Date dataAtualizacao, Date dataCriacao) {
+    public Pessoa(String nome, String sobrenome, String email, String telefone, String senha, boolean ativo,
+            LocalDateTime dataAtualizacao, LocalDateTime dataCriacao) {
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
@@ -55,12 +70,32 @@ public abstract class Pessoa {
         this.dataCriacao = dataCriacao;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getNomeCompleto() {
+        return nome + " " + sobrenome;
     }
 
     public String getEmail() {
@@ -95,33 +130,19 @@ public abstract class Pessoa {
         this.ativo = ativo;
     }
 
-    public Date getDataAtualizacao() {
+    public LocalDateTime getDataAtualizacao() {
         return dataAtualizacao;
     }
 
-    public void setDataAtualizacao(Date dataAtualizacao) {
+    public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public Date getDataCriacao() {
+    public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    
-   
-
-    public String alteraSenha(String senha){
-        this.senha = senha;
-        return "Senha alterada com sucesso!";
-    }
-
-    public Integer getId() {
-        return id;
-    }
-    
-    
-     
 }

@@ -19,7 +19,7 @@ public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_curso", unique = true, nullable = false)
+    @Column(name = "id_curso")
     private Integer id;
 
     
@@ -92,4 +92,10 @@ public class Curso {
         }
         return Objects.equals(this.id, other.id);
     }
+
+    @Override
+    public String toString() {
+        return this.id + " - "+ this.nome;
+    }
+    
 }
