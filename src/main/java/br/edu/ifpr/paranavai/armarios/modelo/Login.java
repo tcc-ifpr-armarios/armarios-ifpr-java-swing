@@ -6,7 +6,7 @@ package br.edu.ifpr.paranavai.armarios.modelo;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public class Login {
     private Estudante estudante;

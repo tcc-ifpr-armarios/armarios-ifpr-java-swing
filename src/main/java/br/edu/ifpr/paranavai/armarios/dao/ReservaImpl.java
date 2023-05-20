@@ -78,14 +78,13 @@ public class ReservaImpl implements ReservaDao {
             e.printStackTrace();
         }
     }
-    
-    
+
     @Override
     public List<Reserva> buscarTodosAtivos(boolean ativo) {
         List<Reserva> reservas = new ArrayList<>();
         try {
             sessao.beginTransaction();
-            Query query =  this.sessao.createQuery("from Reserva where ativo = : ativo");
+            Query query = this.sessao.createQuery("from Reserva where ativo = : ativo");
             query.setParameter("ativo", ativo);
             reservas = (List<Reserva>) query.list();
             sessao.getTransaction().commit();
@@ -95,31 +94,30 @@ public class ReservaImpl implements ReservaDao {
         }
         return reservas;
     }
-    
-     @Override
+
+    @Override
     public void apagaPorNumero(Integer numero) {
-        
+
         try {
-        sessao.beginTransaction();
-        Query query = sessao.createQuery("delete Reserva where numero = :numero");
-        query.setParameter("numero", numero);
-        int result = query.executeUpdate();
-        sessao.getTransaction().commit(); 
+            sessao.beginTransaction();
+            Query query = sessao.createQuery("delete Reserva where numero = :numero");
+            query.setParameter("numero", numero);
+            int result = query.executeUpdate();
+            sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    
+
     @Override
     public List<Reserva> buscarPorAluno(Integer estudante_id_pessoa) {
         List<Reserva> reservas = new ArrayList<>();
         try {
             sessao.beginTransaction();
-            Query query =  this.sessao.createQuery("from Reserva where estudante.id = :idEstudante");
+            Query query = this.sessao.createQuery("from Reserva where estudante.id = :idEstudante");
             query.setParameter("idEstudante", estudante_id_pessoa);
-            
+
             reservas = (List<Reserva>) query.list();
             sessao.getTransaction().commit();
             sessao.clear();
@@ -145,7 +143,6 @@ public class ReservaImpl implements ReservaDao {
         }
         return reservas;
     }*/
-    
     @Override
     public List<Reserva> buscarPorLocalizacao(Integer localizacao_id_localizacao) {
         Query<Reserva> query = this.sessao.createQuery("from Reserva where localizacao.id = :idLocalizacao");
@@ -153,8 +150,7 @@ public class ReservaImpl implements ReservaDao {
         List<Reserva> resultado = query.getResultList();
         return resultado;
     }
-    
-    
+
     @Override
     public Reserva buscarNumeroPorLocalizacao(Integer idLocal, Integer numero) {
         // buscar por nome exato com id difente
@@ -164,6 +160,7 @@ public class ReservaImpl implements ReservaDao {
         Reserva resultado = query.uniqueResult();
         return resultado;
     }
+
     /*
     @Override
     public List<Reserva> buscarAtivoPorLocalizacao(Integer idLocal, boolean estado) {
@@ -181,7 +178,7 @@ public class ReservaImpl implements ReservaDao {
         List<Reserva> reservas = new ArrayList<>();
         try {
             sessao.beginTransaction();
-            Query query =  this.sessao.createQuery("from Reserva where localizacao.id = :idLocalizacao and ativo = : ativo order by numero ASC");
+            Query query = this.sessao.createQuery("from Reserva where localizacao.id = :idLocalizacao and ativo = : ativo order by numero ASC");
             query.setParameter("idLocalizacao", idLocal);
             query.setParameter("ativo", ativo);
             reservas = (List<Reserva>) query.list();
@@ -192,25 +189,38 @@ public class ReservaImpl implements ReservaDao {
         }
         return reservas;
     }
-    
+
     @Override
     public void apagaPorNumeroNaLocalizacao(Integer numero, Integer idLocal) {
-        
+
         try {
-        sessao.beginTransaction();
-        Query query = sessao.createQuery("delete Reserva where numero = :numero and localizacao.id = :idLocalizacao");
-        query.setParameter("numero", numero);
-        query.setParameter("idLocalizacao", idLocal);
-        int result = query.executeUpdate();
-        sessao.getTransaction().commit(); 
-        sessao.clear();
+            sessao.beginTransaction();
+            Query query = sessao.createQuery("delete Reserva where numero = :numero and localizacao.id = :idLocalizacao");
+            query.setParameter("numero", numero);
+            query.setParameter("idLocalizacao", idLocal);
+            int result = query.executeUpdate();
+            sessao.getTransaction().commit();
+            sessao.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-    }
-        
-}
-    
-    
 
+    }
+
+    @Override
+    public Reserva buscarPorAlunoUnico(Integer id) {
+        
+        
+            sessao.beginTransaction();
+            Query<Reserva> query = this.sessao.createQuery("from Reserva where estudante.id = :idEstudante");
+            query.setParameter("idEstudante", id);
+
+            Reserva resultado = query.uniqueResult();
+            sessao.getTransaction().commit();
+            sessao.clear();
+        
+        return resultado;
+       
+    }
+
+}

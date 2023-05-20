@@ -4,20 +4,25 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.visao.aluno.AlunoReservaUI;
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.controle.LoginControlador;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.aluno.AlunoDevolucaoUI;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.apache.logging.log4j.core.config.Configurator;
+
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public class IndexLoginUI extends javax.swing.JFrame {
+
+    LoginControlador controle = new LoginControlador();
 
     /**
      * Creates new form IndexloginUI
@@ -208,57 +213,62 @@ public class IndexLoginUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldEmailActionPerformed
-        // TODO add your handling code here:
+      lblResposta.setText("");
     }//GEN-LAST:event_txtFieldEmailActionPerformed
 
     private void passFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldSenhaActionPerformed
-        // TODO add your handling code here:
+        lblResposta.setText("");
     }//GEN-LAST:event_passFieldSenhaActionPerformed
 
     private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        LoginControlador controle = new LoginControlador();
+
         String email = this.txtFieldEmail.getText();
         String senha = String.copyValueOf(this.passFieldSenha.getPassword());
         String resposta = controle.verificaAdm(email, senha);
-        
 
-        
-        lblResposta.setText(resposta);
-        switch (resposta) {
-            case "Senha inválida!":
-            
-                lblResposta.setText(resposta);
-                
-                
-                
-                break;
-            case "Sucesso no login!":
-                
-                ServidorControleUI servidor = new ServidorControleUI();
+        if (controle.verificaAdm(email, senha).equals("Cadastro não encontrado. Tente novamente!")) {
+
+            if (controle.verificaAluno(email, senha).equals("Sucesso no login!!")) {
+                lblResposta.setText("Sucesso no login!!");
+                passFieldSenha.setText("");
+                txtFieldEmail.setText("");
+                System.setProperty("email", email);
+                //AlunoReservaUI reserva = new AlunoReservaUI();
+
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new ServidorControleUI().setVisible(true);
+                        new AlunoReservaUI().setVisible(true);
+
                     }
-                }); break;
-            case "aluno":       
-                LoginControlador controleAluno = new LoginControlador();
-                String emailAluno = this.txtFieldEmail.getText();
-                String senhaAluno = String.copyValueOf(this.passFieldSenha.getPassword());
-                String respostaAluno = controle.verificaAluno(emailAluno, senhaAluno);
-                lblResposta.setText(respostaAluno);
-                if (respostaAluno.equals("Sucesso no login!!")) {
-                    passFieldSenha.setText("");
-                    txtFieldEmail.setText("");
-                    System.setProperty("email", email);
-                    AlunoReservaUI reserva = new AlunoReservaUI();
-                    
-                    java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                            new AlunoReservaUI().setVisible(true);
-                            
-                        }
-                    });
-                }   break;
+                });
+            } else if (controle.verificaAluno(email, senha).equals("Sucesso no login!")) {
+                System.out.println("Quero devolver");
+                
+                System.setProperty("email", email);
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new AlunoDevolucaoUI().setVisible(true);
+
+                }
+            });
+            } else if (controle.verificaAluno(email, senha).equals("Senha inválida!")) {
+                
+                lblResposta.setText("Senha inválida!");
+
+            } else if (controle.verificaAluno(email, senha).equals("Cadastro não encontrado. Tente novamente!")) {
+                lblResposta.setText("Cadastro não encontrado. Tente novamente!");
+                
+            }
+
+        } else if (controle.verificaAdm(email, senha).equals("Senha inválida!")) {
+            lblResposta.setText("Senha inválida!");
+        } else if (controle.verificaAdm(email, senha).equals("Sucesso no login!")) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new ServidorControleUI().setVisible(true);
+
+                }
+            });
         }
 
 
@@ -302,7 +312,7 @@ public class IndexLoginUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         Configurator.initialize(null, "log4j2.xml");
-        
+
         try {
             HibernateUtil.getSession();
             /* Create and display the form */
@@ -312,12 +322,10 @@ public class IndexLoginUI extends javax.swing.JFrame {
                 }
 
             });
-        } catch (Exception e ){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

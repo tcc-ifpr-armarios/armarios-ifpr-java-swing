@@ -80,4 +80,8 @@ public class ReservaServico {
      public static void apagaPorNumeroNaLocalizacao(Integer numero, Integer idLocal) {
         dao.apagaPorNumeroNaLocalizacao(numero, idLocal);
      }
+     
+     public static Reserva buscarPorAlunoUnico(Integer id) {
+        return dao.buscarPorAlunoUnico(id);
+    }
 }

@@ -6,6 +6,7 @@ package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import jakarta.persistence.NoResultException;
 
 import java.util.List;
 import org.hibernate.Session;
@@ -16,8 +17,9 @@ import org.hibernate.query.Query;
  * @author suporte
  */
 public class BibliotecarioDaoImpl implements BibliotecarioDao {
+
     private Session sessao;
-    
+
     public BibliotecarioDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
@@ -89,25 +91,27 @@ public class BibliotecarioDaoImpl implements BibliotecarioDao {
             e.printStackTrace();
         }
     }
-    
+
     @Override
-    public Bibliotecario buscarPorEmail(String email) {
+public Bibliotecario buscarPorEmail(String email) {
+    Bibliotecario bibliotecarios = null;
+    try {
         
-        Bibliotecario bibliotecarios = new Bibliotecario();
-        try {
-            sessao.beginTransaction();
-            
-            Query query = this.sessao.createQuery("from Bibliotecario where email = :email");
-            query.setParameter("email", email);
-            bibliotecarios = (Bibliotecario) query.getSingleResult();
-            sessao.getTransaction().commit();
-            
-            sessao.cancelQuery();
-        } catch (Exception e) {
-            e.printStackTrace();
-            sessao.clear();
-            
-        }
-        return bibliotecarios;
+        sessao.beginTransaction();
+
+        Query query = sessao.createQuery("from Bibliotecario where email = :email");
+        query.setParameter("email", email);
+        bibliotecarios = (Bibliotecario) query.getSingleResult();
+
+        sessao.getTransaction().commit();
+    } catch (NoResultException e) {
+        // Nenhum registro encontrado, não faz nada
+    } catch (Exception e) {
+        e.printStackTrace();
+        sessao.getTransaction().rollback(); 
+    } finally {
+        sessao.clear();
     }
+    return bibliotecarios;
+}
 }

@@ -2,6 +2,7 @@ package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import jakarta.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -90,7 +91,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
         List<Estudante> estudantes = new ArrayList<>();
         try {
             sessao.beginTransaction();
-            
+
             Query query = this.sessao.createQuery("from Estudante where nome = :nome");
             query.setParameter("nome", nome);
             estudantes = (List<Estudante>) query.list();
@@ -106,38 +107,45 @@ public class EstudanteDaoImpl implements EstudanteDao {
         List<Estudante> estudantes = new ArrayList<>();
         try {
             sessao.beginTransaction();
-            
+
             Query query = this.sessao.createQuery("from Estudante where ra = :ra");
             query.setParameter("ra", ra);
             estudantes = (List<Estudante>) query.list();
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
-            
+
         }
         return estudantes;
     }
 
     @Override
-    public Estudante buscarPorEmail(String email) {
+public Estudante buscarPorEmail(String email) {
+    Estudante estudantes = null;
+    try {
         
-        Estudante estudantes = new Estudante();
-        try {
-            sessao.beginTransaction();
-            
-            Query query = this.sessao.createQuery("from Estudante where email = :email");
-            query.setParameter("email", email);
-            estudantes = (Estudante)query.getSingleResult();
-            sessao.getTransaction().commit();
-            sessao.clear();
-        } catch (Exception e) {
-            e.printStackTrace();
-            
+        sessao.beginTransaction();
+
+        Query query = sessao.createQuery("from Estudante where email = :email");
+        query.setParameter("email", email);
+        estudantes = (Estudante) query.getSingleResult();
+
+        sessao.getTransaction().commit();
+    } catch (NoResultException e) {
+        // Nenhum registro encontrado, não faz nada
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Erro");
+
+        sessao.getTransaction().rollback();
+    } finally {
+        if (sessao != null && sessao.isOpen()) {
             sessao.clear();
         }
-        return estudantes;
     }
-    
+    return estudantes;
+}
+
     /*
     @Override
     public Estudante buscarPorRaUnico(String ra) {
@@ -152,7 +160,6 @@ public class EstudanteDaoImpl implements EstudanteDao {
         }
         return estudante;
     }*/
-    
     @Override
     public Estudante buscarPorRaUnico(String ra) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra");
@@ -160,7 +167,5 @@ public class EstudanteDaoImpl implements EstudanteDao {
         Estudante resultado = query.uniqueResult();
         return resultado;
     }
-    
+
 }
-    
-    
