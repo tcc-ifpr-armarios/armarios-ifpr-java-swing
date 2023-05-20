@@ -51,7 +51,7 @@ public class EstudanteServicoTest {
         this.estudante.setNome("Estudante");
         this.estudante.setSobrenome("Teste");
         this.estudante.setEmail("teste@teste.com");
-        this.estudante.setTelefone("44 9 9999-9999");
+        this.estudante.setTelefone("(44) 9 9999-9999");
         this.estudante.setRa("2023232323");
         this.estudante.setSenha("123456");
         this.estudante.setCurso(curso);
@@ -187,7 +187,7 @@ public class EstudanteServicoTest {
             Estudante estudanteDuplicado = this.estudante;
             this.estudante = EstudanteServico.inserir(this.estudante);
             estudanteDuplicado.setEmail("teste.telefone@teste.com");
-            estudanteDuplicado.setTelefone("44 9 9999-9997");
+            estudanteDuplicado.setTelefone("(44) 9 9999-9997");
             EstudanteServico.inserir(estudanteDuplicado);
         });
         assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO, estudanteException.getMessage());
@@ -391,7 +391,7 @@ public class EstudanteServicoTest {
         this.estudanteAtualizacao.setNome("Estudante");
         this.estudanteAtualizacao.setSobrenome("Teste");
         this.estudanteAtualizacao.setEmail("teste.atualizacao@teste.com");
-        this.estudanteAtualizacao.setTelefone("44 9 9999-9998");
+        this.estudanteAtualizacao.setTelefone("(44) 9 9999-9998");
         this.estudanteAtualizacao.setRa("20232323233");
         this.estudanteAtualizacao.setSenha("123456");
         this.estudanteAtualizacao.setCurso(curso);

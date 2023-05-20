@@ -231,7 +231,7 @@ public class CursoServicoTest {
         estudante.setNome("Estudante");
         estudante.setSobrenome("Teste");
         estudante.setEmail("teste@teste.com");
-        estudante.setTelefone("44 9 9999-9999");
+        estudante.setTelefone("(44) 9 9999-9999");
         estudante.setRa("2023232323");
         estudante.setSenha("123456");
         estudante.setCurso(curso);
