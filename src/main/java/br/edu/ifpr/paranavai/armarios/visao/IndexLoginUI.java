@@ -243,7 +243,8 @@ public class IndexLoginUI extends javax.swing.JFrame {
                 });
             } else if (controle.verificaAluno(email, senha).equals("Sucesso no login!")) {
                 System.out.println("Quero devolver");
-                
+                passFieldSenha.setText("");
+                txtFieldEmail.setText("");
                 System.setProperty("email", email);
                 java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -263,6 +264,8 @@ public class IndexLoginUI extends javax.swing.JFrame {
         } else if (controle.verificaAdm(email, senha).equals("Senha inválida!")) {
             lblResposta.setText("Senha inválida!");
         } else if (controle.verificaAdm(email, senha).equals("Sucesso no login!")) {
+            passFieldSenha.setText("");
+            txtFieldEmail.setText("");
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new ServidorControleUI().setVisible(true);
