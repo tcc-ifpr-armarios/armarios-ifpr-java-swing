@@ -26,8 +26,6 @@ public class Historico {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_reserva", unique = true, nullable = false) 
     private Integer id;
-    
-    
    
     @Column (name = "numero", nullable = false) 
     private int numero;
@@ -36,11 +34,11 @@ public class Historico {
     private int localId;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column (name = "dataHoraDevolucao")
-    private Date data_Hora_Devolucao;
+    @Column (name = "data_hora_devolucao")
+    private Date dataHoraDevolucao;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column (name = "data_Hora_Emprestimo")
+    @Column (name = "data_hora_emprestimo")
     private Date dataHoraEmprestimo;
     
     @Column
@@ -53,7 +51,7 @@ public class Historico {
         this.id = id;
         this.numero = numero;
         this.localId = localId;
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
+        this.dataHoraDevolucao = data_Hora_Devolucao;
         this.dataHoraEmprestimo = dataHoraEmprestimo;
         this.ra = ra;
     }
@@ -76,12 +74,12 @@ public class Historico {
         this.numero = numero;
     }
 
-    public Date getData_Hora_Devolucao() {
-        return data_Hora_Devolucao;
+    public Date getDataHoraDevolucao() {
+        return dataHoraDevolucao;
     }
 
-    public void setData_Hora_Devolucao(Date data_Hora_Devolucao) {
-        this.data_Hora_Devolucao = data_Hora_Devolucao;
+    public void setDataHoraDevolucao(Date dataHoraDevolucao) {
+        this.dataHoraDevolucao = dataHoraDevolucao;
     }
 
     public Date getDataHoraEmprestimo() {
@@ -107,7 +105,4 @@ public class Historico {
     public void setLocalId(int localId) {
         this.localId = localId;
     }
-    
-    
-    
 }

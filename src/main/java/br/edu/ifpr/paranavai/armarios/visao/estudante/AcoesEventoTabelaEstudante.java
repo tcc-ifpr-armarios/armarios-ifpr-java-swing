@@ -59,11 +59,10 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         IndexEstudanteUI indexEstudanteUI = (IndexEstudanteUI) SwingUtilities.getWindowAncestor(tabela);
 
-        Estudante curso = EstudanteControle.buscarPorId(identificador);
+        Estudante estudante = EstudanteControle.buscarPorId(identificador);
 
-        CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(indexEstudanteUI, curso);
+        VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(indexEstudanteUI, estudante);
 
-        form.setLocationRelativeTo(indexEstudanteUI);
         form.setVisible(true);
 
     }

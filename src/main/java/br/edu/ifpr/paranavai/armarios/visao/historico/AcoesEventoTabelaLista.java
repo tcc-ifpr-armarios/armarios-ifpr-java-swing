@@ -2,9 +2,11 @@ package br.edu.ifpr.paranavai.armarios.visao.historico;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.utils.CarregarAluno;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.VisualizarEstudanteModalUI;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -14,16 +16,15 @@ public class AcoesEventoTabelaLista implements AcoesEventoTabela {
 
     @Override
     public void aoVisualizar(JTable tabela, int linha) {
-        System.out.println(tabela.getValueAt(linha, 4));
         String identificador = (String) tabela.getValueAt(linha, 4);
-        System.out.println(identificador);
 
         Estudante estudante = EstudanteServico.buscarPorRa(identificador);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CarregarAluno(estudante).setVisible(true);
-            }
-        });
+
+        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(tabela);
+
+        VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(parent, estudante);
+
+        form.setVisible(true);
 
     }
 

@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.utils.CarregarAluno;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
 
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
@@ -67,7 +66,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         lblrespostacad = new javax.swing.JLabel();
         telefoneAluno = new javax.swing.JFormattedTextField();
         senhaAluno = new javax.swing.JPasswordField();
-        jToggleButton1 = new javax.swing.JToggleButton();
 
         jLabel6.setText("jLabel2");
 
@@ -289,13 +287,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout alunosLayout = new javax.swing.GroupLayout(alunos);
         alunos.setLayout(alunosLayout);
         alunosLayout.setHorizontalGroup(
@@ -329,11 +320,7 @@ public class ServidorControleUI extends javax.swing.JFrame {
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addGroup(alunosLayout.createSequentialGroup()
-                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(lblrespostacad, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alunosLayout.createSequentialGroup()
                         .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botaoAlunosCadastrados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -370,11 +357,9 @@ public class ServidorControleUI extends javax.swing.JFrame {
                 .addGroup(alunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(alunosLayout.createSequentialGroup()
                         .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -633,14 +618,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnLocalizacoesActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CarregarAluno(EstudanteServico.buscarPorId(1)).setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     /**
      *
      * @param args
@@ -700,7 +677,6 @@ public class ServidorControleUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblrespostacad;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JTextField raAluno;

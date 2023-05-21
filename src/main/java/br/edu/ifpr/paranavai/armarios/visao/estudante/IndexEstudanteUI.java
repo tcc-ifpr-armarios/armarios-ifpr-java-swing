@@ -246,14 +246,14 @@ public class IndexEstudanteUI extends javax.swing.JFrame {
         radioRa.setSelected(false);
     }//GEN-LAST:event_radioNomeActionPerformed
 
-    /* public static void main(String args[]) {
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IndexEstudanteUI().setVisible(true);
             }
         });
 
-    }*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

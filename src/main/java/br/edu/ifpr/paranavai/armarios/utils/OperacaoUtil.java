@@ -1,5 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,5 +31,11 @@ public class OperacaoUtil {
         Matcher matcher = pattern.matcher(telefone);
 
         return matcher.matches();
+    }
+
+    public static String formatarDataHora(LocalDateTime dataCriacao) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+        return dataCriacao.format(formatter);
     }
 }

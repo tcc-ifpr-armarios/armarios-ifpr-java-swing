@@ -164,7 +164,7 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
         Historico historico = new Historico();
-        historico.setData_Hora_Devolucao(dataAgora);
+        historico.setDataHoraDevolucao(dataAgora);
         historico.setDataHoraEmprestimo(reserva.getDataHoraEmprestimo());
         historico.setNumero(reserva.getNumero());
         historico.setRa(estudante.getRa());
