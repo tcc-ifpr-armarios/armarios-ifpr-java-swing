@@ -8,7 +8,6 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.Arrays;
 import javax.swing.JPanel;
 import org.apache.logging.log4j.core.config.Configurator;
 
@@ -220,7 +219,8 @@ public class IndexLoginUI extends javax.swing.JFrame {
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
         try {
             String email = this.txtEmail.getText();
-            String senha = Arrays.toString(this.txtSenha.getPassword());
+            char[] caracteresSenha = this.txtSenha.getPassword();
+            String senha = new String(caracteresSenha);
             Bibliotecario bibliotecario = LoginServico.verificaAdm(email, senha);
             lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
             txtSenha.setText("");
@@ -228,6 +228,8 @@ public class IndexLoginUI extends javax.swing.JFrame {
             System.setProperty("email", bibliotecario.getEmail());
             ServidorControleUI servidorControleUI = new ServidorControleUI();
             servidorControleUI.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
         } catch (LoginException e) {
             lblResposta.setText(e.getMessage());
         }
