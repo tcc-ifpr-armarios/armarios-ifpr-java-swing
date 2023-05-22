@@ -220,8 +220,11 @@ public class IndexLoginUI extends javax.swing.JFrame {
             txtSenha.setText("");
             txtEmail.setText("");
             System.setProperty("email", bibliotecario.getEmail());
-            PainelDeControleUI servidorControleUI = new PainelDeControleUI();
-            servidorControleUI.setVisible(true);
+            
+            
+            
+            NovoPainelDeControle painelControleUI = new NovoPainelDeControle(bibliotecario);
+            painelControleUI.setVisible(true);
             this.setVisible(false);
             this.dispose();
         } catch (LoginException e) {

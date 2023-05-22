@@ -13,12 +13,12 @@ import java.awt.Color;
  *
  * @author suporte
  */
-public class PainelDeControleUI extends javax.swing.JFrame {
+public class PainelDeControleUI_old extends javax.swing.JFrame {
 
     /**
      * Creates new form ServidorControle
      */
-    public PainelDeControleUI() {
+    public PainelDeControleUI_old() {
         initComponents();
         setLocationRelativeTo(this);
     }
