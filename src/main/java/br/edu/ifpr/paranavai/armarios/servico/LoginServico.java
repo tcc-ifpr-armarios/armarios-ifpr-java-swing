@@ -1,40 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Login;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
- *
- *
- * @author Aluno
+ * @author prof Marcelo Figueiredo Terenciani
+ * @author Allan Fernando O de Andrade
  */
 public class LoginServico {
 
-    public static String verificaAdm(String email, String senha) {
-        String retorno = null;
-
-        Bibliotecario login = BibliotecarioServico.buscarPorEmail(email);
-
-        if (login == null) {
-            return "Cadastro não encontrado. Tente novamente!";
-        } else {
-            if (login.getNome() == null) {
-                return "Cadastro não encontrado. Tente novamente!";
-            } else if (login.getSenha().equals(senha)) {
-                retorno = "Sucesso no login!";
-
-            } else {
-                retorno = "Senha inválida!";
-            }
-
-            return retorno;
+    public static Bibliotecario verificaAdm(String emailOuSiape, String senha) throws LoginException {
+        Bibliotecario bibliotecario = BibliotecarioServico.buscarPorEmailOuSiape(emailOuSiape);
+        if (bibliotecario == null) {
+            throw new LoginException(MensagemUtil.LOGIN_CADASTRO_INEXISTENTE);
+        } else if (!bibliotecario.getSenha().equals(senha)) {
+            throw new LoginException(MensagemUtil.LOGIN_SENHA_INCORRETA);
         }
+        return bibliotecario;
     }
 
     public static String verificaAluno(String email, String senha) {
@@ -49,16 +35,16 @@ public class LoginServico {
                 if (log.getSenha().equals(senha)) {
                     logado.setEstudante(log);
                     if (ReservaServico.buscarPorAlunoUnico(log.getId()) != null) {
-                    // Aqui chamamos a tela de devolução
-                    return "Sucesso no login!";
+                        // Aqui chamamos a tela de devolução
+                        return "Sucesso no login!";
                     } else {
-                    //Tela de emprestimo
-                    return "Sucesso no login!!";
+                        //Tela de emprestimo
+                        return "Sucesso no login!!";
                     }
+                }
+                return "Senha inválida!";
             }
-            return "Senha inválida!";
+
         }
-        
     }
-}
 }

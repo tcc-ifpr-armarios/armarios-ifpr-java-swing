@@ -4,7 +4,7 @@
  */
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.HistoricoImpl;
+import br.edu.ifpr.paranavai.armarios.dao.impl.HistoricoImpl;
 import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import java.util.List;
 import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;

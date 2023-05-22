@@ -5,7 +5,7 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDao;
-import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoImpl;
+import br.edu.ifpr.paranavai.armarios.dao.impl.LocalizacaoImpl;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 
 import java.util.List;
