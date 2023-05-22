@@ -4,7 +4,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 
 /**
@@ -41,7 +41,7 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     }
     
     public void init(){
-        listaDeArmarios = ReservaServico.buscarAtivoPorLocalizacao(localId, true);
+        listaDeArmarios = EmprestimoServico.buscarAtivoPorLocalizacao(localId, true);
         populaTabela(listaDeArmarios);
     }
 

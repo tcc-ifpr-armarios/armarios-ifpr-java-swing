@@ -352,8 +352,10 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante.setCurso(curso);
         this.estudante.setAtivo(ckbAtivo.isSelected());
 
-        if (!Arrays.toString(txtSenhaEstudante.getPassword()).equals(this.estudante.getSenha())) {
-            this.estudante.setSenha(Arrays.toString(txtSenhaEstudante.getPassword()));
+        char[] caracteresSenha = this.txtSenhaEstudante.getPassword();
+        String senha = new String(caracteresSenha);
+        if (!senha.equals(this.estudante.getSenha())) {
+            this.estudante.setSenha(senha);
         }
 
         if (estaAtualizando)

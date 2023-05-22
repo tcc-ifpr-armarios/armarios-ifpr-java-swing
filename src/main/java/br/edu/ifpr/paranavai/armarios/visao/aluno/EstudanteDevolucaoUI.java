@@ -10,7 +10,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,17 +20,17 @@ import javax.swing.JOptionPane;
  *
  * @author Allan Fernando O de Andrade
  */
-public class AlunoDevolucaoUI extends javax.swing.JFrame {
+public class EstudanteDevolucaoUI extends javax.swing.JFrame {
    
     
     Date dataAgora = new Date();
     Estudante estudante = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-    Reserva reserva = ReservaServico.buscarPorAlunoUnico(estudante.getId());
+    Reserva reserva = EmprestimoServico.buscarPorAlunoUnico(estudante.getId());
     
     /**
      * Creates new form Tela
      */
-    public AlunoDevolucaoUI() {
+    public EstudanteDevolucaoUI() {
         initComponents();
         setLocationRelativeTo(null);
         
@@ -65,10 +65,8 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 296));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Devolução", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Devolução", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12))); // NOI18N
 
-        btn_devolucao.setBackground(new java.awt.Color(255, 255, 255));
-        btn_devolucao.setForeground(new java.awt.Color(0, 0, 0));
         btn_devolucao.setText("Devolver");
         btn_devolucao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,8 +74,6 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton2.setText("Sair");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +82,9 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
         });
 
         mensagem.setBackground(new java.awt.Color(255, 255, 255));
-        mensagem.setForeground(new java.awt.Color(0, 0, 0));
         mensagem.setText("...");
 
         dados.setBackground(new java.awt.Color(255, 255, 255));
-        dados.setForeground(new java.awt.Color(0, 0, 0));
         dados.setText("...");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -181,13 +175,13 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
         
         
         // exclui a utilizada
-        ReservaServico.excluir(reserva);
+        EmprestimoServico.excluir(reserva);
         try {
-            ReservaServico.inserir(reservaAux);
+            EmprestimoServico.inserir(reservaAux);
             System.out.println("Armário redisponibilizado com sucesso!");
             
         } catch (ArmarioException ex) {
-            Logger.getLogger(AlunoDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erro: Não foi possível redisponibilizar o armário" );
         }
         dispose();
@@ -232,14 +226,18 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlunoDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlunoDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlunoDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlunoDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -248,7 +246,7 @@ public class AlunoDevolucaoUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlunoDevolucaoUI().setVisible(true);
+                new EstudanteDevolucaoUI().setVisible(true);
             }
         });
     }

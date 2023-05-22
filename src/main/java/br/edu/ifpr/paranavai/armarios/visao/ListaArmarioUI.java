@@ -7,7 +7,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -34,7 +34,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         //List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodos();
         //populaTabelaSaguao(armariosSaguao);
 
-        List<Reserva> armarioBiblioteca = ReservaServico.buscarTodos();
+        List<Reserva> armarioBiblioteca = EmprestimoServico.buscarTodos();
         populaTabela(armarioBiblioteca);
 
         
@@ -327,8 +327,8 @@ public class ListaArmarioUI extends javax.swing.JFrame {
         int codigo = (int) tableBiblioteca.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 1);
         if(status.equals("Disponível")){
-            ReservaServico.apagaPorNumero(codigo);
-            List<Reserva> armarioBiblioteca = ReservaServico.buscarTodos();
+            EmprestimoServico.apagaPorNumero(codigo);
+            List<Reserva> armarioBiblioteca = EmprestimoServico.buscarTodos();
             populaTabela(armarioBiblioteca);
             
         } else {

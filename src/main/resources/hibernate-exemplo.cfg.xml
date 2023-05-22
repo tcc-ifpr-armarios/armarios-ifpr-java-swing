@@ -32,7 +32,6 @@
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Historico" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Localizacao" />
-        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Login" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Reserva" />
 

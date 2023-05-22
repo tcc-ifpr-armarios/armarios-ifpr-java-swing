@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifpr.paranavai.armarios.dao;
+package br.edu.ifpr.paranavai.armarios.dao.impl;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
+import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDao;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import java.util.ArrayList;
 import org.hibernate.Session;

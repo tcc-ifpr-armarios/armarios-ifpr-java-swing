@@ -8,7 +8,7 @@ import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.awt.Dialog;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -176,7 +176,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
             reserva.setNumero(convertido);
             reserva.setAtivo(true);
             try {
-               String resposta = ReservaServico.inserir(reserva);
+               String resposta = EmprestimoServico.inserir(reserva);
                 if(resposta.equals("Número de armário já cadastrado") ){
                     lblrespostacad.setText(resposta);
                 } else {
