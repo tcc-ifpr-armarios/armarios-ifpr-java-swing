@@ -5,7 +5,7 @@
 package br.ifpr.paranavai.servico.reservas;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class ReservasServicoTest {
     // Retorna armarios de cada localização
    
         List<Reserva> reservas;
-         reservas = ReservaServico.buscarAtivoPorLocalizacao(1, false);
+         reservas = EmprestimoServico.buscarAtivoPorLocalizacao(1, false);
        
         for(Reserva reserva : reservas){
             System.out.println(reserva.getNumero());

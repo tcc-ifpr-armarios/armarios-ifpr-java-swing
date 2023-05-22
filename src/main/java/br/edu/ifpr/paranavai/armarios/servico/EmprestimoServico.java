@@ -15,7 +15,7 @@ import br.edu.ifpr.paranavai.armarios.dao.ReservaDao;
  *
  * @author suporte
  */
-public class ReservaServico {
+public class EmprestimoServico {
     private static ReservaDao dao = new ReservaImpl();
 
     public static List<Reserva> buscarTodos() {

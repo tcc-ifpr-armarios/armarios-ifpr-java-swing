@@ -1,7 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import javax.swing.JOptionPane;
@@ -29,7 +29,7 @@ public class AcoesEventoTabelaReservasEmArmariosUI implements AcoesEventoTabela 
 
         if (opcao == 0) {
             try {
-                ReservaServico.apagaPorNumeroNaLocalizacao(identificador, idLocal);
+                EmprestimoServico.apagaPorNumeroNaLocalizacao(identificador, idLocal);
                 JOptionPane.showMessageDialog(listaArmariosUI, MensagemUtil.ARMARIO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 e.printStackTrace();

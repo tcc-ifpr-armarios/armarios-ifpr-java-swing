@@ -11,7 +11,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;

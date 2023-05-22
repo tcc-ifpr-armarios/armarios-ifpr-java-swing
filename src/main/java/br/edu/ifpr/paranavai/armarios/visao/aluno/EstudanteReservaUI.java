@@ -11,7 +11,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
-import br.edu.ifpr.paranavai.armarios.servico.ReservaServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Allan Fernando O de Andrade
  */
-public class AlunoReservaUI extends javax.swing.JFrame {
+public class EstudanteReservaUI extends javax.swing.JFrame {
 
     String localSelecionado;
     Reserva reserva = new Reserva();
@@ -34,7 +34,7 @@ public class AlunoReservaUI extends javax.swing.JFrame {
     /**
      * Creates new form Tela
      */
-    public AlunoReservaUI() {
+    public EstudanteReservaUI() {
         initComponents();
         setLocationRelativeTo(this);
 
@@ -70,10 +70,8 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12))); // NOI18N
 
-        confirmaEmprestimo.setBackground(new java.awt.Color(255, 255, 255));
-        confirmaEmprestimo.setForeground(new java.awt.Color(0, 0, 0));
         confirmaEmprestimo.setText("Emprestar");
         confirmaEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +79,6 @@ public class AlunoReservaUI extends javax.swing.JFrame {
             }
         });
 
-        localCombo.setBackground(new java.awt.Color(255, 255, 255));
-        localCombo.setForeground(new java.awt.Color(0, 0, 0));
         localCombo.setSelectedItem(1);
         localCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -106,11 +102,8 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Selecione o Local:");
 
-        numeroCombo.setBackground(new java.awt.Color(255, 255, 255));
-        numeroCombo.setForeground(new java.awt.Color(0, 0, 0));
         numeroCombo.setMaximumRowCount(10);
         numeroCombo.setSelectedItem(localCombo);
         numeroCombo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,11 +118,8 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Selecione o número:");
 
-        sair.setBackground(new java.awt.Color(255, 255, 255));
-        sair.setForeground(new java.awt.Color(0, 0, 0));
         sair.setText("Sair");
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,12 +211,12 @@ public class AlunoReservaUI extends javax.swing.JFrame {
             reserva.setNumero(Integer.parseInt(numeroCombo.getSelectedItem().toString()));
             reserva.setEstudante(alunoLogado);
             reserva.setLocalizacao(local);
-            ReservaServico.apagaPorNumero(Integer.parseInt(numeroCombo.getSelectedItem().toString()));
+            EmprestimoServico.apagaPorNumero(Integer.parseInt(numeroCombo.getSelectedItem().toString()));
           try {
-              ReservaServico.inserir(reserva);
+              EmprestimoServico.inserir(reserva);
               System.out.println("Erro: Empréstimo realizado com sucesso!");
           } catch (ArmarioException ex) {
-              Logger.getLogger(AlunoReservaUI.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(EstudanteReservaUI.class.getName()).log(Level.SEVERE, null, ex);
               System.out.println("Erro: Empréstimo não realizado");
           }
           SwingUtilities.invokeLater(() -> {
@@ -283,7 +273,7 @@ public class AlunoReservaUI extends javax.swing.JFrame {
     
     public void atualizaNumero(String idLocalizacao){
     Localizacao idLocal = LocalizacaoServico.buscarPorNomeExato(idLocalizacao);
-        List<Reserva> reservas = ReservaServico.buscarAtivoPorLocalizacao(idLocal.getId(), true);
+        List<Reserva> reservas = EmprestimoServico.buscarAtivoPorLocalizacao(idLocal.getId(), true);
         try {
            numeroCombo.removeAllItems();
            
@@ -319,14 +309,18 @@ public class AlunoReservaUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlunoReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlunoReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlunoReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlunoReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -335,7 +329,7 @@ public class AlunoReservaUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlunoReservaUI().setVisible(true);
+                new EstudanteReservaUI().setVisible(true);
             }
         });
     }

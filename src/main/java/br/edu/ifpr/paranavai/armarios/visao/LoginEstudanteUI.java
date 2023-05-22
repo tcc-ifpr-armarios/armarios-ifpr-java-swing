@@ -1,26 +1,27 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
-import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.aluno.EstudanteDevolucaoUI;
+import br.edu.ifpr.paranavai.armarios.visao.aluno.EstudanteReservaUI;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
-import org.apache.logging.log4j.core.config.Configurator;
 
 /**
  *
- * @author Allan Fernando O de Andrade
+ * @author Marcelo Figueiredo Terenciani
  */
-public class IndexLoginUI extends javax.swing.JFrame {
+public class LoginEstudanteUI extends javax.swing.JFrame {
 
     /**
      * Creates new form IndexloginUI
      */
-    public IndexLoginUI() {
+    public LoginEstudanteUI() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -47,7 +48,7 @@ public class IndexLoginUI extends javax.swing.JFrame {
         lblTituloSistema = new javax.swing.JLabel();
         painelLogin = new javax.swing.JPanel();
         lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtRa = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JToggleButton();
@@ -77,16 +78,16 @@ public class IndexLoginUI extends javax.swing.JFrame {
         lblEmail.setFont(new java.awt.Font("Source Sans Pro Black", 0, 12)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEmail.setText("E-mail ou SIAPE");
+        lblEmail.setText("Matrícula (RA)");
 
-        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtRa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtEmailMouseClicked(evt);
+                txtRaMouseClicked(evt);
             }
         });
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtRa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
+                txtRaActionPerformed(evt);
             }
         });
 
@@ -107,11 +108,11 @@ public class IndexLoginUI extends javax.swing.JFrame {
         });
 
         btnEntrar.setFont(new java.awt.Font("Source Code Pro Black", 0, 12)); // NOI18N
-        btnEntrar.setText("ENTRAR");
+        btnEntrar.setText("EMPRESTAR / DEVOLVER");
         btnEntrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 0))); // NOI18N
-        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEntrarMouseClicked(evt);
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -119,7 +120,7 @@ public class IndexLoginUI extends javax.swing.JFrame {
         painelLogin.setLayout(painelLoginLayout);
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(txtRa, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(txtSenha)
             .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -130,13 +131,13 @@ public class IndexLoginUI extends javax.swing.JFrame {
             .addGroup(painelLoginLayout.createSequentialGroup()
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEntrar)
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -202,86 +203,87 @@ public class IndexLoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+    private void txtRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRaActionPerformed
         lblResposta.setText("");
-    }//GEN-LAST:event_txtEmailActionPerformed
+    }//GEN-LAST:event_txtRaActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         lblResposta.setText("");
     }//GEN-LAST:event_txtSenhaActionPerformed
-
-    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        try {
-            String email = this.txtEmail.getText();
-            char[] caracteresSenha = this.txtSenha.getPassword();
-            String senha = new String(caracteresSenha);
-            Bibliotecario bibliotecario = LoginServico.verificaAdm(email, senha);
-            lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
-            txtSenha.setText("");
-            txtEmail.setText("");
-            System.setProperty("email", bibliotecario.getEmail());
-            PainelDeControleUI servidorControleUI = new PainelDeControleUI();
-            servidorControleUI.setVisible(true);
-            this.setVisible(false);
-            this.dispose();
-        } catch (LoginException e) {
-            lblResposta.setText(e.getMessage());
-        }
-    }//GEN-LAST:event_btnEntrarMouseClicked
 
     private void txtSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSenhaMouseClicked
         txtSenha.setText("");
         lblResposta.setText("");
     }//GEN-LAST:event_txtSenhaMouseClicked
 
-    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+    private void txtRaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRaMouseClicked
         lblResposta.setText("");
         lblResposta.setText("");
-    }//GEN-LAST:event_txtEmailMouseClicked
+    }//GEN-LAST:event_txtRaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            String ra = this.txtRa.getText();
+            char[] caracteresSenha = this.txtSenha.getPassword();
+            String senha = new String(caracteresSenha);
+            Estudante estudante = LoginServico.verificaEstudante(ra, senha);
+            lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
+            txtSenha.setText("");
+            txtRa.setText("");
+            System.setProperty("email", estudante.getEmail());
+
+            if (EmprestimoServico.buscarPorAlunoUnico(estudante.getId()) == null) {
+                EstudanteReservaUI alunoReservaUI = new EstudanteReservaUI();
+                alunoReservaUI.setVisible(true);
+            } else {
+
+                EstudanteDevolucaoUI estudanteDevolucaoUI = new EstudanteDevolucaoUI();
+                estudanteDevolucaoUI.setVisible(true);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (LoginException e) {
+            lblResposta.setText(e.getMessage());
         }
-        //</editor-fold>
-        //</editor-fold>
-        Configurator.initialize(null, "log4j2.xml");
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
-        try {
-            HibernateUtil.getSession();
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new IndexLoginUI().setVisible(true);
-                }
-
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        Configurator.initialize(null, "log4j2.xml");
+//
+//        try {
+//            HibernateUtil.getSession();
+//            /* Create and display the form */
+//            java.awt.EventQueue.invokeLater(new Runnable() {
+//                public void run() {
+//                    new LoginEstudanteUI().setVisible(true);
+//                }
+//
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEntrar;
@@ -294,7 +296,7 @@ public class IndexLoginUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloSistema;
     private javax.swing.JPanel painelConteúdo;
     private javax.swing.JPanel painelLogin;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtRa;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
