@@ -21,6 +21,12 @@ public class EditorDasAcoesDaCelulaEstudante extends DefaultCellEditor {
         this.indexEstudanteUI = indexEstudanteUI;
         this.evento = evento;
     }
+    
+    public EditorDasAcoesDaCelulaEstudante(AcoesEventoTabela evento, IndexEstudantePanelUI indexEstudantePanelUI) {
+        super(new JCheckBox());
+        this.evento = evento;
+    }
+
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {

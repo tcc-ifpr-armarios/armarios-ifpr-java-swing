@@ -507,7 +507,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         lblDesenvolvidoPor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDesenvolvidoPor.setForeground(new java.awt.Color(102, 102, 102));
         lblDesenvolvidoPor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDesenvolvidoPor.setText("Powered by Students of Estácio TV-Morena");
+        lblDesenvolvidoPor.setText("Desenvolvido por Allan sob supervisão do professor Marcelo F. Terenciani");
 
         lblData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblData.setForeground(new java.awt.Color(8, 166, 97));

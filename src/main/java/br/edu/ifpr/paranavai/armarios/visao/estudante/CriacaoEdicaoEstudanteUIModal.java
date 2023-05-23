@@ -26,6 +26,10 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     private CursoComboBoxModel cursoComboBoxModel;
     private MaskFormatter maskFormatter;
 
+    public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI){
+    
+    }
+    
     public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI) {
         super(indexEstudanteUI, true);
 
