@@ -6,7 +6,7 @@ package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
@@ -157,7 +157,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-        Historico historico = new Historico();
+        Emprestimo historico = new Emprestimo();
         historico.setDataHoraDevolucao(dataAgora);
         historico.setDataHoraEmprestimo(reserva.getDataHoraEmprestimo());
         historico.setNumero(reserva.getNumero());

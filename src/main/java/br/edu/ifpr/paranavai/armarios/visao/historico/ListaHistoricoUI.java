@@ -1,6 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.historico;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -49,10 +49,10 @@ public class ListaHistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Historico> historicos = HistoricoServico.buscarPorLocalizacao(localId);
+        List<Emprestimo> historicos = HistoricoServico.buscarPorLocalizacao(localId);
 
         for (int i = 0; i < historicos.size(); i++) {
-            Historico historico = historicos.get(i);
+            Emprestimo historico = historicos.get(i);
 
             Object[] dadosLinha = new Object[5];
             dadosLinha[0] = historico.getDataHoraEmprestimo();

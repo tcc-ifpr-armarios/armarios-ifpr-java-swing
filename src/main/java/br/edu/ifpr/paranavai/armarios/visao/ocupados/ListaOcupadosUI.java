@@ -4,7 +4,7 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao.ocupados;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -52,17 +52,17 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Reserva> reservas = EmprestimoServico.buscarAtivoPorLocalizacao(localId, false);
+        List<Emprestimo> reservas = EmprestimoServico.buscarAtivoPorLocalizacao(localId, false);
 
         for (int i = 0; i < reservas.size(); i++) {
-            Reserva reserva = reservas.get(i);
+            Armario reserva = reservas.get(i);
 
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = reserva.getDataHoraEmprestimo();
+            // dadosLinha[0] = reserva.getDataHoraEmprestimo();
 
             dadosLinha[1] = reserva.getLocalizacao().getDescricao();
             dadosLinha[2] = reserva.getNumero();
-            dadosLinha[3] = reserva.getEstudante().getRa();
+            // dadosLinha[3] = reserva.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }

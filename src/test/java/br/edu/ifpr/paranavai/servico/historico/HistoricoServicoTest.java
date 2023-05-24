@@ -5,7 +5,7 @@
 package br.edu.ifpr.paranavai.servico.historico;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
 import java.util.List;
@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class HistoricoServicoTest {
     public static void main(String[] args) {
-    List<Historico> reservas = HistoricoServico.buscarPorLocalizacao(1);
-         for(Historico reserva : reservas){
+    List<Emprestimo> reservas = HistoricoServico.buscarPorLocalizacao(1);
+         for(Emprestimo reserva : reservas){
             System.out.println(reserva.getNumero());
             
         }

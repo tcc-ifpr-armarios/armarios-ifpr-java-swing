@@ -5,7 +5,7 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.impl.HistoricoImpl;
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.List;
 import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;
 
@@ -17,19 +17,19 @@ public class HistoricoServico {
     
     private static HistoricoDao dao = new HistoricoImpl();
     
-    public static List<Historico> buscarTodos(){
+    public static List<Emprestimo> buscarTodos(){
         return dao.buscarTodos();
     }
     
-    public static void inserir(Historico historicoBiblioteca) {
+    public static void inserir(Emprestimo historicoBiblioteca) {
         dao.inserir(historicoBiblioteca);
     }
     
-    public static List<Historico> buscarPorAluno(String id) {
+    public static List<Emprestimo> buscarPorAluno(String id) {
         return dao.buscarPorAluno(id);
     }
     
-    public static List<Historico> buscarPorLocalizacao(Integer idLocal) {
+    public static List<Emprestimo> buscarPorLocalizacao(Integer idLocal) {
         return dao.buscarPorLocalizacao(idLocal);
     }
 }

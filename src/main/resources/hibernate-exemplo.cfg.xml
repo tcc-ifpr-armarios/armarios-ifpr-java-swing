@@ -33,7 +33,7 @@
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Historico" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Localizacao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
-        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Reserva" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Armario" />
 
        
         

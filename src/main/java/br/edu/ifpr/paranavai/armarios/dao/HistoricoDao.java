@@ -4,7 +4,7 @@
  */
 package br.edu.ifpr.paranavai.armarios.dao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.List;
 
 /**
@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface HistoricoDao {
 
-    public void inserir(Historico historico);
+    public void inserir(Emprestimo historico);
 
-    public List<Historico> buscarTodos();
+    public List<Emprestimo> buscarTodos();
     
-    public List<Historico> buscarPorAluno(String raAluno);
+    public List<Emprestimo> buscarPorAluno(String raAluno);
     
-    public List<Historico> buscarPorLocalizacao(Integer idLocal);
+    public List<Emprestimo> buscarPorLocalizacao(Integer idLocal);
 }

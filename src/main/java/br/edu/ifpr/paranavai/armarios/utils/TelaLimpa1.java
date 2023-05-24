@@ -6,7 +6,7 @@ package br.edu.ifpr.paranavai.armarios.utils;
 
 
 import br.edu.ifpr.paranavai.armarios.visao.*;
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 

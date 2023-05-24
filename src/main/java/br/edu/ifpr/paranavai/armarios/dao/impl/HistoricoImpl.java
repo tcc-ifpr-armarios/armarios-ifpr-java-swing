@@ -6,7 +6,7 @@ package br.edu.ifpr.paranavai.armarios.dao.impl;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;
-import br.edu.ifpr.paranavai.armarios.modelo.Historico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -26,7 +26,7 @@ public class HistoricoImpl implements HistoricoDao {
     
     
      @Override
-    public void inserir(Historico historico) {
+    public void inserir(Emprestimo historico) {
         try {
             sessao.beginTransaction();
             sessao.persist(historico);
@@ -38,11 +38,11 @@ public class HistoricoImpl implements HistoricoDao {
     
     
     @Override
-    public List<Historico> buscarTodos() {
-        List<Historico> reservas = null;
+    public List<Emprestimo> buscarTodos() {
+        List<Emprestimo> reservas = null;
         try {
             sessao.beginTransaction();
-            reservas = (List<Historico>) this.sessao.createQuery("from Historico").list();
+            reservas = (List<Emprestimo>) this.sessao.createQuery("from Historico").list();
             sessao.getTransaction().commit();
             sessao.clear();
         } catch (Exception e) {
@@ -52,14 +52,14 @@ public class HistoricoImpl implements HistoricoDao {
     }
     
     @Override
-    public List<Historico> buscarPorAluno(String raAluno) {
-        List<Historico> reservas = new ArrayList<>();
+    public List<Emprestimo> buscarPorAluno(String raAluno) {
+        List<Emprestimo> reservas = new ArrayList<>();
         try {
             sessao.beginTransaction();
             Query query =  this.sessao.createQuery("from Historico where ra = :ra");
             query.setParameter("ra", raAluno);
             
-            reservas = (List<Historico>) query.list();
+            reservas = (List<Emprestimo>) query.list();
             sessao.getTransaction().commit();
             sessao.clear();
         } catch (Exception e) {
@@ -69,14 +69,14 @@ public class HistoricoImpl implements HistoricoDao {
     }
     
      @Override
-    public List<Historico> buscarPorLocalizacao(Integer idLocal) {
-        List<Historico> reservas = new ArrayList<>();
+    public List<Emprestimo> buscarPorLocalizacao(Integer idLocal) {
+        List<Emprestimo> reservas = new ArrayList<>();
         try {
             sessao.beginTransaction();
             Query query =  this.sessao.createQuery("from Historico where localId = :localizacao_id");
             query.setParameter("localizacao_id", idLocal);
             
-            reservas = (List<Historico>) query.list();
+            reservas = (List<Emprestimo>) query.list();
             sessao.getTransaction().commit();
             sessao.clear();
         } catch (Exception e) {
