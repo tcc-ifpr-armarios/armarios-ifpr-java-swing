@@ -17,8 +17,8 @@ import javax.swing.JTable;
 public class EditorDasAcoesDaCelulaListaUI extends DefaultCellEditor{
 
     private AcoesEventoTabela evento;
-    private ListaHistoricoUI2 listaHistoricoUI;
-    public EditorDasAcoesDaCelulaListaUI(AcoesEventoTabela evento, ListaHistoricoUI2 listaHistoricoUI) {
+    private ListaHistoricoUI listaHistoricoUI;
+    public EditorDasAcoesDaCelulaListaUI(AcoesEventoTabela evento, ListaHistoricoUI listaHistoricoUI) {
         super(new JCheckBox());
         this.listaHistoricoUI = listaHistoricoUI;
         this.evento = evento;

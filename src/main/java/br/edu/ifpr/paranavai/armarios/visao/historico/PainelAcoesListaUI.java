@@ -21,7 +21,7 @@ public class PainelAcoesListaUI extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void iniciarEventos(ListaHistoricoUI2 listaHistoricoUI, AcoesEventoTabela evento, JTable tabela, int linha){
+    public void iniciarEventos(ListaHistoricoUI listaHistoricoUI, AcoesEventoTabela evento, JTable tabela, int linha){
         
         btnVisualizar.addActionListener(new ActionListener() {
             @Override

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Allan Fernando O de Andrade
  */
-public class ListaHistoricoUI2 extends javax.swing.JFrame {
+public class ListaHistoricoUI extends javax.swing.JFrame {
 
     //int localId =  Integer.parseInt(System.getProperty("localIdHistorico"));
     private int localId;
@@ -20,7 +20,7 @@ public class ListaHistoricoUI2 extends javax.swing.JFrame {
     /**
      * Creates new form ListaArmarioUI
      */
-    public ListaHistoricoUI2(IndexHistoricoUI indexHistoricoUI) {
+    public ListaHistoricoUI(IndexHistoricoUI indexHistoricoUI) {
 
         initComponents();
 
@@ -30,7 +30,7 @@ public class ListaHistoricoUI2 extends javax.swing.JFrame {
     }
     // </editor-fold>
 
-    ListaHistoricoUI2(IndexHistoricoUI indexHistoricoUI, int identificador) {
+    ListaHistoricoUI(IndexHistoricoUI indexHistoricoUI, int identificador) {
         this(indexHistoricoUI);
         this.localId = identificador;
         populaTabela();
