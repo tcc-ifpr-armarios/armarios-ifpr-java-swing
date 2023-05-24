@@ -28,8 +28,8 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     private CursoComboBoxModel cursoComboBoxModel;
     private MaskFormatter maskFormatter;
 
-    public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI){
-        super((JFrame)SwingUtilities.getWindowAncestor(indexEstudantePanelUI), true);
+    public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(indexEstudantePanelUI), true);
 
         try {
             this.maskFormatter = new MaskFormatter("(##) # ####-####");
@@ -49,39 +49,9 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.setTitle("Novo Estudante");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
-    
+
     public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI, Estudante estudante) {
         this(indexEstudantePanelUI);
-        this.estudante = estudante;
-        this.estaAtualizando = true;
-
-        initTextFields(estudante);
-    }
-    
-    public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI) {
-        super(indexEstudanteUI, true);
-
-        try {
-            this.maskFormatter = new MaskFormatter("(##) # ####-####");
-            this.maskFormatter.setPlaceholderCharacter('_');
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        initComponents();
-        //this.indexEstudanteUI = indexEstudanteUI;
-        this.estudante = new Estudante();
-        this.estaAtualizando = false;
-
-        this.cursoComboBoxModel = EstudanteControle.inicializaComboBoxCurso();
-        cbxCursoEstudante.setModel(cursoComboBoxModel);
-
-        this.setTitle("Novo Estudante");
-        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-    }
-
-    public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI, Estudante estudante) {
-        this(indexEstudanteUI);
         this.estudante = estudante;
         this.estaAtualizando = true;
 

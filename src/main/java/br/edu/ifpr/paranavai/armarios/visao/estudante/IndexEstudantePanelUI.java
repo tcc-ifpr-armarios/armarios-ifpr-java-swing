@@ -31,7 +31,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudante.getModel();
         tblEstudante.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaEstudante());
-        tblEstudante.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento, this));
+        tblEstudante.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);

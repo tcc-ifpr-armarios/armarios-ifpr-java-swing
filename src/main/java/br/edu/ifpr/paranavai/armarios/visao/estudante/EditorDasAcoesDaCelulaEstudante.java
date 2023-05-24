@@ -14,25 +14,17 @@ import javax.swing.JTable;
 public class EditorDasAcoesDaCelulaEstudante extends DefaultCellEditor {
 
     private AcoesEventoTabela evento;
-    private IndexEstudanteUI indexEstudanteUI;
 
-    public EditorDasAcoesDaCelulaEstudante(AcoesEventoTabela evento, IndexEstudanteUI indexEstudanteUI) {
-        super(new JCheckBox());
-        this.indexEstudanteUI = indexEstudanteUI;
-        this.evento = evento;
-    }
-    
-    public EditorDasAcoesDaCelulaEstudante(AcoesEventoTabela evento, IndexEstudantePanelUI indexEstudantePanelUI) {
+    public EditorDasAcoesDaCelulaEstudante(AcoesEventoTabela evento) {
         super(new JCheckBox());
         this.evento = evento;
     }
-
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         PainelAcoesEstudanteUI acoes = new PainelAcoesEstudanteUI();
 
-        acoes.iniciarEventos(indexEstudanteUI, evento, table, row);
+        acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());
 
         return acoes;

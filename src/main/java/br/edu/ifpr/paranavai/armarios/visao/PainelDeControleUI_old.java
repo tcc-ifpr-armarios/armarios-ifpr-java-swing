@@ -3,7 +3,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
 
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
-import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudanteUI;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.historico.IndexHistoricoUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import br.edu.ifpr.paranavai.armarios.visao.ocupados.IndexOcupadosUI;
@@ -281,7 +281,7 @@ public class PainelDeControleUI_old extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestaoEstudantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestaoEstudantesActionPerformed
-        IndexEstudanteUI indexEstudanteUI = new IndexEstudanteUI();
+        IndexEstudantePanelUI indexEstudanteUI = new IndexEstudantePanelUI();
         indexEstudanteUI.setVisible(true);
 
     }//GEN-LAST:event_btnGestaoEstudantesActionPerformed

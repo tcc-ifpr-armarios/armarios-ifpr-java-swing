@@ -20,7 +20,7 @@ public class PainelAcoesEstudanteUI extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void iniciarEventos(IndexEstudanteUI indexEstudanteUI, AcoesEventoTabela evento, JTable tabela, int linha) {
+    public void iniciarEventos(AcoesEventoTabela evento, JTable tabela, int linha) {
         btnEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
