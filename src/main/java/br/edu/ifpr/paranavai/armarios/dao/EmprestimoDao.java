@@ -1,8 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import java.util.List;
 
 /**
@@ -11,11 +10,11 @@ import java.util.List;
  */
 public interface EmprestimoDao {
 
-    public void inserir(Emprestimo emprestimo);
+    public Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException;
 
     public List<Emprestimo> buscarTodos();
 
-    public List<Emprestimo> buscarPorEstudante(Estudante estudante);
+    public List<Emprestimo> buscarPorRaDoEstudante(String ra);
 
-    public List<Emprestimo> buscarPorLocalizacao(Localizacao localizacao);
+    public List<Emprestimo> buscarPorIdLocalizacao(Integer id_localizacao);
 }

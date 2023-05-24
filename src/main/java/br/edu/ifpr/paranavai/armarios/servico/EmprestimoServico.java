@@ -4,7 +4,7 @@
  */
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.impl.ReservaImpl;
+import br.edu.ifpr.paranavai.armarios.dao.impl.ArmarioDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
@@ -16,7 +16,7 @@ import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
  * @author suporte
  */
 public class EmprestimoServico {
-    private static ArmarioDao dao = new ReservaImpl();
+    private static ArmarioDao dao = new ArmarioDaoImpl();
 
     public static List<Reserva> buscarTodos() {
         return dao.buscarTodos();

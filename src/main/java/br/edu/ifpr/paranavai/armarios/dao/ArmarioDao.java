@@ -1,8 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import java.util.List;
 
 /**
@@ -17,17 +16,13 @@ public interface ArmarioDao {
 
     public Armario buscarPorId(Integer inteiro);
 
-    public void atualizar(Armario armario);
+    public Armario atualizar(Armario armario) throws ArmarioException;
 
-    public void excluir(Armario armario);
+    public void excluir(Armario armario) throws ArmarioException;
 
-    public void inserir(Armario armario);
+    public Armario inserir(Armario armario) throws ArmarioException;
 
-    public List<Armario> buscarPorEstudante(Estudante estudante);
+    public List<Armario> buscarTodosPorIdLocalizacao(Integer idLocalizacao);
 
-    public List<Armario> buscarPorLocalizacao(Localizacao localizacao);
-
-    public Armario buscarArmarioPorLocalizacao(Localizacao localizacao, String numero);
-
-    public List<Armario> buscarAtivoPorLocalizacao(Localizacao localizacao);
+    public List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao);
 }
