@@ -1,6 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -615,9 +617,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCursoMousePressed
 
     private void btnEstudantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstudantesMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Gerenciamento de Vendas", new VendaPrincipal());
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_ESTUDANTE, new IndexEstudantePanelUI());
     }//GEN-LAST:event_btnEstudantesMousePressed
 
     private void btnArmariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArmariosMousePressed
@@ -759,6 +761,48 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             Calendar now = Calendar.getInstance();
             lblHora.setText(String.format("%1$tH:%1$tM:%1$tS", now));
+        }
+
+    }
+    
+     /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        try {
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new NovoPainelDeControle(new Bibliotecario()).setVisible(true);
+                }
+
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

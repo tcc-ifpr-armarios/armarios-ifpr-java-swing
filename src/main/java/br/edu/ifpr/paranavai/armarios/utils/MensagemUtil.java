@@ -11,6 +11,7 @@ public class MensagemUtil {
     public static final String TITULO_ATENCAO = "Atenção!";
     public static final String TITULO_INFORMACAO = "Informação";
     public static final String TITULO_SISTEMA = "Armários IFPR - PVAÍ";
+    public static final String TITULO_AREA_ESTUDANTE = "Gerenciamento de Estudantes";
 
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";
@@ -71,4 +72,5 @@ public class MensagemUtil {
     public static final String BIBLIOTECARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo bibliotecario";
     public static final String BIBLIOTECARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o bibliotecario";;
     public static final String BIBLIOTECARIO_EXCLUSAO_ERRO_PADRAO ="Erro não identificado ao excluir o bibliotecario";
+    
 }

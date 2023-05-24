@@ -11,7 +11,9 @@ import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.util.Arrays;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -22,12 +24,38 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
     private Estudante estudante;
     private boolean estaAtualizando;
-    private IndexEstudanteUI indexEstudanteUI;
+    private IndexEstudantePanelUI indexEstudantePanelUI;
     private CursoComboBoxModel cursoComboBoxModel;
     private MaskFormatter maskFormatter;
 
     public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI){
+        super((JFrame)SwingUtilities.getWindowAncestor(indexEstudantePanelUI), true);
+
+        try {
+            this.maskFormatter = new MaskFormatter("(##) # ####-####");
+            this.maskFormatter.setPlaceholderCharacter('_');
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        initComponents();
+        this.indexEstudantePanelUI = indexEstudantePanelUI;
+        this.estudante = new Estudante();
+        this.estaAtualizando = false;
+
+        this.cursoComboBoxModel = EstudanteControle.inicializaComboBoxCurso();
+        cbxCursoEstudante.setModel(cursoComboBoxModel);
+
+        this.setTitle("Novo Estudante");
+        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+    }
     
+    public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI, Estudante estudante) {
+        this(indexEstudantePanelUI);
+        this.estudante = estudante;
+        this.estaAtualizando = true;
+
+        initTextFields(estudante);
     }
     
     public CriacaoEdicaoEstudanteUIModal(IndexEstudanteUI indexEstudanteUI) {
@@ -41,7 +69,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         }
 
         initComponents();
-        this.indexEstudanteUI = indexEstudanteUI;
+        //this.indexEstudanteUI = indexEstudanteUI;
         this.estudante = new Estudante();
         this.estaAtualizando = false;
 
@@ -412,7 +440,8 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         } catch (EstudanteException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -424,13 +453,14 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         } catch (EstudanteException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void fecharFormulario() {
+        this.indexEstudantePanelUI.init();
         this.dispose();
-        this.indexEstudanteUI.init();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -77,9 +77,9 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEstudante = new javax.swing.JTable();
 
-        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
-        setLayout(new java.awt.GridLayout());
+        setLayout(new java.awt.GridLayout(1, 0));
 
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));

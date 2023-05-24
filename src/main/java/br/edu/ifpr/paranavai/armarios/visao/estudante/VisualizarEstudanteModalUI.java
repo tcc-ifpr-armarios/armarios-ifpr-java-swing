@@ -5,7 +5,11 @@ import br.edu.ifpr.paranavai.armarios.modelo.Historico;
 import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JPanel;
+
 
 public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
 
@@ -20,7 +24,14 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         this.setLocationRelativeTo(parent);
     }
     
-    public void preencheDados(Estudante estudante) {
+    public VisualizarEstudanteModalUI(JPanel parent, Estudante estudante) {
+        super((JFrame)SwingUtilities.getWindowAncestor(parent), true);
+        initComponents();
+        preencheDados(estudante);
+        populaTabela(estudante.getRa());
+    }
+    
+    private void preencheDados(Estudante estudante) {
         campoNome.setText(estudante.getNome());
         campoCurso.setText(estudante.getCurso().getNome());
         campoEmail.setText(estudante.getEmail());
