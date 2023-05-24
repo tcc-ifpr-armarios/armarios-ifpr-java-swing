@@ -15,7 +15,7 @@ public class AcoesEventoTabelaHistorico implements AcoesEventoTabela {
         int identificador = (int) tabela.getValueAt(linha, 0);
         System.out.println(identificador);
         IndexHistoricoUI indexHistoricoUI = (IndexHistoricoUI) SwingUtilities.getWindowAncestor(tabela);
-        ListaHistoricoUI historicos = new ListaHistoricoUI(indexHistoricoUI, identificador);
+        ListaHistoricoUI2 historicos = new ListaHistoricoUI2(indexHistoricoUI, identificador);
         historicos.setVisible(true);
         /* String passa =  String.valueOf(identificador);
         System.setProperty("localIdHistorico", passa);
