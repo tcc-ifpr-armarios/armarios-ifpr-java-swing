@@ -5,14 +5,14 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.dao.ReservaDao;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import java.util.List;
 import org.hibernate.query.Query;
+import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 
-public class ReservaImpl implements ReservaDao {
+public class ReservaImpl implements ArmarioDao {
 
     private Session sessao;
 

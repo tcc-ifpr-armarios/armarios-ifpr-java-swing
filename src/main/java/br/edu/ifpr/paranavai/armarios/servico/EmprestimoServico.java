@@ -9,14 +9,14 @@ import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.ReservaDao;
+import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 
 /**
  *
  * @author suporte
  */
 public class EmprestimoServico {
-    private static ReservaDao dao = new ReservaImpl();
+    private static ArmarioDao dao = new ReservaImpl();
 
     public static List<Reserva> buscarTodos() {
         return dao.buscarTodos();

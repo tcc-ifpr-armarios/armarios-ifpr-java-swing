@@ -5,18 +5,18 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 
 /**
  *
  * @author suporte
  */
-public class HistoricoImpl implements HistoricoDao {
+public class HistoricoImpl implements EmprestimoDao {
     
     private Session sessao;
     

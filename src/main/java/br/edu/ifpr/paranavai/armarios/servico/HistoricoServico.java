@@ -7,7 +7,7 @@ package br.edu.ifpr.paranavai.armarios.servico;
 import br.edu.ifpr.paranavai.armarios.dao.impl.HistoricoImpl;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;
+import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 
 /**
  *
@@ -15,7 +15,7 @@ import br.edu.ifpr.paranavai.armarios.dao.HistoricoDao;
  */
 public class HistoricoServico {
     
-    private static HistoricoDao dao = new HistoricoImpl();
+    private static EmprestimoDao dao = new HistoricoImpl();
     
     public static List<Emprestimo> buscarTodos(){
         return dao.buscarTodos();
