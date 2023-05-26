@@ -62,8 +62,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblAtivo" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="lblTitulo" alignment="0" pref="342" max="32767" attributes="0"/>
-                              <Component id="txtNomeLocalizacao" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblNomeLocalizacao" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDescricaoLocalizacao" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblDescricaoLocalizacao" alignment="0" max="32767" attributes="0"/>
                               <Component id="ckbAtivo" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -84,9 +84,9 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblTitulo" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblNomeLocalizacao" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDescricaoLocalizacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Component id="txtNomeLocalizacao" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDescricaoLocalizacao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblAtivo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -111,11 +111,11 @@
             <Property name="text" type="java.lang.String" value="Nova localiza&#xe7;&#xe3;o de arm&#xe1;rios"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNomeLocalizacao">
+        <Component class="javax.swing.JTextField" name="txtDescricaoLocalizacao">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblNomeLocalizacao">
+        <Component class="javax.swing.JLabel" name="lblDescricaoLocalizacao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome da localiza&#xe7;&#xe3;o *:"/>
+            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o curta da localiza&#xe7;&#xe3;o *:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAtivo">

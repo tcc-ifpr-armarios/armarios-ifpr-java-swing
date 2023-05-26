@@ -2,8 +2,9 @@ package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -626,13 +627,13 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private void btnArmariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArmariosMousePressed
         resetColor((JPanel) painelAtivo);
         painelAtivo = evt.getSource();
-        updatePanelDinamic(MensagemUtil.TITULO_AREA_ARMARIO, new IndexArmariosPanelUI());
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_ARMARIO, new IndexArmarioPanelUI());
     }//GEN-LAST:event_btnArmariosMousePressed
 
     private void btnLocalizacaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLocalizacaoMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Gerenciamento de Clientes", new ClientePrincipal());
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_LOCALIZACAO, new IndexLocalizacaoPanelUI());
     }//GEN-LAST:event_btnLocalizacaoMousePressed
 
     private void btnAdministradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorMousePressed
@@ -765,8 +766,8 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         }
 
     }
-    
-     /**
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {

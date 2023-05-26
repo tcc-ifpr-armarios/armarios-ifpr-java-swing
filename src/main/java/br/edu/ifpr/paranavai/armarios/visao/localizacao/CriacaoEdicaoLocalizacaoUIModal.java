@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.localizacao;
 
-
 import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
-
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.awt.Color;
 import java.awt.Dialog;
-import java.awt.HeadlessException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,48 +17,33 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
 
     private Localizacao localizacao;
     private boolean estaAtualizando;
-    private IndexLocalizacaoUI indexLocalizacaoUI;
-    /**
-     * Creates new form CriacaoEdicaoLocalizacaoUIModal
-     */
-    
-    public CriacaoEdicaoLocalizacaoUIModal(IndexLocalizacaoUI indexLocalizacaoUI) {
-        super(indexLocalizacaoUI, true);
+    private IndexLocalizacaoPanelUI indexLocalizacaoPanelUI;
+
+    public CriacaoEdicaoLocalizacaoUIModal(IndexLocalizacaoPanelUI indexLocalizacaoPanelUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(indexLocalizacaoPanelUI), true);
         initComponents();
-        this.indexLocalizacaoUI = indexLocalizacaoUI;
+        this.indexLocalizacaoPanelUI = indexLocalizacaoPanelUI;
         this.localizacao = new Localizacao();
         this.estaAtualizando = false;
-        this.setTitle("Nova localização de armários");
+        this.setTitle("Nova Localização de Armários");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
 
-    public CriacaoEdicaoLocalizacaoUIModal(IndexLocalizacaoUI indexLocalizacaoUI, Localizacao localizacao, boolean estaAtualizando) {
-        super(indexLocalizacaoUI, true);
-        initComponents();
+    public CriacaoEdicaoLocalizacaoUIModal(IndexLocalizacaoPanelUI indexLocalizacaoPanelUI, Localizacao localizacao) {
+        this(indexLocalizacaoPanelUI);
         this.localizacao = localizacao;
-        this.indexLocalizacaoUI = indexLocalizacaoUI;
-        this.estaAtualizando = estaAtualizando;
+        this.estaAtualizando = true;
 
-        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        
-        String titulo = estaAtualizando ? "Edição da localização " : "Dados da localização ";
-        
+        initTextFields(localizacao);
+
+    }
+
+    private void initTextFields(Localizacao localizacao) {
+        String titulo = "Edição da localização ";
         lblTitulo.setText(titulo + localizacao.getId());
         this.setTitle(titulo + localizacao.getId());
-        txtNomeLocalizacao.setText(localizacao.getDescricao());
+        txtDescricaoLocalizacao.setText(localizacao.getDescricao());
         ckbAtivo.setSelected(localizacao.isAtivo());
-        
-        if(!estaAtualizando)
-            desabilitarComponentes();
-    }
-
-    private void desabilitarComponentes() {
-        btnCancelar.setVisible(false);
-        btnSalvar.setVisible(false);
-        panelGeral.setEnabled(false);
-        txtNomeLocalizacao.setEnabled(false);
-        txtNomeLocalizacao.setDisabledTextColor(Color.BLACK);
-        ckbAtivo.setEnabled(false);
     }
 
     /**
@@ -78,8 +57,8 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
 
         panelGeral = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        txtNomeLocalizacao = new javax.swing.JTextField();
-        lblNomeLocalizacao = new javax.swing.JLabel();
+        txtDescricaoLocalizacao = new javax.swing.JTextField();
+        lblDescricaoLocalizacao = new javax.swing.JLabel();
         lblAtivo = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
@@ -100,7 +79,7 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Nova localização de armários");
 
-        lblNomeLocalizacao.setText("Nome da localização *:");
+        lblDescricaoLocalizacao.setText("Descrição curta da localização *:");
 
         lblAtivo.setText("Ativo?");
 
@@ -137,8 +116,8 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
                         .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(txtNomeLocalizacao)
-                            .addComponent(lblNomeLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDescricaoLocalizacao)
+                            .addComponent(lblDescricaoLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ckbAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelGeralLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
@@ -153,9 +132,9 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(lblNomeLocalizacao)
+                .addComponent(lblDescricaoLocalizacao)
                 .addGap(5, 5, 5)
-                .addComponent(txtNomeLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDescricaoLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(lblAtivo)
                 .addGap(5, 5, 5)
@@ -177,28 +156,28 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
     }//GEN-LAST:event_ckbAtivoItemStateChanged
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        this.localizacao.setDescricao(txtNomeLocalizacao.getText());
+        this.localizacao.setDescricao(txtDescricaoLocalizacao.getText());
         this.localizacao.setAtivo(ckbAtivo.isSelected());
 
         if (estaAtualizando)
-        atualizar();
+            atualizar();
         else
-        salvar();
+            salvar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-        private void salvar() throws HeadlessException {
+    private void salvar() {
         try {
             LocalizacaoServico.inserir(localizacao);
             JOptionPane.showMessageDialog(this, MensagemUtil.LOCALIZACAO_INSERCAO_SUCESSO);
             fecharFormulario();
-        //} catch (LocalizacaoException e) {
-        //    JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+        } catch (LocalizacaoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.LOCALIZACAO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, MensagemUtil.LOCALIZACAO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -207,16 +186,16 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
             LocalizacaoServico.atualizar(localizacao);
             JOptionPane.showMessageDialog(this, MensagemUtil.LOCALIZACAO_ATUALIZACAO_SUCESSO);
             fecharFormulario();
-        //} catch (LocalizacaoException e) {
-        //    JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+        } catch (LocalizacaoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, MensagemUtil.LOCALIZACAO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, MensagemUtil.LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void fecharFormulario(){
+
+    private void fecharFormulario() {
         this.dispose();
-        this.indexLocalizacaoUI.init();
+        this.indexLocalizacaoPanelUI.init();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -224,9 +203,9 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox ckbAtivo;
     private javax.swing.JLabel lblAtivo;
-    private javax.swing.JLabel lblNomeLocalizacao;
+    private javax.swing.JLabel lblDescricaoLocalizacao;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelGeral;
-    private javax.swing.JTextField txtNomeLocalizacao;
+    private javax.swing.JTextField txtDescricaoLocalizacao;
     // End of variables declaration//GEN-END:variables
 }

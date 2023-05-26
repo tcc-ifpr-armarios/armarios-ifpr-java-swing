@@ -1,57 +1,48 @@
 package br.edu.ifpr.paranavai.armarios.visao.localizacao;
 
-
+import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
-import javax.swing.JTable;
-
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author professor Marcelo F. Terenciani
  */
-public class IndexLocalizacaoUI extends javax.swing.JFrame {
-    List<Localizacao> listaDeLocalizacoes;
-    /**
-     * Creates new form EditorLocalizacaoUI
-     */
-    
-    public IndexLocalizacaoUI() {
-        
+public class IndexLocalizacaoPanelUI extends javax.swing.JPanel {
+    private final int QUANTIDADE_COLUNAS = 4;
+    private List<Localizacao> listaDeLocalizacoes;
+
+    public IndexLocalizacaoPanelUI() {
         initComponents();
         init();
-        setLocationRelativeTo(this);
-    }
-    
-    public void init(){
-        listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
-        populaTabela(listaDeLocalizacoes);
-        
     }
 
-    private void populaTabela(List<Localizacao> listaDeLocalizacoes) {
-        
+    public void init() {
+        listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
+        populaTabela(listaDeLocalizacoes);
+    }
+
+    private void populaTabela(List<Localizacao> lista) {
         AcoesEventoTabela evento = new AcoesEventoTabelaLocalizacao();
-        
+
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
-        tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
-        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento, this));
+        tblLocalizacao.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaLocalizacao());
+        tblLocalizacao.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaLocalizacao(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        
-        for (int i = 0; i < listaDeLocalizacoes.size(); i++) {
-            Localizacao mostraLocalizacao = listaDeLocalizacoes.get(i);
-            Object[] dadosLinha = new Object[3];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Localizacao mostraLocalizacao = lista.get(i);
+            Object[] dadosLinha = new Object[QUANTIDADE_COLUNAS];
             dadosLinha[0] = mostraLocalizacao.getId();
             dadosLinha[1] = mostraLocalizacao.getDescricao();
             dadosLinha[2] = mostraLocalizacao.isAtivo() ? "Ativo" : "Inativo";
-            
+
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -68,8 +59,8 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         painelGeral = new javax.swing.JPanel();
         painelSuperior = new javax.swing.JPanel();
         panelBusca = new javax.swing.JPanel();
-        lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        lblBusca = new javax.swing.JLabel();
+        txtBusca = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -77,30 +68,27 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLocalizacao = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciamento de Localizações");
-        setBackground(new java.awt.Color(0, 0, 0));
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        setMinimumSize(new java.awt.Dimension(4, 4));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setLayout(new java.awt.GridLayout(1, 0));
 
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
 
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-        painelSuperior.setLayout(new java.awt.BorderLayout());
+        painelSuperior.setLayout(new java.awt.GridLayout(2, 0));
 
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblNome.setText("Nome: ");
-        panelBusca.add(lblNome);
+        lblBusca.setText("Descrição: ");
+        lblBusca.setMaximumSize(new java.awt.Dimension(70, 16));
+        lblBusca.setMinimumSize(new java.awt.Dimension(70, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(70, 16));
+        panelBusca.add(lblBusca);
 
-        txtNome.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-        panelBusca.add(txtNome);
+        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        panelBusca.add(txtBusca);
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +98,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         });
         panelBusca.add(btnBuscar);
 
-        painelSuperior.add(panelBusca, java.awt.BorderLayout.PAGE_START);
+        painelSuperior.add(panelBusca);
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
@@ -125,7 +113,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         });
         panelNovo.add(btnNovo);
 
-        painelSuperior.add(panelNovo, java.awt.BorderLayout.CENTER);
+        painelSuperior.add(panelNovo);
 
         painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
@@ -138,7 +126,7 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificador", "Nome", "Ativo", "Ações"
+                "Identificador", "Descrição", "Ativo", "Ações"
             }
         ) {
             Class[] types = new Class [] {
@@ -160,38 +148,21 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         tblLocalizacao.setSelectionBackground(new java.awt.Color(57, 137, 111));
         tblLocalizacao.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblLocalizacao);
-        if (tblLocalizacao.getColumnModel().getColumnCount() > 0) {
-            tblLocalizacao.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(0).setMaxWidth(200);
-            tblLocalizacao.getColumnModel().getColumn(2).setMinWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(3).setMinWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblLocalizacao.getColumnModel().getColumn(3).setMaxWidth(200);
-        }
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(painelGeral);
-
-        pack();
+        add(painelGeral);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Localizacao> filtrado = new ArrayList<>();
-        
         for (Localizacao localizacao : listaDeLocalizacoes) {
-            if(localizacao.getDescricao().toUpperCase().contains(txtNome.getText().toUpperCase()))
+            if (localizacao.getDescricao().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
                 filtrado.add(localizacao);
+            }
         }
-        
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -201,17 +172,18 @@ public class IndexLocalizacaoUI extends javax.swing.JFrame {
         criacaoEdicaoLocalizacao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblBusca;
     private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
     private javax.swing.JTable tblLocalizacao;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }

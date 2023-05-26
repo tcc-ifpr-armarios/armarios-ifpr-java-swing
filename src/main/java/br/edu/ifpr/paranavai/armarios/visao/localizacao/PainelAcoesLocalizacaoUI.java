@@ -1,11 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.visao.localizacao;
 
-
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,14 +11,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelAcoes
-     */
     public PainelAcoesLocalizacaoUI() {
         initComponents();
     }
 
-    public void iniciarEventos(IndexLocalizacaoUI indexLocalizacaoUI, AcoesEventoTabela evento, JTable tabela, int linha){
+    public void iniciarEventos(AcoesEventoTabela evento, JTable tabela, int linha) {
         btnEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,7 +35,7 @@ public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
             }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,29 +46,15 @@ public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
     private void initComponents() {
 
         btnVisualizar = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
+        btnVisualizar.setVisible(false);
         btnEditar = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
         btnExcluir = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
 
         btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/visualizar-16.png"))); // NOI18N
-        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarActionPerformed(evt);
-            }
-        });
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/editar-16.png"))); // NOI18N
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/excluir-16.png"))); // NOI18N
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,18 +80,6 @@ public class PainelAcoesLocalizacaoUI extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVisualizarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

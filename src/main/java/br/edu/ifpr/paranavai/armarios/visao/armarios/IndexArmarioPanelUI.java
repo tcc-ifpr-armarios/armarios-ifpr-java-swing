@@ -9,11 +9,11 @@ import java.util.List;
  *
  * @author professor Marcelo F. Terenciani
  */
-public class IndexArmariosPanelUI extends javax.swing.JPanel {
+public class IndexArmarioPanelUI extends javax.swing.JPanel {
 
     List<Armario> listaDeArmarios;
 
-    public IndexArmariosPanelUI() {
+    public IndexArmarioPanelUI() {
         initComponents();
         init();
     }
@@ -70,7 +70,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
         btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEstudante = new javax.swing.JTable();
+        tblArmarios = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -86,9 +86,9 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
         lblBusca.setText("Número: ");
-        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
+        lblBusca.setMaximumSize(new java.awt.Dimension(70, 16));
+        lblBusca.setMinimumSize(new java.awt.Dimension(70, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(70, 16));
         panelBusca.add(lblBusca);
 
         txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -125,7 +125,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
-        tblEstudante.setModel(new javax.swing.table.DefaultTableModel(
+        tblArmarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -148,10 +148,10 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblEstudante.setRowHeight(30);
-        tblEstudante.setSelectionBackground(new java.awt.Color(57, 137, 111));
-        tblEstudante.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblEstudante);
+        tblArmarios.setRowHeight(30);
+        tblArmarios.setSelectionBackground(new java.awt.Color(57, 137, 111));
+        tblArmarios.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblArmarios);
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -187,7 +187,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblEstudante;
+    private javax.swing.JTable tblArmarios;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }

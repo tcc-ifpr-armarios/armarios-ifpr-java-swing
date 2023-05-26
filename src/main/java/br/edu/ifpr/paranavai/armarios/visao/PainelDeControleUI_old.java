@@ -5,7 +5,6 @@ import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosUI;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.historico.IndexHistoricoUI;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoUI;
 import br.edu.ifpr.paranavai.armarios.visao.ocupados.IndexOcupadosUI;
 import java.awt.Color;
 
@@ -331,8 +330,8 @@ public class PainelDeControleUI_old extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestaoDeCursosActionPerformed
 
     private void btnGestaoDeLocalizacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestaoDeLocalizacoesActionPerformed
-        IndexLocalizacaoUI indexLocalizacaoUI = new IndexLocalizacaoUI();
-        indexLocalizacaoUI.setVisible(true);
+        // IndexLocalizacaoUI indexLocalizacaoUI = new IndexLocalizacaoUI();
+        // indexLocalizacaoUI.setVisible(true);
     }//GEN-LAST:event_btnGestaoDeLocalizacoesActionPerformed
 
     private void btnAbrirAreaEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirAreaEmprestimoActionPerformed

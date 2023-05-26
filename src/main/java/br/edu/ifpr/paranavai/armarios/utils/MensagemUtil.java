@@ -13,7 +13,8 @@ public class MensagemUtil {
     public static final String TITULO_SISTEMA = "Armários IFPR - PVAÍ";
     public static final String TITULO_AREA_ESTUDANTE = "Gerenciamento de Estudantes";
     public static final String TITULO_AREA_ARMARIO= "Gerenciamento de Armários";
-
+    public static final String TITULO_AREA_LOCALIZACAO = "Gerenciamento de Localizações";
+    
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";
     public static final String SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
@@ -40,7 +41,7 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão da localização";
     public static final String LOCALIZACAO_REMOVIDO = "Não foi possível realizar essa operação! Essa localização já foi removida!";
     public static final String LOCALIZACAO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir uma nova localização";
-    public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrado com Sucesso!";
+    public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
     public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 
     public static final String ARMARIO_NUMERO_DUPLICADO = "Numero do armário duplicado";
@@ -77,5 +78,6 @@ public class MensagemUtil {
 
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    
 
 }
