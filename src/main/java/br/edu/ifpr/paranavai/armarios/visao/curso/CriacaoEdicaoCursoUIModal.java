@@ -4,10 +4,11 @@ import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.HeadlessException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,50 +18,35 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
 
     private Curso curso;
     private boolean estaAtualizando;
-    private IndexCursoUI indexCursoUI;
+    private IndexCursoPanelUI indexCursoPanelUI;
 
     /**
      * Creates new form CriacaoEdicaoCursoUIModal
      */
-
-    public CriacaoEdicaoCursoUIModal(IndexCursoUI indexCursoUI) {
-        super(indexCursoUI, true);
+    public CriacaoEdicaoCursoUIModal(IndexCursoPanelUI indexCursoPanelUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(indexCursoPanelUI), true);
         initComponents();
-        this.indexCursoUI = indexCursoUI;
+        this.indexCursoPanelUI = indexCursoPanelUI;
         this.curso = new Curso();
         this.estaAtualizando = false;
         this.setTitle("Novo Curso");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
 
-    public CriacaoEdicaoCursoUIModal(IndexCursoUI indexCursoUI, Curso curso, boolean estaAtualizando) {
-        super(indexCursoUI, true);
-        initComponents();
+    public CriacaoEdicaoCursoUIModal(IndexCursoPanelUI indexCursoPanelUI, Curso curso) {
+        this(indexCursoPanelUI);
         this.curso = curso;
-        this.indexCursoUI = indexCursoUI;
-        this.estaAtualizando = estaAtualizando;
+        this.estaAtualizando = true;
 
-        this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-
-        String titulo = estaAtualizando ? "Edição do Curso " : "Dados do Curso ";
-
-        lblTitulo.setText(titulo + curso.getId());
-        this.setTitle(titulo + curso.getId());
-        txtNomeCurso.setText(curso.getNome());
-        ckbAtivo.setSelected(curso.isAtivo());
-
-        if (!estaAtualizando) {
-            desabilitarComponentes();
-        }
+        initTextFields();
     }
 
-    private void desabilitarComponentes() {
-        btnCancelar.setVisible(false);
-        btnSalvar.setVisible(false);
-        panelGeral.setEnabled(false);
-        txtNomeCurso.setEnabled(false);
-        txtNomeCurso.setDisabledTextColor(Color.BLACK);
-        ckbAtivo.setEnabled(false);
+    private void initTextFields() {
+        String titulo = "Edição do Curso ";
+        lblTitulo.setText(titulo + this.curso.getId());
+        this.setTitle(titulo + this.curso.getId());
+        txtNomeCurso.setText(this.curso.getNome());
+        ckbAtivo.setSelected(this.curso.isAtivo());
     }
 
     /**
@@ -213,7 +199,7 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
 
     private void fecharFormulario() {
         this.dispose();
-        this.indexCursoUI.init();
+        this.indexCursoPanelUI.init();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

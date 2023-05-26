@@ -1,43 +1,37 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
+import br.edu.ifpr.paranavai.armarios.visao.curso.*;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author professor Marcelo F. Terenciani
  */
-public class IndexCursoUI extends javax.swing.JFrame {
+public class IndexCursoPanelUI extends javax.swing.JPanel {
+    private final int QUANTIDADE_COLUNAS = 4;
+    private List<Curso> listaDeCursos;
 
-    List<Curso> listaDeCursos;
-
-    /**
-     * Creates new form EditorCursoUI
-     */
-
-    public IndexCursoUI() {
+    public IndexCursoPanelUI() {
         initComponents();
         init();
-
-        setLocationRelativeTo(this);
     }
 
     public void init() {
-        listaDeCursos = CursoControle.listarTodosCursos();
+        listaDeCursos = CursoServico.buscarTodos();
         populaTabela(listaDeCursos);
     }
 
     private void populaTabela(List<Curso> lista) {
-
         AcoesEventoTabela evento = new AcoesEventoTabelaCurso();
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblCurso.getModel();
-        tblCurso.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
-        tblCurso.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento, this));
+        tblCurso.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaCurso());
+        tblCurso.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaCurso(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -45,7 +39,7 @@ public class IndexCursoUI extends javax.swing.JFrame {
 
         for (int i = 0; i < lista.size(); i++) {
             Curso mostraCurso = lista.get(i);
-            Object[] dadosLinha = new Object[3];
+            Object[] dadosLinha = new Object[QUANTIDADE_COLUNAS];
             dadosLinha[0] = mostraCurso.getId();
             dadosLinha[1] = mostraCurso.getNome();
             dadosLinha[2] = mostraCurso.isAtivo() ? "Ativo" : "Inativo";
@@ -75,10 +69,9 @@ public class IndexCursoUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCurso = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gerenciamento de Cursos");
-        setBackground(new java.awt.Color(0, 0, 0));
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        setMinimumSize(new java.awt.Dimension(4, 4));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setLayout(new java.awt.GridLayout(1, 0));
 
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
@@ -158,24 +151,12 @@ public class IndexCursoUI extends javax.swing.JFrame {
         tblCurso.setSelectionBackground(new java.awt.Color(57, 137, 111));
         tblCurso.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCurso);
-        if (tblCurso.getColumnModel().getColumnCount() > 0) {
-            tblCurso.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(0).setMaxWidth(200);
-            tblCurso.getColumnModel().getColumn(2).setMinWidth(100);
-            tblCurso.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setMinWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblCurso.getColumnModel().getColumn(3).setMaxWidth(200);
-        }
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 
-        getContentPane().add(painelGeral);
-
-        pack();
+        add(painelGeral);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -185,9 +166,9 @@ public class IndexCursoUI extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Curso> filtrado = new ArrayList<>();
 
-        for (Curso localizacao : listaDeCursos) {
-            if (localizacao.getNome().toUpperCase().contains(txtNome.getText().toUpperCase())) {
-                filtrado.add(localizacao);
+        for (Curso curso : listaDeCursos) {
+            if (curso.getNome().toUpperCase().contains(txtNome.getText().toUpperCase())) {
+                filtrado.add(curso);
             }
         }
 
@@ -200,15 +181,6 @@ public class IndexCursoUI extends javax.swing.JFrame {
         criacaoEdicaoCurso.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
-    /*public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IndexCursoUI().setVisible(true);
-            }
-        });
-
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

@@ -14,6 +14,9 @@ public class MensagemUtil {
     public static final String TITULO_AREA_ESTUDANTE = "Gerenciamento de Estudantes";
     public static final String TITULO_AREA_ARMARIO= "Gerenciamento de Armários";
     public static final String TITULO_AREA_LOCALIZACAO = "Gerenciamento de Localizações";
+    public static final String TITULO_AREA_CURSO = "Gerenciamento de Cursos";
+    public static final String TITULO_AREA_ADMINISTRADOR = "Gerenciamento de Administradores";
+    public static final String TITULO_AREA_EMPRESTIMO = "Gerenciamento de Empréstimos";
     
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";
@@ -78,6 +81,7 @@ public class MensagemUtil {
 
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    
     
 
 }

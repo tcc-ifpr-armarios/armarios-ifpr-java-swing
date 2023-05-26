@@ -3,8 +3,14 @@ package br.edu.ifpr.paranavai.armarios.visao.curso;
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.curso.CriacaoEdicaoCursoUIModal;
+import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import java.awt.Container;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
@@ -20,13 +26,13 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
 
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
-        IndexCursoUI indexCursoUI = (IndexCursoUI) SwingUtilities.getWindowAncestor(tabela);
+        IndexCursoPanelUI origem = getOrigem(tabela);
 
-        Curso curso = CursoControle.buscarPorId(identificador);
+        Curso curso = CursoServico.buscarPorId(identificador);
 
-        CriacaoEdicaoCursoUIModal form = new CriacaoEdicaoCursoUIModal(indexCursoUI, curso, true);
+        CriacaoEdicaoCursoUIModal form = new CriacaoEdicaoCursoUIModal(origem, curso);
 
-        form.setLocationRelativeTo(indexCursoUI);
+        form.setLocationRelativeTo(origem);
         form.setVisible(true);
     }
 
@@ -34,38 +40,42 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
     public void aoExcluir(JTable tabela, int linha) {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
-        IndexCursoUI indexCursoUI = (IndexCursoUI) SwingUtilities.getWindowAncestor(tabela);
-
-        Curso curso = CursoControle.buscarPorId(identificador);
+        IndexCursoPanelUI origem = getOrigem(tabela);
+        
+        Curso curso = CursoServico.buscarPorId(identificador);
 
         String mensagem = MensagemUtil.CURSO_EXCLUSAO_CONFIRMACAO + " '" + curso.getNome() + "'?";
 
-        int opcao = JOptionPane.showConfirmDialog(indexCursoUI, mensagem, MensagemUtil.TITULO_ATENCAO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int opcao = JOptionPane.showConfirmDialog(origem, mensagem, MensagemUtil.TITULO_ATENCAO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (opcao == 0) {
             try {
                 CursoControle.excluir(curso);
-                JOptionPane.showMessageDialog(indexCursoUI, MensagemUtil.CURSO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(origem, MensagemUtil.CURSO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (CursoException e) {
-                JOptionPane.showMessageDialog(indexCursoUI, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(origem, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
             } finally {
-                indexCursoUI.init();
+                origem.init();
             }
         }
     }
 
     @Override
     public void aoVisualizar(JTable tabela, int linha) {
-        int identificador = (int) tabela.getModel().getValueAt(linha, 0);
+        // Operação não necessária, pois há pouca informação.
+    }
 
-        IndexCursoUI indexCursoUI = (IndexCursoUI) SwingUtilities.getWindowAncestor(tabela);
-
-        Curso curso = CursoControle.buscarPorId(identificador);
-
-        CriacaoEdicaoCursoUIModal form = new CriacaoEdicaoCursoUIModal(indexCursoUI, curso, false);
-
-        form.setLocationRelativeTo(indexCursoUI);
-        form.setVisible(true);
-
+    private IndexCursoPanelUI getOrigem(JTable tabela) {
+        IndexCursoPanelUI origem = null;
+        Container c = tabela.getParent();
+        while (c != null) {
+            if (c.getParent() instanceof IndexCursoPanelUI) {
+                origem = (IndexCursoPanelUI) c.getParent();
+                break;
+            } else {
+                c = c.getParent();
+            }
+        }
+        return origem;
     }
 }

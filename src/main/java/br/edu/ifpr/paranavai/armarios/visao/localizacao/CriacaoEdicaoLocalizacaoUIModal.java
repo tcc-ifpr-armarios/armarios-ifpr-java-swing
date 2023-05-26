@@ -34,11 +34,10 @@ public class CriacaoEdicaoLocalizacaoUIModal extends javax.swing.JDialog {
         this.localizacao = localizacao;
         this.estaAtualizando = true;
 
-        initTextFields(localizacao);
-
+        initTextFields();
     }
 
-    private void initTextFields(Localizacao localizacao) {
+    private void initTextFields() {
         String titulo = "Edição da localização ";
         lblTitulo.setText(titulo + localizacao.getId());
         this.setTitle(titulo + localizacao.getId());

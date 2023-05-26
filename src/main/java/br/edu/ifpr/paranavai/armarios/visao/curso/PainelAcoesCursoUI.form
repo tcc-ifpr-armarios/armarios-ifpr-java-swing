@@ -48,9 +48,9 @@
           <Image iconType="3" name="/assets/icons/visualizar-16.png"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarActionPerformed"/>
-      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnVisualizar.setVisible(true);"/>
+      </AuxValues>
     </Component>
     <Component class="br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao" name="btnEditar">
       <Properties>
@@ -58,9 +58,6 @@
           <Image iconType="3" name="/assets/icons/editar-16.png"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
-      </Events>
     </Component>
     <Component class="br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao" name="btnExcluir">
       <Properties>
@@ -68,9 +65,6 @@
           <Image iconType="3" name="/assets/icons/excluir-16.png"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

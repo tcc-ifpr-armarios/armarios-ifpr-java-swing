@@ -3,6 +3,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
 
@@ -613,9 +614,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatorioDeEmprestimoMousePressed
 
     private void btnCursoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCursoMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Cadastro de Produtos", new ProdutoPrincipal());
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_CURSO, new IndexCursoPanelUI());
     }//GEN-LAST:event_btnCursoMousePressed
 
     private void btnEstudantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstudantesMousePressed

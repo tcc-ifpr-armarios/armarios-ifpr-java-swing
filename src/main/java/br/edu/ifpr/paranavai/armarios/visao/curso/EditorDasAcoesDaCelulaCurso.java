@@ -14,11 +14,9 @@ import javax.swing.JTable;
 public class EditorDasAcoesDaCelulaCurso extends DefaultCellEditor {
 
     private AcoesEventoTabela evento;
-    private IndexCursoUI indexCursoUI;
 
-    public EditorDasAcoesDaCelulaCurso(AcoesEventoTabela evento, IndexCursoUI indexCursoUI) {
+    public EditorDasAcoesDaCelulaCurso(AcoesEventoTabela evento) {
         super(new JCheckBox());
-        this.indexCursoUI = indexCursoUI;
         this.evento = evento;
     }
 
@@ -26,7 +24,7 @@ public class EditorDasAcoesDaCelulaCurso extends DefaultCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         PainelAcoesCursoUI acoes = new PainelAcoesCursoUI();
 
-        acoes.iniciarEventos(indexCursoUI, evento, table, row);
+        acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());
 
         return acoes;
