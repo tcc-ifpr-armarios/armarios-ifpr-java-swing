@@ -39,8 +39,8 @@ public class HistoricoUI extends javax.swing.JFrame {
             Emprestimo emprestimo = emprestimos.get(i);
             Object[] dadosLinha = new Object[4];
             dadosLinha[0] = emprestimo.getArmario().getNumero();
-            dadosLinha[1] = emprestimo.getDataHoraEmprestimo();
-            dadosLinha[2] = emprestimo.getDataHoraDevolucao();
+            dadosLinha[1] = emprestimo.getDataEmprestimo();
+            dadosLinha[2] = emprestimo.getDataDevolucao();
             dadosLinha[3] = emprestimo.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);

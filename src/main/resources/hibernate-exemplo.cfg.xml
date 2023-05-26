@@ -28,12 +28,12 @@
         <property name="hbm2ddl.auto">update</property>
            
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Armario" />
-        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario" />        
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Curso" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Emprestimo" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Localizacao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Servidor" />        
 
        
         

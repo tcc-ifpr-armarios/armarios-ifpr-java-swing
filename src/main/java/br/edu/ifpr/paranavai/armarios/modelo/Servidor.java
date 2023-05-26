@@ -6,15 +6,15 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_bibliotecario")
-public class Bibliotecario extends Pessoa{
+@Table(name = "tb_servidor")
+public class Servidor extends Pessoa{
     @Column
     private String siape;
 
-    public Bibliotecario() {
+    public Servidor() {
     }
 
-    public Bibliotecario(String nome, String sobrenome, String email, String telefone, String senha, boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao, String siape) {
+    public Servidor(String nome, String sobrenome, String email, String telefone, String senha, boolean ativo, LocalDateTime dataAtualizacao, LocalDateTime dataCriacao, String siape) {
         super(nome, sobrenome, email, telefone, senha, ativo, dataAtualizacao, dataCriacao);
         this.siape = siape;
     }

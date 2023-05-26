@@ -2,7 +2,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
-import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
@@ -217,16 +217,16 @@ public class IndexLoginUI extends javax.swing.JFrame {
             char[] caracteresSenha = this.txtSenha.getPassword();
             String senha = new String(caracteresSenha);
             System.out.println(AutenticacaoUtil.converteSenhaParaSha256Hex(senha));
-            Bibliotecario bibliotecario = LoginServico.verificaAdm(email, senha);
+            Servidor servidor = LoginServico.verificaAdm(email, senha);
             lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
             txtSenha.setText("");
             txtEmail.setText("");
-            System.setProperty("email", bibliotecario.getEmail());
+            System.setProperty("email", servidor.getEmail());
             
             
             
             
-            NovoPainelDeControle painelControleUI = new NovoPainelDeControle(bibliotecario);
+            NovoPainelDeControle painelControleUI = new NovoPainelDeControle(servidor);
             painelControleUI.setVisible(true);
             this.setVisible(false);
             this.dispose();

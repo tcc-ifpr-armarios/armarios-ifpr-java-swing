@@ -1,7 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
-import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
@@ -13,16 +13,16 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
  */
 public class LoginServico {
 
-    public static Bibliotecario verificaAdm(String emailOuSiape, String senha) throws LoginException {
+    public static Servidor verificaAdm(String emailOuSiape, String senha) throws LoginException {
         String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
 
-        Bibliotecario bibliotecario = BibliotecarioServico.buscarPorEmailOuSiape(emailOuSiape);
-        if (bibliotecario == null) {
+        Servidor servidor = ServidorServico.buscarPorEmailOuSiape(emailOuSiape);
+        if (servidor == null) {
             throw new LoginException(MensagemUtil.LOGIN_CADASTRO_INEXISTENTE);
-        } else if (!bibliotecario.getSenha().equals(senhaCriptografada)) {
+        } else if (!servidor.getSenha().equals(senhaCriptografada)) {
             throw new LoginException(MensagemUtil.LOGIN_SENHA_INCORRETA);
         }
-        return bibliotecario;
+        return servidor;
     }
 
     public static Estudante verificaEstudante(String ra, String senha) throws LoginException {

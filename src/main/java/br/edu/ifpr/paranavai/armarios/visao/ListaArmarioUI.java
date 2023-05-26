@@ -51,7 +51,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
                 Object[] dadosLinha = new Object[4];
                 dadosLinha[0] = emprestimo.getArmario().getNumero();
                 dadosLinha[1] = emprestimo.getEstudante().getNome();
-                dadosLinha[2] = emprestimo.getDataHoraEmprestimo();
+                dadosLinha[2] = emprestimo.getDataEmprestimo();
                 // dadosLinha[3] = !emprestimo.isAtivo();
 
                 modeloDeColunasDaTabela.addRow(dadosLinha);
@@ -60,7 +60,7 @@ public class ListaArmarioUI extends javax.swing.JFrame {
                 Object[] dadosLinha = new Object[4];
                 dadosLinha[0] = emprestimo.getArmario().getNumero();
                 dadosLinha[1] = emprestimo.getEstudante().getNome();
-                dadosLinha[2] = emprestimo.getDataHoraEmprestimo();
+                dadosLinha[2] = emprestimo.getDataEmprestimo();
                 // dadosLinha[3] = !emprestimo.isAtivo();
                 modeloDeColunasDaTabela.addRow(dadosLinha);
 

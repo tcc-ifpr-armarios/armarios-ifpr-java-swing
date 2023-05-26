@@ -72,7 +72,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra and data_hora_devolucao = null", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra and data_devolucao = null", Emprestimo.class);
         query.setParameter("ra", ra);
         Emprestimo resultado = query.getSingleResult();
         return resultado;

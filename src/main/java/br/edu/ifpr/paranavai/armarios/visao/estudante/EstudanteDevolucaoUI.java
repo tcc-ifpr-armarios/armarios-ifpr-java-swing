@@ -4,7 +4,7 @@ import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class EstudanteDevolucaoUI extends javax.swing.JFrame {
 
-    Date dataAtual;
     Estudante estudante;
     Emprestimo emprestimo;
 
@@ -24,7 +23,6 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
      */
     public EstudanteDevolucaoUI(Estudante estudante) {
         initComponents();
-        this.dataAtual = new Date();
         this.estudante = estudante;
         this.emprestimo = EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa());
 
@@ -153,8 +151,8 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
             Emprestimo emprestimo = new Emprestimo();
-            emprestimo.setDataHoraDevolucao(dataAtual);
-            emprestimo.setDataHoraEmprestimo(emprestimo.getDataHoraEmprestimo());
+            emprestimo.setDataDevolucao(LocalDateTime.now());
+            emprestimo.setDataEmprestimo(this.emprestimo.getDataEmprestimo());
             emprestimo.setArmario(emprestimo.getArmario());
             emprestimo.setEstudante(estudante);
 

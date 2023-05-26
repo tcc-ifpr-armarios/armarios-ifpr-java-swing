@@ -1,6 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
+import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
@@ -24,11 +24,11 @@ import javax.swing.Timer;
  */
 public class NovoPainelDeControle extends javax.swing.JFrame {
 
-    public NovoPainelDeControle(Bibliotecario bibliotecario) {
+    public NovoPainelDeControle(Servidor servidor) {
         initComponents();
         painelAtivo = btnInicio;
         //this.usuario = usuario;
-        lblUsuarioLogado.setText(bibliotecario.getNome());
+        lblUsuarioLogado.setText(servidor.getNome());
     }
 
     /**
@@ -800,7 +800,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new NovoPainelDeControle(new Bibliotecario()).setVisible(true);
+                    new NovoPainelDeControle(new Servidor()).setVisible(true);
                 }
 
             });

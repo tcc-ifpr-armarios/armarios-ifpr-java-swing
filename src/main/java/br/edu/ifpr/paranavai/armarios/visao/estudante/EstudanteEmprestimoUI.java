@@ -10,7 +10,7 @@ import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +24,6 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
     String localSelecionado;
     Emprestimo emprestimo = new Emprestimo();
-    Date dataAgora = new Date();
 
     /**
      * Creates new form Tela
@@ -205,7 +204,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
             String numeroArmario = numeroCombo.getSelectedItem().toString();
 
             Armario armario = ArmarioServico.buscarArmarioPorNumeroELocalizacao(local, numeroArmario);
-            emprestimo.setDataHoraEmprestimo(dataAgora);
+            emprestimo.setDataEmprestimo(LocalDateTime.now());
             emprestimo.setEstudante(alunoLogado);
             emprestimo.setArmario(armario);
 

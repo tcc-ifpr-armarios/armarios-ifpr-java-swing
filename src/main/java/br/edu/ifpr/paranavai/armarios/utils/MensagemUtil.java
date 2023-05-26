@@ -12,12 +12,12 @@ public class MensagemUtil {
     public static final String TITULO_INFORMACAO = "Informação";
     public static final String TITULO_SISTEMA = "Armários IFPR - PVAÍ";
     public static final String TITULO_AREA_ESTUDANTE = "Gerenciamento de Estudantes";
-    public static final String TITULO_AREA_ARMARIO= "Gerenciamento de Armários";
+    public static final String TITULO_AREA_ARMARIO = "Gerenciamento de Armários";
     public static final String TITULO_AREA_LOCALIZACAO = "Gerenciamento de Localizações";
     public static final String TITULO_AREA_CURSO = "Gerenciamento de Cursos";
     public static final String TITULO_AREA_ADMINISTRADOR = "Gerenciamento de Administradores";
     public static final String TITULO_AREA_EMPRESTIMO = "Gerenciamento de Empréstimos";
-    
+
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";
     public static final String SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
@@ -75,13 +75,11 @@ public class MensagemUtil {
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
 
-    public static final String BIBLIOTECARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo bibliotecario";
-    public static final String BIBLIOTECARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o bibliotecario";
-    public static final String BIBLIOTECARIO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o bibliotecario";
+    public static final String SERVIDOR_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo servidor";
+    public static final String SERVIDOR_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o servidor";
+    public static final String SERVIDOR_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o servidor";
 
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
-    
-    
 
 }

@@ -55,8 +55,8 @@ public class ListaHistoricoUI extends javax.swing.JFrame {
             Emprestimo emprestimo = emprestimos.get(i);
 
             Object[] dadosLinha = new Object[5];
-            dadosLinha[0] = emprestimo.getDataHoraEmprestimo();
-            dadosLinha[1] = emprestimo.getDataHoraDevolucao();
+            dadosLinha[0] = emprestimo.getDataEmprestimo();
+            dadosLinha[1] = emprestimo.getDataDevolucao();
             dadosLinha[2] = emprestimo.getArmario().getLocalizacao().getId();
             dadosLinha[3] = emprestimo.getArmario().getNumero();
             dadosLinha[4] = emprestimo.getEstudante().getRa();
