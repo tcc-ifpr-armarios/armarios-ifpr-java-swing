@@ -2,14 +2,11 @@ package br.edu.ifpr.paranavai.armarios.dao.impl;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import java.util.ArrayList;
 import org.hibernate.Session;
 import java.util.List;
 import org.hibernate.query.Query;
 import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 public class ArmarioDaoImpl implements ArmarioDao {
@@ -83,6 +80,7 @@ public class ArmarioDaoImpl implements ArmarioDao {
         return resultado;
         
     }
+    
     @Override
     public List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao) {
         Query<Armario> query = this.sessao.createQuery("from Armario a where a.localizacao.id = :id and a.ativo = :ativo", Armario.class);
@@ -91,7 +89,4 @@ public class ArmarioDaoImpl implements ArmarioDao {
         List<Armario> resultado = query.getResultList();
         return resultado;
     }
-
-    
-
 }
