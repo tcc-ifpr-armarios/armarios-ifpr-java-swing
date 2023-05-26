@@ -13,17 +13,6 @@ import javax.swing.JPanel;
 
 public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
 
-    /**
-     * Creates new form VisualizarEstudanteModalUI
-     */
-    public VisualizarEstudanteModalUI(java.awt.Frame parent, Estudante estudante) {
-        super(parent, true);
-        initComponents();
-        preencheDados(estudante);
-        populaTabela(estudante.getRa());
-        this.setLocationRelativeTo(parent);
-    }
-    
     public VisualizarEstudanteModalUI(JPanel parent, Estudante estudante) {
         super((JFrame)SwingUtilities.getWindowAncestor(parent), true);
         initComponents();

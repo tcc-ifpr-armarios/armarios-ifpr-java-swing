@@ -74,12 +74,16 @@ public class MensagemUtil {
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
-
+    
+    public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
+    public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    
     public static final String SERVIDOR_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo servidor";
     public static final String SERVIDOR_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o servidor";
     public static final String SERVIDOR_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o servidor";
-
-    public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
-    public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    public static final String SERVIDOR_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do servidor";
+    public static final String SERVIDOR_EXCLUSAO_SUCESSO = "Servidor Excluído com Sucesso!";
+    public static final String SERVIDOR_INSERCAO_SUCESSO = "Servidor Cadastrado com Sucesso!";
+    public static final String SERVIDOR_ATUALIZACAO_SUCESSO = "Servidor Atualizado com Sucesso!";
 
 }

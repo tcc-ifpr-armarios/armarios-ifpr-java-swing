@@ -6,6 +6,7 @@ import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.servidor.IndexServidorPanelUI;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -638,9 +639,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocalizacaoMousePressed
 
     private void btnAdministradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Gerenciamento de Categoria ", new CategoriaPrincipal());
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_ADMINISTRADOR, new IndexServidorPanelUI());
     }//GEN-LAST:event_btnAdministradorMousePressed
 
     private void hoverEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hoverEntered

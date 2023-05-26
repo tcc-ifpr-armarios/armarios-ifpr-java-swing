@@ -2,11 +2,11 @@ package br.edu.ifpr.paranavai.armarios.visao.historico;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.VisualizarEstudanteModalUI;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import javax.swing.JFrame;
+import java.awt.Container;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -19,10 +19,10 @@ public class AcoesEventoTabelaLista implements AcoesEventoTabela {
         String identificador = (String) tabela.getValueAt(linha, 4);
 
         Estudante estudante = EstudanteServico.buscarPorRa(identificador);
+        
+        IndexEstudantePanelUI origem = getOrigem(tabela);
 
-        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(tabela);
-
-        VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(parent, estudante);
+        VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(origem, estudante);
 
         form.setVisible(true);
 
@@ -36,5 +36,19 @@ public class AcoesEventoTabelaLista implements AcoesEventoTabela {
     @Override
     public void aoExcluir(JTable tabela, int linha) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    private IndexEstudantePanelUI getOrigem(JTable tabela) {
+        IndexEstudantePanelUI origem = null;
+        Container c = tabela.getParent();
+        while (c != null) {
+            if (c.getParent() instanceof IndexEstudantePanelUI) {
+                origem = (IndexEstudantePanelUI) c.getParent();
+                break;
+            } else {
+                c = c.getParent();
+            }
+        }
+        return origem;
     }
 }

@@ -216,7 +216,6 @@ public class IndexLoginUI extends javax.swing.JFrame {
             String email = this.txtEmail.getText();
             char[] caracteresSenha = this.txtSenha.getPassword();
             String senha = new String(caracteresSenha);
-            System.out.println(AutenticacaoUtil.converteSenhaParaSha256Hex(senha));
             Servidor servidor = LoginServico.verificaAdm(email, senha);
             lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
             txtSenha.setText("");
