@@ -18,8 +18,8 @@ public class EmprestimoServico {
         return dao.buscarTodos();
     }
 
-    public static Emprestimo inserir(Emprestimo historicoBiblioteca) throws EmprestimoException {
-        return dao.inserir(historicoBiblioteca);
+    public static Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException {
+        return dao.inserir(emprestimo);
     }
 
     public static List<Emprestimo> buscarPorRaDoEstudante(String ra) {
@@ -28,5 +28,18 @@ public class EmprestimoServico {
 
     public static List<Emprestimo> buscarPorIdLocalizacao(Integer idLocalizacao) {
         return dao.buscarPorIdLocalizacao(idLocalizacao);
+    }
+
+    public static List<Emprestimo> buscarAtivoPorLocalizacao(int idLocalizacao) {
+        return dao.buscarTodos();
+    }
+
+    public static Emprestimo finalizarEmprestimo(Emprestimo emprestimo) throws EmprestimoException {
+        // TODO: modificar o atributo do armario para liberado
+        return dao.atualizar(emprestimo);
+    }
+
+    public static Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
+        return dao.buscarEmprestimoAtivoPorRaDoEstudante(ra);
     }
 }

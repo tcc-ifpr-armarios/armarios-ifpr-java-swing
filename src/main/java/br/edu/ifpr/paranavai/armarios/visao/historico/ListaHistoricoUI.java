@@ -49,17 +49,17 @@ public class ListaHistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> historicos = EmprestimoServico.buscarPorLocalizacao(localId);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarPorIdLocalizacao(localId);
 
-        for (int i = 0; i < historicos.size(); i++) {
-            Emprestimo historico = historicos.get(i);
+        for (int i = 0; i < emprestimos.size(); i++) {
+            Emprestimo emprestimo = emprestimos.get(i);
 
             Object[] dadosLinha = new Object[5];
-            dadosLinha[0] = historico.getDataHoraEmprestimo();
-            dadosLinha[1] = historico.getDataHoraDevolucao();
-            dadosLinha[2] = historico.getLocalId();
-            dadosLinha[3] = historico.getNumero();
-            dadosLinha[4] = historico.getRa();
+            dadosLinha[0] = emprestimo.getDataHoraEmprestimo();
+            dadosLinha[1] = emprestimo.getDataHoraDevolucao();
+            dadosLinha[2] = emprestimo.getArmario().getLocalizacao().getId();
+            dadosLinha[3] = emprestimo.getArmario().getNumero();
+            dadosLinha[4] = emprestimo.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }

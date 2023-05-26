@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
@@ -17,24 +15,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Allan Fernando O de Andrade
  */
-public class EstudanteReservaUI extends javax.swing.JFrame {
+public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
     String localSelecionado;
-    Reserva reserva = new Reserva();
+    Emprestimo emprestimo = new Emprestimo();
     Date dataAgora = new Date();
-    
- 
 
     /**
      * Creates new form Tela
      */
-    public EstudanteReservaUI() {
+    public EstudanteEmprestimoUI() {
         initComponents();
         setLocationRelativeTo(this);
 
@@ -198,31 +193,31 @@ public class EstudanteReservaUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
 
     private void confirmaEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaEmprestimoActionPerformed
-       
-      int opcao = JOptionPane.showConfirmDialog(null, "Confirmar o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
-      if (opcao == JOptionPane.YES_OPTION) {
+
+        int opcao = JOptionPane.showConfirmDialog(null, "Confirmar o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if (opcao == JOptionPane.YES_OPTION) {
             Estudante alunoLogado = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-            Localizacao local = LocalizacaoServico.buscarPorNomeExato(localCombo.getSelectedItem().toString());
-            reserva.setAtivo(false);
-            reserva.setDataHoraEmprestimo(dataAgora);
-            reserva.setNumero(Integer.parseInt(numeroCombo.getSelectedItem().toString()));
-            reserva.setEstudante(alunoLogado);
-            reserva.setLocalizacao(local);
-            EmprestimoServico.apagaPorNumero(Integer.parseInt(numeroCombo.getSelectedItem().toString()));
-          try {
-              EmprestimoServico.inserir(reserva);
-              System.out.println("Erro: Empréstimo realizado com sucesso!");
-          } catch (ArmarioException ex) {
-              Logger.getLogger(EstudanteReservaUI.class.getName()).log(Level.SEVERE, null, ex);
-              System.out.println("Erro: Empréstimo não realizado");
-          }
-          SwingUtilities.invokeLater(() -> {
+
+            Integer local = Integer.parseInt(numeroCombo.getSelectedItem().toString());
+            String numeroArmario = numeroCombo.getSelectedItem().toString();
+
+            Armario armario = ArmarioServico.buscarArmarioPorNumeroELocalizacao(local, numeroArmario);
+            emprestimo.setDataHoraEmprestimo(dataAgora);
+            emprestimo.setEstudante(alunoLogado);
+            emprestimo.setArmario(armario);
+
+            try {
+                EmprestimoServico.inserir(emprestimo);
+                System.out.println("Erro: Empréstimo realizado com sucesso!");
+            } catch (EmprestimoException ex) {
+                Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro: Empréstimo não realizado");
+            }
+
             dispose();
-        });
-        dispose();
         } else {
             // Código a ser executado se o usuário selecionar "Não" ou fechar o diálogo
             System.out.println("Empréstimo cancelado.");
@@ -230,62 +225,59 @@ public class EstudanteReservaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmaEmprestimoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<Localizacao> locais = LocalizacaoServico.buscarTodosAtivos(true);
+        List<Localizacao> locais = LocalizacaoServico.buscarTodosAtivos();
         try {
             localCombo.removeAllItems();
-            
+
             for (Localizacao local : locais) {
                 localCombo.addItem(local.getDescricao());
 
             }
-        
+
             System.out.println(localCombo.getSelectedItem());
         } catch (Exception e) {
             System.out.println("Erro: Não foi Possível buscar os locais.");
         }
         atualizaNumero(localSelecionado = localCombo.getSelectedItem().toString());
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void localComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_localComboPropertyChange
-       
-        
+
+
     }//GEN-LAST:event_localComboPropertyChange
 
     private void localComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_localComboItemStateChanged
-        
+
     }//GEN-LAST:event_localComboItemStateChanged
 
     private void localComboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localComboMouseExited
-        
+
     }//GEN-LAST:event_localComboMouseExited
 
     private void localComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localComboActionPerformed
         atualizaNumero(localSelecionado = localCombo.getSelectedItem().toString());
-        
-       
     }//GEN-LAST:event_localComboActionPerformed
 
     private void numeroComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_numeroComboPropertyChange
-        
+
     }//GEN-LAST:event_numeroComboPropertyChange
 
-    
-    public void atualizaNumero(String idLocalizacao){
-    Localizacao idLocal = LocalizacaoServico.buscarPorNomeExato(idLocalizacao);
-        List<Reserva> reservas = EmprestimoServico.buscarAtivoPorLocalizacao(idLocal.getId(), true);
+    public void atualizaNumero(String idLocalizacao) {
+        Localizacao idLocal = LocalizacaoServico.buscarPorDescricaoExata(idLocalizacao);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivoPorLocalizacao(idLocal.getId());
         try {
-           numeroCombo.removeAllItems();
-           
-        for (Reserva numeros : reservas) {
-            numeroCombo.addItem(String.valueOf(numeros.getNumero()));
+            numeroCombo.removeAllItems();
 
-        } 
+            for (Emprestimo emprestimo : emprestimos) {
+                numeroCombo.addItem(String.valueOf(emprestimo.getArmario().getNumero()));
+
+            }
         } catch (Exception e) {
         }
-}
+    }
     private void numeroComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numeroComboMouseClicked
-        
+
     }//GEN-LAST:event_numeroComboMouseClicked
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
@@ -295,7 +287,7 @@ public class EstudanteReservaUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void alunoReservaUI(String args[]) {
+    public static void alunoEmprestimoUI(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -309,14 +301,22 @@ public class EstudanteReservaUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EstudanteReservaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -329,7 +329,7 @@ public class EstudanteReservaUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EstudanteReservaUI().setVisible(true);
+                new EstudanteEmprestimoUI().setVisible(true);
             }
         });
     }

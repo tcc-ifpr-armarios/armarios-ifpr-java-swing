@@ -75,5 +75,6 @@ public class MensagemUtil {
     public static final String BIBLIOTECARIO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o bibliotecario";
 
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
+    public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
 
 }

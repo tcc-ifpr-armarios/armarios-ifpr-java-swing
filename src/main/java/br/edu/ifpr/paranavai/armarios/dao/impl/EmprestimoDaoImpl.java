@@ -32,6 +32,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
         }
         return emprestimo;
     }
+    
+    
 
     @Override
     public List<Emprestimo> buscarTodos() {
@@ -53,6 +55,26 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
         Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id", Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
+        return resultado;
+    }
+
+    @Override
+    public Emprestimo atualizar(Emprestimo emprestimo) throws EmprestimoException {
+        try {
+            sessao.beginTransaction();
+            sessao.merge(emprestimo);
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO);
+        }
+        return emprestimo;
+    }
+
+    @Override
+    public Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra and data_hora_devolucao = null", Emprestimo.class);
+        query.setParameter("ra", ra);
+        Emprestimo resultado = query.getSingleResult();
         return resultado;
     }
 }

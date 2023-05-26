@@ -6,7 +6,7 @@ import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudanteDevolucaoUI;
-import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudanteReservaUI;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudanteEmprestimoUI;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -232,8 +232,8 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
             txtRa.setText("");
             System.setProperty("email", estudante.getEmail());
 
-            if (EmprestimoServico.buscarPorAlunoUnico(estudante.getId()) == null) {
-                EstudanteReservaUI alunoReservaUI = new EstudanteReservaUI();
+            if (EmprestimoServico.buscarPorRaDoEstudante(estudante.getRa()) == null) {
+                EstudanteEmprestimoUI alunoReservaUI = new EstudanteEmprestimoUI();
                 alunoReservaUI.setVisible(true);
             } else {
 

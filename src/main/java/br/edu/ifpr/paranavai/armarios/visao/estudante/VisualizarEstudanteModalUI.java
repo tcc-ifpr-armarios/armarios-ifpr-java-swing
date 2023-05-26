@@ -49,16 +49,16 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> historicos = EmprestimoServico.buscarPorAluno(id);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarPorRaDoEstudante(id);
 
-        for (int i = 0; i < historicos.size(); i++) {
-            Emprestimo historico = historicos.get(i);
+        for (int i = 0; i < emprestimos.size(); i++) {
+            Emprestimo emprestimo = emprestimos.get(i);
 
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = historico.getDataHoraEmprestimo();
-            dadosLinha[1] = historico.getDataHoraDevolucao();
-            dadosLinha[2] = historico.getLocalId();
-            dadosLinha[3] = historico.getNumero();
+            dadosLinha[0] = emprestimo.getDataHoraEmprestimo();
+            dadosLinha[1] = emprestimo.getDataHoraDevolucao();
+            dadosLinha[2] = emprestimo.getArmario().getLocalizacao().getId();
+            dadosLinha[3] = emprestimo.getArmario().getNumero();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }

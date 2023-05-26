@@ -29,7 +29,7 @@ public class ArmarioServico {
 
     public static Armario inserir(Armario armario) throws ArmarioException {
         //Verifica se já contem o número do armário com base na localização
-        Armario c = dao.buscarNumeroPorLocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
+        Armario c = dao.buscarArmarioPorNumeroELocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
         if (c != null) {
             throw new ArmarioException(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO);
         }
@@ -49,8 +49,8 @@ public class ArmarioServico {
         return dao.buscarTodosPorIdLocalizacao(idLocalizacao);
     }
 
-    public static Armario buscarNumeroPorLocalizacao(Integer idLocal, String numero) {
-        return dao.buscarNumeroPorLocalizacao(idLocal, numero);
+    public static Armario buscarArmarioPorNumeroELocalizacao(Integer idLocal, String numero) {
+        return dao.buscarArmarioPorNumeroELocalizacao(idLocal, numero);
     }
 
     public static List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao) {

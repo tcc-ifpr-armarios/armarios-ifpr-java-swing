@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.Date;
 import java.util.logging.Level;
@@ -21,19 +14,22 @@ import javax.swing.JOptionPane;
  * @author Allan Fernando O de Andrade
  */
 public class EstudanteDevolucaoUI extends javax.swing.JFrame {
-   
-    
-    Date dataAgora = new Date();
-    Estudante estudante = EstudanteServico.buscarPorEmail(System.getProperty("email"));
-    Reserva reserva = EmprestimoServico.buscarPorAlunoUnico(estudante.getId());
-    
+
+    Date dataAtual;
+    Estudante estudante;
+    Emprestimo emprestimo;
+
     /**
      * Creates new form Tela
      */
-    public EstudanteDevolucaoUI() {
+    public EstudanteDevolucaoUI(Estudante estudante) {
         initComponents();
+        this.dataAtual = new Date();
+        this.estudante = estudante;
+        this.emprestimo = EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa());
+
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -153,103 +149,43 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_devolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_devolucaoActionPerformed
-        
-        
+
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-        Emprestimo historico = new Emprestimo();
-        historico.setDataHoraDevolucao(dataAgora);
-        historico.setDataHoraEmprestimo(reserva.getDataHoraEmprestimo());
-        historico.setNumero(reserva.getNumero());
-        historico.setRa(estudante.getRa());
-        historico.setLocalId(reserva.getLocalizacao().getId());
-        
-        // gera o historico
-        EmprestimoServico.inserir(historico);
-        
-        // Redisponibiliza o armario
-        Reserva reservaAux = new Reserva();
-        reservaAux.setAtivo(true);
-        reservaAux.setNumero(reserva.getNumero());
-        reservaAux.setLocalizacao(reserva.getLocalizacao());
-        
-        
-        // exclui a utilizada
-        EmprestimoServico.excluir(reserva);
-        try {
-            EmprestimoServico.inserir(reservaAux);
-            System.out.println("Armário redisponibilizado com sucesso!");
-            
-        } catch (ArmarioException ex) {
-            Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Erro: Não foi possível redisponibilizar o armário" );
-        }
-        dispose();
-        } else 
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.setDataHoraDevolucao(dataAtual);
+            emprestimo.setDataHoraEmprestimo(emprestimo.getDataHoraEmprestimo());
+            emprestimo.setArmario(emprestimo.getArmario());
+            emprestimo.setEstudante(estudante);
+
+            // exclui a utilizada
+            try {
+                EmprestimoServico.finalizarEmprestimo(emprestimo);
+                System.out.println("Armário redisponibilizado com sucesso!");
+            } catch (EmprestimoException ex) {
+                Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Erro: Não foi possível redisponibilizar o armário");
+            }
+            dispose();
+        } else {
             System.out.println("Devulução negada pelo usuário");
-        
-        
-        
+        }
+
+
     }//GEN-LAST:event_btn_devolucaoActionPerformed
 
-    
-    
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
-       
-        mensagem.setText("Olá, "+ estudante.getNome() +  "!");
-        dados.setText("Empréstimo número " + reserva.getNumero() + " na/no " + reserva.getLocalizacao().getDescricao());
-       
-        
-        
+
+        mensagem.setText("Olá, " + estudante.getNome() + "!");
+        dados.setText("Empréstimo número " + emprestimo.getArmario().getNumero() + " na/no " + emprestimo.getArmario().getLocalizacao().getDescricao());
+
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jToggleButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void alunoDevolucaoUI(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EstudanteDevolucaoUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btn_devolucao;

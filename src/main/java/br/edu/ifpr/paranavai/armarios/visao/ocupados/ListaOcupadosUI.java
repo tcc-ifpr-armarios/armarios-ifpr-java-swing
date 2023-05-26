@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.ocupados;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
@@ -27,7 +24,7 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
     public ListaOcupadosUI(IndexOcupadosUI indexOcupadosUI) {
 
         initComponents();
-        
+
         setLocationRelativeTo(indexOcupadosUI);
 
         populaTabela();
@@ -52,16 +49,16 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> reservas = EmprestimoServico.buscarAtivoPorLocalizacao(localId, false);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivoPorLocalizacao(localId);
 
-        for (int i = 0; i < reservas.size(); i++) {
-            Armario reserva = reservas.get(i);
+        for (int i = 0; i < emprestimos.size(); i++) {
+            Armario armario = emprestimos.get(i).getArmario();
 
             Object[] dadosLinha = new Object[4];
             // dadosLinha[0] = reserva.getDataHoraEmprestimo();
 
-            dadosLinha[1] = reserva.getLocalizacao().getDescricao();
-            dadosLinha[2] = reserva.getNumero();
+            dadosLinha[1] = armario.getLocalizacao().getDescricao();
+            dadosLinha[2] = armario.getNumero();
             // dadosLinha[3] = reserva.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
@@ -285,7 +282,6 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
