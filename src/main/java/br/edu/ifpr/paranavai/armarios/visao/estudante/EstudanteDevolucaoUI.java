@@ -9,7 +9,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.Date;
 import java.util.logging.Level;
@@ -165,7 +165,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         historico.setLocalId(reserva.getLocalizacao().getId());
         
         // gera o historico
-        HistoricoServico.inserir(historico);
+        EmprestimoServico.inserir(historico);
         
         // Redisponibiliza o armario
         Reserva reservaAux = new Reserva();

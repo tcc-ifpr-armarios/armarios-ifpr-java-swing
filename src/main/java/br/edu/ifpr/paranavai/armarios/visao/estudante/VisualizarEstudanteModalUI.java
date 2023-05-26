@@ -2,7 +2,7 @@ package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import java.util.List;
 import javax.swing.JFrame;
@@ -49,7 +49,7 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> historicos = HistoricoServico.buscarPorAluno(id);
+        List<Emprestimo> historicos = EmprestimoServico.buscarPorAluno(id);
 
         for (int i = 0; i < historicos.size(); i++) {
             Emprestimo historico = historicos.get(i);

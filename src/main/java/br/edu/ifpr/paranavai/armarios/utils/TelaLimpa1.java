@@ -10,7 +10,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.List;
 

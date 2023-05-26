@@ -7,7 +7,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 
-import br.edu.ifpr.paranavai.armarios.servico.HistoricoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +38,7 @@ public class HistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> reservas = HistoricoServico.buscarTodos();
+        List<Emprestimo> reservas = EmprestimoServico.buscarTodos();
 
         for (int i = 0; i < reservas.size(); i++) {
             Emprestimo reserva = reservas.get(i);
