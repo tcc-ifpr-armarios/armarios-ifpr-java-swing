@@ -4,7 +4,6 @@ import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,7 +26,7 @@ public class PainelAcoesLocalizacaoEmIndexUI extends javax.swing.JPanel {
                 evento.aoVisualizar(tabela, linha);
             }
         });
-        
+
     }
 
     /**
@@ -67,7 +66,7 @@ public class PainelAcoesLocalizacaoEmIndexUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        
+
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
 

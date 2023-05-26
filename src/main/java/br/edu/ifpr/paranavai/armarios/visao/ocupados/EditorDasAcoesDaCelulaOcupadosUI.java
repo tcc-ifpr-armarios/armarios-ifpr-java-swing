@@ -1,14 +1,13 @@
 package br.edu.ifpr.paranavai.armarios.visao.ocupados;
 
 
-import br.edu.ifpr.paranavai.armarios.visao.historico.*;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Component;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 
 
 /**

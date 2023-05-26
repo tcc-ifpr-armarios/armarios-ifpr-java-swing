@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

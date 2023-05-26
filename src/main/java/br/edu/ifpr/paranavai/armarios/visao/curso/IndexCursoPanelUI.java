@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.visao.curso.*;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;

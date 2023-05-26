@@ -5,7 +5,6 @@ import javax.swing.table.DefaultTableModel;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 
 /**

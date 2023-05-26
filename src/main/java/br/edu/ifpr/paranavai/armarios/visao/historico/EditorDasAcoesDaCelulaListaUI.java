@@ -1,7 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.historico;
 
 
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Component;
 

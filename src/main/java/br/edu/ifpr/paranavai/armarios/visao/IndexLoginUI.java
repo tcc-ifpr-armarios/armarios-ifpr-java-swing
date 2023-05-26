@@ -4,7 +4,6 @@ import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
-import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.awt.Graphics;
 import java.awt.Image;

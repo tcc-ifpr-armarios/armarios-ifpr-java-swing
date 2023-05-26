@@ -2,10 +2,9 @@ package br.edu.ifpr.paranavai.armarios.visao.ocupados;
 
 
 
-import br.edu.ifpr.paranavai.armarios.visao.historico.*;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.*;
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 

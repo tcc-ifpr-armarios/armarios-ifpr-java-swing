@@ -3,17 +3,12 @@ package br.edu.ifpr.paranavai.armarios.visao.curso;
 import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import br.edu.ifpr.paranavai.armarios.visao.curso.CriacaoEdicaoCursoUIModal;
-import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
-import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Container;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -41,7 +36,7 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
         IndexCursoPanelUI origem = getOrigem(tabela);
-        
+
         Curso curso = CursoServico.buscarPorId(identificador);
 
         String mensagem = MensagemUtil.CURSO_EXCLUSAO_CONFIRMACAO + " '" + curso.getNome() + "'?";

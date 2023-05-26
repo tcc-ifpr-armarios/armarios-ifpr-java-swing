@@ -303,7 +303,6 @@ public class ListaArmarioUI extends javax.swing.JFrame {
 
     private void desativaBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desativaBibliotecaActionPerformed
         int dadosLinha = tableBiblioteca.getSelectedRow();
-        String numero = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 1);
         if (status.equals("Disponível")) {
             // EmprestimoServico.apagarArmario(numero);
