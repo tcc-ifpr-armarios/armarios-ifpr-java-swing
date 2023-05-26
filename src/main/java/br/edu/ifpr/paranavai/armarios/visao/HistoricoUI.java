@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-
 
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import java.util.List;
@@ -38,15 +33,15 @@ public class HistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> reservas = EmprestimoServico.buscarTodos();
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarTodos();
 
-        for (int i = 0; i < reservas.size(); i++) {
-            Emprestimo reserva = reservas.get(i);
+        for (int i = 0; i < emprestimos.size(); i++) {
+            Emprestimo reserva = emprestimos.get(i);
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = reserva.getNumero();
+            dadosLinha[0] = reserva.getArmario().getNumero();
             dadosLinha[1] = reserva.getDataHoraEmprestimo();
             dadosLinha[2] = reserva.getDataHoraDevolucao();
-            dadosLinha[3] = reserva.getRa();
+            dadosLinha[3] = reserva.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }

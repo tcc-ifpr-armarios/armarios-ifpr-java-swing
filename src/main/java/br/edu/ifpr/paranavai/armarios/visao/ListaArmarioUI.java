@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 
@@ -18,99 +14,83 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Allan Fernando O de Andrade
  */
-
-
- // Falta refatorar depois da localização
+// Falta refatorar depois da localização
 public class ListaArmarioUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListaArmarioUI
+     * Creates new form ListaEmprestimoUI
      */
     public ListaArmarioUI() {
 
         initComponents();
         setLocationRelativeTo(null);
-        
-        //List<ReservaSaguao> armariosSaguao = ReservaSaguaoServico.buscarTodos();
+
+        //List<EmprestimoSaguao> armariosSaguao = EmprestimoSaguaoServico.buscarTodos();
         //populaTabelaSaguao(armariosSaguao);
+        List<Emprestimo> reservas = EmprestimoServico.buscarTodos();
+        populaTabela(reservas);
 
-        List<Reserva> armarioBiblioteca = EmprestimoServico.buscarTodos();
-        populaTabela(armarioBiblioteca);
-
-        
     }
     // </editor-fold>
     Estudante estudante = new Estudante();
 
     @SuppressWarnings("unchecked")
-    private void populaTabela(List<Reserva> reservas) {
+    private void populaTabela(List<Emprestimo> reservas) {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableBiblioteca.getModel();
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        
 
         for (int i = 0; i < reservas.size(); i++) {
-            Reserva reserva = reservas.get(i);
+            Emprestimo reserva = reservas.get(i);
             if (reserva.getEstudante() == null) {
                 estudante.setNome("Disponível");
                 reserva.setEstudante(estudante);
 
                 Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getNumero();
+                dadosLinha[0] = reserva.getArmario().getNumero();
                 dadosLinha[1] = reserva.getEstudante().getNome();
                 dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                dadosLinha[3] = !reserva.isAtivo();
+                // dadosLinha[3] = !reserva.isAtivo();
 
                 modeloDeColunasDaTabela.addRow(dadosLinha);
             } else {
 
                 Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getNumero();
+                dadosLinha[0] = reserva.getArmario().getNumero();
                 dadosLinha[1] = reserva.getEstudante().getNome();
                 dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                dadosLinha[3] = !reserva.isAtivo();
+                // dadosLinha[3] = !reserva.isAtivo();
                 modeloDeColunasDaTabela.addRow(dadosLinha);
 
             }
         }
     }
-/**
-    @SuppressWarnings("unchecked")
-    private void populaTabelaSaguao(List<ReservaSaguao> reservasS) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel();
-        //  Primeiro limpa a tabela
-        while (modeloDeColunasDaTabela.getRowCount() != 0) {
-            modeloDeColunasDaTabela.removeRow(0);
-        }
-       
 
-        for (int i = 0; i < reservasS.size(); i++) {
-            ReservaSaguao reservaSS = reservasS.get(i);
-            if (reservaSS.getEstudante() == null) {
-                estudante.setNome("Disponível");
-                reservaSS.setEstudante(estudante);
-                Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reservaSS.getNumero();
-                dadosLinha[1] = reservaSS.getEstudante().getNome();
-                dadosLinha[2] = reservaSS.getDataHoraEmprestimo();
-                dadosLinha[3] = !reservaSS.isAtivo();
-
-                modeloDeColunasDaTabela.addRow(dadosLinha);
-            } else {
-            Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = reservaSS.getNumero();
-            dadosLinha[1] = reservaSS.getEstudante().getNome();
-            dadosLinha[2] = reservaSS.getDataHoraEmprestimo();
-            dadosLinha[3] = !reservaSS.isAtivo();
-
-            modeloDeColunasDaTabela.addRow(dadosLinha);
-        }
-        }
-    }
-*/
-    
+    /**
+     * @SuppressWarnings("unchecked") private void
+     * populaTabelaSaguao(List<EmprestimoSaguao> reservasS) { DefaultTableModel
+     * modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel(); //
+     * Primeiro limpa a tabela while (modeloDeColunasDaTabela.getRowCount() !=
+     * 0) { modeloDeColunasDaTabela.removeRow(0); }
+     *
+     *
+     * for (int i = 0; i < reservasS.size(); i++) { EmprestimoSaguao reservaSS =
+     * reservasS.get(i); if (reservaSS.getEstudante() == null) {
+     * estudante.setNome("Disponível"); reservaSS.setEstudante(estudante);
+     * Object[] dadosLinha = new Object[4]; dadosLinha[0] =
+     * reservaSS.getNumero(); dadosLinha[1] =
+     * reservaSS.getEstudante().getNome(); dadosLinha[2] =
+     * reservaSS.getDataHoraEmprestimo(); dadosLinha[3] = !reservaSS.isAtivo();
+     *
+     * modeloDeColunasDaTabela.addRow(dadosLinha); } else { Object[] dadosLinha
+     * = new Object[4]; dadosLinha[0] = reservaSS.getNumero(); dadosLinha[1] =
+     * reservaSS.getEstudante().getNome(); dadosLinha[2] =
+     * reservaSS.getDataHoraEmprestimo(); dadosLinha[3] = !reservaSS.isAtivo();
+     *
+     * modeloDeColunasDaTabela.addRow(dadosLinha); } } }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,42 +285,39 @@ public class ListaArmarioUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desativaSaguaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desativaSaguaoActionPerformed
-        
+
         /*
         int dadosLinha = tableSaguao.getSelectedRow();
         int codigo = (int) tableSaguao.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableSaguao.getModel().getValueAt(dadosLinha, 1);
         if(status.equals("Disponível")){
-            ReservaSaguaoServico.apagaPorNumero(codigo);
-            List<ReservaSaguao> armarioSaguao = ReservaSaguaoServico.buscarTodos();
+            EmprestimoSaguaoServico.apagaPorNumero(codigo);
+            List<EmprestimoSaguao> armarioSaguao = EmprestimoSaguaoServico.buscarTodos();
             populaTabelaSaguao(armarioSaguao);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Armário em uso, impossível deletar");
         }
-        */
-        
-      
+         */
+
     }//GEN-LAST:event_desativaSaguaoActionPerformed
 
     private void desativaBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desativaBibliotecaActionPerformed
         int dadosLinha = tableBiblioteca.getSelectedRow();
-        int codigo = (int) tableBiblioteca.getModel().getValueAt(dadosLinha, 0);
+        String numero = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 0);
         String status = (String) tableBiblioteca.getModel().getValueAt(dadosLinha, 1);
-        if(status.equals("Disponível")){
-            EmprestimoServico.apagaPorNumero(codigo);
-            List<Reserva> armarioBiblioteca = EmprestimoServico.buscarTodos();
+        if (status.equals("Disponível")) {
+            // EmprestimoServico.apagarArmario(numero);
+            List<Emprestimo> armarioBiblioteca = EmprestimoServico.buscarTodos();
             populaTabela(armarioBiblioteca);
-            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Armário em uso, impossível deletar");
-           
         }
     }//GEN-LAST:event_desativaBibliotecaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void listaArmarioUI(String args[]) {
+    public static void mainDesativada(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
