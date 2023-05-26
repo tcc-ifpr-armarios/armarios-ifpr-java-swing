@@ -36,12 +36,12 @@ public class HistoricoUI extends javax.swing.JFrame {
         List<Emprestimo> emprestimos = EmprestimoServico.buscarTodos();
 
         for (int i = 0; i < emprestimos.size(); i++) {
-            Emprestimo reserva = emprestimos.get(i);
+            Emprestimo emprestimo = emprestimos.get(i);
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = reserva.getArmario().getNumero();
-            dadosLinha[1] = reserva.getDataHoraEmprestimo();
-            dadosLinha[2] = reserva.getDataHoraDevolucao();
-            dadosLinha[3] = reserva.getEstudante().getRa();
+            dadosLinha[0] = emprestimo.getArmario().getNumero();
+            dadosLinha[1] = emprestimo.getDataHoraEmprestimo();
+            dadosLinha[2] = emprestimo.getDataHoraDevolucao();
+            dadosLinha[3] = emprestimo.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -84,7 +84,7 @@ public class HistoricoUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Número", "Reserva", "Devolução", "RA"
+                "Número", "Empréstimo", "Devolução", "RA"
             }
         ) {
             Class[] types = new Class [] {
@@ -144,7 +144,7 @@ public class HistoricoUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Número", "Reserva", "Devolução", "RA"
+                "Número", "Empréstimo", "Devolução", "RA"
             }
         ) {
             Class[] types = new Class [] {

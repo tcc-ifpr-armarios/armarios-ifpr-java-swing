@@ -55,11 +55,11 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
             Armario armario = emprestimos.get(i).getArmario();
 
             Object[] dadosLinha = new Object[4];
-            // dadosLinha[0] = reserva.getDataHoraEmprestimo();
+            // dadosLinha[0] = emprestimo.getDataHoraEmprestimo();
 
             dadosLinha[1] = armario.getLocalizacao().getDescricao();
             dadosLinha[2] = armario.getNumero();
-            // dadosLinha[3] = reserva.getEstudante().getRa();
+            // dadosLinha[3] = emprestimo.getEstudante().getRa();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }

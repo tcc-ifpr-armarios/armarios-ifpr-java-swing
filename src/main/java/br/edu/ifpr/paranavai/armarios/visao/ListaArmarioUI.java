@@ -27,41 +27,41 @@ public class ListaArmarioUI extends javax.swing.JFrame {
 
         //List<EmprestimoSaguao> armariosSaguao = EmprestimoSaguaoServico.buscarTodos();
         //populaTabelaSaguao(armariosSaguao);
-        List<Emprestimo> reservas = EmprestimoServico.buscarTodos();
-        populaTabela(reservas);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarTodos();
+        populaTabela(emprestimos);
 
     }
     // </editor-fold>
     Estudante estudante = new Estudante();
 
     @SuppressWarnings("unchecked")
-    private void populaTabela(List<Emprestimo> reservas) {
+    private void populaTabela(List<Emprestimo> emprestimos) {
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tableBiblioteca.getModel();
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
 
-        for (int i = 0; i < reservas.size(); i++) {
-            Emprestimo reserva = reservas.get(i);
-            if (reserva.getEstudante() == null) {
+        for (int i = 0; i < emprestimos.size(); i++) {
+            Emprestimo emprestimo = emprestimos.get(i);
+            if (emprestimo.getEstudante() == null) {
                 estudante.setNome("Disponível");
-                reserva.setEstudante(estudante);
+                emprestimo.setEstudante(estudante);
 
                 Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getArmario().getNumero();
-                dadosLinha[1] = reserva.getEstudante().getNome();
-                dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                // dadosLinha[3] = !reserva.isAtivo();
+                dadosLinha[0] = emprestimo.getArmario().getNumero();
+                dadosLinha[1] = emprestimo.getEstudante().getNome();
+                dadosLinha[2] = emprestimo.getDataHoraEmprestimo();
+                // dadosLinha[3] = !emprestimo.isAtivo();
 
                 modeloDeColunasDaTabela.addRow(dadosLinha);
             } else {
 
                 Object[] dadosLinha = new Object[4];
-                dadosLinha[0] = reserva.getArmario().getNumero();
-                dadosLinha[1] = reserva.getEstudante().getNome();
-                dadosLinha[2] = reserva.getDataHoraEmprestimo();
-                // dadosLinha[3] = !reserva.isAtivo();
+                dadosLinha[0] = emprestimo.getArmario().getNumero();
+                dadosLinha[1] = emprestimo.getEstudante().getNome();
+                dadosLinha[2] = emprestimo.getDataHoraEmprestimo();
+                // dadosLinha[3] = !emprestimo.isAtivo();
                 modeloDeColunasDaTabela.addRow(dadosLinha);
 
             }
@@ -70,24 +70,24 @@ public class ListaArmarioUI extends javax.swing.JFrame {
 
     /**
      * @SuppressWarnings("unchecked") private void
-     * populaTabelaSaguao(List<EmprestimoSaguao> reservasS) { DefaultTableModel
+     * populaTabelaSaguao(List<EmprestimoSaguao> emprestimosS) { DefaultTableModel
      * modeloDeColunasDaTabela = (DefaultTableModel) tableSaguao.getModel(); //
      * Primeiro limpa a tabela while (modeloDeColunasDaTabela.getRowCount() !=
      * 0) { modeloDeColunasDaTabela.removeRow(0); }
      *
      *
-     * for (int i = 0; i < reservasS.size(); i++) { EmprestimoSaguao reservaSS =
-     * reservasS.get(i); if (reservaSS.getEstudante() == null) {
-     * estudante.setNome("Disponível"); reservaSS.setEstudante(estudante);
+     * for (int i = 0; i < emprestimosS.size(); i++) { EmprestimoSaguao emprestimoSS =
+     * emprestimosS.get(i); if (emprestimoSS.getEstudante() == null) {
+     * estudante.setNome("Disponível"); emprestimoSS.setEstudante(estudante);
      * Object[] dadosLinha = new Object[4]; dadosLinha[0] =
-     * reservaSS.getNumero(); dadosLinha[1] =
-     * reservaSS.getEstudante().getNome(); dadosLinha[2] =
-     * reservaSS.getDataHoraEmprestimo(); dadosLinha[3] = !reservaSS.isAtivo();
+     * emprestimoSS.getNumero(); dadosLinha[1] =
+     * emprestimoSS.getEstudante().getNome(); dadosLinha[2] =
+     * emprestimoSS.getDataHoraEmprestimo(); dadosLinha[3] = !emprestimoSS.isAtivo();
      *
      * modeloDeColunasDaTabela.addRow(dadosLinha); } else { Object[] dadosLinha
-     * = new Object[4]; dadosLinha[0] = reservaSS.getNumero(); dadosLinha[1] =
-     * reservaSS.getEstudante().getNome(); dadosLinha[2] =
-     * reservaSS.getDataHoraEmprestimo(); dadosLinha[3] = !reservaSS.isAtivo();
+     * = new Object[4]; dadosLinha[0] = emprestimoSS.getNumero(); dadosLinha[1] =
+     * emprestimoSS.getEstudante().getNome(); dadosLinha[2] =
+     * emprestimoSS.getDataHoraEmprestimo(); dadosLinha[3] = !emprestimoSS.isAtivo();
      *
      * modeloDeColunasDaTabela.addRow(dadosLinha); } } }
      */

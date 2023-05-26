@@ -1,9 +1,10 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
@@ -20,7 +21,7 @@ public class AcoesEventoTabelaLocalizacaoEmIndexUI implements AcoesEventoTabela 
 
         IndexArmariosUI indexArmariosUI = (IndexArmariosUI) SwingUtilities.getWindowAncestor(tabela);
 
-        Reserva reserva = EmprestimoServico.buscarPorId(identificador);
+        List<Emprestimo> emprestimo = EmprestimoServico.buscarPorIdLocalizacao(identificador);
 
         //CriacaoEdicaoLocalizacaoEmArmariosUIModal form = new CriacaoEdicaoLocalizacaoEmArmariosUIModal(indexArmariosUI, localizacao, true);
         //form.setLocationRelativeTo(indexArmariosUI);

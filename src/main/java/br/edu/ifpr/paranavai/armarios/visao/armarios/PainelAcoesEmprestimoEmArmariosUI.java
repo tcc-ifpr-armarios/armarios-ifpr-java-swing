@@ -12,12 +12,12 @@ import javax.swing.JTable;
  *
  * @author Allan Fernando O de Andrade
  */
-public class PainelAcoesReservasEmArmariosUI extends javax.swing.JPanel {
+public class PainelAcoesEmprestimoEmArmariosUI extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelAcoes
      */
-    public PainelAcoesReservasEmArmariosUI() {
+    public PainelAcoesEmprestimoEmArmariosUI() {
         initComponents();
     }
 

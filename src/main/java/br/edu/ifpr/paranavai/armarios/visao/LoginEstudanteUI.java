@@ -233,8 +233,8 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
             System.setProperty("email", estudante.getEmail());
 
             if (EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa()) == null) {
-                EstudanteEmprestimoUI alunoReservaUI = new EstudanteEmprestimoUI();
-                alunoReservaUI.setVisible(true);
+                EstudanteEmprestimoUI estudanteEmprestimoUI = new EstudanteEmprestimoUI();
+                estudanteEmprestimoUI.setVisible(true);
             } else {
                 EstudanteDevolucaoUI estudanteDevolucaoUI = new EstudanteDevolucaoUI(estudante);
                 estudanteDevolucaoUI.setVisible(true);

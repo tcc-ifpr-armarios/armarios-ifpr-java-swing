@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import java.awt.Dialog;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +17,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
 
     //int localId = Integer.parseInt(System.getProperty("localId"));
     private int localId;
-    private Reserva reserva;
+    private Armario armario;
     Localizacao local = new Localizacao();
     private ListaArmariosUI listaArmariosUI;
 
@@ -32,7 +28,6 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
         super(listaArmariosUI, true);
         initComponents();
         this.listaArmariosUI = listaArmariosUI;
-        
 
         this.setTitle("Novo armário");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
@@ -164,58 +159,47 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        this.reserva = new Reserva();
+        this.armario = new Armario();
         String numero = selecionaNumero.getValue().toString();
         int convertido = Integer.parseInt(numero);
 
         if (convertido <= 0) {
-            lblrespostacad.setText( "O número não pode ser zero ou negativo");
+            lblrespostacad.setText("O número não pode ser zero ou negativo");
         } else {
             local.setId(localId);
-            reserva.setLocalizacao(local);
-            reserva.setNumero(convertido);
-            reserva.setAtivo(true);
+            armario.setLocalizacao(local);
+            armario.setNumero("" + convertido);
+            armario.setAtivo(true);
             try {
-               String resposta = EmprestimoServico.inserir(reserva);
-                if(resposta.equals("Número de armário já cadastrado") ){
-                    lblrespostacad.setText(resposta);
-                } else {
-                    lblrespostacad.setText(resposta);
-                    listaArmariosUI.init();
-                }
+                armario = ArmarioServico.inserir(armario);
             } catch (ArmarioException ex) {
                 Logger.getLogger(CadastraArmarioEmArmariosUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-           
-            
 
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void selecionaNumeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMouseClicked
-    
+
     }//GEN-LAST:event_selecionaNumeroMouseClicked
 
     private void selecionaNumeroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selecionaNumeroPropertyChange
-       
+
     }//GEN-LAST:event_selecionaNumeroPropertyChange
 
     private void selecionaNumeroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMouseEntered
-      
+
     }//GEN-LAST:event_selecionaNumeroMouseEntered
 
     private void selecionaNumeroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMousePressed
-       
+
     }//GEN-LAST:event_selecionaNumeroMousePressed
 
     private void btnCadastrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseExited
-       lblrespostacad.setText(" ");
+        lblrespostacad.setText(" ");
     }//GEN-LAST:event_btnCadastrarMouseExited
 
-    
     private void fecharFormulario() {
         this.dispose();
         this.listaArmariosUI.init();

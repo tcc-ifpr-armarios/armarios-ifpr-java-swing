@@ -32,7 +32,7 @@ public class EditorDasAcoesDaCelulaArmarioEmArmariosUI extends DefaultCellEditor
     
 
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesReservasEmArmariosUI acoes = new PainelAcoesReservasEmArmariosUI();
+        PainelAcoesEmprestimoEmArmariosUI acoes = new PainelAcoesEmprestimoEmArmariosUI();
 
         acoes.iniciarEventos(listaArmariosUI, evento, table, row, idLocal);
         acoes.setBackground(table.getSelectionBackground());
