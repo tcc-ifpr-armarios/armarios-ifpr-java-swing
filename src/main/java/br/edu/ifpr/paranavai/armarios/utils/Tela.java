@@ -1,25 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.utils;
-
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
-import java.util.List;
 
 /**
  *
  * @author Allan Fernando O de Andrade
  */
 public class Tela extends javax.swing.JFrame {
-   
+
     /**
      * Creates new form Tela
      */
     public Tela() {
         initComponents();
-        
+
     }
 
     /**
@@ -107,8 +99,8 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
 
     /**

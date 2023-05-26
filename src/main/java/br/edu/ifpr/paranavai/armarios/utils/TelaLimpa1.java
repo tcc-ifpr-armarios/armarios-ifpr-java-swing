@@ -1,20 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.utils;
-
-
-import br.edu.ifpr.paranavai.armarios.visao.*;
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
-
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import java.util.List;
-
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,16 +10,13 @@ public class TelaLimpa1 extends javax.swing.JFrame {
      * Creates new form ListaArmarioUI
      */
     public TelaLimpa1() {
-       
-    initComponents();
-    setLocationRelativeTo(null);
 
-    
-    
-    
-}
-    
-   
+        initComponents();
+        setLocationRelativeTo(null);
+
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -131,27 +112,23 @@ public class TelaLimpa1 extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLimpa1.class  
+            java.util.logging.Logger.getLogger(TelaLimpa1.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaLimpa1.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLimpa1.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaLimpa1.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLimpa1.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLimpa1.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaLimpa1.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
