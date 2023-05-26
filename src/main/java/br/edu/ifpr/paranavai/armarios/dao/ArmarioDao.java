@@ -25,4 +25,6 @@ public interface ArmarioDao {
     public List<Armario> buscarTodosPorIdLocalizacao(Integer idLocalizacao);
 
     public List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao);
+
+    public Armario buscarNumeroPorLocalizacao(Integer id, String numero);
 }

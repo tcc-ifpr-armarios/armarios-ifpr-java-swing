@@ -89,4 +89,13 @@ public class ArmarioDaoImpl implements ArmarioDao {
         List<Armario> resultado = query.getResultList();
         return resultado;
     }
+
+    @Override
+    public Armario buscarNumeroPorLocalizacao(Integer idLocalizacao, String numero) {
+        Query<Armario> query = this.sessao.createQuery("from Armario a where a.localizacao.id = :id and a.numero = :numero", Armario.class);
+        query.setParameter("id", idLocalizacao);
+        query.setParameter("numero", numero);
+        Armario resultado = query.getSingleResult();
+        return resultado;
+    }
 }

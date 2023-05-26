@@ -28,6 +28,7 @@ public class MensagemUtil {
     public static final String CURSO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo curso";
     public static final String CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     public static final String CURSO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
+    public static final String CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
 
     public static final String LOCALIZACAO_NOME_DUPLICADO = "Nome da localização duplicada";
     public static final String LOCALIZACAO_NAO_ENCONTRADO = "Registro não encontrado";
@@ -52,7 +53,7 @@ public class MensagemUtil {
     public static final String ARMARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um armário";
     public static final String ARMARIO_INSERCAO_SUCESSO = "Armário Cadastrado com Sucesso!";
     public static final String ARMARIO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
-    public static final String CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
+    public static final String ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO = "Número de armário já cadastrado";
 
     public static final String ESTUDANTE_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o estudante";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
@@ -64,16 +65,15 @@ public class MensagemUtil {
     public static final String ESTUDANTE_INSERCAO_SUCESSO = "Estudante Cadastrado com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_SUCESSO = "Estudante Excluído com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";
-    
+
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
-    
+
     public static final String BIBLIOTECARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo bibliotecario";
-    public static final String BIBLIOTECARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o bibliotecario";;
-    public static final String BIBLIOTECARIO_EXCLUSAO_ERRO_PADRAO ="Erro não identificado ao excluir o bibliotecario";
-    
-    
+    public static final String BIBLIOTECARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o bibliotecario";
+    public static final String BIBLIOTECARIO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o bibliotecario";
+
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
-    
+
 }
