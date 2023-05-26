@@ -12,7 +12,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Allan Fernando O de Andrade
  */
-public class AcoesEventoTabelaReservasEmArmariosUI implements AcoesEventoTabela {
+public class AcoesEventoTabelaArmariosEmArmariosUI implements AcoesEventoTabela {
 
    
    

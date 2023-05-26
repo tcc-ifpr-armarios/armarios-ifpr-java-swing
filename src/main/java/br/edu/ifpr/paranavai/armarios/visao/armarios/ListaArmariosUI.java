@@ -3,7 +3,8 @@ package br.edu.ifpr.paranavai.armarios.visao.armarios;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 
@@ -12,7 +13,7 @@ import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
  * @author Allan Fernando O de Andrade
  */
 public class ListaArmariosUI extends javax.swing.JFrame {
-    List<Reserva> listaDeArmarios;
+    List<Armario> listaDeArmarios;
     
     
     //int localId =  Integer.parseInt(System.getProperty("localId"));
@@ -41,24 +42,24 @@ public class ListaArmariosUI extends javax.swing.JFrame {
     }
     
     public void init(){
-        listaDeArmarios = EmprestimoServico.buscarAtivoPorLocalizacao(localId, true);
+        listaDeArmarios = ArmarioServico.buscarAtivoPorIdLocalizacao(localId);
         populaTabela(listaDeArmarios);
     }
 
-    private void populaTabela(List<Reserva> lista) {
+    private void populaTabela(List<Armario> lista) {
         
-        AcoesEventoTabela evento = new AcoesEventoTabelaReservasEmArmariosUI();
+        AcoesEventoTabela evento = new AcoesEventoTabelaArmariosEmArmariosUI();
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblArmarios.getModel();
-        tblArmarios.getColumnModel().getColumn(1).setCellRenderer(new RenderizadorDasAcoesDaCelulaReservasEmArmarios());
-        tblArmarios.getColumnModel().getColumn(1).setCellEditor(new EditorDasAcoesDaCelulaReservaEmArmariosUI(evento, this, localId));
+        tblArmarios.getColumnModel().getColumn(1).setCellRenderer(new RenderizadorDasAcoesDaCelulaArmariosEmArmarios());
+        tblArmarios.getColumnModel().getColumn(1).setCellEditor(new EditorDasAcoesDaCelulaArmarioEmArmariosUI(evento, this, localId));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
         
         for (int i = 0; i < lista.size(); i++) {
-            Reserva mostraArmario = lista.get(i);
+            Armario mostraArmario = lista.get(i);
             Object[] dadosLinha = new Object[1];
             dadosLinha[0] = mostraArmario.getNumero();
             

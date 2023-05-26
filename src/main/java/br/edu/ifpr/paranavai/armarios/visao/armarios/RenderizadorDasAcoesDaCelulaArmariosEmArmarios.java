@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Allan Fernando O de Andrade
  */
-public class RenderizadorDasAcoesDaCelulaReservasEmArmarios extends DefaultTableCellRenderer{
+public class RenderizadorDasAcoesDaCelulaArmariosEmArmarios extends DefaultTableCellRenderer{
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

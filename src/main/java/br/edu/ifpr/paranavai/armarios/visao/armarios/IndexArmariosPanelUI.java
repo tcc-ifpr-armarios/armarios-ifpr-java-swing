@@ -1,8 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
-import br.edu.ifpr.paranavai.armarios.visao.armario.*;
-import br.edu.ifpr.paranavai.armarios.controle.ArmarioControle;
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
     }
 
     public void init() {
-        listaDeArmarios = ArmarioControle.listarTodosArmarios();
+        listaDeArmarios = ArmarioServico.buscarTodos();
         populaTabela(listaDeArmarios);
     }
 

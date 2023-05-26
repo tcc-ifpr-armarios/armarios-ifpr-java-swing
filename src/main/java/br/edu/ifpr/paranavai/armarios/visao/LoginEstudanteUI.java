@@ -232,58 +232,17 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
             txtRa.setText("");
             System.setProperty("email", estudante.getEmail());
 
-            if (EmprestimoServico.buscarPorRaDoEstudante(estudante.getRa()) == null) {
+            if (EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa()) == null) {
                 EstudanteEmprestimoUI alunoReservaUI = new EstudanteEmprestimoUI();
                 alunoReservaUI.setVisible(true);
             } else {
-
-                EstudanteDevolucaoUI estudanteDevolucaoUI = new EstudanteDevolucaoUI();
+                EstudanteDevolucaoUI estudanteDevolucaoUI = new EstudanteDevolucaoUI(estudante);
                 estudanteDevolucaoUI.setVisible(true);
             }
         } catch (LoginException e) {
             lblResposta.setText(e.getMessage());
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
-
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(LoginEstudanteUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//        Configurator.initialize(null, "log4j2.xml");
-//
-//        try {
-//            HibernateUtil.getSession();
-//            /* Create and display the form */
-//            java.awt.EventQueue.invokeLater(new Runnable() {
-//                public void run() {
-//                    new LoginEstudanteUI().setVisible(true);
-//                }
-//
-//            });
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEntrar;

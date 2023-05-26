@@ -14,12 +14,12 @@ import javax.swing.JTable;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class EditorDasAcoesDaCelulaReservaEmArmariosUI extends DefaultCellEditor{
+public class EditorDasAcoesDaCelulaArmarioEmArmariosUI extends DefaultCellEditor{
 
     private AcoesEventoTabela evento;
     private ListaArmariosUI listaArmariosUI;
     private int idLocal;
-    public EditorDasAcoesDaCelulaReservaEmArmariosUI(AcoesEventoTabela evento, ListaArmariosUI listaArmariosUI, Integer idLocal) {
+    public EditorDasAcoesDaCelulaArmarioEmArmariosUI(AcoesEventoTabela evento, ListaArmariosUI listaArmariosUI, Integer idLocal) {
         super(new JCheckBox());
         this.idLocal = idLocal;
         this.listaArmariosUI = listaArmariosUI;
