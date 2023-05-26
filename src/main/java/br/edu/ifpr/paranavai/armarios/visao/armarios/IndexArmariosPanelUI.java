@@ -1,12 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,7 +24,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
     }
 
     private void populaTabela(List<Armario> lista) {
-
+        /*
         AcoesEventoTabela evento = new AcoesEventoTabelaArmario();
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblArmario.getModel();
@@ -51,6 +48,7 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
+         */
     }
 
     /**
@@ -64,10 +62,6 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
 
         painelGeral = new javax.swing.JPanel();
         painelSuperior = new javax.swing.JPanel();
-        panelEscolherFiltro = new javax.swing.JPanel();
-        lblTipoFiltro = new javax.swing.JLabel();
-        radioRa = new javax.swing.JRadioButton();
-        radioNome = new javax.swing.JRadioButton();
         panelBusca = new javax.swing.JPanel();
         lblBusca = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
@@ -86,37 +80,12 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
 
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-        painelSuperior.setLayout(new java.awt.GridLayout(3, 0));
-
-        panelEscolherFiltro.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
-        panelEscolherFiltro.setLayout(new javax.swing.BoxLayout(panelEscolherFiltro, javax.swing.BoxLayout.LINE_AXIS));
-
-        lblTipoFiltro.setText("Buscar por:");
-        panelEscolherFiltro.add(lblTipoFiltro);
-
-        radioRa.setSelected(true);
-        radioRa.setText("Ra");
-        radioRa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioRaActionPerformed(evt);
-            }
-        });
-        panelEscolherFiltro.add(radioRa);
-
-        radioNome.setText("Nome");
-        radioNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNomeActionPerformed(evt);
-            }
-        });
-        panelEscolherFiltro.add(radioNome);
-
-        painelSuperior.add(panelEscolherFiltro);
+        painelSuperior.setLayout(new java.awt.GridLayout(2, 0));
 
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblBusca.setText("RA: ");
+        lblBusca.setText("Número: ");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
         lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
@@ -161,14 +130,14 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Identificador", "Matrícula", "Nome", "Telefone", "E-mail", "Curso", "Ativo", "Ações"
+                "Identificador", "Número", "Localização", "Status", "Ações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -191,41 +160,20 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
         add(painelGeral);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radioRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRaActionPerformed
-        radioRa.setSelected(true);
-        lblBusca.setText("RA:");
-        radioNome.setSelected(false);
-    }//GEN-LAST:event_radioRaActionPerformed
-
-    private void radioNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomeActionPerformed
-        radioNome.setSelected(true);
-        lblBusca.setText("Nome:");
-        radioRa.setSelected(false);
-    }//GEN-LAST:event_radioNomeActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<ArmarioException> filtrado = new ArrayList<>();
-        if (radioNome.isSelected()) {
-            for (Armario armario : listaDeArmarios) {
-                if (armario.getNomeCompleto().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
-                    filtrado.add(armario);
-                }
-            }
-        } else if (radioRa.isSelected()) {
-            for (Armario armario : listaDeArmarios) {
-                if (armario.getRa().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
-                    filtrado.add(armario);
-                }
+        ArrayList<Armario> filtrado = new ArrayList<>();
+        for (Armario armario : listaDeArmarios) {
+            if (armario.getNumero().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
+                filtrado.add(armario);
             }
         }
-
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoArmarioUIModal criacaoEdicaoArmario = new CriacaoEdicaoArmarioUIModal(this);
+        /*CriacaoEdicaoArmarioUIModal criacaoEdicaoArmario = new CriacaoEdicaoArmarioUIModal(this);
         criacaoEdicaoArmario.setLocationRelativeTo(this);
-        criacaoEdicaoArmario.setVisible(true);
+        criacaoEdicaoArmario.setVisible(true);*/
     }//GEN-LAST:event_btnNovoActionPerformed
 
 
@@ -234,15 +182,11 @@ public class IndexArmariosPanelUI extends javax.swing.JPanel {
     private javax.swing.JButton btnNovo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBusca;
-    private javax.swing.JLabel lblTipoFiltro;
     private javax.swing.JPanel painelGeral;
     private javax.swing.JPanel painelInferior;
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;
-    private javax.swing.JPanel panelEscolherFiltro;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JRadioButton radioNome;
-    private javax.swing.JRadioButton radioRa;
     private javax.swing.JTable tblEstudante;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables

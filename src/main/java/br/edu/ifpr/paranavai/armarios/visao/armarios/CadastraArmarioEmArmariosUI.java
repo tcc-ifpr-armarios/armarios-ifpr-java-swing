@@ -4,6 +4,7 @@ import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import java.awt.Dialog;
 import java.util.logging.Level;
@@ -169,7 +170,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
             local.setId(localId);
             armario.setLocalizacao(local);
             armario.setNumero("" + convertido);
-            armario.setAtivo(true);
+            armario.setStatus(StatusArmario.ATIVO);
             try {
                 armario = ArmarioServico.inserir(armario);
             } catch (ArmarioException ex) {

@@ -2,6 +2,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmariosPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 
 import java.awt.Color;
@@ -186,14 +187,14 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         btnArmarios.setBackground(new java.awt.Color(9, 176, 56));
         btnArmarios.setPreferredSize(new java.awt.Dimension(111, 40));
         btnArmarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnArmariosMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hoverEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 hoverExited(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                hoverEntered(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnArmariosMousePressed(evt);
             }
         });
 
@@ -493,7 +494,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
                     .addComponent(btnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
 
         lblNomeSistema.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -502,7 +503,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
 
         panelDinamico.setBackground(new java.awt.Color(255, 255, 255));
         panelDinamico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelDinamico.setToolTipText("MayDay");
+        panelDinamico.setToolTipText("");
         panelDinamico.setLayout(new java.awt.BorderLayout());
 
         lblDesenvolvidoPor.setBackground(new java.awt.Color(255, 255, 255));
@@ -623,9 +624,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstudantesMousePressed
 
     private void btnArmariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArmariosMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Gerenciamento de Compras", new CompraPrincipal());
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_ARMARIO, new IndexArmariosPanelUI());
     }//GEN-LAST:event_btnArmariosMousePressed
 
     private void btnLocalizacaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLocalizacaoMousePressed

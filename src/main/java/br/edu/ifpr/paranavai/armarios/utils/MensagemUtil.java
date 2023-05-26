@@ -12,6 +12,7 @@ public class MensagemUtil {
     public static final String TITULO_INFORMACAO = "Informação";
     public static final String TITULO_SISTEMA = "Armários IFPR - PVAÍ";
     public static final String TITULO_AREA_ESTUDANTE = "Gerenciamento de Estudantes";
+    public static final String TITULO_AREA_ARMARIO= "Gerenciamento de Armários";
 
     public static final String EMAIL_INVALIDO = "E-mail inválido!";
     public static final String TELEFONE_INVALIDO = "Telefone inválido!";

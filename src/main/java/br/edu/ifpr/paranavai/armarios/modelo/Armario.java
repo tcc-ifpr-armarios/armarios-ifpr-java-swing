@@ -1,9 +1,10 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,18 +26,17 @@ public class Armario {
     @Column(name = "numero", nullable = false)
     private String numero;
 
-    @Basic
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusArmario status;
 
     public Armario() {
     }
 
-    public Armario(Localizacao localizacao, String numero, boolean ativo) {
-        this.numero = numero;
-        this.ativo = ativo;
+    public Armario(Localizacao localizacao, String numero, StatusArmario status) {
         this.localizacao = localizacao;
-
+        this.numero = numero;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -63,11 +63,12 @@ public class Armario {
         this.numero = numero;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public StatusArmario getStatus() {
+        return status;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setStatus(StatusArmario status) {
+        this.status = status;
     }
+
 }
