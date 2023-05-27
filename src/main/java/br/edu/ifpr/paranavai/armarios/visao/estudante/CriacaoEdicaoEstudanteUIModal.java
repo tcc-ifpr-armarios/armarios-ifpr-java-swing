@@ -1,9 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
-import br.edu.ifpr.paranavai.armarios.controle.EstudanteControle;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.CursoComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import java.awt.Dialog;
@@ -43,7 +45,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante = new Estudante();
         this.estaAtualizando = false;
 
-        this.cursoComboBoxModel = EstudanteControle.inicializaComboBoxCurso();
+        this.cursoComboBoxModel = ComboBoxServico.inicializaComboBoxCurso();
         cbxCursoEstudante.setModel(cursoComboBoxModel);
 
         this.setTitle("Novo Estudante");
@@ -55,22 +57,21 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante = estudante;
         this.estaAtualizando = true;
 
-        initTextFields(estudante);
+        initTextFields();
     }
 
-    private void initTextFields(Estudante estudante1) {
-        lblTitulo.setText("Edição do Estudante " + estudante1.getId());
-        this.setTitle("Edição do Estudante " + estudante1.getId());
-        txtNomeEstudante.setText(estudante1.getNome());
-        txtSobrenomeEstudante.setText(estudante1.getSobrenome());
-        txtRaEstudante.setText(estudante1.getRa());
-        txtTelefoneEstudante.setText(estudante1.getTelefone());
-        txtEmailEstudante.setText(estudante1.getEmail());
-        cbxCursoEstudante.setSelectedItem(estudante1.getCurso());
-        txtSenhaEstudante.setText(estudante1.getSenha());
-        txtConfirmaSenhaEstudante.setText(estudante1.getSenha());
-        this.estudante.setAtivo(ckbAtivo.isSelected());
-        ckbAtivo.setSelected(estudante1.isAtivo());
+    private void initTextFields() {
+        lblTitulo.setText("Edição do Estudante " + this.estudante.getId());
+        this.setTitle("Edição do Estudante " + this.estudante.getId());
+        txtNomeEstudante.setText(this.estudante.getNome());
+        txtSobrenomeEstudante.setText(this.estudante.getSobrenome());
+        txtRaEstudante.setText(this.estudante.getRa());
+        txtTelefoneEstudante.setText(this.estudante.getTelefone());
+        txtEmailEstudante.setText(this.estudante.getEmail());
+        cbxCursoEstudante.setSelectedItem(this.estudante.getCurso());
+        txtSenhaEstudante.setText(this.estudante.getSenha());
+        txtConfirmaSenhaEstudante.setText(this.estudante.getSenha());
+        ckbAtivo.setSelected(this.estudante.isAtivo());
     }
 
     /**
@@ -404,7 +405,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
     private void salvar() throws HeadlessException {
         try {
-            EstudanteControle.inserir(estudante);
+            EstudanteServico.inserir(estudante);
             JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_SUCESSO);
             fecharFormulario();
         } catch (EstudanteException e) {
@@ -417,7 +418,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
     private void atualizar() {
         try {
-            EstudanteControle.atualizar(estudante);
+            EstudanteServico.atualizar(estudante);
             JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_ATUALIZACAO_SUCESSO);
             fecharFormulario();
         } catch (EstudanteException e) {

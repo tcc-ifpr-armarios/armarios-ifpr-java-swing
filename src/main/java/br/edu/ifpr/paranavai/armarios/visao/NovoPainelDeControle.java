@@ -4,6 +4,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.emprestimo.IndexEmprestimoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.localizacao.IndexLocalizacaoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.servidor.IndexServidorPanelUI;
@@ -64,9 +65,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         btnAdministrador = new javax.swing.JPanel();
         imgAdministrador = new javax.swing.JLabel();
         lblAdministrador = new javax.swing.JLabel();
-        btnRelatorioDeEmprestimo = new javax.swing.JPanel();
-        imgRelatorioDeEmprestimo = new javax.swing.JLabel();
-        lblRelatorioDeEmprestimo = new javax.swing.JLabel();
+        btnEmprestimo = new javax.swing.JPanel();
+        imgEmprestimo = new javax.swing.JLabel();
+        lblEmprestimo = new javax.swing.JLabel();
         btnSair = new javax.swing.JPanel();
         imgSair = new javax.swing.JLabel();
         lblSair = new javax.swing.JLabel();
@@ -343,9 +344,9 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
 
         atalhosDoMenu.add(btnAdministrador);
 
-        btnRelatorioDeEmprestimo.setBackground(new java.awt.Color(9, 176, 56));
-        btnRelatorioDeEmprestimo.setPreferredSize(new java.awt.Dimension(111, 40));
-        btnRelatorioDeEmprestimo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEmprestimo.setBackground(new java.awt.Color(9, 176, 56));
+        btnEmprestimo.setPreferredSize(new java.awt.Dimension(111, 40));
+        btnEmprestimo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 hoverEntered(evt);
             }
@@ -353,34 +354,34 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
                 hoverExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnRelatorioDeEmprestimoMousePressed(evt);
+                btnEmprestimoMousePressed(evt);
             }
         });
 
-        imgRelatorioDeEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/historico-branco-24px.png"))); // NOI18N
+        imgEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/historico-branco-24px.png"))); // NOI18N
 
-        lblRelatorioDeEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblRelatorioDeEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
-        lblRelatorioDeEmprestimo.setText("Relatório de Empréstimos");
+        lblEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmprestimo.setText("Empréstimos");
 
-        javax.swing.GroupLayout btnRelatorioDeEmprestimoLayout = new javax.swing.GroupLayout(btnRelatorioDeEmprestimo);
-        btnRelatorioDeEmprestimo.setLayout(btnRelatorioDeEmprestimoLayout);
-        btnRelatorioDeEmprestimoLayout.setHorizontalGroup(
-            btnRelatorioDeEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnRelatorioDeEmprestimoLayout.createSequentialGroup()
+        javax.swing.GroupLayout btnEmprestimoLayout = new javax.swing.GroupLayout(btnEmprestimo);
+        btnEmprestimo.setLayout(btnEmprestimoLayout);
+        btnEmprestimoLayout.setHorizontalGroup(
+            btnEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnEmprestimoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(imgRelatorioDeEmprestimo)
+                .addComponent(imgEmprestimo)
                 .addGap(20, 20, 20)
-                .addComponent(lblRelatorioDeEmprestimo)
+                .addComponent(lblEmprestimo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        btnRelatorioDeEmprestimoLayout.setVerticalGroup(
-            btnRelatorioDeEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblRelatorioDeEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(imgRelatorioDeEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        btnEmprestimoLayout.setVerticalGroup(
+            btnEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imgEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        atalhosDoMenu.add(btnRelatorioDeEmprestimo);
+        atalhosDoMenu.add(btnEmprestimo);
 
         menuLateral.add(atalhosDoMenu, java.awt.BorderLayout.CENTER);
 
@@ -608,11 +609,11 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
 //        updatePanelDinamic("Usuário", new UsuarioPrincipal());
     }//GEN-LAST:event_btnUsuarioMousePressed
 
-    private void btnRelatorioDeEmprestimoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatorioDeEmprestimoMousePressed
-//        resetColor((JPanel) painelAtivo);
-//        painelAtivo = evt.getSource();
-//        updatePanelDinamic("Relatório de Estoque", new RelatorioDeEstoquePrincipal());
-    }//GEN-LAST:event_btnRelatorioDeEmprestimoMousePressed
+    private void btnEmprestimoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmprestimoMousePressed
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_EMPRESTIMO, new IndexEmprestimoPanelUI());
+    }//GEN-LAST:event_btnEmprestimoMousePressed
 
     private void btnCursoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCursoMousePressed
         resetColor((JPanel) painelAtivo);
@@ -718,21 +719,21 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JPanel btnAdministrador;
     private javax.swing.JPanel btnArmarios;
     private javax.swing.JPanel btnCurso;
+    private javax.swing.JPanel btnEmprestimo;
     private javax.swing.JPanel btnEstudantes;
     private javax.swing.JPanel btnInicio;
     private javax.swing.JPanel btnLocalizacao;
-    private javax.swing.JPanel btnRelatorioDeEmprestimo;
     private javax.swing.JPanel btnSair;
     private javax.swing.JPanel btnUsuario;
     private javax.swing.JPanel iconeSistema;
     private javax.swing.JLabel imgAdministrador;
     private javax.swing.JLabel imgArmarios;
     private javax.swing.JLabel imgCurso;
+    private javax.swing.JLabel imgEmprestimo;
     private javax.swing.JLabel imgEstudantes;
     private javax.swing.JLabel imgInicio;
     private javax.swing.JLabel imgLocalizacao;
     private javax.swing.JLabel imgLogo;
-    private javax.swing.JLabel imgRelatorioDeEmprestimo;
     private javax.swing.JLabel imgSair;
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JSeparator jSeparator1;
@@ -744,12 +745,12 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDesenvolvidoPor;
     private javax.swing.JLabel lblDivisor;
+    private javax.swing.JLabel lblEmprestimo;
     private javax.swing.JLabel lblEstudantes;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblLocalizacao;
     private javax.swing.JLabel lblNomeSistema;
-    private javax.swing.JLabel lblRelatorioDeEmprestimo;
     private javax.swing.JLabel lblSair;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioLogado;

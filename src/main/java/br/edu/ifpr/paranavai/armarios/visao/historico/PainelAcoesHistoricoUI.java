@@ -41,11 +41,6 @@ public class PainelAcoesHistoricoUI extends javax.swing.JPanel {
         btnVisualizar = new br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesDoBotao();
 
         btnVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/visualizar-16.png"))); // NOI18N
-        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,10 +59,6 @@ public class PainelAcoesHistoricoUI extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVisualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

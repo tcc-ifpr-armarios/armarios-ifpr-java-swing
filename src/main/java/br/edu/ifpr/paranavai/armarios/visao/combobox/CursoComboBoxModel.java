@@ -1,4 +1,4 @@
-package br.edu.ifpr.paranavai.armarios.visao.estudante;
+package br.edu.ifpr.paranavai.armarios.visao.combobox;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import java.util.ArrayList;

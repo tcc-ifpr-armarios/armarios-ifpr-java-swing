@@ -42,4 +42,12 @@ public class EmprestimoServico {
     public static Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
         return dao.buscarEmprestimoAtivoPorRaDoEstudante(ra);
     }
+
+    public static Emprestimo buscarPorId(int identificador) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static void excluir(Emprestimo emprestimo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

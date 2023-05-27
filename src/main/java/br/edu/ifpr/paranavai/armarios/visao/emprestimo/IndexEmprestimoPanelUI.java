@@ -1,7 +1,8 @@
-package br.edu.ifpr.paranavai.armarios.visao.estudante;
+package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,43 +12,43 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author professor Marcelo F. Terenciani
  */
-public class IndexEstudantePanelUI extends javax.swing.JPanel {
-    private final int QUANTIDADE_COLUNAS = 8;
-    
-    List<Estudante> listaDeEstudantes;
-    
-    public IndexEstudantePanelUI() {
+public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
+
+    private final int QUANTIDADE_COLUNAS = 4;
+
+    List<Emprestimo> listaDeEmprestimos;
+
+    public IndexEmprestimoPanelUI() {
         initComponents();
-    init();
+        init();
     }
 
     public void init() {
-        listaDeEstudantes = EstudanteServico.buscarTodos();
-        populaTabela(listaDeEstudantes);
+        listaDeEmprestimos = EmprestimoServico.buscarTodos();
+        populaTabela(listaDeEmprestimos);
     }
 
-    private void populaTabela(List<Estudante> lista) {
+    private void populaTabela(List<Emprestimo> lista) {
 
-        AcoesEventoTabela evento = new AcoesEventoTabelaEstudante();
+        AcoesEventoTabela evento = new AcoesEventoTabelaEmprestimo();
 
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudante.getModel();
-        tblEstudante.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaEstudante());
-        tblEstudante.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaEstudante(evento));
+        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEmprestimo.getModel();
+        tblEmprestimo.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaEmprestimo());
+        tblEmprestimo.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaTabelaEmprestimo(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
 
         for (int i = 0; i < lista.size(); i++) {
-            Estudante mostraEstudante = lista.get(i);
+            Emprestimo mostraEmprestimo = lista.get(i);
             Object[] dadosLinha = new Object[QUANTIDADE_COLUNAS];
-            dadosLinha[0] = mostraEstudante.getId();
-            dadosLinha[1] = mostraEstudante.getRa();
-            dadosLinha[2] = mostraEstudante.getNomeCompleto();
-            dadosLinha[3] = mostraEstudante.getTelefone();
-            dadosLinha[4] = mostraEstudante.getEmail();
-            dadosLinha[5] = mostraEstudante.getCurso().getNome();
-            dadosLinha[6] = mostraEstudante.isAtivo() ? "Ativo" : "Inativo";
+            dadosLinha[0] = mostraEmprestimo.getId();
+            dadosLinha[1] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataEmprestimo());
+            dadosLinha[2] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataDevolucao());
+            dadosLinha[3] = mostraEmprestimo.getEstudante().getNomeCompleto();
+            dadosLinha[4] = mostraEmprestimo.getArmario().getNumero();
+            dadosLinha[5] = mostraEmprestimo.getArmario().getLocalizacao().getDescricao();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -66,8 +67,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         painelSuperior = new javax.swing.JPanel();
         panelEscolherFiltro = new javax.swing.JPanel();
         lblTipoFiltro = new javax.swing.JLabel();
-        radioRa = new javax.swing.JRadioButton();
-        radioNome = new javax.swing.JRadioButton();
+        cbxFitro = new javax.swing.JComboBox<>();
         panelBusca = new javax.swing.JPanel();
         lblBusca = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
@@ -76,7 +76,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEstudante = new javax.swing.JTable();
+        tblEmprestimo = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -94,29 +94,20 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         lblTipoFiltro.setText("Buscar por:");
         panelEscolherFiltro.add(lblTipoFiltro);
 
-        radioRa.setSelected(true);
-        radioRa.setText("Ra");
-        radioRa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioRaActionPerformed(evt);
+        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativos", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", " " }));
+        cbxFitro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbxFitroFocusLost(evt);
             }
         });
-        panelEscolherFiltro.add(radioRa);
-
-        radioNome.setText("Nome");
-        radioNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNomeActionPerformed(evt);
-            }
-        });
-        panelEscolherFiltro.add(radioNome);
+        panelEscolherFiltro.add(cbxFitro);
 
         painelSuperior.add(panelEscolherFiltro);
 
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblBusca.setText("RA: ");
+        lblBusca.setText("Ativos:");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
         lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
@@ -156,19 +147,19 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
-        tblEstudante.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Identificador", "Matrícula", "Nome", "Telefone", "E-mail", "Curso", "Ativo", "Ações"
+                "Identificador", "Data Empréstimo", "Data Devolução", "Estudante", "Armário", "Localiação", "Ações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -179,10 +170,10 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblEstudante.setRowHeight(30);
-        tblEstudante.setSelectionBackground(new java.awt.Color(57, 137, 111));
-        tblEstudante.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblEstudante);
+        tblEmprestimo.setRowHeight(30);
+        tblEmprestimo.setSelectionBackground(new java.awt.Color(57, 137, 111));
+        tblEmprestimo.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblEmprestimo);
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -191,47 +182,68 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         add(painelGeral);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radioRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRaActionPerformed
-        radioRa.setSelected(true);
-        lblBusca.setText("RA:");
-        radioNome.setSelected(false);
-    }//GEN-LAST:event_radioRaActionPerformed
-
-    private void radioNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomeActionPerformed
-        radioNome.setSelected(true);
-        lblBusca.setText("Nome:");
-        radioRa.setSelected(false);
-    }//GEN-LAST:event_radioNomeActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Estudante> filtrado = new ArrayList<>();
-        if (radioNome.isSelected()) {
-            for (Estudante estudante : listaDeEstudantes) {
-                if (estudante.getNomeCompleto().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
-                    filtrado.add(estudante);
+        ArrayList<Emprestimo> filtrado = new ArrayList<>();
+        String filtro = cbxFitro.getSelectedItem().toString();
+        String termoDeBusca = txtBusca.getText().toUpperCase();
+        
+        switch (filtro) {
+            case "Ativos":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getDataDevolucao() == null) {
+                        filtrado.add(e);
+                    }
                 }
-            }
-        } else if (radioRa.isSelected()) {
-            for (Estudante estudante : listaDeEstudantes) {
-                if (estudante.getRa().toUpperCase().contains(txtBusca.getText().toUpperCase())) {
-                    filtrado.add(estudante);
+            case "Curso":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getEstudante().getCurso().getNome().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
                 }
-            }
+            case "Data Empréstimo":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (OperacaoUtil.formatarDataHora(e.getDataEmprestimo()).toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+            case "Data Devolução":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (OperacaoUtil.formatarDataHora(e.getDataDevolucao()).toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+            case "Estudante":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getEstudante().getNomeCompleto().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+            case "Localização":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getArmario().getLocalizacao().getDescricao().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+            break;
         }
-
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoEstudanteUIModal criacaoEdicaoEstudante = new CriacaoEdicaoEstudanteUIModal(this);
-        criacaoEdicaoEstudante.setLocationRelativeTo(this);
-        criacaoEdicaoEstudante.setVisible(true);
+        EmprestimoUIModal criacaoEdicaoEmprestimo = new EmprestimoUIModal(this);
+        criacaoEdicaoEmprestimo.setLocationRelativeTo(this);
+        criacaoEdicaoEmprestimo.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void cbxFitroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbxFitroFocusLost
+        lblBusca.setText(cbxFitro.getSelectedItem().toString() + ":");
+    }//GEN-LAST:event_cbxFitroFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JComboBox<String> cbxFitro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBusca;
     private javax.swing.JLabel lblTipoFiltro;
@@ -241,9 +253,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelEscolherFiltro;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JRadioButton radioNome;
-    private javax.swing.JRadioButton radioRa;
-    private javax.swing.JTable tblEstudante;
+    private javax.swing.JTable tblEmprestimo;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
