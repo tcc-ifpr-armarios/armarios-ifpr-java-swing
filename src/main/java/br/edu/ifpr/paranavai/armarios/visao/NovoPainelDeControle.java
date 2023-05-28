@@ -31,6 +31,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         painelAtivo = btnInicio;
         //this.usuario = usuario;
         lblUsuarioLogado.setText(servidor.getNome());
+        mostraDashboard();
     }
 
     /**
@@ -81,6 +82,18 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         lblNomeSistema = new javax.swing.JLabel();
         panelDinamico = new javax.swing.JPanel();
+        painelDashboard = new javax.swing.JPanel();
+        lblArmariosDisponveis = new javax.swing.JLabel();
+        txtArmariosDisponiveis = new javax.swing.JTextField();
+        lblArmariosOcupados = new javax.swing.JLabel();
+        txtArmariosOcupados = new javax.swing.JTextField();
+        lblEstudantesAtivos = new javax.swing.JLabel();
+        txtEstudantesAtivos = new javax.swing.JTextField();
+        lblArmariosInativados = new javax.swing.JLabel();
+        txtArmariosInativados = new javax.swing.JTextField();
+        btnAbrirSistemaEmprestimo = new javax.swing.JPanel();
+        imgAbrirSistemaEmprestimo = new javax.swing.JLabel();
+        lblAbrirSistemaEmprestimo = new javax.swing.JLabel();
         lblDesenvolvidoPor = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
@@ -510,6 +523,142 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         panelDinamico.setToolTipText("");
         panelDinamico.setLayout(new java.awt.BorderLayout());
 
+        painelDashboard.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblArmariosDisponveis.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblArmariosDisponveis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblArmariosDisponveis.setText("Armários Disponíveis");
+
+        txtArmariosDisponiveis.setEditable(false);
+        txtArmariosDisponiveis.setBackground(new java.awt.Color(204, 204, 204));
+        txtArmariosDisponiveis.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtArmariosDisponiveis.setForeground(new java.awt.Color(255, 0, 51));
+        txtArmariosDisponiveis.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtArmariosDisponiveis.setText("Saldo");
+        txtArmariosDisponiveis.setBorder(null);
+
+        lblArmariosOcupados.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblArmariosOcupados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblArmariosOcupados.setText("Armários Ocupados");
+
+        txtArmariosOcupados.setEditable(false);
+        txtArmariosOcupados.setBackground(new java.awt.Color(204, 204, 204));
+        txtArmariosOcupados.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtArmariosOcupados.setForeground(new java.awt.Color(255, 0, 51));
+        txtArmariosOcupados.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtArmariosOcupados.setText("Saldo");
+        txtArmariosOcupados.setBorder(null);
+
+        lblEstudantesAtivos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblEstudantesAtivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEstudantesAtivos.setText("Estudantes Ativos");
+
+        txtEstudantesAtivos.setEditable(false);
+        txtEstudantesAtivos.setBackground(new java.awt.Color(204, 204, 204));
+        txtEstudantesAtivos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtEstudantesAtivos.setForeground(new java.awt.Color(255, 0, 51));
+        txtEstudantesAtivos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEstudantesAtivos.setText("Saldo");
+        txtEstudantesAtivos.setBorder(null);
+
+        lblArmariosInativados.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblArmariosInativados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblArmariosInativados.setText("Armários Inativados");
+
+        txtArmariosInativados.setEditable(false);
+        txtArmariosInativados.setBackground(new java.awt.Color(204, 204, 204));
+        txtArmariosInativados.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtArmariosInativados.setForeground(new java.awt.Color(255, 0, 51));
+        txtArmariosInativados.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtArmariosInativados.setText("Saldo");
+        txtArmariosInativados.setBorder(null);
+        txtArmariosInativados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtArmariosInativadosActionPerformed(evt);
+            }
+        });
+
+        btnAbrirSistemaEmprestimo.setBackground(new java.awt.Color(8, 166, 97));
+        btnAbrirSistemaEmprestimo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAbrirSistemaEmprestimoMousePressed(evt);
+            }
+        });
+
+        imgAbrirSistemaEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/abrir-branco-64px.png"))); // NOI18N
+
+        lblAbrirSistemaEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAbrirSistemaEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
+        lblAbrirSistemaEmprestimo.setText("Abrir Sistema de Empréstimos");
+
+        javax.swing.GroupLayout btnAbrirSistemaEmprestimoLayout = new javax.swing.GroupLayout(btnAbrirSistemaEmprestimo);
+        btnAbrirSistemaEmprestimo.setLayout(btnAbrirSistemaEmprestimoLayout);
+        btnAbrirSistemaEmprestimoLayout.setHorizontalGroup(
+            btnAbrirSistemaEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnAbrirSistemaEmprestimoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(imgAbrirSistemaEmprestimo)
+                .addGap(20, 20, 20)
+                .addComponent(lblAbrirSistemaEmprestimo)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        btnAbrirSistemaEmprestimoLayout.setVerticalGroup(
+            btnAbrirSistemaEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imgAbrirSistemaEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addComponent(lblAbrirSistemaEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout painelDashboardLayout = new javax.swing.GroupLayout(painelDashboard);
+        painelDashboard.setLayout(painelDashboardLayout);
+        painelDashboardLayout.setHorizontalGroup(
+            painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDashboardLayout.createSequentialGroup()
+                .addGap(205, 205, 205)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtArmariosDisponiveis)
+                    .addComponent(lblArmariosDisponveis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEstudantesAtivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(painelDashboardLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(txtEstudantesAtivos)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblArmariosOcupados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblArmariosInativados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtArmariosOcupados)
+                    .addComponent(txtArmariosInativados, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(180, 180, 180))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDashboardLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAbrirSistemaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(306, 306, 306))
+        );
+        painelDashboardLayout.setVerticalGroup(
+            painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDashboardLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblArmariosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblArmariosDisponveis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtArmariosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtArmariosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(112, 112, 112)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEstudantesAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblArmariosInativados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEstudantesAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtArmariosInativados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAbrirSistemaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        panelDinamico.add(painelDashboard, java.awt.BorderLayout.CENTER);
+
         lblDesenvolvidoPor.setBackground(new java.awt.Color(255, 255, 255));
         lblDesenvolvidoPor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDesenvolvidoPor.setForeground(new java.awt.Color(102, 102, 102));
@@ -593,14 +742,18 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private void btnSairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMousePressed
         System.exit(0);
     }//GEN-LAST:event_btnSairMousePressed
-
-    private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
-        InicioPrincipal exemplo = new InicioPrincipal();
+    
+    private void mostraDashboard(){
+        InicioDashboard exemplo = new InicioDashboard();
         lblBreadcrumb.setText("BEM-VINDO AO SISTEMA DE GERENCIAMENTO DE ARMÁRIOS");
         panelDinamico.removeAll();
         panelDinamico.add(exemplo);
         panelDinamico.validate();
         panelDinamico.repaint();
+    }
+    
+    private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
+        mostraDashboard();
     }//GEN-LAST:event_btnInicioMousePressed
 
     private void btnUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuarioMousePressed
@@ -683,6 +836,15 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void txtArmariosInativadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArmariosInativadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtArmariosInativadosActionPerformed
+
+    private void btnAbrirSistemaEmprestimoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirSistemaEmprestimoMousePressed
+        LoginEstudanteUI loginEstudanteUI = new LoginEstudanteUI();
+        loginEstudanteUI.setVisible(true);
+    }//GEN-LAST:event_btnAbrirSistemaEmprestimoMousePressed
+
     private void updateColorActive(MouseEvent evt) {
         Component[] components = evt.getComponent().getParent().getComponents();
         for (Component component : components) {
@@ -716,6 +878,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaDeTrabalho;
     private javax.swing.JPanel atalhosDoMenu;
+    private javax.swing.JPanel btnAbrirSistemaEmprestimo;
     private javax.swing.JPanel btnAdministrador;
     private javax.swing.JPanel btnArmarios;
     private javax.swing.JPanel btnCurso;
@@ -726,6 +889,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JPanel btnSair;
     private javax.swing.JPanel btnUsuario;
     private javax.swing.JPanel iconeSistema;
+    private javax.swing.JLabel imgAbrirSistemaEmprestimo;
     private javax.swing.JLabel imgAdministrador;
     private javax.swing.JLabel imgArmarios;
     private javax.swing.JLabel imgCurso;
@@ -738,7 +902,11 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel imgUsuario;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblAbrirSistemaEmprestimo;
     private javax.swing.JLabel lblAdministrador;
+    private javax.swing.JLabel lblArmariosDisponveis;
+    private javax.swing.JLabel lblArmariosInativados;
+    private javax.swing.JLabel lblArmariosOcupados;
     private javax.swing.JLabel lblBreadcrumb;
     private javax.swing.JLabel lblCompras;
     private javax.swing.JLabel lblCurso;
@@ -747,6 +915,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel lblDivisor;
     private javax.swing.JLabel lblEmprestimo;
     private javax.swing.JLabel lblEstudantes;
+    private javax.swing.JLabel lblEstudantesAtivos;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblInicio;
     private javax.swing.JLabel lblLocalizacao;
@@ -756,7 +925,12 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuarioLogado;
     private javax.swing.JPanel menuLateral;
     private javax.swing.JPanel painelBreadcrumb;
+    private javax.swing.JPanel painelDashboard;
     private javax.swing.JPanel panelDinamico;
+    private javax.swing.JTextField txtArmariosDisponiveis;
+    private javax.swing.JTextField txtArmariosInativados;
+    private javax.swing.JTextField txtArmariosOcupados;
+    private javax.swing.JTextField txtEstudantesAtivos;
     // End of variables declaration//GEN-END:variables
     private Object painelAtivo;
 
