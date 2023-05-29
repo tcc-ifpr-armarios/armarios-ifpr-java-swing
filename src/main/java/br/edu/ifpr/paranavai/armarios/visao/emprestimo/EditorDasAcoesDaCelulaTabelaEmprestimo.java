@@ -23,7 +23,7 @@ public class EditorDasAcoesDaCelulaTabelaEmprestimo extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesUI acoes = new PainelAcoesUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(true, true, true);
 
         acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());

@@ -22,7 +22,7 @@ public class EditorDasAcoesDaCelulaArmario extends DefaultCellEditor {
     }
 
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesUI acoes = new PainelAcoesUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(false, true, true);
 
         acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());

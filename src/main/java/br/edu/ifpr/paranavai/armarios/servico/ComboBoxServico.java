@@ -4,10 +4,13 @@ import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.ArmarioComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.CursoComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.EstudanteComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.StatusArmarioComboBoxModel;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,5 +61,16 @@ public class ComboBoxServico {
             armarioComboBoxModel.addEstudante(estudante);
         }
         return armarioComboBoxModel;
+    }
+
+    public static StatusArmarioComboBoxModel inicializaComboBoxStatus() {
+        StatusArmarioComboBoxModel statusArmarioComboBoxModel = new StatusArmarioComboBoxModel();
+        
+        List<StatusArmario> statusArmarios = Arrays.asList(StatusArmario.values());
+        
+        for (StatusArmario s : statusArmarios) {
+            statusArmarioComboBoxModel.addStatusArmario(s);
+        }
+        return statusArmarioComboBoxModel;
     }
 }

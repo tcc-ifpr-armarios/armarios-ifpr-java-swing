@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTable;
 
-
 /**
  *
  * @author professor Marcelo Figueiredo Terenciani
@@ -15,10 +14,13 @@ public class PainelAcoesUI extends javax.swing.JPanel {
     /**
      * Creates new form PainelAcoesEstudanteUI
      */
-    public PainelAcoesUI() {
+    public PainelAcoesUI(boolean ehVisivelVisualizar, boolean ehVisivelEditar, boolean ehVisivelExcluir) {
         initComponents();
+        btnVisualizar.setVisible(ehVisivelVisualizar);
+        btnEditar.setVisible(ehVisivelEditar);
+        btnExcluir.setVisible(ehVisivelExcluir);
     }
-
+    
     public void iniciarEventos(AcoesEventoTabela evento, JTable tabela, int linha) {
         btnEditar.addActionListener(new ActionListener() {
             @Override

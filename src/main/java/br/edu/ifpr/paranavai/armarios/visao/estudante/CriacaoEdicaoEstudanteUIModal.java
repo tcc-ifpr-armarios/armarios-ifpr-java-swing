@@ -27,7 +27,6 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
     private Estudante estudante;
     private boolean estaAtualizando;
     private IndexEstudantePanelUI indexEstudantePanelUI;
-    private CursoComboBoxModel cursoComboBoxModel;
     private MaskFormatter maskFormatter;
 
     public CriacaoEdicaoEstudanteUIModal(IndexEstudantePanelUI indexEstudantePanelUI) {
@@ -45,7 +44,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
         this.estudante = new Estudante();
         this.estaAtualizando = false;
 
-        this.cursoComboBoxModel = ComboBoxServico.inicializaComboBoxCurso();
+        CursoComboBoxModel cursoComboBoxModel = ComboBoxServico.inicializaComboBoxCurso();
         cbxCursoEstudante.setModel(cursoComboBoxModel);
 
         this.setTitle("Novo Estudante");
@@ -403,7 +402,7 @@ public class CriacaoEdicaoEstudanteUIModal extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtTelefoneEstudanteFocusLost
 
-    private void salvar() throws HeadlessException {
+    private void salvar() {
         try {
             EstudanteServico.inserir(estudante);
             JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_SUCESSO);

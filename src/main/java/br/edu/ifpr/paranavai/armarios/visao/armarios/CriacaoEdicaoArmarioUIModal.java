@@ -6,10 +6,13 @@ import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
+import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.StatusArmarioComboBoxModel;
 import java.awt.Dialog;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -18,27 +21,41 @@ import javax.swing.SwingUtilities;
  */
 public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
 
-    //int localId = Integer.parseInt(System.getProperty("localId"));
-    private int localId;
     private Armario armario;
-    private Localizacao local = new Localizacao();
     private IndexArmarioPanelUI indexArmarioPanelUI;
+    private boolean estaAtualizando;
 
-    /**
-     * Creates new form CriacaoEdicaoLocalizacaoUIModal
-     */
     public CriacaoEdicaoArmarioUIModal(IndexArmarioPanelUI indexArmarioPanelUI) {
         super((JFrame) SwingUtilities.getWindowAncestor(indexArmarioPanelUI), true);
         initComponents();
         this.indexArmarioPanelUI = indexArmarioPanelUI;
 
+        this.armario = new Armario();
+
+        LocalizacaoComboBoxModel localizacaoComboBoxModel = ComboBoxServico.inicializaComboBoxLocalizacao();
+        cbxLocalizacao.setModel(localizacaoComboBoxModel);
+
+        StatusArmarioComboBoxModel statusComboBoxModel = ComboBoxServico.inicializaComboBoxStatus();
+        cbxStatus.setModel(statusComboBoxModel);
+
         this.setTitle("Novo armário");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        this.localId = localId;
     }
 
-    CriacaoEdicaoArmarioUIModal(IndexArmarioPanelUI origem, Armario armario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    CriacaoEdicaoArmarioUIModal(IndexArmarioPanelUI indexArmarioPanelUI, Armario armario) {
+        this(indexArmarioPanelUI);
+        this.armario = armario;
+        this.estaAtualizando = true;
+
+        initTextFields();
+    }
+
+    private void initTextFields() {
+        lblTitulo.setText("Edição do Armario " + this.armario.getNumero());
+        this.setTitle("Edição do Estudante " + this.armario.getNumero());
+        cbxLocalizacao.setSelectedItem(this.armario.getLocalizacao());
+        txtNumero.setText(this.armario.getNumero());
+        cbxStatus.setSelectedItem(this.armario.getStatus());
     }
 
     /**
@@ -54,11 +71,14 @@ public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
         jSpinner1 = new javax.swing.JSpinner();
         panelGeral = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        btnCadastrar = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
-        selecionaNumero = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
-        lblrespostacad = new javax.swing.JLabel();
+        lblLocalizacao = new javax.swing.JLabel();
+        cbxLocalizacao = new javax.swing.JComboBox<>();
+        lblNumero = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
+        cbxStatus = new javax.swing.JComboBox<>();
+        lblStatus = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(394, 290));
@@ -75,85 +95,69 @@ public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Novo armário");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnCadastrarMouseExited(evt);
-            }
-        });
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        lblLocalizacao.setText("Onde o armário estará localizado?*");
+
+        lblNumero.setText("Número do novo armário (Pode conter letras)*:");
+
+        lblStatus.setText("Qual o status inicial do armário?*");
+
+        btnSalvar.setText("Sair");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-
-        selecionaNumero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selecionaNumeroMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                selecionaNumeroMouseEntered(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                selecionaNumeroMousePressed(evt);
-            }
-        });
-        selecionaNumero.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                selecionaNumeroPropertyChange(evt);
-            }
-        });
-
-        jLabel1.setText("Defina o número do novo armário:");
-
-        lblrespostacad.setText(" ");
-        lblrespostacad.setAlignmentX(5.0F);
-        lblrespostacad.setAlignmentY(0.0F);
 
         javax.swing.GroupLayout panelGeralLayout = new javax.swing.GroupLayout(panelGeral);
         panelGeral.setLayout(panelGeralLayout);
         panelGeralLayout.setHorizontalGroup(
             panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeralLayout.createSequentialGroup()
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
-            .addGroup(panelGeralLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGeralLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selecionaNumero))
-                    .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblrespostacad, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                        .addComponent(lblLocalizacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGeralLayout.createSequentialGroup()
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCancelar))
+                        .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cbxStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbxLocalizacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(5, 5, 5))
         );
         panelGeralLayout.setVerticalGroup(
             panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeralLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selecionaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(11, 11, 11)
-                .addComponent(lblrespostacad)
+                .addGap(18, 18, 18)
+                .addComponent(lblLocalizacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbxLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(lblNumero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblStatus)
+                .addGap(5, 5, 5)
+                .addComponent(cbxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSair)
-                    .addComponent(btnCadastrar))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSalvar))
+                .addGap(20, 20, 20))
         );
 
         getContentPane().add(panelGeral, java.awt.BorderLayout.CENTER);
@@ -161,51 +165,49 @@ public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Localizacao localizacao = (Localizacao) cbxLocalizacao.getSelectedItem();
+        StatusArmario status = (StatusArmario) cbxStatus.getSelectedItem();
+
+        this.armario.setNumero(txtNumero.getText());
+        this.armario.setLocalizacao(localizacao);
+        this.armario.setStatus(status);
+
+        if (estaAtualizando)
+            atualizar();
+        else
+            salvar();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         fecharFormulario();
-    }//GEN-LAST:event_btnSairActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        this.armario = new Armario();
-        String numero = selecionaNumero.getValue().toString();
-        int convertido = Integer.parseInt(numero);
-
-        if (convertido <= 0) {
-            lblrespostacad.setText("O número não pode ser zero ou negativo");
-        } else {
-            local.setId(localId);
-            armario.setLocalizacao(local);
-            armario.setNumero("" + convertido);
-            armario.setStatus(StatusArmario.ATIVO);
-            try {
-                armario = ArmarioServico.inserir(armario);
-            } catch (ArmarioException ex) {
-                Logger.getLogger(CriacaoEdicaoArmarioUIModal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+    private void salvar() {
+        try {
+            ArmarioServico.inserir(armario);
+            JOptionPane.showMessageDialog(this, MensagemUtil.ARMARIO_INSERCAO_SUCESSO);
+            fecharFormulario();
+        } catch (ArmarioException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, MensagemUtil.ARMARIO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
+    }
 
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void selecionaNumeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMouseClicked
-
-    }//GEN-LAST:event_selecionaNumeroMouseClicked
-
-    private void selecionaNumeroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selecionaNumeroPropertyChange
-
-    }//GEN-LAST:event_selecionaNumeroPropertyChange
-
-    private void selecionaNumeroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMouseEntered
-
-    }//GEN-LAST:event_selecionaNumeroMouseEntered
-
-    private void selecionaNumeroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selecionaNumeroMousePressed
-
-    }//GEN-LAST:event_selecionaNumeroMousePressed
-
-    private void btnCadastrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseExited
-        lblrespostacad.setText(" ");
-    }//GEN-LAST:event_btnCadastrarMouseExited
+    private void atualizar() {
+        try {
+            ArmarioServico.atualizar(armario);
+            JOptionPane.showMessageDialog(this, MensagemUtil.ARMARIO_ATUALIZACAO_SUCESSO);
+            fecharFormulario();
+        } catch (ArmarioException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, MensagemUtil.ARMARIO_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void fecharFormulario() {
         this.dispose();
@@ -213,14 +215,17 @@ public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbxLocalizacao;
+    private javax.swing.JComboBox<String> cbxStatus;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel lblLocalizacao;
+    private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblrespostacad;
     private javax.swing.JPanel panelGeral;
-    private javax.swing.JSpinner selecionaNumero;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }
