@@ -2,16 +2,18 @@ package br.edu.ifpr.paranavai.armarios.visao.armarios;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author professor Marcelo F. Terenciani
  */
 public class IndexArmarioPanelUI extends javax.swing.JPanel {
-
-    List<Armario> listaDeArmarios;
+    private final int QUANTIDADE_COLUNAS = 5;
+    private List<Armario> listaDeArmarios;
 
     public IndexArmarioPanelUI() {
         initComponents();
@@ -24,12 +26,11 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
     }
 
     private void populaTabela(List<Armario> lista) {
-        /*
         AcoesEventoTabela evento = new AcoesEventoTabelaArmario();
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblArmario.getModel();
-        tblArmario.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaArmario());
-        tblArmario.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaArmario(evento));
+        tblArmario.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaArmario());
+        tblArmario.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaArmario(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -37,18 +38,14 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
 
         for (int i = 0; i < lista.size(); i++) {
             Armario mostraArmario = lista.get(i);
-            Object[] dadosLinha = new Object[7];
+            Object[] dadosLinha = new Object[QUANTIDADE_COLUNAS];
             dadosLinha[0] = mostraArmario.getId();
-            dadosLinha[1] = mostraArmario.getRa();
-            dadosLinha[2] = mostraArmario.getNomeCompleto();
-            dadosLinha[3] = mostraArmario.getTelefone();
-            dadosLinha[4] = mostraArmario.getEmail();
-            dadosLinha[5] = mostraArmario.getCurso().getNome();
-            dadosLinha[6] = mostraArmario.isAtivo() ? "Ativo" : "Inativo";
-
+            dadosLinha[1] = mostraArmario.getNumero();
+            dadosLinha[2] = mostraArmario.getLocalizacao().getDescricao();
+            dadosLinha[3] = mostraArmario.getStatus();
+            
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
-         */
     }
 
     /**
@@ -70,7 +67,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
         btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblArmarios = new javax.swing.JTable();
+        tblArmario = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -125,7 +122,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
-        tblArmarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblArmario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -148,10 +145,10 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblArmarios.setRowHeight(30);
-        tblArmarios.setSelectionBackground(new java.awt.Color(57, 137, 111));
-        tblArmarios.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblArmarios);
+        tblArmario.setRowHeight(30);
+        tblArmario.setSelectionBackground(new java.awt.Color(57, 137, 111));
+        tblArmario.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblArmario);
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -171,9 +168,9 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        /*CriacaoEdicaoArmarioUIModal criacaoEdicaoArmario = new CriacaoEdicaoArmarioUIModal(this);
+        CriacaoEdicaoArmarioUIModal criacaoEdicaoArmario = new CriacaoEdicaoArmarioUIModal(this);
         criacaoEdicaoArmario.setLocationRelativeTo(this);
-        criacaoEdicaoArmario.setVisible(true);*/
+        criacaoEdicaoArmario.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
 
@@ -187,7 +184,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
     private javax.swing.JPanel painelSuperior;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblArmarios;
+    private javax.swing.JTable tblArmario;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }

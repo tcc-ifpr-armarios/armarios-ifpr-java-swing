@@ -9,30 +9,36 @@ import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import java.awt.Dialog;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Allan Fernando O de Andrade
  */
-public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
+public class CriacaoEdicaoArmarioUIModal extends javax.swing.JDialog {
 
     //int localId = Integer.parseInt(System.getProperty("localId"));
     private int localId;
     private Armario armario;
-    Localizacao local = new Localizacao();
-    private ListaArmariosUI listaArmariosUI;
+    private Localizacao local = new Localizacao();
+    private IndexArmarioPanelUI indexArmarioPanelUI;
 
     /**
      * Creates new form CriacaoEdicaoLocalizacaoUIModal
      */
-    public CadastraArmarioEmArmariosUI(ListaArmariosUI listaArmariosUI, Integer localId) {
-        super(listaArmariosUI, true);
+    public CriacaoEdicaoArmarioUIModal(IndexArmarioPanelUI indexArmarioPanelUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(indexArmarioPanelUI), true);
         initComponents();
-        this.listaArmariosUI = listaArmariosUI;
+        this.indexArmarioPanelUI = indexArmarioPanelUI;
 
         this.setTitle("Novo armário");
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         this.localId = localId;
+    }
+
+    CriacaoEdicaoArmarioUIModal(IndexArmarioPanelUI origem, Armario armario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -174,7 +180,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
             try {
                 armario = ArmarioServico.inserir(armario);
             } catch (ArmarioException ex) {
-                Logger.getLogger(CadastraArmarioEmArmariosUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CriacaoEdicaoArmarioUIModal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -203,7 +209,7 @@ public class CadastraArmarioEmArmariosUI extends javax.swing.JDialog {
 
     private void fecharFormulario() {
         this.dispose();
-        this.listaArmariosUI.init();
+        this.indexArmarioPanelUI.init();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
