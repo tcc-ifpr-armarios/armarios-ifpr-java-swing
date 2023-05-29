@@ -29,8 +29,8 @@ public class Armario {
     private String numero;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private StatusArmario status;
+    @Column(name = "status", nullable = false, length = 32, columnDefinition = "varchar(32) default 'ATIVO'")
+    private StatusArmario status = StatusArmario.ATIVO;
 
     public Armario() {
     }

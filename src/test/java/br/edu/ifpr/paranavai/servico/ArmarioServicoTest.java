@@ -245,7 +245,7 @@ public class ArmarioServicoTest {
         assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, armarioExceptionVazio.getMessage());
         assertEquals(MensagemUtil.CURSO_CAMPO_OBRIGATORIO, armarioExceptionNulo.getMessage());
     }
-/*
+
     @Test
     public void naoDeveAtualizarParaNumeroDuplicadoNaMesmaLocalizacao() throws ArmarioException {
         System.out.println("Executando teste naoDeveAtualizarParaNumeroDuplicadoNaMesmaLocalizacao");
@@ -253,6 +253,7 @@ public class ArmarioServicoTest {
         this.armarioAtualizacao = new Armario();
         this.armarioAtualizacao.setNumero(NUMERO + "Para atualizar");
         this.armarioAtualizacao.setLocalizacao(this.localizacao);
+        this.armarioAtualizacao.setStatus(StatusArmario.ATIVO);
 
         this.armario = ArmarioServico.inserir(this.armario);
         this.armarioAtualizacao = ArmarioServico.inserir(this.armarioAtualizacao);
@@ -266,29 +267,4 @@ public class ArmarioServicoTest {
         ArmarioServico.excluir(this.armarioAtualizacao);
         assertEquals(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO, armarioException.getMessage());
     }
-
-    @Test
-    public void naoDeveExcluirArmarioVinculadoAUmEstudante() throws ArmarioException, EstudanteException {
-        System.out.println("Executando teste naoDeveExcluirArmarioVinculadoAUmEstudante");
-
-        this.armario = ArmarioServico.inserir(this.armario);
-
-        Estudante estudante = new Estudante();
-        estudante.setNome("Estudante");
-        estudante.setSobrenome("Teste");
-        estudante.setEmail("teste@teste.com");
-        estudante.setTelefone("(44) 9 9999-9999");
-        estudante.setRa("2023232323");
-        estudante.setSenha("123456");
-        estudante.setArmario(armario);
-
-        estudante = EstudanteServico.inserir(estudante);
-
-        ArmarioException armarioException = assertThrows(ArmarioException.class, () -> {
-            ArmarioServico.excluir(armario);
-        });
-
-        EstudanteServico.excluir(estudante);
-        assertEquals(MensagemUtil.CURSO_VINCULADO_ESTUDANTE, armarioException.getMessage());
-    }*/
 }

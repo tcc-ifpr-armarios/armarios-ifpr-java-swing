@@ -80,5 +80,8 @@ public class ArmarioServico {
         if (armario.getLocalizacao() == null || armario.getLocalizacao().getId() == 0) {
             throw new ArmarioException(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO);
         }
+        if (armario.getStatus() == null) {
+            throw new ArmarioException(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO);
+        }
     }
 }
