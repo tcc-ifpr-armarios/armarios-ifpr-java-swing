@@ -73,16 +73,17 @@ public class ServidorDaoImpl implements ServidorDao {
     public Servidor buscarPorEmail(String email) {
         Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email", Servidor.class);
         query.setParameter("email", email);
-        Servidor servidor = query.uniqueResult();
+        Servidor servidor = (Servidor) query.uniqueResult();
         return servidor;
     }
 
     @Override
     public Servidor buscarPorEmailOuSiape(String emailOuSiape) {
-        Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email or siape = :siape", Servidor.class);
+        Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email or siape = :siape",
+                Servidor.class);
         query.setParameter("email", emailOuSiape);
         query.setParameter("siape", emailOuSiape);
-        Servidor servidor = query.uniqueResult();
+        Servidor servidor = (Servidor) query.uniqueResult();
         return servidor;
     }
 }

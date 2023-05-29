@@ -77,7 +77,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     public Estudante buscarPorRa(String ra) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra", Estudante.class);
         query.setParameter("ra", ra);
-        Estudante estudante = query.uniqueResult();
+        Estudante estudante = (Estudante) query.uniqueResult();
         return estudante;
     }
 
@@ -85,7 +85,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     public Estudante buscarPorEmail(String email) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where email = :email", Estudante.class);
         query.setParameter("email", email);
-        Estudante estudante = query.uniqueResult();
+        Estudante estudante = (Estudante) query.uniqueResult();
         return estudante;
     }
 
@@ -95,7 +95,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
                 Estudante.class);
         query.setParameter("ra", ra);
         query.setParameter("id", idEstudante);
-        Estudante resultado = query.uniqueResult();
+        Estudante resultado = (Estudante) query.uniqueResult();
         return resultado;
     }
 

@@ -1,12 +1,15 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
-import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import org.hibernate.Session;
 import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.query.Query;
+
+import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 public class ArmarioDaoImpl implements ArmarioDao {
@@ -65,9 +68,9 @@ public class ArmarioDaoImpl implements ArmarioDao {
     }
 
     @Override
-    public List<Armario> buscarTodosAtivos() {
-        Query<Armario> query = this.sessao.createQuery("from Armario e where ativo = :ativo", Armario.class);
-        query.setParameter("ativo", true);
+    public List<Armario> buscarPorStatus(StatusArmario status) {
+        Query<Armario> query = this.sessao.createQuery("from Armario e where status = :status", Armario.class);
+        query.setParameter("status", status);
         List<Armario> resultado = query.getResultList();
         return resultado;
     }
@@ -93,9 +96,21 @@ public class ArmarioDaoImpl implements ArmarioDao {
     @Override
     public Armario buscarArmarioPorNumeroELocalizacao(Integer idLocalizacao, String numero) {
         Query<Armario> query = this.sessao.createQuery("from Armario a where a.localizacao.id = :id and a.numero = :numero", Armario.class);
+ 
         query.setParameter("id", idLocalizacao);
         query.setParameter("numero", numero);
-        Armario resultado = query.getSingleResult();
+        Armario resultado = (Armario) query.uniqueResult();
+        return resultado;
+    }
+
+    @Override
+    public Armario buscarArmarioPorNumeroELocalizacaoComIdDiferente(Integer idLocalizacao, String numero, Integer idArmario) {
+        Query<Armario> query = this.sessao.createQuery("from Armario a where a.localizacao.id = :idLocalizacao and a.numero = :numero and a.id != :idArmario", Armario.class);
+ 
+        query.setParameter("idLocalizacao", idLocalizacao);
+        query.setParameter("numero", numero);
+        query.setParameter("idArmario", idArmario);
+        Armario resultado = (Armario) query.uniqueResult();
         return resultado;
     }
 }

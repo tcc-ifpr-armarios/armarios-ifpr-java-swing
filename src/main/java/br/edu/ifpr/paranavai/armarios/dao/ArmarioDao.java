@@ -1,8 +1,10 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
+import java.util.List;
+
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import java.util.List;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 
 /**
  *
@@ -12,7 +14,7 @@ public interface ArmarioDao {
 
     public List<Armario> buscarTodos();
 
-    public List<Armario> buscarTodosAtivos();
+    public List<Armario> buscarPorStatus(StatusArmario status);
 
     public Armario buscarPorId(Integer inteiro);
 
@@ -27,4 +29,6 @@ public interface ArmarioDao {
     public List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao);
 
     public Armario buscarArmarioPorNumeroELocalizacao(Integer idLocalizacao, String numero);
+
+    public Armario buscarArmarioPorNumeroELocalizacaoComIdDiferente(Integer idLocalizacao, String numero, Integer idArmario);
 }

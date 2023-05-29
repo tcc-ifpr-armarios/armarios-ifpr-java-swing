@@ -1,10 +1,12 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import java.util.List;
+
+import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.ArmarioDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
@@ -19,8 +21,8 @@ public class ArmarioServico {
         return dao.buscarTodos();
     }
 
-    public static List<Armario> buscarTodosAtivos() {
-        return dao.buscarTodosAtivos();
+    public static List<Armario> buscarPorStatus(StatusArmario status) {
+        return dao.buscarPorStatus(status);
     }
 
     public static Armario buscarPorId(Integer id) {
@@ -28,9 +30,11 @@ public class ArmarioServico {
     }
 
     public static Armario inserir(Armario armario) throws ArmarioException {
+        verificaCamposObrigatorios(armario);
+
         //Verifica se já contem o número do armário com base na localização
-        Armario c = dao.buscarArmarioPorNumeroELocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
-        if (c != null) {
+        Armario a = dao.buscarArmarioPorNumeroELocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
+        if (a != null) {
             throw new ArmarioException(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO);
         }
 
@@ -38,10 +42,22 @@ public class ArmarioServico {
     }
 
     public static Armario atualizar(Armario armario) throws ArmarioException {
+        verificaCamposObrigatorios(armario);
+
+        //Verifica se já contem o número do armário com base na localização
+        Armario a = dao.buscarArmarioPorNumeroELocalizacaoComIdDiferente(armario.getLocalizacao().getId(), armario.getNumero(), armario.getId());
+        if (a != null) {
+            throw new ArmarioException(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO);
+        }
+
         return dao.atualizar(armario);
     }
 
     public static void excluir(Armario armario) throws ArmarioException {
+        Armario a = dao.buscarPorId(armario.getId());
+        if (a == null) {
+            throw new ArmarioException(MensagemUtil.ARMARIO_REMOVIDO);
+        }
         dao.excluir(armario);
     }
 
@@ -55,5 +71,14 @@ public class ArmarioServico {
 
     public static List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao) {
         return dao.buscarAtivoPorIdLocalizacao(idLocalizacao);
+    }
+
+    private static void verificaCamposObrigatorios(Armario armario) throws ArmarioException {
+        if (armario.getNumero() == null || armario.getNumero().isEmpty()) {
+            throw new ArmarioException(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO);
+        }
+        if (armario.getLocalizacao() == null || armario.getLocalizacao().getId() == 0) {
+            throw new ArmarioException(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO);
+        }
     }
 }

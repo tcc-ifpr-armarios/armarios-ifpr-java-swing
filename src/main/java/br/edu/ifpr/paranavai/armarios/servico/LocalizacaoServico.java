@@ -1,7 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDao;
-import br.edu.ifpr.paranavai.armarios.dao.impl.LocalizacaoImpl;
+import br.edu.ifpr.paranavai.armarios.dao.impl.LocalizacaoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class LocalizacaoServico {
 
-    private static LocalizacaoDao dao = new LocalizacaoImpl();
+    private static LocalizacaoDao dao = new LocalizacaoDaoImpl();
 
     public static List<Localizacao> buscarTodos() {
         return dao.buscarTodos();

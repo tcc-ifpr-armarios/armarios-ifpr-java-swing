@@ -47,7 +47,6 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
     public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
 
-    public static final String ARMARIO_NUMERO_DUPLICADO = "Numero do armário duplicado";
     public static final String ARMARIO_NAO_ENCONTRADO = "Registro não encontrado";
     public static final String ARMARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o armário";
     public static final String ARMARIO_ATUALIZACAO_SUCESSO = "Armário Atualizado com Sucesso!";

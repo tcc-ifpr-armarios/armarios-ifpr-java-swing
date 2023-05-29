@@ -9,11 +9,11 @@ import org.hibernate.Session;
 import java.util.List;
 import org.hibernate.query.Query;
 
-public class LocalizacaoImpl implements LocalizacaoDao {
+public class LocalizacaoDaoImpl implements LocalizacaoDao {
 
     private Session sessao;
 
-    public LocalizacaoImpl() {
+    public LocalizacaoDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
@@ -76,7 +76,7 @@ public class LocalizacaoImpl implements LocalizacaoDao {
     public Localizacao buscarPorDescricaoExata(String descricao) {
         Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao", Localizacao.class);
         query.setParameter("descricao", descricao);
-        Localizacao resultado = query.uniqueResult();
+        Localizacao resultado = (Localizacao) query.uniqueResult();
         return resultado;
     }
 }

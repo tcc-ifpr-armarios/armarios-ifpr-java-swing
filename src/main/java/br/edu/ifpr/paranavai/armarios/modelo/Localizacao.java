@@ -18,7 +18,7 @@ public class Localizacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_localizacao", unique = true, nullable = false)
+    @Column(name = "id_localizacao")
     private Integer id;
 
     @Column(name = "descricao", unique = true, nullable = false)

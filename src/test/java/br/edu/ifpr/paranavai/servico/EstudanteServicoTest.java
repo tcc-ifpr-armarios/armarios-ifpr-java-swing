@@ -42,7 +42,7 @@ public class EstudanteServicoTest {
     }
 
     @BeforeEach
-    public void antesCadaTeste() {
+    public void antesDeCadaTeste() {
         if (this.curso == null) {
             this.curso = CursoServico.buscarPorNomeExato("Curso Teste Estudante");
         }
@@ -74,7 +74,7 @@ public class EstudanteServicoTest {
     }
 
     @AfterAll
-    public static void depoisDeCadaTeste() throws CursoException {
+    public static void aposTodosOsTestes() throws CursoException {
         Curso curso = CursoServico.buscarPorNomeExato("Curso Teste Estudante");
         CursoServico.excluir(curso);
     }

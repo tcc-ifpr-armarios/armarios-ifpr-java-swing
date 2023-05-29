@@ -74,7 +74,7 @@ public class CursoDaoImpl implements CursoDao {
     public Curso buscarPorNomeExato(String nome) {
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome", Curso.class);
         query.setParameter("nome", nome);
-        Curso resultado = query.uniqueResult();
+        Curso resultado = (Curso) query.uniqueResult();
         return resultado;
     }
 
@@ -83,7 +83,7 @@ public class CursoDaoImpl implements CursoDao {
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome and id != :id", Curso.class);
         query.setParameter("nome", nome);
         query.setParameter("id", idCurso);
-        Curso resultado = query.uniqueResult();
+        Curso resultado = (Curso) query.uniqueResult();
         return resultado;
     }
 
