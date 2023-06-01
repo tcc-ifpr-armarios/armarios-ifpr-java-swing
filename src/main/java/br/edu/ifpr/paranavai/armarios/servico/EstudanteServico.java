@@ -1,10 +1,14 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import java.util.List;
 
 import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
+import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
@@ -46,9 +50,15 @@ public class EstudanteServico {
     }
 
     public static void excluir(Estudante estudante) throws EstudanteException {
+        EmprestimoDao emprestimoDao = new EmprestimoDaoImpl();
         Estudante c = dao.buscarPorId(estudante.getId());
         if (c == null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
+        }
+        
+        List<Emprestimo> e = emprestimoDao.buscarPorRaDoEstudante(estudante.getRa());
+        if (!e.isEmpty()) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
         }
         dao.excluir(estudante);
     }

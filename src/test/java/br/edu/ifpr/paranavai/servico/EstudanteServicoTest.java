@@ -1,5 +1,6 @@
 package br.edu.ifpr.paranavai.servico;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,19 +15,31 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
  * @author Professor Marcelo F. Terenciani
  */
 public class EstudanteServicoTest {
-
+    private final String NUMERO_ARMARIO = "TESTE-01";
+    private final String LOCALIZACAO = "LOCAL-TESTE-ARMARIO";
     private Estudante estudante;
     private Estudante estudanteAtualizacao;
     private Curso curso;
@@ -408,5 +421,40 @@ public class EstudanteServicoTest {
         EstudanteServico.excluir(this.estudanteAtualizacao);
         assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO,
                 estudanteException.getMessage());
+    }
+    
+    @Test
+    public void naoDeveExcluirEstudanteVinculadoAUmEmprestimo()
+            throws ArmarioException, EstudanteException, EmprestimoException, LocalizacaoException {
+        System.out.println("Executando teste naoDeveExcluirEstudanteVinculadoAUmEmprestimo");
+
+        this.estudante = EstudanteServico.inserir(this.estudante);
+
+        Localizacao localizacao = new Localizacao();
+        localizacao.setDescricao(LOCALIZACAO);
+        localizacao = LocalizacaoServico.inserir(localizacao);
+        
+        Armario armario = new Armario();
+        armario.setNumero(NUMERO_ARMARIO);
+        armario.setLocalizacao(localizacao);
+        armario.setStatus(StatusArmario.ATIVO);
+        
+        armario = ArmarioServico.inserir(armario);
+
+        Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setArmario(armario);
+        emprestimo.setEstudante(this.estudante);
+
+        emprestimo = EmprestimoServico.inserir(emprestimo);
+
+        EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
+            EstudanteServico.excluir(estudante);
+        });
+        
+        EmprestimoServico.excluir(emprestimo);
+        ArmarioServico.excluir(armario);
+        LocalizacaoServico.excluir(localizacao);
+
+        assertEquals(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO, estudanteException.getMessage());
     }
 }
