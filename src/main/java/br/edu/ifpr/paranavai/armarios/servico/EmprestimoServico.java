@@ -44,10 +44,10 @@ public class EmprestimoServico {
     }
 
     public static Emprestimo buscarPorId(int identificador) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return dao.buscarPorId(identificador);
     }
 
-    public static void excluir(Emprestimo emprestimo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static void excluir(Emprestimo emprestimo) throws EmprestimoException {
+        dao.excluir(emprestimo);
     }
 }

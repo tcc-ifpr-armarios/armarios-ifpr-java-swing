@@ -10,20 +10,29 @@ import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestMethodOrder;
 
 /**
  *
@@ -33,7 +42,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ArmarioServicoTest {
 
-    private final String NUMERO = "TESTE-01";
+    private final String NUMERO_ARMARIO = "TESTE-01";
     private final String LOCALIZACAO = "LOCAL-TESTE-ARMARIO";
     private Armario armario;
     private Armario armarioAtualizacao;
@@ -61,7 +70,7 @@ public class ArmarioServicoTest {
         }
 
         this.armario = new Armario();
-        this.armario.setNumero(NUMERO);
+        this.armario.setNumero(NUMERO_ARMARIO);
         this.armario.setLocalizacao(this.localizacao);
         this.armario.setStatus(StatusArmario.ATIVO);
     }
@@ -93,7 +102,7 @@ public class ArmarioServicoTest {
             this.armario.setNumero(null);
             this.armario = ArmarioServico.inserir(this.armario);
         });
-        
+
         ArmarioException armarioExceptionVazio = assertThrows(ArmarioException.class, () -> {
             this.armario.setNumero("");
             this.armario = ArmarioServico.inserir(this.armario);
@@ -102,7 +111,7 @@ public class ArmarioServicoTest {
         assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO, armarioExceptionVazio.getMessage());
         assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO, armarioExceptionNulo.getMessage());
     }
-    
+
     @Test
     public void naoDeveInserirLocalizacaoNulaOuIdInvalido() {
         System.out.println("Executando teste naoDeveInserirLocalizacaoNulaOuIdInvalido");
@@ -128,7 +137,7 @@ public class ArmarioServicoTest {
         this.armario = ArmarioServico.inserir(this.armario);
 
         assertTrue(this.armario.getId() > 0);
-        assertTrue(this.armario.getNumero().equals(NUMERO));
+        assertTrue(this.armario.getNumero().equals(NUMERO_ARMARIO));
         assertTrue(this.armario.getStatus().equals(StatusArmario.ATIVO));
         assertTrue(this.armario.getLocalizacao().getDescricao().equals(this.localizacao.getDescricao()));
     }
@@ -142,7 +151,7 @@ public class ArmarioServicoTest {
         List<Armario> listaDeArmarios = ArmarioServico.buscarTodos();
         assertTrue(!listaDeArmarios.isEmpty());
     }
-    
+
     @Test
     public void deveListarSomenteAtivos() throws ArmarioException {
         System.out.println("Executando teste deveListarSomenteAtivos");
@@ -162,7 +171,7 @@ public class ArmarioServicoTest {
         Armario cursoEncontrado = ArmarioServico.buscarPorId(this.armario.getId());
         assertEquals(this.armario.getId(), cursoEncontrado.getId());
     }
-  
+
     @Test
     public void naoDeveEncontrarOId() throws ArmarioException {
         System.out.println("Executando teste naoDeveEncontrarOId");
@@ -197,14 +206,14 @@ public class ArmarioServicoTest {
 
         assertTrue(MensagemUtil.ARMARIO_REMOVIDO.equals(armarioException.getMessage()));
     }
-   
+
     @Test
     public void deveAtualizarOArmarioComIdInserido() throws ArmarioException {
         System.out.println("Executando teste deveExcluirOArmarioComIdInserido");
 
         this.armario = ArmarioServico.inserir(this.armario);
 
-        this.armario.setNumero(NUMERO + " - Atualizado");
+        this.armario.setNumero(NUMERO_ARMARIO + " - Atualizado");
         this.armario.setStatus(StatusArmario.INATIVO);
 
         Armario armarioAtualizado = ArmarioServico.atualizar(this.armario);
@@ -251,7 +260,7 @@ public class ArmarioServicoTest {
         System.out.println("Executando teste naoDeveAtualizarParaNumeroDuplicadoNaMesmaLocalizacao");
 
         this.armarioAtualizacao = new Armario();
-        this.armarioAtualizacao.setNumero(NUMERO + "Para atualizar");
+        this.armarioAtualizacao.setNumero(NUMERO_ARMARIO + "Para atualizar");
         this.armarioAtualizacao.setLocalizacao(this.localizacao);
         this.armarioAtualizacao.setStatus(StatusArmario.ATIVO);
 
@@ -266,5 +275,44 @@ public class ArmarioServicoTest {
 
         ArmarioServico.excluir(this.armarioAtualizacao);
         assertEquals(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO, armarioException.getMessage());
+    }
+
+    @Test
+    public void naoDeveExcluirArmarioVinculadoAUmEmprestimo()
+            throws ArmarioException, EstudanteException, EmprestimoException, CursoException {
+        System.out.println("Executando teste naoDeveExcluirArmarioVinculadoAUmEmprestimo");
+
+        this.armario = ArmarioServico.inserir(this.armario);
+
+        Curso curso = new Curso();
+        curso.setNome("Curso Teste");
+        curso = CursoServico.inserir(curso);
+
+        Estudante estudante = new Estudante();
+        estudante.setNome("Estudante");
+        estudante.setSobrenome("Teste");
+        estudante.setEmail("teste@teste.com");
+        estudante.setTelefone("(44) 9 9999-9999");
+        estudante.setRa("2023232323");
+        estudante.setSenha("123456");
+        estudante.setCurso(curso);
+
+        estudante = EstudanteServico.inserir(estudante);
+
+        Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setArmario(armario);
+        emprestimo.setEstudante(estudante);
+
+        emprestimo = EmprestimoServico.inserir(emprestimo);
+
+        ArmarioException armarioException = assertThrows(ArmarioException.class, () -> {
+            ArmarioServico.excluir(armario);
+        });
+        
+        EmprestimoServico.excluir(emprestimo);
+        EstudanteServico.excluir(estudante);
+        CursoServico.excluir(curso);
+
+        assertEquals(MensagemUtil.ARMARIO_VINCULADO_EMPRESTIMO, armarioException.getMessage());
     }
 }

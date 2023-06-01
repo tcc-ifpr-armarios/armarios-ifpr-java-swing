@@ -40,7 +40,7 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
     public static final String LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
     public static final String LOCALIZACAO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir a localização";
-    public static final Object LOCALIZACAO_EXCLUSAO_SUCESSO = "Localização Excluída com Sucesso!";
+    public static final String LOCALIZACAO_EXCLUSAO_SUCESSO = "Localização Excluída com Sucesso!";
     public static final String LOCALIZACAO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão da localização";
     public static final String LOCALIZACAO_REMOVIDO = "Não foi possível realizar essa operação! Essa localização já foi removida!";
     public static final String LOCALIZACAO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir uma nova localização";
@@ -51,13 +51,18 @@ public class MensagemUtil {
     public static final String ARMARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o armário";
     public static final String ARMARIO_ATUALIZACAO_SUCESSO = "Armário Atualizado com Sucesso!";
     public static final String ARMARIO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o armário";
-    public static final Object ARMARIO_EXCLUSAO_SUCESSO = "Armário Excluído com Sucesso!";
+    public static final String ARMARIO_EXCLUSAO_SUCESSO = "Armário Excluído com Sucesso!";
     public static final String ARMARIO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do armário número ";
     public static final String ARMARIO_REMOVIDO = "Não foi possível realizar essa operação! Esse armário já foi removido!";
     public static final String ARMARIO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um armário";
     public static final String ARMARIO_INSERCAO_SUCESSO = "Armário Cadastrado com Sucesso!";
     public static final String ARMARIO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
     public static final String ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO = "Número de armário já cadastrado";
+    public static final String ARMARIO_VINCULADO_EMPRESTIMO = "Impossível excluir esse armário, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+
+    public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    public static final String EMPRESTIMO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o empréstimo";
+    public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
 
     public static final String ESTUDANTE_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o estudante";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
@@ -69,13 +74,11 @@ public class MensagemUtil {
     public static final String ESTUDANTE_INSERCAO_SUCESSO = "Estudante Cadastrado com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_SUCESSO = "Estudante Excluído com Sucesso!";
     public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";
-
+    public static final String ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
-    
-    public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
-    public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
     
     public static final String SERVIDOR_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo servidor";
     public static final String SERVIDOR_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o servidor";
@@ -84,5 +87,6 @@ public class MensagemUtil {
     public static final String SERVIDOR_EXCLUSAO_SUCESSO = "Servidor Excluído com Sucesso!";
     public static final String SERVIDOR_INSERCAO_SUCESSO = "Servidor Cadastrado com Sucesso!";
     public static final String SERVIDOR_ATUALIZACAO_SUCESSO = "Servidor Atualizado com Sucesso!";
+
 
 }

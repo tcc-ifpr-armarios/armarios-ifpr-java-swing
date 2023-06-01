@@ -77,4 +77,28 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
         Emprestimo resultado = query.getSingleResult();
         return resultado;
     }
+
+    @Override
+    public List<Emprestimo> buscarPorIdArmario(Integer idEmprestimo) {
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.armario.id = :id", Emprestimo.class);
+        query.setParameter("id", idEmprestimo);
+        List<Emprestimo> resultado = query.getResultList();
+        return resultado;
+    }
+
+    @Override
+    public void excluir(Emprestimo emprestimo) throws EmprestimoException {
+        try {
+            sessao.beginTransaction();
+            sessao.remove(emprestimo);
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_EXCLUSAO_ERRO_PADRAO);
+        }
+    }
+
+    @Override
+    public Emprestimo buscarPorId(int identificador) {
+        return this.sessao.find(Emprestimo.class, identificador);
+    }
 }
