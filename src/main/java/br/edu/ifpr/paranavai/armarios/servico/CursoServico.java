@@ -23,7 +23,7 @@ public class CursoServico {
             throw new CursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
         }
 
-        Curso c = daoCurso.buscarPorNomeExato(curso.getNome());
+        Curso c = daoCurso.buscarUnicoPorNomeExato(curso.getNome());
         if (c != null) {
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
         }
@@ -32,7 +32,7 @@ public class CursoServico {
     }
 
     public static void excluir(Curso curso) throws CursoException {
-        Curso c = daoCurso.buscarPorId(curso.getId());
+        Curso c = daoCurso.buscarUnicoPorId(curso.getId());
         if (c == null) {
             throw new CursoException(MensagemUtil.CURSO_REMOVIDO);
         }
@@ -51,18 +51,18 @@ public class CursoServico {
     }
 
     public static Curso buscarPorId(Integer id) {
-        return daoCurso.buscarPorId(id);
+        return daoCurso.buscarUnicoPorId(id);
     }
 
     public static Curso buscarPorNomeExato(String nome) {
-        return daoCurso.buscarPorNomeExato(nome);
+        return daoCurso.buscarUnicoPorNomeExato(nome);
     }
 
     public static Curso atualizar(Curso curso) throws CursoException {
         if (curso.getNome() == null || curso.getNome().isEmpty())
             throw new CursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
 
-        Curso c = daoCurso.buscarPorNomeExatoComIdDiferente(curso.getNome(), curso.getId());
+        Curso c = daoCurso.buscarUnicoPorNomeExatoComIdDiferente(curso.getNome(), curso.getId());
         if (c != null)
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
 

@@ -31,7 +31,7 @@ public class CursoDaoImpl implements CursoDao {
     }
 
     @Override
-    public Curso buscarPorId(Integer idCurso) {
+    public Curso buscarUnicoPorId(Integer idCurso) {
         return this.sessao.find(Curso.class, idCurso);
     }
 
@@ -71,7 +71,7 @@ public class CursoDaoImpl implements CursoDao {
     }
 
     @Override
-    public Curso buscarPorNomeExato(String nome) {
+    public Curso buscarUnicoPorNomeExato(String nome) {
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome", Curso.class);
         query.setParameter("nome", nome);
         Curso resultado = (Curso) query.uniqueResult();
@@ -79,7 +79,7 @@ public class CursoDaoImpl implements CursoDao {
     }
 
     @Override
-    public Curso buscarPorNomeExatoComIdDiferente(String nome, Integer idCurso) {
+    public Curso buscarUnicoPorNomeExatoComIdDiferente(String nome, Integer idCurso) {
         Query<Curso> query = this.sessao.createQuery("from Curso where nome = :nome and id != :id", Curso.class);
         query.setParameter("nome", nome);
         query.setParameter("id", idCurso);
