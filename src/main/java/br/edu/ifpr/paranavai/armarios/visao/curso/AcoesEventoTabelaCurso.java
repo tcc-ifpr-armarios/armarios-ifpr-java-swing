@@ -1,14 +1,15 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
+import java.awt.Container;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import java.awt.Container;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -45,7 +46,7 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
 
         if (opcao == 0) {
             try {
-                CursoControle.excluir(curso);
+                CursoServico.excluir(curso);
                 JOptionPane.showMessageDialog(origem, MensagemUtil.CURSO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (CursoException e) {
                 JOptionPane.showMessageDialog(origem, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
