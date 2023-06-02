@@ -30,7 +30,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorId(Integer idServidor) {
+    public Servidor buscarUnicoPorId(Integer idServidor) {
         return this.sessao.find(Servidor.class, idServidor);
     }
 
@@ -70,7 +70,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorEmail(String email) {
+    public Servidor buscarUnicoPorEmail(String email) {
         Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email", Servidor.class);
         query.setParameter("email", email);
         Servidor servidor = (Servidor) query.uniqueResult();
@@ -78,7 +78,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorEmailOuSiape(String emailOuSiape) {
+    public Servidor buscarUnicoPorEmailOuSiape(String emailOuSiape) {
         Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email or siape = :siape",
                 Servidor.class);
         query.setParameter("email", emailOuSiape);

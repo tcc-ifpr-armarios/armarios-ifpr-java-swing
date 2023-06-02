@@ -19,7 +19,7 @@ public class ServidorServico {
     }
 
     public static Servidor buscarPorId(Integer id) {
-        return daoServidor.buscarPorId(id);
+        return daoServidor.buscarUnicoPorId(id);
     }
 
     public static void inserir(Servidor servidor) throws ServidorException {
@@ -35,10 +35,10 @@ public class ServidorServico {
     }
 
     public static Servidor buscarPorEmail(String email) {
-        return daoServidor.buscarPorEmail(email);
+        return daoServidor.buscarUnicoPorEmail(email);
     }
 
     public static Servidor buscarPorEmailOuSiape(String emailemailOuSiape) {
-        return daoServidor.buscarPorEmailOuSiape(emailemailOuSiape);
+        return daoServidor.buscarUnicoPorEmailOuSiape(emailemailOuSiape);
     }
 }
