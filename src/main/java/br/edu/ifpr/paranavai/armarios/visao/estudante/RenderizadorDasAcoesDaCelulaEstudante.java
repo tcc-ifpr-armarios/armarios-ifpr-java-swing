@@ -6,6 +6,8 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
+
 /**
  *
  * @author Professor Marcelo Figueiredo Terenciani
@@ -13,10 +15,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class RenderizadorDasAcoesDaCelulaEstudante extends DefaultTableCellRenderer {
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+            int row, int column) {
         Component componente = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        PainelAcoesEstudanteUI acoes = new PainelAcoesEstudanteUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(true, true, true);
 
         if (isSelected == false && row % 2 == 0) {
             acoes.setBackground(Color.white);
