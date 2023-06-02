@@ -43,7 +43,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
-    public List<Emprestimo> buscarPorRaDoEstudante(String ra) {
+    public List<Emprestimo> buscarTodosPorRaDoEstudante(String ra) {
         Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra", Emprestimo.class);
         query.setParameter("ra", ra);
         List<Emprestimo> resultado = query.getResultList();
@@ -51,7 +51,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
-    public List<Emprestimo> buscarPorIdLocalizacao(Integer idLocalizacao) {
+    public List<Emprestimo> buscarTodosPorIdLocalizacao(Integer idLocalizacao) {
         Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id", Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
@@ -79,7 +79,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
-    public List<Emprestimo> buscarPorIdArmario(Integer idEmprestimo) {
+    public List<Emprestimo> buscarTodosPorIdArmario(Integer idEmprestimo) {
         Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.armario.id = :id", Emprestimo.class);
         query.setParameter("id", idEmprestimo);
         List<Emprestimo> resultado = query.getResultList();
@@ -98,7 +98,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
-    public Emprestimo buscarPorId(int identificador) {
+    public Emprestimo buscarUnicoPorId(int identificador) {
         return this.sessao.find(Emprestimo.class, identificador);
     }
 }

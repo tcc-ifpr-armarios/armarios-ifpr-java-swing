@@ -23,11 +23,11 @@ public class EmprestimoServico {
     }
 
     public static List<Emprestimo> buscarPorRaDoEstudante(String ra) {
-        return daoEmprestimo.buscarPorRaDoEstudante(ra);
+        return daoEmprestimo.buscarTodosPorRaDoEstudante(ra);
     }
 
     public static List<Emprestimo> buscarPorIdLocalizacao(Integer idLocalizacao) {
-        return daoEmprestimo.buscarPorIdLocalizacao(idLocalizacao);
+        return daoEmprestimo.buscarTodosPorIdLocalizacao(idLocalizacao);
     }
 
     public static List<Emprestimo> buscarAtivoPorLocalizacao(int idLocalizacao) {
@@ -44,7 +44,7 @@ public class EmprestimoServico {
     }
 
     public static Emprestimo buscarPorId(int identificador) {
-        return daoEmprestimo.buscarPorId(identificador);
+        return daoEmprestimo.buscarUnicoPorId(identificador);
     }
 
     public static void excluir(Emprestimo emprestimo) throws EmprestimoException {

@@ -56,7 +56,7 @@ public class EstudanteServico {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
         
-        List<Emprestimo> e = emprestimoDao.buscarPorRaDoEstudante(estudante.getRa());
+        List<Emprestimo> e = emprestimoDao.buscarTodosPorRaDoEstudante(estudante.getRa());
         if (!e.isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
         }

@@ -64,7 +64,7 @@ public class ArmarioServico {
             throw new ArmarioException(MensagemUtil.ARMARIO_REMOVIDO);
         }
         
-        List<Emprestimo> e = emprestimoDao.buscarPorIdArmario(armario.getId());
+        List<Emprestimo> e = emprestimoDao.buscarTodosPorIdArmario(armario.getId());
         if (!e.isEmpty()) {
             throw new ArmarioException(MensagemUtil.ARMARIO_VINCULADO_EMPRESTIMO);
         }
