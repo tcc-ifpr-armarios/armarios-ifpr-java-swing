@@ -51,7 +51,7 @@ public class ArmarioServicoTest {
     @BeforeEach
     public void antesDeCadaTeste() throws LocalizacaoException {
         if (this.localizacao == null) {
-            this.localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
+            this.localizacao = LocalizacaoServico.buscarUnicoPorDescricaoExata(LOCALIZACAO);
             if (this.localizacao == null) {
                 this.localizacao = new Localizacao();
                 this.localizacao.setDescricao(LOCALIZACAO);
@@ -69,7 +69,7 @@ public class ArmarioServicoTest {
     public void aposCadaTeste() throws ArmarioException {
         if (this.armario != null) {
             if (this.armario.getId() != null) {
-                Armario c = ArmarioServico.buscarPorId(this.armario.getId());
+                Armario c = ArmarioServico.buscarUnicoPorId(this.armario.getId());
                 if (c != null) {
                     ArmarioServico.excluir(c);
                 }
@@ -80,7 +80,7 @@ public class ArmarioServicoTest {
 
     @AfterAll
     public static void noFinalDoTeste() throws LocalizacaoException {
-        Localizacao localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
+        Localizacao localizacao = LocalizacaoServico.buscarUnicoPorDescricaoExata(LOCALIZACAO);
         if(localizacao != null)
             LocalizacaoServico.excluir(localizacao);
     }
@@ -160,7 +160,7 @@ public class ArmarioServicoTest {
 
         this.armario = ArmarioServico.inserir(this.armario);
 
-        Armario cursoEncontrado = ArmarioServico.buscarPorId(this.armario.getId());
+        Armario cursoEncontrado = ArmarioServico.buscarUnicoPorId(this.armario.getId());
         assertEquals(this.armario.getId(), cursoEncontrado.getId());
     }
 
@@ -168,7 +168,7 @@ public class ArmarioServicoTest {
     public void naoDeveEncontrarOId() throws ArmarioException {
         System.out.println("Executando teste naoDeveEncontrarOId");
 
-        Armario cursoEncontrado = ArmarioServico.buscarPorId(-1);
+        Armario cursoEncontrado = ArmarioServico.buscarUnicoPorId(-1);
         assertNull(cursoEncontrado);
     }
 
@@ -180,7 +180,7 @@ public class ArmarioServicoTest {
 
         ArmarioServico.excluir(this.armario);
 
-        Armario cursoEncontrado = ArmarioServico.buscarPorId(this.armario.getId());
+        Armario cursoEncontrado = ArmarioServico.buscarUnicoPorId(this.armario.getId());
         assertNull(cursoEncontrado);
     }
 

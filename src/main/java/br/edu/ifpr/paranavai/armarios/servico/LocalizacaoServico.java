@@ -17,49 +17,50 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
  */
 public class LocalizacaoServico {
 
-    private static LocalizacaoDao dao = new LocalizacaoDaoImpl();
+    private static LocalizacaoDao daoLocalizacao = new LocalizacaoDaoImpl();
 
     public static List<Localizacao> buscarTodos() {
-        return dao.buscarTodos();
+        return daoLocalizacao.buscarTodos();
     }
 
-    public static List<Localizacao> buscarTodosAtivos() {
-        return dao.buscarTodosAtivos();
+    public static List<Localizacao> buscarAtivos() {
+        return daoLocalizacao.buscarAtivos();
     }
 
-    public static Localizacao buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+    public static Localizacao buscarUnicoPorId(Integer id) {
+        return daoLocalizacao.buscarUnicoPorId(id);
     }
 
     public static Localizacao inserir(Localizacao localizacao) throws LocalizacaoException {
         verificaCamposObrigatorios(localizacao);
         verificaDadosDuplicados(localizacao);
 
-        return dao.inserir(localizacao);
+        return daoLocalizacao.inserir(localizacao);
     }
 
     public static Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException {
         verificaCamposObrigatorios(localizacao);
 
-        Localizacao l = dao.buscarPorDescricaoExataComIdDiferente(localizacao.getDescricao(), localizacao.getId());
+        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExataComIdDiferente(localizacao.getDescricao(),
+                localizacao.getId());
         if (l != null)
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
 
-        return dao.atualizar(localizacao);
+        return daoLocalizacao.atualizar(localizacao);
     }
 
     public static void excluir(Localizacao localizacao) throws LocalizacaoException {
         verificaSeFoiRemovido(localizacao);
         verificaSeExistemVinculos(localizacao);
-        dao.excluir(localizacao);
+        daoLocalizacao.excluir(localizacao);
     }
 
-    public static Localizacao buscarPorDescricaoExata(String descricao) {
-        return dao.buscarPorDescricaoExata(descricao);
+    public static Localizacao buscarUnicoPorDescricaoExata(String descricao) {
+        return daoLocalizacao.buscarUnicoPorDescricaoExata(descricao);
     }
 
     private static void verificaDadosDuplicados(Localizacao localizacao) throws LocalizacaoException {
-        Localizacao l = dao.buscarPorDescricaoExata(localizacao.getDescricao());
+        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExata(localizacao.getDescricao());
         if (l != null) {
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
         }
@@ -80,7 +81,7 @@ public class LocalizacaoServico {
     }
 
     private static void verificaSeFoiRemovido(Localizacao localizacao) throws LocalizacaoException {
-        Localizacao l = dao.buscarPorId(localizacao.getId());
+        Localizacao l = daoLocalizacao.buscarUnicoPorId(localizacao.getId());
         if (l == null) {
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_REMOVIDA);
         }

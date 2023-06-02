@@ -24,7 +24,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
     public EstudanteDevolucaoUI(Estudante estudante) {
         initComponents();
         this.estudante = estudante;
-        this.emprestimo = EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa());
+        this.emprestimo = EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa());
 
         setLocationRelativeTo(null);
 

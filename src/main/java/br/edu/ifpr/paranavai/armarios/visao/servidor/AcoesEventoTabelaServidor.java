@@ -20,7 +20,7 @@ public class AcoesEventoTabelaServidor implements AcoesEventoTabela {
 
         IndexServidorPanelUI origem = getOrigem(tabela);
         
-        Servidor servidor = ServidorServico.buscarPorId(identificador);
+        Servidor servidor = ServidorServico.buscarUnicoPorId(identificador);
 
         CriacaoEdicaoServidorUIModal form = new CriacaoEdicaoServidorUIModal(origem, servidor);
 
@@ -35,7 +35,7 @@ public class AcoesEventoTabelaServidor implements AcoesEventoTabela {
 
         IndexServidorPanelUI origem = getOrigem(tabela);
         
-        Servidor servidor = ServidorServico.buscarPorId(identificador);
+        Servidor servidor = ServidorServico.buscarUnicoPorId(identificador);
 
         String mensagem = MensagemUtil.SERVIDOR_EXCLUSAO_CONFIRMACAO + " '" + servidor.getNome() + "'?";
 
@@ -59,7 +59,7 @@ public class AcoesEventoTabelaServidor implements AcoesEventoTabela {
 
         IndexServidorPanelUI origem = getOrigem(tabela);
         
-        Servidor servidor = ServidorServico.buscarPorId(identificador);
+        Servidor servidor = ServidorServico.buscarUnicoPorId(identificador);
 
         VisualizarServidorModalUI form = new VisualizarServidorModalUI(origem, servidor);
 

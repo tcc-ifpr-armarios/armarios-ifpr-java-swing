@@ -1,14 +1,15 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
+import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.ServidorException;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-
-import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorId(Integer idServidor) {
+    public Servidor buscarUnicoPorId(Integer idServidor) {
         return this.sessao.find(Servidor.class, idServidor);
     }
 
@@ -70,7 +71,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorEmail(String email) {
+    public Servidor buscarUnicoPorEmail(String email) {
         Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email", Servidor.class);
         query.setParameter("email", email);
         Servidor servidor = (Servidor) query.uniqueResult();
@@ -78,7 +79,7 @@ public class ServidorDaoImpl implements ServidorDao {
     }
 
     @Override
-    public Servidor buscarPorEmailOuSiape(String emailOuSiape) {
+    public Servidor buscarUnicoPorEmailOuSiape(String emailOuSiape) {
         Query<Servidor> query = this.sessao.createQuery("from Servidor where email = :email or siape = :siape",
                 Servidor.class);
         query.setParameter("email", emailOuSiape);

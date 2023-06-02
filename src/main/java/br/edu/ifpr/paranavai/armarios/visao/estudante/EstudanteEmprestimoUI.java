@@ -198,12 +198,12 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-            Estudante alunoLogado = EstudanteServico.buscarPorEmail(System.getProperty("email"));
+            Estudante alunoLogado = EstudanteServico.buscarUnicoPorEmail(System.getProperty("email"));
 
             Integer local = Integer.parseInt(numeroCombo.getSelectedItem().toString());
             String numeroArmario = numeroCombo.getSelectedItem().toString();
 
-            Armario armario = ArmarioServico.buscarArmarioPorNumeroELocalizacao(local, numeroArmario);
+            Armario armario = ArmarioServico.buscarUnicoPorNumeroELocalizacao(local, numeroArmario);
             emprestimo.setDataEmprestimo(LocalDateTime.now());
             emprestimo.setEstudante(alunoLogado);
             emprestimo.setArmario(armario);
@@ -224,7 +224,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmaEmprestimoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<Localizacao> locais = LocalizacaoServico.buscarTodosAtivos();
+        List<Localizacao> locais = LocalizacaoServico.buscarAtivos();
         try {
             localCombo.removeAllItems();
 
@@ -263,8 +263,8 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroComboPropertyChange
 
     public void atualizaNumero(String idLocalizacao) {
-        Localizacao idLocal = LocalizacaoServico.buscarPorDescricaoExata(idLocalizacao);
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivoPorLocalizacao(idLocal.getId());
+        Localizacao idLocal = LocalizacaoServico.buscarUnicoPorDescricaoExata(idLocalizacao);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(idLocal.getId());
         try {
             numeroCombo.removeAllItems();
 

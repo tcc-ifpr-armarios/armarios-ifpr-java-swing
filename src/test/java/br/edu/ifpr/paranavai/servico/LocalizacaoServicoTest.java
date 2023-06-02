@@ -46,12 +46,12 @@ public class LocalizacaoServicoTest {
     public void aposCadaTeste() throws LocalizacaoException {
         if (this.localizacao != null) {
             if (this.localizacao.getId() != null) {
-                Localizacao l = LocalizacaoServico.buscarPorId(this.localizacao.getId());
+                Localizacao l = LocalizacaoServico.buscarUnicoPorId(this.localizacao.getId());
                 if (l != null) {
                     LocalizacaoServico.excluir(l);
                 }
             } else {
-                Localizacao l = LocalizacaoServico.buscarPorDescricaoExata(this.localizacao.getDescricao());
+                Localizacao l = LocalizacaoServico.buscarUnicoPorDescricaoExata(this.localizacao.getDescricao());
                 if (l != null) {
                     LocalizacaoServico.excluir(l);
                 }
@@ -116,7 +116,7 @@ public class LocalizacaoServicoTest {
 
         this.localizacao = LocalizacaoServico.inserir(this.localizacao);
 
-        List<Localizacao> listaDeLocalizacoes = LocalizacaoServico.buscarTodosAtivos();
+        List<Localizacao> listaDeLocalizacoes = LocalizacaoServico.buscarAtivos();
         assertTrue(!listaDeLocalizacoes.isEmpty());
     }
 
@@ -126,7 +126,7 @@ public class LocalizacaoServicoTest {
 
         this.localizacao = LocalizacaoServico.inserir(this.localizacao);
 
-        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarPorId(this.localizacao.getId());
+        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarUnicoPorId(this.localizacao.getId());
         assertEquals(this.localizacao.getId(), localizacaoEncontrado.getId());
     }
 
@@ -134,7 +134,7 @@ public class LocalizacaoServicoTest {
     public void naoDeveEncontrarOId() throws LocalizacaoException {
         System.out.println("Executando teste naoDeveEncontrarOId");
 
-        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarPorId(-1);
+        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarUnicoPorId(-1);
         assertNull(localizacaoEncontrado);
     }
 
@@ -146,7 +146,7 @@ public class LocalizacaoServicoTest {
 
         LocalizacaoServico.excluir(this.localizacao);
 
-        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarPorId(this.localizacao.getId());
+        Localizacao localizacaoEncontrado = LocalizacaoServico.buscarUnicoPorId(this.localizacao.getId());
         assertNull(localizacaoEncontrado);
     }
 

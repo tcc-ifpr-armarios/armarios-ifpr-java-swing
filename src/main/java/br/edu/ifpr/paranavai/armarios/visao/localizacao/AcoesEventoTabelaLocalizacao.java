@@ -21,7 +21,7 @@ public class AcoesEventoTabelaLocalizacao implements AcoesEventoTabela {
 
         IndexLocalizacaoPanelUI origem = getOrigem(tabela);
 
-        Localizacao localizacao = LocalizacaoServico.buscarPorId(identificador);
+        Localizacao localizacao = LocalizacaoServico.buscarUnicoPorId(identificador);
 
         CriacaoEdicaoLocalizacaoUIModal form = new CriacaoEdicaoLocalizacaoUIModal(origem, localizacao);
 
@@ -35,7 +35,7 @@ public class AcoesEventoTabelaLocalizacao implements AcoesEventoTabela {
 
         IndexLocalizacaoPanelUI origem = getOrigem(tabela);
 
-        Localizacao localizacao = LocalizacaoServico.buscarPorId(identificador);
+        Localizacao localizacao = LocalizacaoServico.buscarUnicoPorId(identificador);
 
         String mensagem = MensagemUtil.LOCALIZACAO_EXCLUSAO_CONFIRMACAO + " '" + localizacao.getDescricao() + "'?";
 

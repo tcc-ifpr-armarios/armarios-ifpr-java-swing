@@ -20,7 +20,7 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         IndexEstudantePanelUI origem = getOrigem(tabela);
 
-        Estudante estudante = EstudanteServico.buscarPorId(identificador);
+        Estudante estudante = EstudanteServico.buscarUnicoPorId(identificador);
 
         CriacaoEdicaoEstudanteUIModal form = new CriacaoEdicaoEstudanteUIModal(origem, estudante);
 
@@ -34,7 +34,7 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         IndexEstudantePanelUI origem = getOrigem(tabela);
 
-        Estudante estudante = EstudanteServico.buscarPorId(identificador);
+        Estudante estudante = EstudanteServico.buscarUnicoPorId(identificador);
 
         String mensagem = MensagemUtil.ESTUDANTE_EXCLUSAO_CONFIRMACAO + " '" + estudante.getNome() + "'?";
 
@@ -58,7 +58,7 @@ public class AcoesEventoTabelaEstudante implements AcoesEventoTabela {
 
         IndexEstudantePanelUI origem = getOrigem(tabela);
 
-        Estudante estudante = EstudanteServico.buscarPorId(identificador);
+        Estudante estudante = EstudanteServico.buscarUnicoPorId(identificador);
 
         VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(origem, estudante);
 

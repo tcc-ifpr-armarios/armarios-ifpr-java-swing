@@ -1,10 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import java.util.List;
+
+import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.ServidorDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.ServidorException;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
-import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 
 /**
  *
@@ -12,33 +13,33 @@ import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
  */
 public class ServidorServico {
 
-    private static ServidorDao dao = new ServidorDaoImpl();
+    private static ServidorDao daoServidor = new ServidorDaoImpl();
 
     public static List<Servidor> buscarTodos() {
-        return dao.buscarTodos();
+        return daoServidor.buscarTodos();
     }
 
-    public static Servidor buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+    public static Servidor buscarUnicoPorId(Integer id) {
+        return daoServidor.buscarUnicoPorId(id);
     }
 
     public static void inserir(Servidor servidor) throws ServidorException {
-        dao.inserir(servidor);
+        daoServidor.inserir(servidor);
     }
 
     public static void atualizar(Servidor servidor) throws ServidorException {
-        dao.atualizar(servidor);
+        daoServidor.atualizar(servidor);
     }
 
     public static void excluir(Servidor servidor) throws ServidorException {
-        dao.excluir(servidor);
+        daoServidor.excluir(servidor);
     }
 
-    public static Servidor buscarPorEmail(String email) {
-        return dao.buscarPorEmail(email);
+    public static Servidor buscarUnicoPorEmail(String email) {
+        return daoServidor.buscarUnicoPorEmail(email);
     }
 
-    public static Servidor buscarPorEmailOuSiape(String emailemailOuSiape) {
-        return dao.buscarPorEmailOuSiape(emailemailOuSiape);
+    public static Servidor buscarUnicoPorEmailOuSiape(String emailemailOuSiape) {
+        return daoServidor.buscarUnicoPorEmailOuSiape(emailemailOuSiape);
     }
 }

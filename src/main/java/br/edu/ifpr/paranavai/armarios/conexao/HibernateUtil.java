@@ -1,12 +1,14 @@
 package br.edu.ifpr.paranavai.armarios.conexao;
 
-import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import javax.swing.JOptionPane;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 public class HibernateUtil {
 

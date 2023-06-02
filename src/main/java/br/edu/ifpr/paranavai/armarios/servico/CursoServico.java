@@ -16,60 +16,60 @@ import java.util.List;
  */
 public class CursoServico {
 
-    private static CursoDao dao = new CursoDaoImpl();
+    private static CursoDao daoCurso = new CursoDaoImpl();
 
     public static Curso inserir(Curso curso) throws CursoException {
         if (curso.getNome() == null || curso.getNome().isEmpty()) {
             throw new CursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
         }
 
-        Curso c = dao.buscarPorNomeExato(curso.getNome());
+        Curso c = daoCurso.buscarUnicoPorNomeExato(curso.getNome());
         if (c != null) {
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
         }
 
-        return dao.inserir(curso);
+        return daoCurso.inserir(curso);
     }
 
     public static void excluir(Curso curso) throws CursoException {
-        Curso c = dao.buscarPorId(curso.getId());
+        Curso c = daoCurso.buscarUnicoPorId(curso.getId());
         if (c == null) {
             throw new CursoException(MensagemUtil.CURSO_REMOVIDO);
         }
 
         EstudanteDao estudanteDao = new EstudanteDaoImpl();
-        List<Estudante> e = estudanteDao.buscarPorIdCurso(curso.getId());
+        List<Estudante> e = estudanteDao.buscarTodosPorIdCurso(curso.getId());
         if (!e.isEmpty()) {
             throw new CursoException(MensagemUtil.CURSO_VINCULADO_ESTUDANTE);
         }
 
-        dao.excluir(curso);
+        daoCurso.excluir(curso);
     }
 
     public static List<Curso> buscarTodos() {
-        return dao.buscarTodos();
+        return daoCurso.buscarTodos();
     }
 
-    public static Curso buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+    public static Curso buscarUnicoPorId(Integer id) {
+        return daoCurso.buscarUnicoPorId(id);
     }
 
-    public static Curso buscarPorNomeExato(String nome) {
-        return dao.buscarPorNomeExato(nome);
+    public static Curso buscarUnicoPorNomeExato(String nome) {
+        return daoCurso.buscarUnicoPorNomeExato(nome);
     }
 
     public static Curso atualizar(Curso curso) throws CursoException {
         if (curso.getNome() == null || curso.getNome().isEmpty())
             throw new CursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
 
-        Curso c = dao.buscarPorNomeExatoComIdDiferente(curso.getNome(), curso.getId());
+        Curso c = daoCurso.buscarUnicoPorNomeExatoComIdDiferente(curso.getNome(), curso.getId());
         if (c != null)
             throw new CursoException(MensagemUtil.CURSO_NOME_DUPLICADO);
 
-        return dao.atualizar(curso);
+        return daoCurso.atualizar(curso);
     }
 
     public static List<Curso> buscarTodosAtivos() {
-        return dao.buscarTodosAtivos();
+        return daoCurso.buscarTodosAtivos();
     }
 }

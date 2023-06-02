@@ -1,13 +1,15 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import org.hibernate.Session;
-import java.util.List;
-import org.hibernate.query.Query;
 
 public class LocalizacaoDaoImpl implements LocalizacaoDao {
 
@@ -25,7 +27,7 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public Localizacao buscarPorId(Integer idLocalizacao) {
+    public Localizacao buscarUnicoPorId(Integer idLocalizacao) {
         return this.sessao.find(Localizacao.class, idLocalizacao);
     }
 
@@ -65,24 +67,27 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public List<Localizacao> buscarTodosAtivos() {
-        Query<Localizacao> query = this.sessao.createQuery("from Localizacao e where ativo = :ativo", Localizacao.class);
+    public List<Localizacao> buscarAtivos() {
+        Query<Localizacao> query = this.sessao.createQuery("from Localizacao e where ativo = :ativo",
+                Localizacao.class);
         query.setParameter("ativo", true);
         List<Localizacao> resultado = query.getResultList();
         return resultado;
     }
 
     @Override
-    public Localizacao buscarPorDescricaoExata(String descricao) {
-        Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao", Localizacao.class);
+    public Localizacao buscarUnicoPorDescricaoExata(String descricao) {
+        Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao",
+                Localizacao.class);
         query.setParameter("descricao", descricao);
         Localizacao resultado = (Localizacao) query.uniqueResult();
         return resultado;
     }
 
     @Override
-    public Localizacao buscarPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao) {
-        Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao and id != :id", Localizacao.class);
+    public Localizacao buscarUnicoPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao) {
+        Query<Localizacao> query = this.sessao
+                .createQuery("from Localizacao where descricao = :descricao and id != :id", Localizacao.class);
         query.setParameter("descricao", descricao);
         query.setParameter("id", idLocalizacao);
         Localizacao resultado = (Localizacao) query.uniqueResult();

@@ -1,14 +1,16 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.controle.CursoControle;
-import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import java.awt.Dialog;
 import java.awt.HeadlessException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
+import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
@@ -175,7 +177,7 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
 
     private void salvar() throws HeadlessException {
         try {
-            CursoControle.inserir(curso);
+            CursoServico.inserir(curso);
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_INSERCAO_SUCESSO);
             fecharFormulario();
         } catch (CursoException e) {
@@ -187,7 +189,7 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
 
     private void atualizar() {
         try {
-            CursoControle.atualizar(curso);
+            CursoServico.atualizar(curso);
             JOptionPane.showMessageDialog(this, MensagemUtil.CURSO_ATUALIZACAO_SUCESSO);
             fecharFormulario();
         } catch (CursoException e) {

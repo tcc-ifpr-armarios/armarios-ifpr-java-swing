@@ -7,7 +7,6 @@ import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.ArmarioDaoImpl;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
-import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
@@ -19,69 +18,70 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
  */
 public class ArmarioServico {
 
-    private static ArmarioDao dao = new ArmarioDaoImpl();
+    private static ArmarioDao daoArmario = new ArmarioDaoImpl();
 
     public static List<Armario> buscarTodos() {
-        return dao.buscarTodos();
+        return daoArmario.buscarTodos();
     }
 
     public static List<Armario> buscarPorStatus(StatusArmario status) {
-        return dao.buscarPorStatus(status);
+        return daoArmario.buscarTodosPorStatus(status);
     }
 
-    public static Armario buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+    public static Armario buscarUnicoPorId(Integer id) {
+        return daoArmario.buscarUnicoPorId(id);
     }
 
     public static Armario inserir(Armario armario) throws ArmarioException {
         verificaCamposObrigatorios(armario);
 
-        //Verifica se já contem o número do armário com base na localização
-        Armario a = dao.buscarArmarioPorNumeroELocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
+        // Verifica se já contem o número do armário com base na localização
+        Armario a = daoArmario.buscarUnicoPorNumeroELocalizacao(armario.getLocalizacao().getId(), armario.getNumero());
         if (a != null) {
             throw new ArmarioException(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO);
         }
 
-        return dao.inserir(armario);
+        return daoArmario.inserir(armario);
     }
 
     public static Armario atualizar(Armario armario) throws ArmarioException {
         verificaCamposObrigatorios(armario);
 
-        //Verifica se já contem o número do armário com base na localização
-        Armario a = dao.buscarArmarioPorNumeroELocalizacaoComIdDiferente(armario.getLocalizacao().getId(), armario.getNumero(), armario.getId());
+        // Verifica se já contem o número do armário com base na localização
+        Armario a = daoArmario.buscarUnicoPorNumeroELocalizacaoComIdDiferente(armario.getLocalizacao().getId(),
+                armario.getNumero(), armario.getId());
         if (a != null) {
             throw new ArmarioException(MensagemUtil.ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO);
         }
 
-        return dao.atualizar(armario);
+        return daoArmario.atualizar(armario);
     }
 
     public static void excluir(Armario armario) throws ArmarioException {
         EmprestimoDao emprestimoDao = new EmprestimoDaoImpl();
-        Armario a = dao.buscarPorId(armario.getId());
+        Armario a = daoArmario.buscarUnicoPorId(armario.getId());
         if (a == null) {
             throw new ArmarioException(MensagemUtil.ARMARIO_REMOVIDO);
         }
-        
-        List<Emprestimo> e = emprestimoDao.buscarPorIdArmario(armario.getId());
+
+        List<Emprestimo> e = emprestimoDao.buscarTodosPorIdArmario(armario.getId());
         if (!e.isEmpty()) {
             throw new ArmarioException(MensagemUtil.ARMARIO_VINCULADO_EMPRESTIMO);
         }
-        
-        dao.excluir(armario);
+
+        daoArmario.excluir(armario);
     }
 
     public static List<Armario> buscarTodosPorIdLocalizacao(Integer idLocalizacao) {
-        return dao.buscarTodosPorIdLocalizacao(idLocalizacao);
+        return daoArmario.buscarTodosPorIdLocalizacao(idLocalizacao);
     }
 
-    public static Armario buscarArmarioPorNumeroELocalizacao(Integer idLocal, String numero) {
-        return dao.buscarArmarioPorNumeroELocalizacao(idLocal, numero);
+    public static Armario buscarUnicoPorNumeroELocalizacao(Integer idLocal, String numero) {
+        return daoArmario.buscarUnicoPorNumeroELocalizacao(idLocal, numero);
     }
 
     public static List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao) {
-        return dao.buscarAtivoPorIdLocalizacao(idLocalizacao);
+        return daoArmario.buscarAtivosPorIdLocalizacao(idLocalizacao);
     }
 
     private static void verificaCamposObrigatorios(Armario armario) throws ArmarioException {

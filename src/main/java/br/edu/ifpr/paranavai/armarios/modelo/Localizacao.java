@@ -1,5 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import java.util.Objects;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Objects;
 
 /**
  *
@@ -88,9 +89,9 @@ public class Localizacao {
         }
         return Objects.equals(this.id, other.id);
     }
-    
+
     @Override
     public String toString() {
-        return this.id + " - "+ this.descricao;
+        return this.id + " - " + this.descricao;
     }
 }

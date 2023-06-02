@@ -1,12 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import java.util.List;
 
+import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
@@ -15,64 +14,64 @@ import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 
 public class EstudanteServico {
 
-    private static EstudanteDao dao = new EstudanteDaoImpl();
+    private static EstudanteDao daoEstudante = new EstudanteDaoImpl();
 
     public static List<Estudante> buscarTodos() {
-        return dao.buscarTodos();
+        return daoEstudante.buscarTodos();
     }
 
-    public static Estudante buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+    public static Estudante buscarUnicoPorId(Integer id) {
+        return daoEstudante.buscarUnicoPorId(id);
     }
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = dao.buscarPorRa(estudante.getRa());
+        Estudante e = daoEstudante.buscarUnicoPorRa(estudante.getRa());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
-        return dao.inserir(estudante);
+        return daoEstudante.inserir(estudante);
     }
 
     public static Estudante atualizar(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
+        Estudante e = daoEstudante.buscarUnicoPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
-        return dao.atualizar(estudante);
+        return daoEstudante.atualizar(estudante);
     }
 
     public static void excluir(Estudante estudante) throws EstudanteException {
         EmprestimoDao emprestimoDao = new EmprestimoDaoImpl();
-        Estudante c = dao.buscarPorId(estudante.getId());
+        Estudante c = daoEstudante.buscarUnicoPorId(estudante.getId());
         if (c == null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
-        
-        List<Emprestimo> e = emprestimoDao.buscarPorRaDoEstudante(estudante.getRa());
+
+        List<Emprestimo> e = emprestimoDao.buscarTodosPorRaDoEstudante(estudante.getRa());
         if (!e.isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
         }
-        dao.excluir(estudante);
+        daoEstudante.excluir(estudante);
     }
 
-    public static List<Estudante> buscarPorNome(String nome) {
-        return dao.buscarPorNome(nome);
+    public static List<Estudante> buscarTodosPorNome(String nome) {
+        return daoEstudante.buscarTodosPorNome(nome);
     }
 
-    public static Estudante buscarPorRa(String ra) {
-        return dao.buscarPorRa(ra);
+    public static Estudante buscarUnicoPorRa(String ra) {
+        return daoEstudante.buscarUnicoPorRa(ra);
     }
 
-    public static Estudante buscarPorEmail(String email) {
-        return dao.buscarPorEmail(email);
+    public static Estudante buscarUnicoPorEmail(String email) {
+        return daoEstudante.buscarUnicoPorEmail(email);
     }
 
     private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {
@@ -102,14 +101,14 @@ public class EstudanteServico {
     private static void validaCamposRegex(Estudante estudante) throws EstudanteException {
 
         if (!OperacaoUtil.ehTelefoneValido(estudante.getTelefone())) {
-            throw new EstudanteException(MensagemUtil.TELEFONE_INVALIDO);
+            throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
         }
         if (!OperacaoUtil.ehEmailValido(estudante.getEmail())) {
-            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
+            throw new EstudanteException(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
         }
     }
 
     static List<Estudante> buscarAtivos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return daoEstudante.buscarAtivos();
     }
 }
