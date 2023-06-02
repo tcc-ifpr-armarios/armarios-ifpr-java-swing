@@ -9,6 +9,8 @@ public interface EstudanteDao {
 
     public Estudante atualizar(Estudante estudante) throws EstudanteException;
 
+    public List<Estudante> buscarAtivos();
+
     public List<Estudante> buscarTodos();
 
     public List<Estudante> buscarTodosPorIdCurso(Integer idCurso);

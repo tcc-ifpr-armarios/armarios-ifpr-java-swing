@@ -20,6 +20,14 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
+    public List<Estudante> buscarAtivos() {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where ativo = :ativo", Estudante.class);
+        query.setParameter("ativo", true);
+        List<Estudante> estudantes = query.getResultList();
+        return estudantes;
+    }
+
+    @Override
     public List<Estudante> buscarTodos() {
         Query<Estudante> query = this.sessao.createQuery("from Estudante", Estudante.class);
         List<Estudante> estudantes = query.getResultList();

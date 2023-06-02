@@ -18,7 +18,7 @@ public class AcoesEventoTabelaLista implements AcoesEventoTabela {
     public void aoVisualizar(JTable tabela, int linha) {
         String identificador = (String) tabela.getValueAt(linha, 4);
 
-        Estudante estudante = EstudanteServico.buscarPorRa(identificador);
+        Estudante estudante = EstudanteServico.buscarUnicoPorRa(identificador);
         
         IndexEstudantePanelUI origem = getOrigem(tabela);
 

@@ -1,12 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import java.util.List;
 
+import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EstudanteDaoImpl;
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
@@ -21,7 +20,7 @@ public class EstudanteServico {
         return daoEstudante.buscarTodos();
     }
 
-    public static Estudante buscarPorId(Integer id) {
+    public static Estudante buscarUnicoPorId(Integer id) {
         return daoEstudante.buscarUnicoPorId(id);
     }
 
@@ -55,7 +54,7 @@ public class EstudanteServico {
         if (c == null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
-        
+
         List<Emprestimo> e = emprestimoDao.buscarTodosPorRaDoEstudante(estudante.getRa());
         if (!e.isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
@@ -63,15 +62,15 @@ public class EstudanteServico {
         daoEstudante.excluir(estudante);
     }
 
-    public static List<Estudante> buscarPorNome(String nome) {
+    public static List<Estudante> buscarTodosPorNome(String nome) {
         return daoEstudante.buscarTodosPorNome(nome);
     }
 
-    public static Estudante buscarPorRa(String ra) {
+    public static Estudante buscarUnicoPorRa(String ra) {
         return daoEstudante.buscarUnicoPorRa(ra);
     }
 
-    public static Estudante buscarPorEmail(String email) {
+    public static Estudante buscarUnicoPorEmail(String email) {
         return daoEstudante.buscarUnicoPorEmail(email);
     }
 
@@ -110,6 +109,6 @@ public class EstudanteServico {
     }
 
     static List<Estudante> buscarAtivos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return daoEstudante.buscarAtivos();
     }
 }

@@ -198,7 +198,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-            Estudante alunoLogado = EstudanteServico.buscarPorEmail(System.getProperty("email"));
+            Estudante alunoLogado = EstudanteServico.buscarUnicoPorEmail(System.getProperty("email"));
 
             Integer local = Integer.parseInt(numeroCombo.getSelectedItem().toString());
             String numeroArmario = numeroCombo.getSelectedItem().toString();

@@ -80,11 +80,11 @@ public class EstudanteServicoTest {
     public void aposCadaTeste() throws EstudanteException {
         if (this.estudante != null) {
             if (this.estudante.getId() != null) {
-                Estudante c = EstudanteServico.buscarPorId(this.estudante.getId());
+                Estudante c = EstudanteServico.buscarUnicoPorId(this.estudante.getId());
                 if (c != null)
                     EstudanteServico.excluir(c);
             } else {
-                Estudante c = EstudanteServico.buscarPorEmail(this.estudante.getEmail());
+                Estudante c = EstudanteServico.buscarUnicoPorEmail(this.estudante.getEmail());
                 if (c != null)
                     EstudanteServico.excluir(c);
             }
@@ -229,7 +229,7 @@ public class EstudanteServicoTest {
 
         this.estudante = EstudanteServico.inserir(this.estudante);
 
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(this.estudante.getId());
+        Estudante estudanteEncontrado = EstudanteServico.buscarUnicoPorId(this.estudante.getId());
         assertEquals(this.estudante.getId(), estudanteEncontrado.getId());
     }
 
@@ -237,7 +237,7 @@ public class EstudanteServicoTest {
     public void naoDeveEncontrarOId() throws EstudanteException {
         System.out.println("Executando teste naoDeveEncontrarOId");
 
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(-1);
+        Estudante estudanteEncontrado = EstudanteServico.buscarUnicoPorId(-1);
         assertNull(estudanteEncontrado);
     }
 
@@ -249,7 +249,7 @@ public class EstudanteServicoTest {
 
         EstudanteServico.excluir(this.estudante);
 
-        Estudante estudanteEncontrado = EstudanteServico.buscarPorId(this.estudante.getId());
+        Estudante estudanteEncontrado = EstudanteServico.buscarUnicoPorId(this.estudante.getId());
         assertNull(estudanteEncontrado);
     }
 

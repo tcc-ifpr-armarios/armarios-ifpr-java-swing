@@ -1,10 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.List;
+
 import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
+import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 /**
  *
