@@ -27,7 +27,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public Estudante buscarPorId(Integer idEstudante) {
+    public Estudante buscarUnicoPorId(Integer idEstudante) {
         return this.sessao.find(Estudante.class, idEstudante);
     }
 
@@ -67,14 +67,14 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public List<Estudante> buscarPorNome(String nome) {
+    public List<Estudante> buscarTodosPorNome(String nome) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where nome = :nome", Estudante.class);
         List<Estudante> estudantes = query.getResultList();
         return estudantes;
     }
 
     @Override
-    public Estudante buscarPorRa(String ra) {
+    public Estudante buscarUnicoPorRa(String ra) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra", Estudante.class);
         query.setParameter("ra", ra);
         Estudante estudante = (Estudante) query.uniqueResult();
@@ -82,7 +82,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public Estudante buscarPorEmail(String email) {
+    public Estudante buscarUnicoPorEmail(String email) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where email = :email", Estudante.class);
         query.setParameter("email", email);
         Estudante estudante = (Estudante) query.uniqueResult();
@@ -90,7 +90,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public Estudante buscarPorRaComIdDiferente(String ra, Integer idEstudante) {
+    public Estudante buscarUnicoPorRaComIdDiferente(String ra, Integer idEstudante) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra and id != :id",
                 Estudante.class);
         query.setParameter("ra", ra);
@@ -100,7 +100,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public List<Estudante> buscarPorIdCurso(Integer idCurso) {
+    public List<Estudante> buscarTodosPorIdCurso(Integer idCurso) {
         Query<Estudante> query = this.sessao.createQuery("from Estudante e where e.curso.id = :id", Estudante.class);
         query.setParameter("id", idCurso);
         List<Estudante> resultado = query.getResultList();

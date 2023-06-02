@@ -22,14 +22,14 @@ public class EstudanteServico {
     }
 
     public static Estudante buscarPorId(Integer id) {
-        return daoEstudante.buscarPorId(id);
+        return daoEstudante.buscarUnicoPorId(id);
     }
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = daoEstudante.buscarPorRa(estudante.getRa());
+        Estudante e = daoEstudante.buscarUnicoPorRa(estudante.getRa());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
@@ -41,7 +41,7 @@ public class EstudanteServico {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = daoEstudante.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
+        Estudante e = daoEstudante.buscarUnicoPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
@@ -51,7 +51,7 @@ public class EstudanteServico {
 
     public static void excluir(Estudante estudante) throws EstudanteException {
         EmprestimoDao emprestimoDao = new EmprestimoDaoImpl();
-        Estudante c = daoEstudante.buscarPorId(estudante.getId());
+        Estudante c = daoEstudante.buscarUnicoPorId(estudante.getId());
         if (c == null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
@@ -64,15 +64,15 @@ public class EstudanteServico {
     }
 
     public static List<Estudante> buscarPorNome(String nome) {
-        return daoEstudante.buscarPorNome(nome);
+        return daoEstudante.buscarTodosPorNome(nome);
     }
 
     public static Estudante buscarPorRa(String ra) {
-        return daoEstudante.buscarPorRa(ra);
+        return daoEstudante.buscarUnicoPorRa(ra);
     }
 
     public static Estudante buscarPorEmail(String email) {
-        return daoEstudante.buscarPorEmail(email);
+        return daoEstudante.buscarUnicoPorEmail(email);
     }
 
     private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {

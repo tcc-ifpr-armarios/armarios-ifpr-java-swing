@@ -7,21 +7,21 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 public interface EstudanteDao {
 
+    public Estudante atualizar(Estudante estudante) throws EstudanteException;
+
     public List<Estudante> buscarTodos();
 
-    public Estudante buscarPorId(Integer inteiro);
+    public List<Estudante> buscarTodosPorIdCurso(Integer idCurso);
 
-    public List<Estudante> buscarPorNome(String nomee);
+    public List<Estudante> buscarTodosPorNome(String nomee);
 
-    public Estudante buscarPorRa(String ra);
+    public Estudante buscarUnicoPorEmail(String email);
 
-    public Estudante buscarPorEmail(String email);
+    public Estudante buscarUnicoPorId(Integer inteiro);
 
-    public Estudante buscarPorRaComIdDiferente(String ra, Integer id);
+    public Estudante buscarUnicoPorRa(String ra);
 
-    public List<Estudante> buscarPorIdCurso(Integer idCurso);
-
-    public Estudante atualizar(Estudante estudante) throws EstudanteException;
+    public Estudante buscarUnicoPorRaComIdDiferente(String ra, Integer id);
 
     public void excluir(Estudante estudante) throws EstudanteException;
 

@@ -38,7 +38,7 @@ public class CursoServico {
         }
 
         EstudanteDao estudanteDao = new EstudanteDaoImpl();
-        List<Estudante> e = estudanteDao.buscarPorIdCurso(curso.getId());
+        List<Estudante> e = estudanteDao.buscarTodosPorIdCurso(curso.getId());
         if (!e.isEmpty()) {
             throw new CursoException(MensagemUtil.CURSO_VINCULADO_ESTUDANTE);
         }
