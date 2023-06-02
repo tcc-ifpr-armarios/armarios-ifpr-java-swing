@@ -15,43 +15,43 @@ import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 
 public class EstudanteServico {
 
-    private static EstudanteDao dao = new EstudanteDaoImpl();
+    private static EstudanteDao daoEstudante = new EstudanteDaoImpl();
 
     public static List<Estudante> buscarTodos() {
-        return dao.buscarTodos();
+        return daoEstudante.buscarTodos();
     }
 
     public static Estudante buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+        return daoEstudante.buscarPorId(id);
     }
 
     public static Estudante inserir(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = dao.buscarPorRa(estudante.getRa());
+        Estudante e = daoEstudante.buscarPorRa(estudante.getRa());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
-        return dao.inserir(estudante);
+        return daoEstudante.inserir(estudante);
     }
 
     public static Estudante atualizar(Estudante estudante) throws EstudanteException {
         verificaCamposObrigatorios(estudante);
         validaCamposRegex(estudante);
 
-        Estudante e = dao.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
+        Estudante e = daoEstudante.buscarPorRaComIdDiferente(estudante.getRa(), estudante.getId());
         if (e != null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
-        return dao.atualizar(estudante);
+        return daoEstudante.atualizar(estudante);
     }
 
     public static void excluir(Estudante estudante) throws EstudanteException {
         EmprestimoDao emprestimoDao = new EmprestimoDaoImpl();
-        Estudante c = dao.buscarPorId(estudante.getId());
+        Estudante c = daoEstudante.buscarPorId(estudante.getId());
         if (c == null) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
@@ -60,19 +60,19 @@ public class EstudanteServico {
         if (!e.isEmpty()) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
         }
-        dao.excluir(estudante);
+        daoEstudante.excluir(estudante);
     }
 
     public static List<Estudante> buscarPorNome(String nome) {
-        return dao.buscarPorNome(nome);
+        return daoEstudante.buscarPorNome(nome);
     }
 
     public static Estudante buscarPorRa(String ra) {
-        return dao.buscarPorRa(ra);
+        return daoEstudante.buscarPorRa(ra);
     }
 
     public static Estudante buscarPorEmail(String email) {
-        return dao.buscarPorEmail(email);
+        return daoEstudante.buscarPorEmail(email);
     }
 
     private static void verificaCamposObrigatorios(Estudante estudante) throws EstudanteException {

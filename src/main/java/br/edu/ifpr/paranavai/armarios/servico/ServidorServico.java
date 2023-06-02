@@ -12,33 +12,33 @@ import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
  */
 public class ServidorServico {
 
-    private static ServidorDao dao = new ServidorDaoImpl();
+    private static ServidorDao daoServidor = new ServidorDaoImpl();
 
     public static List<Servidor> buscarTodos() {
-        return dao.buscarTodos();
+        return daoServidor.buscarTodos();
     }
 
     public static Servidor buscarPorId(Integer id) {
-        return dao.buscarPorId(id);
+        return daoServidor.buscarPorId(id);
     }
 
     public static void inserir(Servidor servidor) throws ServidorException {
-        dao.inserir(servidor);
+        daoServidor.inserir(servidor);
     }
 
     public static void atualizar(Servidor servidor) throws ServidorException {
-        dao.atualizar(servidor);
+        daoServidor.atualizar(servidor);
     }
 
     public static void excluir(Servidor servidor) throws ServidorException {
-        dao.excluir(servidor);
+        daoServidor.excluir(servidor);
     }
 
     public static Servidor buscarPorEmail(String email) {
-        return dao.buscarPorEmail(email);
+        return daoServidor.buscarPorEmail(email);
     }
 
     public static Servidor buscarPorEmailOuSiape(String emailemailOuSiape) {
-        return dao.buscarPorEmailOuSiape(emailemailOuSiape);
+        return daoServidor.buscarPorEmailOuSiape(emailemailOuSiape);
     }
 }
