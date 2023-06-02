@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.visao.ocupados;
 
-
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -14,43 +13,45 @@ import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
  * @author Allan Fernando O de Andrade
  */
 public class IndexOcupadosUI extends javax.swing.JFrame {
+
     List<Localizacao> listaDeLocalizacoes;
+
     /**
      * Creates new form EditorLocalizacaoUI
      */
-    
+
     public IndexOcupadosUI() {
-        
+
         initComponents();
         init();
         setLocationRelativeTo(this);
     }
-    
-    public void init(){
+
+    public void init() {
         listaDeLocalizacoes = LocalizacaoServico.buscarTodos();
         populaTabela(listaDeLocalizacoes);
-        
+
     }
 
     private void populaTabela(List<Localizacao> listaDeLocalizacoes) {
-        
+
         AcoesEventoTabela evento = new AcoesEventoTabelaOcupados();
-        
+
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
         tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaOcupados());
-        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaOcupadosUI(evento, this));
+        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaOcupadosUI(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        
+
         for (int i = 0; i < listaDeLocalizacoes.size(); i++) {
             Localizacao mostraLocalizacao = listaDeLocalizacoes.get(i);
             Object[] dadosLinha = new Object[3];
             dadosLinha[0] = mostraLocalizacao.getId();
             dadosLinha[1] = mostraLocalizacao.getDescricao();
             dadosLinha[2] = mostraLocalizacao.isAtivo() ? "Ativo" : "Inativo";
-            
+
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
