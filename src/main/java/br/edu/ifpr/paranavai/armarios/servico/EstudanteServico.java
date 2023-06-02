@@ -101,10 +101,10 @@ public class EstudanteServico {
     private static void validaCamposRegex(Estudante estudante) throws EstudanteException {
 
         if (!OperacaoUtil.ehTelefoneValido(estudante.getTelefone())) {
-            throw new EstudanteException(MensagemUtil.TELEFONE_INVALIDO);
+            throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
         }
         if (!OperacaoUtil.ehEmailValido(estudante.getEmail())) {
-            throw new EstudanteException(MensagemUtil.EMAIL_INVALIDO);
+            throw new EstudanteException(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
         }
     }
 

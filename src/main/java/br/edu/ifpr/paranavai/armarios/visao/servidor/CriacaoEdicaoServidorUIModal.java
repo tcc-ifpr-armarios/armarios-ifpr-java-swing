@@ -323,7 +323,7 @@ public class CriacaoEdicaoServidorUIModal extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (!Arrays.equals(txtConfirmaSenha.getPassword(), txtSenha.getPassword())) {
-            JOptionPane.showMessageDialog(this, MensagemUtil.SENHAS_NAO_CONFEREM);
+            JOptionPane.showMessageDialog(this, MensagemUtil.VALIDACAO_SENHAS_NAO_CONFEREM);
             return;
         }
 
@@ -354,14 +354,14 @@ public class CriacaoEdicaoServidorUIModal extends javax.swing.JDialog {
         if (OperacaoUtil.ehEmailValido(this.txtEmail.getText()))
             lblEmailInvalido.setText("");
         else
-            lblEmailInvalido.setText(MensagemUtil.EMAIL_INVALIDO);
+            lblEmailInvalido.setText(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
     }//GEN-LAST:event_txtEmailFocusLost
 
     private void txtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyReleased
         if (Arrays.equals(txtConfirmaSenha.getPassword(), txtSenha.getPassword())) {
             lblSenhaInvalida.setText("");
         } else {
-            lblSenhaInvalida.setText(MensagemUtil.SENHAS_NAO_CONFEREM);
+            lblSenhaInvalida.setText(MensagemUtil.VALIDACAO_SENHAS_NAO_CONFEREM);
         }
     }//GEN-LAST:event_txtSenhaKeyReleased
 
@@ -369,7 +369,7 @@ public class CriacaoEdicaoServidorUIModal extends javax.swing.JDialog {
         if (Arrays.equals(txtConfirmaSenha.getPassword(), txtSenha.getPassword())) {
             lblSenhaInvalida.setText("");
         } else {
-            lblSenhaInvalida.setText(MensagemUtil.SENHAS_NAO_CONFEREM);
+            lblSenhaInvalida.setText(MensagemUtil.VALIDACAO_SENHAS_NAO_CONFEREM);
         }
     }//GEN-LAST:event_txtConfirmaSenhaKeyReleased
 
@@ -377,7 +377,7 @@ public class CriacaoEdicaoServidorUIModal extends javax.swing.JDialog {
         if (OperacaoUtil.ehTelefoneValido(this.txtTelefone.getText())) {
             lblTelefoneInvalido.setText("");
         } else {
-            lblTelefoneInvalido.setText(MensagemUtil.TELEFONE_INVALIDO);
+            lblTelefoneInvalido.setText(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
         }
 
     }//GEN-LAST:event_txtTelefoneFocusLost

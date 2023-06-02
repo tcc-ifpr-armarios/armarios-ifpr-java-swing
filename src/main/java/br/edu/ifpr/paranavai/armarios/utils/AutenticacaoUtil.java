@@ -9,11 +9,10 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class AutenticacaoUtil {
 
     public static final String CHAVE_PRIVADA = "ArmariosIFPR-Paranvaí";
-    
-    public static String converteSenhaParaSha256Hex (String senha){
+
+    public static String converteSenhaParaSha256Hex(String senha) {
         String senhaComChavePrivada = CHAVE_PRIVADA + senha + CHAVE_PRIVADA;
         return DigestUtils.sha256Hex(senhaComChavePrivada);
     }
-    
-    
+
 }
