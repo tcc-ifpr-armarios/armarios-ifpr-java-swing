@@ -44,7 +44,7 @@ public class ListaHistoricoUI extends javax.swing.JFrame {
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) historico.getModel();
         historico.getColumnModel().getColumn(5).setCellRenderer(new RenderizadorDasAcoesDaCelulaLista());
-        historico.getColumnModel().getColumn(5).setCellEditor(new EditorDasAcoesDaCelulaListaUI(evento, this));
+        historico.getColumnModel().getColumn(5).setCellEditor(new EditorDasAcoesDaCelulaListaUI(evento));
         // Primeiro limpa a tabela while
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);

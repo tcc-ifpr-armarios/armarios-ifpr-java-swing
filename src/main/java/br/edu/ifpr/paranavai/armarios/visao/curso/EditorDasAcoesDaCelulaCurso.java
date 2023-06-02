@@ -1,11 +1,13 @@
 package br.edu.ifpr.paranavai.armarios.visao.curso;
 
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Component;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
 
 /**
  *
@@ -22,7 +24,8 @@ public class EditorDasAcoesDaCelulaCurso extends DefaultCellEditor {
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesCursoUI acoes = new PainelAcoesCursoUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(false, true, true);
+
 
         acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());

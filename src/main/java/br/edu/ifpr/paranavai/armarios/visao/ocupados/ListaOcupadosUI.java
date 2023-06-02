@@ -45,7 +45,7 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) ocupados.getModel();
         ocupados.getColumnModel().getColumn(4).setCellRenderer(new RenderizadorDasAcoesDaCelulaLista());
-        ocupados.getColumnModel().getColumn(4).setCellEditor(new EditorDasAcoesDaCelulaListaUI(evento, this));
+        ocupados.getColumnModel().getColumn(4).setCellEditor(new EditorDasAcoesDaCelulaListaUI(evento));
         // Primeiro limpa a tabela while
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);

@@ -1,35 +1,34 @@
 package br.edu.ifpr.paranavai.armarios.visao.historico;
 
-
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Component;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
 
 /**
  *
  * @author Allan Fernando O de Andrade
  */
-public class EditorDasAcoesDaCelulaListaUI extends DefaultCellEditor{
+public class EditorDasAcoesDaCelulaListaUI extends DefaultCellEditor {
 
     private AcoesEventoTabela evento;
-    private ListaHistoricoUI listaHistoricoUI;
-    public EditorDasAcoesDaCelulaListaUI(AcoesEventoTabela evento, ListaHistoricoUI listaHistoricoUI) {
+
+    public EditorDasAcoesDaCelulaListaUI(AcoesEventoTabela evento) {
         super(new JCheckBox());
-        this.listaHistoricoUI = listaHistoricoUI;
         this.evento = evento;
     }
-    
+
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesListaUI acoes = new PainelAcoesListaUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(true, false, false);
 
-        acoes.iniciarEventos(listaHistoricoUI, evento, table, row);
+        acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());
-        
+
         return acoes;
     }
 }
