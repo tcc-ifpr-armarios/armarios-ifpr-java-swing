@@ -25,7 +25,7 @@ public class AcoesEventoTabelaArmario implements AcoesEventoTabela {
 
         if (opcao == 0) {
             try {
-                Armario armario = ArmarioServico.buscarPorId(identificador);
+                Armario armario = ArmarioServico.buscarUnicoPorId(identificador);
                 ArmarioServico.excluir(armario);
                 JOptionPane.showMessageDialog(origem, MensagemUtil.ARMARIO_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
@@ -42,7 +42,7 @@ public class AcoesEventoTabelaArmario implements AcoesEventoTabela {
 
         IndexArmarioPanelUI origem = getOrigem(tabela);
 
-        Armario armario = ArmarioServico.buscarPorId(identificador);
+        Armario armario = ArmarioServico.buscarUnicoPorId(identificador);
 
         CriacaoEdicaoArmarioUIModal form = new CriacaoEdicaoArmarioUIModal(origem, armario);
 

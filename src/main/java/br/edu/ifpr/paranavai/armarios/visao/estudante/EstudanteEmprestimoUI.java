@@ -203,7 +203,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
             Integer local = Integer.parseInt(numeroCombo.getSelectedItem().toString());
             String numeroArmario = numeroCombo.getSelectedItem().toString();
 
-            Armario armario = ArmarioServico.buscarArmarioPorNumeroELocalizacao(local, numeroArmario);
+            Armario armario = ArmarioServico.buscarUnicoPorNumeroELocalizacao(local, numeroArmario);
             emprestimo.setDataEmprestimo(LocalDateTime.now());
             emprestimo.setEstudante(alunoLogado);
             emprestimo.setArmario(armario);
@@ -264,7 +264,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
     public void atualizaNumero(String idLocalizacao) {
         Localizacao idLocal = LocalizacaoServico.buscarPorDescricaoExata(idLocalizacao);
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivoPorLocalizacao(idLocal.getId());
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(idLocal.getId());
         try {
             numeroCombo.removeAllItems();
 

@@ -20,7 +20,7 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
 
         IndexEmprestimoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarPorId(identificador);
+        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
 
         JOptionPane.showConfirmDialog(origem, "Implementar Devolução do ID " + emprestimo);
     }
@@ -31,7 +31,7 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
 
         IndexEmprestimoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarPorId(identificador);
+        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
 
         String mensagem = MensagemUtil.ESTUDANTE_EXCLUSAO_CONFIRMACAO + " '" + emprestimo.getId() + "'?";
 
@@ -55,7 +55,7 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
 
         IndexEmprestimoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarPorId(identificador);
+        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
 
         VisualizarEmprestimoModalUI form = new VisualizarEmprestimoModalUI(origem, emprestimo);
 

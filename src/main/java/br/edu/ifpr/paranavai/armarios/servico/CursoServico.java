@@ -50,11 +50,11 @@ public class CursoServico {
         return daoCurso.buscarTodos();
     }
 
-    public static Curso buscarPorId(Integer id) {
+    public static Curso buscarUnicoPorId(Integer id) {
         return daoCurso.buscarUnicoPorId(id);
     }
 
-    public static Curso buscarPorNomeExato(String nome) {
+    public static Curso buscarUnicoPorNomeExato(String nome) {
         return daoCurso.buscarUnicoPorNomeExato(nome);
     }
 

@@ -232,7 +232,7 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
             txtRa.setText("");
             System.setProperty("email", estudante.getEmail());
 
-            if (EmprestimoServico.buscarEmprestimoAtivoPorRaDoEstudante(estudante.getRa()) == null) {
+            if (EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa()) == null) {
                 EstudanteEmprestimoUI estudanteEmprestimoUI = new EstudanteEmprestimoUI();
                 estudanteEmprestimoUI.setVisible(true);
             } else {

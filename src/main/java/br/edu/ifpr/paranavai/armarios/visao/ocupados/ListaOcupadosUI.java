@@ -50,7 +50,7 @@ public class ListaOcupadosUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivoPorLocalizacao(localId);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(localId);
 
         for (int i = 0; i < emprestimos.size(); i++) {
             Armario armario = emprestimos.get(i).getArmario();

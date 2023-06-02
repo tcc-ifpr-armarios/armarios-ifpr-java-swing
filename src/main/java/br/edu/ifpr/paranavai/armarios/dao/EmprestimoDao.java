@@ -13,7 +13,9 @@ public interface EmprestimoDao {
 
     public Emprestimo atualizar(Emprestimo emprestimo) throws EmprestimoException;
 
-    public Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra);
+    public Emprestimo buscarAtivoPorRaDoEstudante(String ra);
+
+    public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao);
 
     public List<Emprestimo> buscarTodos();
 

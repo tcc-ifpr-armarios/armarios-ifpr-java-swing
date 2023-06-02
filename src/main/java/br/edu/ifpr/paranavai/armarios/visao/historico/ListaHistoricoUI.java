@@ -49,7 +49,7 @@ public class ListaHistoricoUI extends javax.swing.JFrame {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarPorIdLocalizacao(localId);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarTodosPorIdLocalizacao(localId);
 
         for (int i = 0; i < emprestimos.size(); i++) {
             Emprestimo emprestimo = emprestimos.get(i);

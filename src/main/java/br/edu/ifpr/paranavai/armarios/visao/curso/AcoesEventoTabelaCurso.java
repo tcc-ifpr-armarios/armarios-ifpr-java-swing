@@ -24,7 +24,7 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
 
         IndexCursoPanelUI origem = getOrigem(tabela);
 
-        Curso curso = CursoServico.buscarPorId(identificador);
+        Curso curso = CursoServico.buscarUnicoPorId(identificador);
 
         CriacaoEdicaoCursoUIModal form = new CriacaoEdicaoCursoUIModal(origem, curso);
 
@@ -38,7 +38,7 @@ public class AcoesEventoTabelaCurso implements AcoesEventoTabela {
 
         IndexCursoPanelUI origem = getOrigem(tabela);
 
-        Curso curso = CursoServico.buscarPorId(identificador);
+        Curso curso = CursoServico.buscarUnicoPorId(identificador);
 
         String mensagem = MensagemUtil.CURSO_EXCLUSAO_CONFIRMACAO + " '" + curso.getNome() + "'?";
 

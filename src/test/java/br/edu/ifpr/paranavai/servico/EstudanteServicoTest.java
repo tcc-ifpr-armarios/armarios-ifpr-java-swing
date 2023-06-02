@@ -52,7 +52,7 @@ public class EstudanteServicoTest {
 
     @BeforeAll
     public void antesDeTodosOsTestes() throws CursoException {
-        Curso curso = CursoServico.buscarPorNomeExato(CURSO);
+        Curso curso = CursoServico.buscarUnicoPorNomeExato(CURSO);
         if (curso == null) {
             curso = new Curso();
             curso.setNome(CURSO);
@@ -63,7 +63,7 @@ public class EstudanteServicoTest {
     @BeforeEach
     public void antesDeCadaTeste() {
         if (this.curso == null) {
-            this.curso = CursoServico.buscarPorNomeExato(CURSO);
+            this.curso = CursoServico.buscarUnicoPorNomeExato(CURSO);
         }
 
         this.estudante = new Estudante();
@@ -94,7 +94,7 @@ public class EstudanteServicoTest {
 
     @AfterAll
     public void aposTodosOsTestes() throws CursoException {
-        Curso curso = CursoServico.buscarPorNomeExato(CURSO);
+        Curso curso = CursoServico.buscarUnicoPorNomeExato(CURSO);
         if(curso != null)
             CursoServico.excluir(curso);
     }

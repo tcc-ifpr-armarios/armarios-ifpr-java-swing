@@ -44,11 +44,11 @@ public class CursoServicoTest {
     public void aposCadaTeste() throws CursoException {
         if (this.curso != null) {
             if (this.curso.getId() != null) {
-                Curso c = CursoServico.buscarPorId(this.curso.getId());
+                Curso c = CursoServico.buscarUnicoPorId(this.curso.getId());
                 if (c != null)
                     CursoServico.excluir(c);
             } else {
-                Curso c = CursoServico.buscarPorNomeExato(this.curso.getNome());
+                Curso c = CursoServico.buscarUnicoPorNomeExato(this.curso.getNome());
                 if (c != null)
                     CursoServico.excluir(c);
             }
@@ -122,7 +122,7 @@ public class CursoServicoTest {
 
         this.curso = CursoServico.inserir(this.curso);
 
-        Curso cursoEncontrado = CursoServico.buscarPorId(this.curso.getId());
+        Curso cursoEncontrado = CursoServico.buscarUnicoPorId(this.curso.getId());
         assertEquals(this.curso.getId(), cursoEncontrado.getId());
     }
 
@@ -130,7 +130,7 @@ public class CursoServicoTest {
     public void naoDeveEncontrarOId() throws CursoException {
         System.out.println("Executando teste naoDeveEncontrarOId");
 
-        Curso cursoEncontrado = CursoServico.buscarPorId(-1);
+        Curso cursoEncontrado = CursoServico.buscarUnicoPorId(-1);
         assertNull(cursoEncontrado);
     }
 
@@ -142,7 +142,7 @@ public class CursoServicoTest {
 
         CursoServico.excluir(this.curso);
 
-        Curso cursoEncontrado = CursoServico.buscarPorId(this.curso.getId());
+        Curso cursoEncontrado = CursoServico.buscarUnicoPorId(this.curso.getId());
         assertNull(cursoEncontrado);
     }
 

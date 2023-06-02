@@ -38,7 +38,7 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarPorRaDoEstudante(id);
+        List<Emprestimo> emprestimos = EmprestimoServico.buscarTodosPorRaDoEstudante(id);
 
         for (int i = 0; i < emprestimos.size(); i++) {
             Emprestimo emprestimo = emprestimos.get(i);

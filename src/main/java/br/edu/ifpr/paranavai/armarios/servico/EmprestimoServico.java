@@ -22,16 +22,16 @@ public class EmprestimoServico {
         return daoEmprestimo.inserir(emprestimo);
     }
 
-    public static List<Emprestimo> buscarPorRaDoEstudante(String ra) {
+    public static List<Emprestimo> buscarTodosPorRaDoEstudante(String ra) {
         return daoEmprestimo.buscarTodosPorRaDoEstudante(ra);
     }
 
-    public static List<Emprestimo> buscarPorIdLocalizacao(Integer idLocalizacao) {
+    public static List<Emprestimo> buscarTodosPorIdLocalizacao(Integer idLocalizacao) {
         return daoEmprestimo.buscarTodosPorIdLocalizacao(idLocalizacao);
     }
 
-    public static List<Emprestimo> buscarAtivoPorLocalizacao(int idLocalizacao) {
-        return daoEmprestimo.buscarTodos();
+    public static List<Emprestimo> buscarAtivosPorLocalizacao(int idLocalizacao) {
+        return daoEmprestimo.buscarAtivosPorIdLocalizacao(idLocalizacao);
     }
 
     public static Emprestimo finalizarEmprestimo(Emprestimo emprestimo) throws EmprestimoException {
@@ -39,11 +39,11 @@ public class EmprestimoServico {
         return daoEmprestimo.atualizar(emprestimo);
     }
 
-    public static Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
-        return daoEmprestimo.buscarEmprestimoAtivoPorRaDoEstudante(ra);
+    public static Emprestimo buscarAtivoPorRaDoEstudante(String ra) {
+        return daoEmprestimo.buscarAtivoPorRaDoEstudante(ra);
     }
 
-    public static Emprestimo buscarPorId(int identificador) {
+    public static Emprestimo buscarUnicoPorId(int identificador) {
         return daoEmprestimo.buscarUnicoPorId(identificador);
     }
 

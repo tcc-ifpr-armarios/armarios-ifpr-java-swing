@@ -36,6 +36,15 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
+    public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao) {
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id and data_devolucao = null",
+                Emprestimo.class);
+        query.setParameter("id", idLocalizacao);
+        List<Emprestimo> resultado = query.getResultList();
+        return resultado;
+    }
+
+    @Override
     public List<Emprestimo> buscarTodos() {
         Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo", Emprestimo.class);
         List<Emprestimo> emprestimo = query.getResultList();
@@ -73,7 +82,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     }
 
     @Override
-    public Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
+    public Emprestimo buscarAtivoPorRaDoEstudante(String ra) {
         Query<Emprestimo> query = this.sessao.createQuery(
                 "from Emprestimo e where e.estudante.ra = :ra and data_devolucao = null", Emprestimo.class);
         query.setParameter("ra", ra);
