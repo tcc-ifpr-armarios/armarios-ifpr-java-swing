@@ -1,12 +1,14 @@
 package br.edu.ifpr.paranavai.armarios.dao.impl;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
-import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
+import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
@@ -32,8 +34,6 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
         }
         return emprestimo;
     }
-    
-    
 
     @Override
     public List<Emprestimo> buscarTodos() {
@@ -44,7 +44,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarTodosPorRaDoEstudante(String ra) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra",
+                Emprestimo.class);
         query.setParameter("ra", ra);
         List<Emprestimo> resultado = query.getResultList();
         return resultado;
@@ -52,7 +53,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarTodosPorIdLocalizacao(Integer idLocalizacao) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id",
+                Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
         return resultado;
@@ -72,7 +74,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public Emprestimo buscarEmprestimoAtivoPorRaDoEstudante(String ra) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.estudante.ra = :ra and data_devolucao = null", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.estudante.ra = :ra and data_devolucao = null", Emprestimo.class);
         query.setParameter("ra", ra);
         Emprestimo resultado = query.getSingleResult();
         return resultado;
@@ -80,7 +83,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarTodosPorIdArmario(Integer idEmprestimo) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.armario.id = :id", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.armario.id = :id",
+                Emprestimo.class);
         query.setParameter("id", idEmprestimo);
         List<Emprestimo> resultado = query.getResultList();
         return resultado;
