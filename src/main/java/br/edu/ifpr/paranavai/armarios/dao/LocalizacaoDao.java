@@ -1,8 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.dao;
 
+import java.util.List;
+
 import br.edu.ifpr.paranavai.armarios.excecoes.LocalizacaoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import java.util.List;
 
 /**
  *
@@ -10,19 +11,19 @@ import java.util.List;
  */
 public interface LocalizacaoDao {
 
+    public Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException;
+
+    public List<Localizacao> buscarAtivos();
+
     public List<Localizacao> buscarTodos();
 
-    public List<Localizacao> buscarTodosAtivos();
+    public Localizacao buscarUnicoPorId(Integer idLocalizacao);
 
-    public Localizacao buscarPorId(Integer idLocalizacao);
+    public Localizacao buscarUnicoPorDescricaoExata(String descricao);
 
-    public Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException;
+    public Localizacao buscarUnicoPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao);
 
     public void excluir(Localizacao localizacao) throws LocalizacaoException;
 
     public Localizacao inserir(Localizacao localizacao) throws LocalizacaoException;
-
-    public Localizacao buscarPorDescricaoExata(String descricao);
-
-    public Localizacao buscarPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao);
 }

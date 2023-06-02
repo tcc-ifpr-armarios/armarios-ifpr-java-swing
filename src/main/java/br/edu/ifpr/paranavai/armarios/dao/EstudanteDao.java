@@ -13,7 +13,7 @@ public interface EstudanteDao {
 
     public List<Estudante> buscarTodosPorIdCurso(Integer idCurso);
 
-    public List<Estudante> buscarTodosPorNome(String nomee);
+    public List<Estudante> buscarTodosPorNome(String nome);
 
     public Estudante buscarUnicoPorEmail(String email);
 

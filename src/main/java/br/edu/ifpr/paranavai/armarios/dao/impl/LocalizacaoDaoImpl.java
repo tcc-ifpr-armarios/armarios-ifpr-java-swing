@@ -25,7 +25,7 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public Localizacao buscarPorId(Integer idLocalizacao) {
+    public Localizacao buscarUnicoPorId(Integer idLocalizacao) {
         return this.sessao.find(Localizacao.class, idLocalizacao);
     }
 
@@ -65,7 +65,7 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public List<Localizacao> buscarTodosAtivos() {
+    public List<Localizacao> buscarAtivos() {
         Query<Localizacao> query = this.sessao.createQuery("from Localizacao e where ativo = :ativo", Localizacao.class);
         query.setParameter("ativo", true);
         List<Localizacao> resultado = query.getResultList();
@@ -73,7 +73,7 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public Localizacao buscarPorDescricaoExata(String descricao) {
+    public Localizacao buscarUnicoPorDescricaoExata(String descricao) {
         Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao", Localizacao.class);
         query.setParameter("descricao", descricao);
         Localizacao resultado = (Localizacao) query.uniqueResult();
@@ -81,7 +81,7 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
     }
 
     @Override
-    public Localizacao buscarPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao) {
+    public Localizacao buscarUnicoPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao) {
         Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao and id != :id", Localizacao.class);
         query.setParameter("descricao", descricao);
         query.setParameter("id", idLocalizacao);

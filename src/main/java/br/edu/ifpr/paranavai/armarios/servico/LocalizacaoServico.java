@@ -24,11 +24,11 @@ public class LocalizacaoServico {
     }
 
     public static List<Localizacao> buscarTodosAtivos() {
-        return daoLocalizacao.buscarTodosAtivos();
+        return daoLocalizacao.buscarAtivos();
     }
 
     public static Localizacao buscarPorId(Integer id) {
-        return daoLocalizacao.buscarPorId(id);
+        return daoLocalizacao.buscarUnicoPorId(id);
     }
 
     public static Localizacao inserir(Localizacao localizacao) throws LocalizacaoException {
@@ -41,7 +41,7 @@ public class LocalizacaoServico {
     public static Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException {
         verificaCamposObrigatorios(localizacao);
 
-        Localizacao l = daoLocalizacao.buscarPorDescricaoExataComIdDiferente(localizacao.getDescricao(), localizacao.getId());
+        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExataComIdDiferente(localizacao.getDescricao(), localizacao.getId());
         if (l != null)
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
 
@@ -55,11 +55,11 @@ public class LocalizacaoServico {
     }
 
     public static Localizacao buscarPorDescricaoExata(String descricao) {
-        return daoLocalizacao.buscarPorDescricaoExata(descricao);
+        return daoLocalizacao.buscarUnicoPorDescricaoExata(descricao);
     }
 
     private static void verificaDadosDuplicados(Localizacao localizacao) throws LocalizacaoException {
-        Localizacao l = daoLocalizacao.buscarPorDescricaoExata(localizacao.getDescricao());
+        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExata(localizacao.getDescricao());
         if (l != null) {
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
         }
@@ -80,7 +80,7 @@ public class LocalizacaoServico {
     }
 
     private static void verificaSeFoiRemovido(Localizacao localizacao) throws LocalizacaoException {
-        Localizacao l = daoLocalizacao.buscarPorId(localizacao.getId());
+        Localizacao l = daoLocalizacao.buscarUnicoPorId(localizacao.getId());
         if (l == null) {
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_REMOVIDA);
         }
