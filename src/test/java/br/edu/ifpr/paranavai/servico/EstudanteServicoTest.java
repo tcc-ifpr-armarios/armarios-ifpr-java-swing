@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.servico;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,8 +11,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.TestMethodOrder;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
@@ -30,26 +34,28 @@ import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
  * @author Professor Marcelo F. Terenciani
  */
+
+@TestInstance(Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class EstudanteServicoTest {
     private final String NUMERO_ARMARIO = "TESTE-01";
-    private final String LOCALIZACAO = "LOCAL-TESTE-ARMARIO";
+    private final String LOCALIZACAO = "LOCAL-TESTE-ESTUDANTE";
+    private final String CURSO = "CURSO-TESTE-ESTUDANTE";
     private Estudante estudante;
     private Estudante estudanteAtualizacao;
     private Curso curso;
 
     @BeforeAll
-    public static void antesDeTodosOsTestes() throws CursoException {
-        Curso curso = CursoServico.buscarPorNomeExato("Curso Teste Estudante");
+    public void antesDeTodosOsTestes() throws CursoException {
+        Curso curso = CursoServico.buscarPorNomeExato(CURSO);
         if (curso == null) {
             curso = new Curso();
-            curso.setNome("Curso Teste Estudante");
+            curso.setNome(CURSO);
             CursoServico.inserir(curso);
         }
     }
@@ -57,7 +63,7 @@ public class EstudanteServicoTest {
     @BeforeEach
     public void antesDeCadaTeste() {
         if (this.curso == null) {
-            this.curso = CursoServico.buscarPorNomeExato("Curso Teste Estudante");
+            this.curso = CursoServico.buscarPorNomeExato(CURSO);
         }
 
         this.estudante = new Estudante();
@@ -87,9 +93,10 @@ public class EstudanteServicoTest {
     }
 
     @AfterAll
-    public static void aposTodosOsTestes() throws CursoException {
-        Curso curso = CursoServico.buscarPorNomeExato("Curso Teste Estudante");
-        CursoServico.excluir(curso);
+    public void aposTodosOsTestes() throws CursoException {
+        Curso curso = CursoServico.buscarPorNomeExato(CURSO);
+        if(curso != null)
+            CursoServico.excluir(curso);
     }
 
     @Test
@@ -263,7 +270,7 @@ public class EstudanteServicoTest {
 
     @Test
     public void deveAtualizarOEstudanteComIdInserido() throws EstudanteException {
-        System.out.println("Executando teste deveExcluirOEstudanteComIdInserido");
+        System.out.println("Executando teste deveAtualizarOEstudanteComIdInserido");
 
         this.estudante = EstudanteServico.inserir(this.estudante);
 
@@ -422,7 +429,7 @@ public class EstudanteServicoTest {
         assertEquals(MensagemUtil.ESTUDANTE_RA_DUPLICADO,
                 estudanteException.getMessage());
     }
-    
+
     @Test
     public void naoDeveExcluirEstudanteVinculadoAUmEmprestimo()
             throws ArmarioException, EstudanteException, EmprestimoException, LocalizacaoException {
@@ -433,12 +440,12 @@ public class EstudanteServicoTest {
         Localizacao localizacao = new Localizacao();
         localizacao.setDescricao(LOCALIZACAO);
         localizacao = LocalizacaoServico.inserir(localizacao);
-        
+
         Armario armario = new Armario();
         armario.setNumero(NUMERO_ARMARIO);
         armario.setLocalizacao(localizacao);
         armario.setStatus(StatusArmario.ATIVO);
-        
+
         armario = ArmarioServico.inserir(armario);
 
         Emprestimo emprestimo = new Emprestimo();
@@ -450,7 +457,7 @@ public class EstudanteServicoTest {
         EstudanteException estudanteException = assertThrows(EstudanteException.class, () -> {
             EstudanteServico.excluir(estudante);
         });
-        
+
         EmprestimoServico.excluir(emprestimo);
         ArmarioServico.excluir(armario);
         LocalizacaoServico.excluir(localizacao);
