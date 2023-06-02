@@ -1,5 +1,7 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import java.util.Objects;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Objects;
 
 /**
  *
@@ -22,7 +23,6 @@ public class Curso {
     @Column(name = "id_curso")
     private Integer id;
 
-    
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 
@@ -95,7 +95,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return this.id + " - "+ this.nome;
+        return this.id + " - " + this.nome;
     }
-    
+
 }

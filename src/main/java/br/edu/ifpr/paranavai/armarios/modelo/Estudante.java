@@ -2,6 +2,7 @@ package br.edu.ifpr.paranavai.armarios.modelo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
