@@ -34,7 +34,7 @@ public class ComboBoxServico {
     public static LocalizacaoComboBoxModel inicializaComboBoxLocalizacao() {
         LocalizacaoComboBoxModel localizacaoComboBoxModel = new LocalizacaoComboBoxModel();
 
-        List<Localizacao> localizacoes = LocalizacaoServico.buscarTodosAtivos();
+        List<Localizacao> localizacoes = LocalizacaoServico.buscarAtivos();
 
         for (Localizacao localizacao : localizacoes) {
             localizacaoComboBoxModel.addLocalizacao(localizacao);

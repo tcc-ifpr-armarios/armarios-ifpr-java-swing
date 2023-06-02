@@ -1,10 +1,11 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import java.util.List;
+
+import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.ServidorDaoImpl;
 import br.edu.ifpr.paranavai.armarios.excecoes.ServidorException;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
-import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.ServidorDao;
 
 /**
  *
@@ -18,7 +19,7 @@ public class ServidorServico {
         return daoServidor.buscarTodos();
     }
 
-    public static Servidor buscarPorId(Integer id) {
+    public static Servidor buscarUnicoPorId(Integer id) {
         return daoServidor.buscarUnicoPorId(id);
     }
 
@@ -34,11 +35,11 @@ public class ServidorServico {
         daoServidor.excluir(servidor);
     }
 
-    public static Servidor buscarPorEmail(String email) {
+    public static Servidor buscarUnicoPorEmail(String email) {
         return daoServidor.buscarUnicoPorEmail(email);
     }
 
-    public static Servidor buscarPorEmailOuSiape(String emailemailOuSiape) {
+    public static Servidor buscarUnicoPorEmailOuSiape(String emailemailOuSiape) {
         return daoServidor.buscarUnicoPorEmailOuSiape(emailemailOuSiape);
     }
 }

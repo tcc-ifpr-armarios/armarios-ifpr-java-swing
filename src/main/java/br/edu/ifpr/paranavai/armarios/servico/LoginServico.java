@@ -1,8 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
-import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
@@ -16,7 +16,7 @@ public class LoginServico {
     public static Servidor verificaAdm(String emailOuSiape, String senha) throws LoginException {
         String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
 
-        Servidor servidor = ServidorServico.buscarPorEmailOuSiape(emailOuSiape);
+        Servidor servidor = ServidorServico.buscarUnicoPorEmailOuSiape(emailOuSiape);
         if (servidor == null) {
             throw new LoginException(MensagemUtil.LOGIN_CADASTRO_INEXISTENTE);
         } else if (!servidor.getSenha().equals(senhaCriptografada)) {

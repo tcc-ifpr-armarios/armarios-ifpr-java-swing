@@ -23,11 +23,11 @@ public class LocalizacaoServico {
         return daoLocalizacao.buscarTodos();
     }
 
-    public static List<Localizacao> buscarTodosAtivos() {
+    public static List<Localizacao> buscarAtivos() {
         return daoLocalizacao.buscarAtivos();
     }
 
-    public static Localizacao buscarPorId(Integer id) {
+    public static Localizacao buscarUnicoPorId(Integer id) {
         return daoLocalizacao.buscarUnicoPorId(id);
     }
 
@@ -41,7 +41,8 @@ public class LocalizacaoServico {
     public static Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException {
         verificaCamposObrigatorios(localizacao);
 
-        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExataComIdDiferente(localizacao.getDescricao(), localizacao.getId());
+        Localizacao l = daoLocalizacao.buscarUnicoPorDescricaoExataComIdDiferente(localizacao.getDescricao(),
+                localizacao.getId());
         if (l != null)
             throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
 
@@ -54,7 +55,7 @@ public class LocalizacaoServico {
         daoLocalizacao.excluir(localizacao);
     }
 
-    public static Localizacao buscarPorDescricaoExata(String descricao) {
+    public static Localizacao buscarUnicoPorDescricaoExata(String descricao) {
         return daoLocalizacao.buscarUnicoPorDescricaoExata(descricao);
     }
 

@@ -224,7 +224,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmaEmprestimoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<Localizacao> locais = LocalizacaoServico.buscarTodosAtivos();
+        List<Localizacao> locais = LocalizacaoServico.buscarAtivos();
         try {
             localCombo.removeAllItems();
 
@@ -263,7 +263,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroComboPropertyChange
 
     public void atualizaNumero(String idLocalizacao) {
-        Localizacao idLocal = LocalizacaoServico.buscarPorDescricaoExata(idLocalizacao);
+        Localizacao idLocal = LocalizacaoServico.buscarUnicoPorDescricaoExata(idLocalizacao);
         List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(idLocal.getId());
         try {
             numeroCombo.removeAllItems();

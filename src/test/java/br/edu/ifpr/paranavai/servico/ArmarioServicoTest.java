@@ -51,7 +51,7 @@ public class ArmarioServicoTest {
     @BeforeEach
     public void antesDeCadaTeste() throws LocalizacaoException {
         if (this.localizacao == null) {
-            this.localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
+            this.localizacao = LocalizacaoServico.buscarUnicoPorDescricaoExata(LOCALIZACAO);
             if (this.localizacao == null) {
                 this.localizacao = new Localizacao();
                 this.localizacao.setDescricao(LOCALIZACAO);
@@ -80,7 +80,7 @@ public class ArmarioServicoTest {
 
     @AfterAll
     public static void noFinalDoTeste() throws LocalizacaoException {
-        Localizacao localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
+        Localizacao localizacao = LocalizacaoServico.buscarUnicoPorDescricaoExata(LOCALIZACAO);
         if(localizacao != null)
             LocalizacaoServico.excluir(localizacao);
     }
