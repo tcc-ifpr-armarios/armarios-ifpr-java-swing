@@ -79,4 +79,13 @@ public class LocalizacaoDaoImpl implements LocalizacaoDao {
         Localizacao resultado = (Localizacao) query.uniqueResult();
         return resultado;
     }
+
+    @Override
+    public Localizacao buscarPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao) {
+        Query<Localizacao> query = this.sessao.createQuery("from Localizacao where descricao = :descricao and id != :id", Localizacao.class);
+        query.setParameter("descricao", descricao);
+        query.setParameter("id", idLocalizacao);
+        Localizacao resultado = (Localizacao) query.uniqueResult();
+        return resultado;
+    }
 }

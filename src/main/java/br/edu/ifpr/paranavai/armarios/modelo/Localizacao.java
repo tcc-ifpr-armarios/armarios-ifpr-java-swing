@@ -27,7 +27,7 @@ public class Localizacao {
 
     @Basic
     @Column(name = "ativo", nullable = false, columnDefinition = "boolean default true")
-    private boolean ativo;
+    private boolean ativo = true;
 
     public Localizacao() {
     }

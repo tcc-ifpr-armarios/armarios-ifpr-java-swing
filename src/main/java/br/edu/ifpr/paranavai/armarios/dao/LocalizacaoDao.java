@@ -14,7 +14,7 @@ public interface LocalizacaoDao {
 
     public List<Localizacao> buscarTodosAtivos();
 
-    public Localizacao buscarPorId(Integer inteiro);
+    public Localizacao buscarPorId(Integer idLocalizacao);
 
     public Localizacao atualizar(Localizacao localizacao) throws LocalizacaoException;
 
@@ -23,4 +23,6 @@ public interface LocalizacaoDao {
     public Localizacao inserir(Localizacao localizacao) throws LocalizacaoException;
 
     public Localizacao buscarPorDescricaoExata(String descricao);
+
+    public Localizacao buscarPorDescricaoExataComIdDiferente(String descricao, Integer idLocalizacao);
 }

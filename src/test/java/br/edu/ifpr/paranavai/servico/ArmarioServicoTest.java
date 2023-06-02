@@ -42,21 +42,11 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ArmarioServicoTest {
 
-    private final String NUMERO_ARMARIO = "TESTE-01";
-    private final String LOCALIZACAO = "LOCAL-TESTE-ARMARIO";
+    private static final String NUMERO_ARMARIO = "TESTE-01";
+    private static final String LOCALIZACAO = "LOCAL-TESTE-ARMARIO";
     private Armario armario;
     private Armario armarioAtualizacao;
     private Localizacao localizacao;
-
-    @AfterAll
-    public void noInicioDoTeste() throws LocalizacaoException {
-        this.localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
-        if (this.localizacao == null) {
-            this.localizacao = new Localizacao();
-            this.localizacao.setDescricao(LOCALIZACAO);
-            this.localizacao = LocalizacaoServico.inserir(this.localizacao);
-        }
-    }
 
     @BeforeEach
     public void antesDeCadaTeste() throws LocalizacaoException {
@@ -89,9 +79,10 @@ public class ArmarioServicoTest {
     }
 
     @AfterAll
-    public void noFinalDoTeste() throws LocalizacaoException {
+    public static void noFinalDoTeste() throws LocalizacaoException {
         Localizacao localizacao = LocalizacaoServico.buscarPorDescricaoExata(LOCALIZACAO);
-        LocalizacaoServico.excluir(localizacao);
+        if(localizacao != null)
+            LocalizacaoServico.excluir(localizacao);
     }
 
     @Test
@@ -117,8 +108,9 @@ public class ArmarioServicoTest {
         System.out.println("Executando teste naoDeveInserirLocalizacaoNulaOuIdInvalido");
 
         ArmarioException armarioExceptionIdeInvalido = assertThrows(ArmarioException.class, () -> {
-            this.localizacao.setId(0);
-            this.armario.setLocalizacao(this.localizacao);
+            Localizacao local = new Localizacao();
+            local.setId(0);
+            this.armario.setLocalizacao(local);
             this.armario = ArmarioServico.inserir(this.armario);
         });
 
@@ -209,7 +201,7 @@ public class ArmarioServicoTest {
 
     @Test
     public void deveAtualizarOArmarioComIdInserido() throws ArmarioException {
-        System.out.println("Executando teste deveExcluirOArmarioComIdInserido");
+        System.out.println("Executando teste deveAtualizarOArmarioComIdInserido");
 
         this.armario = ArmarioServico.inserir(this.armario);
 

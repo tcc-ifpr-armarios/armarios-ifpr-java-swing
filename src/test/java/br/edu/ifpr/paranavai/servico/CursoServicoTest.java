@@ -1,25 +1,34 @@
 package br.edu.ifpr.paranavai.servico;
 
-import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
-import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
-import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import java.util.List;
-import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.TestMethodOrder;
+
+import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EstudanteException;
+import br.edu.ifpr.paranavai.armarios.modelo.Curso;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.servico.CursoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
  * @author Professor Marcelo F. Terenciani
  */
+@TestInstance(Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class CursoServicoTest {
 
     private Curso curso;
@@ -56,7 +65,7 @@ public class CursoServicoTest {
         assertTrue(this.curso.getNome().equals("Curso Teste"));
         assertTrue(this.curso.isAtivo());
     }
-    
+
     @Test
     public void naoDeveInserirNomeVazioOuNulo() {
         System.out.println("Executando teste naoDeveInserirNomeVazioOuNulo");
@@ -96,10 +105,10 @@ public class CursoServicoTest {
         List<Curso> listaDeCursos = CursoServico.buscarTodos();
         assertTrue(!listaDeCursos.isEmpty());
     }
-    
+
     @Test
     public void deveListarSomenteAtivos() throws CursoException {
-        System.out.println("Executando teste deveListarAoMenosUm");
+        System.out.println("Executando teste deveListarSomenteAtivos");
 
         this.curso = CursoServico.inserir(this.curso);
 
@@ -154,7 +163,7 @@ public class CursoServicoTest {
 
     @Test
     public void deveAtualizarOCursoComIdInserido() throws CursoException {
-        System.out.println("Executando teste deveExcluirOCursoComIdInserido");
+        System.out.println("Executando teste deveAtualizarOCursoComIdInserido");
 
         this.curso = CursoServico.inserir(this.curso);
 

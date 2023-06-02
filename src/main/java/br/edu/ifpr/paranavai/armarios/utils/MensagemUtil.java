@@ -34,19 +34,7 @@ public class MensagemUtil {
     public static final String CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     public static final String CURSO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
     public static final String CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
-
-    public static final String LOCALIZACAO_NOME_DUPLICADO = "Nome da localização duplicada";
-    public static final String LOCALIZACAO_NAO_ENCONTRADO = "Registro não encontrado";
-    public static final String LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
-    public static final String LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
-    public static final String LOCALIZACAO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir a localização";
-    public static final String LOCALIZACAO_EXCLUSAO_SUCESSO = "Localização Excluída com Sucesso!";
-    public static final String LOCALIZACAO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão da localização";
-    public static final String LOCALIZACAO_REMOVIDO = "Não foi possível realizar essa operação! Essa localização já foi removida!";
-    public static final String LOCALIZACAO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir uma nova localização";
-    public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
-    public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
-
+    
     public static final String ARMARIO_NAO_ENCONTRADO = "Registro não encontrado";
     public static final String ARMARIO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o armário";
     public static final String ARMARIO_ATUALIZACAO_SUCESSO = "Armário Atualizado com Sucesso!";
@@ -76,6 +64,19 @@ public class MensagemUtil {
     public static final String ESTUDANTE_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão do estudante";
     public static final String ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
     
+    public static final String LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
+    public static final String LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
+    public static final String LOCALIZACAO_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
+    public static final String LOCALIZACAO_DESCRICAO_DUPLICADA = "Descrição da localização duplicada";
+    public static final String LOCALIZACAO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir a localização";
+    public static final String LOCALIZACAO_EXCLUSAO_SUCESSO = "Localização Excluída com Sucesso!";
+    public static final String LOCALIZACAO_EXCLUSAO_CONFIRMACAO = "Tem certeza que deseja realizar a exclusão da localização";
+    public static final String LOCALIZACAO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir uma nova localização";
+    public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
+    public static final String LOCALIZACAO_NAO_ENCONTRADO = "Registro não encontrado";
+    public static final String LOCALIZACAO_REMOVIDA = "Não foi possível realizar essa operação! Essa localização já foi removida!";
+    public static final String LOCALIZACAO_VINCULADA_ARMARIO = "Impossível excluir essa localização, pois existem armários vinculados a ela!";
+    
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
@@ -87,6 +88,5 @@ public class MensagemUtil {
     public static final String SERVIDOR_EXCLUSAO_SUCESSO = "Servidor Excluído com Sucesso!";
     public static final String SERVIDOR_INSERCAO_SUCESSO = "Servidor Cadastrado com Sucesso!";
     public static final String SERVIDOR_ATUALIZACAO_SUCESSO = "Servidor Atualizado com Sucesso!";
-
-
+    
 }

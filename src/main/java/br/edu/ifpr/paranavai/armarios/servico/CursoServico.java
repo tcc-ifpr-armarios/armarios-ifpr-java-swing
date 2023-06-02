@@ -32,12 +32,12 @@ public class CursoServico {
     }
 
     public static void excluir(Curso curso) throws CursoException {
-        EstudanteDao estudanteDao = new EstudanteDaoImpl();
         Curso c = dao.buscarPorId(curso.getId());
         if (c == null) {
             throw new CursoException(MensagemUtil.CURSO_REMOVIDO);
         }
 
+        EstudanteDao estudanteDao = new EstudanteDaoImpl();
         List<Estudante> e = estudanteDao.buscarPorIdCurso(curso.getId());
         if (!e.isEmpty()) {
             throw new CursoException(MensagemUtil.CURSO_VINCULADO_ESTUDANTE);
