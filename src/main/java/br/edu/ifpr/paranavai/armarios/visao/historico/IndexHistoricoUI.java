@@ -39,7 +39,7 @@ public class IndexHistoricoUI extends javax.swing.JFrame {
         
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblLocalizacao.getModel();
         tblLocalizacao.getColumnModel().getColumn(3).setCellRenderer(new RenderizadorDasAcoesDaCelulaHistorico());
-        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaHistoricoUI(evento, this));
+        tblLocalizacao.getColumnModel().getColumn(3).setCellEditor(new EditorDasAcoesDaCelulaHistoricoUI(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
