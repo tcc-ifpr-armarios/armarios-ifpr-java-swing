@@ -11,6 +11,7 @@ import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 import java.time.LocalDateTime;
 
@@ -203,28 +204,28 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar o empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-            Estudante alunoLogado = EstudanteServico.buscarUnicoPorEmail(System.getProperty("email"));
+            Estudante alunoLogado = EstudanteServico.buscarUnicoPorEmail("ALLAN@ALLAN.COM");
 
-            Integer local = Integer.parseInt(numeroCombo.getSelectedItem().toString());
             String numeroArmario = numeroCombo.getSelectedItem().toString();
+            System.out.println(numeroCombo.getSelectedItem());
 
-            Armario armario = ArmarioServico.buscarUnicoPorNumeroELocalizacao(local, numeroArmario);
+            
             emprestimo.setDataEmprestimo(hora);
             emprestimo.setEstudante(alunoLogado);
-            emprestimo.setArmario(armario);
+            //emprestimo.setArmario(armario);
 
             try {
                 EmprestimoServico.inserir(emprestimo);
-                System.out.println("Erro: Empréstimo realizado com sucesso!");
+                System.out.println(MensagemUtil.EMPRESTIMO_SUCESSO);
             } catch (EmprestimoException ex) {
                 Logger.getLogger(EstudanteEmprestimoUI.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Erro: Empréstimo não realizado");
+                System.out.println(MensagemUtil.EMPRESTIMO_INSERCAO_ERRO_PADRAO);
             }
 
             dispose();
         } else {
             // Código a ser executado se o usuário selecionar "Não" ou fechar o diálogo
-            System.out.println("Empréstimo cancelado.");
+            System.out.println(MensagemUtil.EMPRESTIMO_CANCELADO_USUARIO);
         }
     }//GEN-LAST:event_confirmaEmprestimoActionPerformed
 
@@ -240,7 +241,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
             System.out.println(localCombo.getSelectedItem());
         } catch (Exception e) {
-            System.out.println("Erro: Não foi Possível buscar os locais.");
+            System.out.println(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
         }
         atualizaNumero(localSelecionado = localCombo.getSelectedItem().toString());
 

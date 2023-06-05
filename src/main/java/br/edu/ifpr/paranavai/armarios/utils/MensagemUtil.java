@@ -35,6 +35,8 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
     public static final String EMPRESTIMO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o empréstimo";
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
+    public static final String EMPRESTIMO_CANCELADO_USUARIO = "Empréstimo cancelado pelo usuário";
+    public static final String EMPRESTIMO_SUCESSO = "Empréstimo realizado com sucesso";
 
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
     public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
@@ -59,7 +61,8 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
     public static final String LOCALIZACAO_REMOVIDA = "Não foi possível realizar essa operação! Essa localização já foi removida!";
     public static final String LOCALIZACAO_VINCULADA_ARMARIO = "Impossível excluir essa localização, pois existem armários vinculados a ela!";
-
+    public static final String LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar as localizações";
+    
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
@@ -86,5 +89,8 @@ public class MensagemUtil {
     public static final String VALIDACAO_EMAIL_INVALIDO = "E-mail inválido!";
     public static final String VALIDACAO_SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
     public static final String VALIDACAO_TELEFONE_INVALIDO = "Telefone inválido!";
+    
+   
+   
 
 }

@@ -13,11 +13,12 @@ import javax.swing.ComboBoxModel;
 public class ArmarioComboBoxModel extends AbstractListModel implements ComboBoxModel {
 
     private List<Armario> listaDeArmarios;
-    private Armario cursoSelecionado;
+    private Armario armarioSelecionado;
 
     public ArmarioComboBoxModel() {
         listaDeArmarios = new ArrayList<Armario>();
     }
+    
 
     @Override
     public int getSize() {
@@ -32,14 +33,14 @@ public class ArmarioComboBoxModel extends AbstractListModel implements ComboBoxM
     @Override
     public void setSelectedItem(Object anItem) {
         if (anItem instanceof Armario) {
-            this.cursoSelecionado = (Armario) anItem;
-            fireContentsChanged(this.cursoSelecionado, 0, this.getSize());
+            this.armarioSelecionado = (Armario) anItem;
+            fireContentsChanged(this.armarioSelecionado, 0, this.getSize());
         }
     }
 
     @Override
     public Object getSelectedItem() {
-        return this.cursoSelecionado;
+        return this.armarioSelecionado;
     }
 
     public void addArmario(Armario curso) {
