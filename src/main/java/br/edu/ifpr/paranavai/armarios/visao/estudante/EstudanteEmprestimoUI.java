@@ -6,11 +6,15 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+
 import java.time.LocalDateTime;
+
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +28,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
 
     String localSelecionado;
     Emprestimo emprestimo = new Emprestimo();
+    LocalDateTime hora = LocalDateTime.now();
 
     /**
      * Creates new form Tela
@@ -204,7 +209,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
             String numeroArmario = numeroCombo.getSelectedItem().toString();
 
             Armario armario = ArmarioServico.buscarUnicoPorNumeroELocalizacao(local, numeroArmario);
-            emprestimo.setDataEmprestimo(LocalDateTime.now());
+            emprestimo.setDataEmprestimo(hora);
             emprestimo.setEstudante(alunoLogado);
             emprestimo.setArmario(armario);
 
@@ -263,13 +268,13 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroComboPropertyChange
 
     public void atualizaNumero(String idLocalizacao) {
-        Localizacao idLocal = LocalizacaoServico.buscarUnicoPorDescricaoExata(idLocalizacao);
-        List<Emprestimo> emprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(idLocal.getId());
+        Integer idLocal = LocalizacaoServico.buscarUnicoPorDescricaoExata(idLocalizacao).getId();
+       List<Armario> armarios = ArmarioServico.buscarPorStatusIdLocalizacao(idLocal, StatusArmario.ATIVO);
         try {
             numeroCombo.removeAllItems();
 
-            for (Emprestimo emprestimo : emprestimos) {
-                numeroCombo.addItem(String.valueOf(emprestimo.getArmario().getNumero()));
+            for (Armario armario : armarios) {
+                numeroCombo.addItem(armario.getNumero());
 
             }
         } catch (Exception e) {
@@ -286,7 +291,7 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void alunoEmprestimoUI(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -344,4 +349,6 @@ public class EstudanteEmprestimoUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> numeroCombo;
     private javax.swing.JToggleButton sair;
     // End of variables declaration//GEN-END:variables
+
+    
 }

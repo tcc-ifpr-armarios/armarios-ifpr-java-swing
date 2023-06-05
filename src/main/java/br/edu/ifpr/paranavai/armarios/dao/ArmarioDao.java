@@ -32,4 +32,6 @@ public interface ArmarioDao {
     public void excluir(Armario armario) throws ArmarioException;
 
     public Armario inserir(Armario armario) throws ArmarioException;
+    
+     public List<Armario> buscarPorStatusIdLocalizacao(Integer idLocalizacao, StatusArmario status);
 }

@@ -23,7 +23,7 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
      */
     public LoginEstudanteUI() {
         initComponents();
-        setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -34,7 +34,6 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jMenu1 = new javax.swing.JMenu();
         painelConteúdo = new javax.swing.JPanel();
@@ -60,11 +59,14 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Empréstimo de Armários");
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         painelConteúdo.setBackground(new java.awt.Color(0, 153, 0));
         painelConteúdo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         painelConteúdo.setForeground(new java.awt.Color(255, 255, 255));
+        painelConteúdo.setLayout(new java.awt.GridLayout());
+
+        indexImg.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 153, 0)));
 
         lblTituloSistema.setFont(new java.awt.Font("Source Serif Pro Black", 0, 24)); // NOI18N
         lblTituloSistema.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,13 +152,13 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
         indexImgLayout.setHorizontalGroup(
             indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(indexImgLayout.createSequentialGroup()
-                .addContainerGap(279, Short.MAX_VALUE)
+                .addContainerGap(341, Short.MAX_VALUE)
                 .addGroup(indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexImgLayout.createSequentialGroup()
                         .addGroup(indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(painelLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTituloSistema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                            .addComponent(lblTituloSistema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(69, 69, 69))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexImgLayout.createSequentialGroup()
                         .addComponent(lblIconeIFPR)
@@ -171,34 +173,14 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
                 .addComponent(painelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(lblIconeIFPR)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout painelConteúdoLayout = new javax.swing.GroupLayout(painelConteúdo);
-        painelConteúdo.setLayout(painelConteúdoLayout);
-        painelConteúdoLayout.setHorizontalGroup(
-            painelConteúdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelConteúdoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(indexImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        painelConteúdoLayout.setVerticalGroup(
-            painelConteúdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelConteúdoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(indexImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        painelConteúdo.add(indexImg);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 0, 0);
-        getContentPane().add(painelConteúdo, gridBagConstraints);
+        getContentPane().add(painelConteúdo);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -32,6 +32,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         //this.usuario = usuario;
         lblUsuarioLogado.setText(servidor.getNome());
         mostraDashboard();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

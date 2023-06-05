@@ -17,6 +17,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
 
     Estudante estudante;
     Emprestimo emprestimo;
+    LocalDateTime hora = LocalDateTime.now();
 
     /**
      * Creates new form Tela
@@ -151,7 +152,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
             Emprestimo emprestimo = new Emprestimo();
-            emprestimo.setDataDevolucao(LocalDateTime.now());
+            ///emprestimo.setDataDevolucao(hora);
             emprestimo.setDataEmprestimo(this.emprestimo.getDataEmprestimo());
             emprestimo.setArmario(emprestimo.getArmario());
             emprestimo.setEstudante(estudante);

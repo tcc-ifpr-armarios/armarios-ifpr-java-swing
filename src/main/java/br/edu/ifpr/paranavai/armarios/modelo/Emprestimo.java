@@ -41,7 +41,7 @@ public class Emprestimo {
     private LocalDateTime dataEmprestimo = LocalDateTime.now();
 
     @UpdateTimestamp
-    @Column(name = "data_devolucao")
+    @Column(name = "data_devolucao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dataDevolucao;
 
     public Emprestimo() {

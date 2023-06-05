@@ -76,6 +76,12 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
 
         lblLocalizacaoArmario.setText("Localização do Armário*:");
 
+        cbxLocalizacaoArmario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxLocalizacaoArmarioActionPerformed(evt);
+            }
+        });
+
         lblArmario.setText("Armario*:");
 
         lblEstudante.setText("Estudante*:");
@@ -173,6 +179,10 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void cbxLocalizacaoArmarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLocalizacaoArmarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxLocalizacaoArmarioActionPerformed
 
     private void fecharFormulario() {
         this.indexEmprestimoPanelUI.init();
