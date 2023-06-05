@@ -1,5 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.servidor;
 
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -16,7 +17,7 @@ public class RenderizadorDasAcoesDaCelulaServidor extends DefaultTableCellRender
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component componente = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        PainelAcoesServidorUI acoes = new PainelAcoesServidorUI();
+        PainelAcoesUI acoes = new PainelAcoesUI(true, true, true);
 
         if (isSelected == false && row % 2 == 0) {
             acoes.setBackground(Color.white);
