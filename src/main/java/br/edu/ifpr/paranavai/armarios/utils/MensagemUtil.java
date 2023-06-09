@@ -17,6 +17,8 @@ public class MensagemUtil {
     public static final String ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO = "Número de armário já cadastrado";
     public static final String ARMARIO_REMOVIDO = "Não foi possível realizar essa operação! Esse armário já foi removido!";
     public static final String ARMARIO_VINCULADO_EMPRESTIMO = "Impossível excluir esse armário, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    public static final String ARMARIO_ESCOLHA_UM = "Nenhum armário selecionado";
+    public static final String ARMARIO_EMPRESTADO = "Consta o empréstimo do armário: ";
 
     public static final String CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
     public static final String CURSO_ATUALIZACAO_SUCESSO = "Curso Atualizado com Sucesso!";
@@ -37,6 +39,8 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
     public static final String EMPRESTIMO_CANCELADO_USUARIO = "Empréstimo cancelado pelo usuário";
     public static final String EMPRESTIMO_SUCESSO = "Empréstimo realizado com sucesso";
+    public static final String EMPRESTIMO_CONFIRMA_EMPRESTIMO = "Confirma o empréstimo";
+    public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO = "Confirma a devolucão do armário: ";
 
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
     public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
@@ -62,7 +66,7 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_REMOVIDA = "Não foi possível realizar essa operação! Essa localização já foi removida!";
     public static final String LOCALIZACAO_VINCULADA_ARMARIO = "Impossível excluir essa localização, pois existem armários vinculados a ela!";
     public static final String LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar as localizações";
-    
+
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
@@ -89,8 +93,5 @@ public class MensagemUtil {
     public static final String VALIDACAO_EMAIL_INVALIDO = "E-mail inválido!";
     public static final String VALIDACAO_SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
     public static final String VALIDACAO_TELEFONE_INVALIDO = "Telefone inválido!";
-    
-   
-   
 
 }

@@ -10,6 +10,7 @@ import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import jakarta.persistence.NoResultException;
 
 /**
  *
@@ -37,8 +38,7 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id and data_devolucao = null",
-                Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id and e.dataDevolucao IS NULL", Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
         return resultado;
@@ -83,11 +83,17 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public Emprestimo buscarAtivoPorRaDoEstudante(String ra) {
-        Query<Emprestimo> query = this.sessao.createQuery(
-                "from Emprestimo e where e.estudante.ra = :ra and data_devolucao = null", Emprestimo.class);
-        query.setParameter("ra", ra);
-        Emprestimo resultado = query.getSingleResult();
-        return resultado;
+        try {
+            Query<Emprestimo> query = this.sessao.createQuery(
+                    "from Emprestimo e where e.estudante.ra = :ra and e.dataDevolucao IS NULL", Emprestimo.class);
+            query.setParameter("ra", ra);
+            Emprestimo resultado = query.getSingleResult();
+             return resultado;
+        } catch (NoResultException e) {
+            return null;
+        }
+
+        
     }
 
     @Override

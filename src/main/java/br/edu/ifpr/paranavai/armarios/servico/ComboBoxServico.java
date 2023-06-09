@@ -52,6 +52,17 @@ public class ComboBoxServico {
         }
         return armarioComboBoxModel;
     }
+    
+     public static ArmarioComboBoxModel inicializaComboBoxArmarioAtivo(Localizacao localizacao) {
+        ArmarioComboBoxModel armarioComboBoxModel = new ArmarioComboBoxModel();
+
+        List<Armario> armarios = ArmarioServico.buscarPorStatusIdLocalizacao(localizacao.getId(), StatusArmario.ATIVO);
+
+        for (Armario armario : armarios) {
+            armarioComboBoxModel.addArmario(armario);
+        }
+        return armarioComboBoxModel;
+    }
 
     public static EstudanteComboBoxModel inicializaComboBoxEstudante() {
         EstudanteComboBoxModel armarioComboBoxModel = new EstudanteComboBoxModel();

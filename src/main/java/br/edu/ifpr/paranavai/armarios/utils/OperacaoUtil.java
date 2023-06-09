@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * @author professor Marcelo Figueiredo Terenciani
  */
 public class OperacaoUtil {
+
     public static String EDITAR = "Editar";
     public static String SALVAR = "Salvar";
     public static String EXCLUIR = "Excluir";
@@ -37,5 +38,10 @@ public class OperacaoUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
         return dataCriacao.format(formatter);
+    }
+
+    public static LocalDateTime formatarDataHoraLocalDateTime(LocalDateTime dataCriacao) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return LocalDateTime.parse(dataCriacao.format(formatter), formatter);
     }
 }

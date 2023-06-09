@@ -1,34 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
+import br.edu.ifpr.paranavai.armarios.visao.LoginEstudanteUI;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Allan Fernando O de Andrade
  */
-public class EstudanteDevolucaoUI extends javax.swing.JFrame {
+public class EstudantesDevolucaoUI extends javax.swing.JDialog {
 
-    Estudante estudante;
-    Emprestimo emprestimo;
-    LocalDateTime hora = LocalDateTime.now();
+    Estudante estudante = EstudanteServico.buscarUnicoPorRa(System.getProperty("ra"));
+    Emprestimo emprestimoEstudante = EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa());
 
     /**
-     * Creates new form Tela
+     * Creates new form EstudanteDevolucaoUUI
+     *
+     * @param loginEstudanteUI
      */
-    public EstudanteDevolucaoUI(Estudante estudante) {
+    public EstudantesDevolucaoUI(LoginEstudanteUI loginEstudanteUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(loginEstudanteUI), true);
         initComponents();
-        this.estudante = estudante;
-        this.emprestimo = EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa());
-
-        setLocationRelativeTo(null);
-
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -43,12 +54,12 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btn_devolucao = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        sairBtn = new javax.swing.JToggleButton();
         mensagem = new javax.swing.JLabel();
         dados = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -69,10 +80,10 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setText("Sair");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        sairBtn.setText("Sair");
+        sairBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                sairBtnActionPerformed(evt);
             }
         });
 
@@ -89,8 +100,8 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                    .addComponent(btn_devolucao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(sairBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                    .addComponent(btn_devolucao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                     .addComponent(dados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -104,7 +115,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_devolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton2)
+                .addComponent(sairBtn)
                 .addContainerGap())
         );
 
@@ -141,7 +152,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,42 +160,42 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
 
     private void btn_devolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_devolucaoActionPerformed
 
-        int opcao = JOptionPane.showConfirmDialog(null, "Confirmar a devolução empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO + emprestimoEstudante.getArmario().getNumero() + " na/no " + emprestimoEstudante.getArmario().getLocalizacao().getDescricao() + "?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
-            Emprestimo emprestimo = new Emprestimo();
-            ///emprestimo.setDataDevolucao(hora);
-            emprestimo.setDataEmprestimo(this.emprestimo.getDataEmprestimo());
-            emprestimo.setArmario(emprestimo.getArmario());
-            emprestimo.setEstudante(estudante);
 
-            // exclui a utilizada
             try {
-                EmprestimoServico.finalizarEmprestimo(emprestimo);
-                System.out.println("Armário redisponibilizado com sucesso!");
+                emprestimoEstudante.getArmario().setStatus(StatusArmario.ATIVO);
+                emprestimoEstudante.setDataDevolucao();
+                EmprestimoServico.atualizar(emprestimoEstudante);
+                try {
+                    ArmarioServico.atualizar(emprestimoEstudante.getArmario());
+                } catch (ArmarioException ex) {
+                    Logger.getLogger(EstudantesDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fecharFormulario();
             } catch (EmprestimoException ex) {
-                Logger.getLogger(EstudanteDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Erro: Não foi possível redisponibilizar o armário");
+                System.out.println(ex);
             }
-            dispose();
+            fecharFormulario();
         } else {
-            System.out.println("Devulução negada pelo usuário");
-        }
 
+        }
 
     }//GEN-LAST:event_btn_devolucaoActionPerformed
 
+    private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
+        fecharFormulario();
+    }//GEN-LAST:event_sairBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
         mensagem.setText("Olá, " + estudante.getNome() + "!");
-        dados.setText("Empréstimo número " + emprestimo.getArmario().getNumero() + " na/no " + emprestimo.getArmario().getLocalizacao().getDescricao());
-
-
+        dados.setText(MensagemUtil.ARMARIO_EMPRESTADO + emprestimoEstudante.getArmario().getNumero() + " na/no " + emprestimoEstudante.getArmario().getLocalizacao().getDescricao());
     }//GEN-LAST:event_formWindowOpened
+    private void fecharFormulario() {
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        this.dispose();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btn_devolucao;
@@ -192,7 +203,7 @@ public class EstudanteDevolucaoUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel mensagem;
+    private javax.swing.JToggleButton sairBtn;
     // End of variables declaration//GEN-END:variables
 }

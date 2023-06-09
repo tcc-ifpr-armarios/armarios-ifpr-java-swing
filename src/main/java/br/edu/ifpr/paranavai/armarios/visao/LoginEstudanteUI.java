@@ -5,8 +5,9 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudanteDevolucaoUI;
-import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudanteEmprestimoUI;
+
+import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudantesDevolucaoUI;
+import br.edu.ifpr.paranavai.armarios.visao.estudante.EstudantesEmprestimoUI;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -212,14 +213,18 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
             lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
             txtSenha.setText("");
             txtRa.setText("");
-            System.setProperty("email", estudante.getEmail());
+            
 
             if (EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa()) == null) {
-                EstudanteEmprestimoUI estudanteEmprestimoUI = new EstudanteEmprestimoUI();
+                System.setProperty("ra", estudante.getRa());
+                EstudantesEmprestimoUI estudanteEmprestimoUI = new EstudantesEmprestimoUI(this);
+                estudanteEmprestimoUI.setLocationRelativeTo(this);
                 estudanteEmprestimoUI.setVisible(true);
+                
             } else {
-                EstudanteDevolucaoUI estudanteDevolucaoUI = new EstudanteDevolucaoUI(estudante);
-                estudanteDevolucaoUI.setVisible(true);
+                System.setProperty("ra", estudante.getRa());
+                EstudantesDevolucaoUI estudanteDevolucaoUUI = new EstudantesDevolucaoUI(this);
+                estudanteDevolucaoUUI.setVisible(true);
             }
         } catch (LoginException e) {
             lblResposta.setText(e.getMessage());
@@ -240,4 +245,8 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtRa;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 }

@@ -51,4 +51,8 @@ public class EmprestimoServico {
     public static void excluir(Emprestimo emprestimo) throws EmprestimoException {
         daoEmprestimo.excluir(emprestimo);
     }
+    public static Emprestimo atualizar(Emprestimo emprestimo) throws EmprestimoException {
+        return daoEmprestimo.atualizar(emprestimo);
+    }
+    
 }
