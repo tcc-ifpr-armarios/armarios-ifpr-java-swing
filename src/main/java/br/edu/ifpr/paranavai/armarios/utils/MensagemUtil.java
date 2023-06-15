@@ -38,7 +38,7 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO = "Obrigatório informar o estudante!";
     public static final String EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO = "Obrigatório informar o armário!";
     public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
-
+    public static final String EMPRESTIMO_JA_FINALIZADO = "Não foi possível realizar essa operação! Este empréstimo já foi finalizado!";
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
     public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";

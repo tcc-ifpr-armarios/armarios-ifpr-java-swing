@@ -43,6 +43,11 @@ public class EmprestimoServico {
     }
 
     public static Emprestimo finalizarEmprestimo(Emprestimo emprestimo) throws EmprestimoException {
+        Emprestimo e = daoEmprestimo.buscarUnicoPorId(emprestimo.getId());
+        if (e != null && e.getDataDevolucao() != null) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_JA_FINALIZADO);
+        }
+
         emprestimo.setDataDevolucao(LocalDateTime.now());
         return daoEmprestimo.atualizar(emprestimo);
     }
