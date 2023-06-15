@@ -244,37 +244,35 @@ public class EmprestimoServicoTest {
         Emprestimo emprestimoEncontrado = EmprestimoServico.buscarUnicoPorId(-1);
         assertNull(emprestimoEncontrado);
     }
+
+    @Test
+    public void deveExcluirOEmprestimoComIdInserido() throws EmprestimoException {
+        System.out.println("Executando teste deveExcluirOEmprestimoComIdInserido");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        EmprestimoServico.excluir(this.emprestimo);
+
+        Emprestimo cursoEncontrado = EmprestimoServico.buscarUnicoPorId(this.emprestimo.getId());
+        assertNull(cursoEncontrado);
+    }
+
+    @Test
+    public void naoDeveExcluirEmprestimoJaRemovido() throws EmprestimoException {
+        System.out.println("Executando teste naoDeveExcluirEmprestimoJaRemovido");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        EmprestimoServico.excluir(this.emprestimo);
+
+        EmprestimoException emprestimoException = assertThrows(EmprestimoException.class, () -> {
+            EmprestimoServico.excluir(this.emprestimo);
+        });
+
+        assertTrue(MensagemUtil.EMPRESTIMO_REMOVIDO.equals(emprestimoException.getMessage()));
+    }
     /*
      * 
-     * @Test
-     * public void deveExcluirOArmarioComIdInserido() throws ArmarioException {
-     * System.out.println("Executando teste deveExcluirOArmarioComIdInserido");
-     * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * ArmarioServico.excluir(this.armario);
-     * 
-     * Armario cursoEncontrado =
-     * ArmarioServico.buscarUnicoPorId(this.armario.getId());
-     * assertNull(cursoEncontrado);
-     * }
-     * 
-     * @Test
-     * public void naoDeveExcluirArmarioJaRemovido() throws ArmarioException {
-     * System.out.println("Executando teste naoDeveExcluirArmarioJaRemovido");
-     * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * ArmarioServico.excluir(this.armario);
-     * 
-     * ArmarioException armarioException = assertThrows(ArmarioException.class, ()
-     * -> {
-     * ArmarioServico.excluir(this.armario);
-     * });
-     * 
-     * assertTrue(MensagemUtil.ARMARIO_REMOVIDO.equals(armarioException.getMessage()
-     * ));
-     * }
      * 
      * @Test
      * public void deveAtualizarOArmarioComIdInserido() throws ArmarioException {
