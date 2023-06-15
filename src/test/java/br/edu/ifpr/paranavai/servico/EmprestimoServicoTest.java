@@ -1,8 +1,12 @@
 package br.edu.ifpr.paranavai.servico;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -197,18 +201,22 @@ public class EmprestimoServicoTest {
         this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
 
         assertTrue(this.emprestimo.getId() > 0);
+        assertTrue(this.emprestimo.getEstudante().getId() > 0);
+        assertTrue(this.emprestimo.getArmario().getId() > 0);
+        assertNull(this.emprestimo.getDataDevolucao());
+        assertNotNull(this.emprestimo.getDataEmprestimo());
     }
-/*
+
     @Test
-    public void deveListarAoMenosUm() throws ArmarioException {
+    public void deveListarAoMenosUm() throws EmprestimoException {
         System.out.println("Executando teste deveListarAoMenosUm");
 
-        this.armario = ArmarioServico.inserir(this.armario);
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
 
-        List<Armario> listaDeArmarios = ArmarioServico.buscarTodos();
-        assertTrue(!listaDeArmarios.isEmpty());
+        List<Emprestimo> listaDeEmprestimos = EmprestimoServico.buscarTodos();
+        assertTrue(!listaDeEmprestimos.isEmpty());
     }
-    
+    /*
      * @Test
      * public void deveListarSomenteAtivos() throws ArmarioException {
      * System.out.println("Executando teste deveListarSomenteAtivos");
