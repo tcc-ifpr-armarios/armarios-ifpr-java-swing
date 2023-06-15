@@ -237,16 +237,14 @@ public class EmprestimoServicoTest {
         assertEquals(this.emprestimo.getId(), emprestimoEncontrado.getId());
     }
 
+    @Test
+    public void naoDeveEncontrarOId() throws EmprestimoException {
+        System.out.println("Executando teste naoDeveEncontrarOId");
+
+        Emprestimo emprestimoEncontrado = EmprestimoServico.buscarUnicoPorId(-1);
+        assertNull(emprestimoEncontrado);
+    }
     /*
-     * 
-     * 
-     * @Test
-     * public void naoDeveEncontrarOId() throws ArmarioException {
-     * System.out.println("Executando teste naoDeveEncontrarOId");
-     * 
-     * Armario cursoEncontrado = ArmarioServico.buscarUnicoPorId(-1);
-     * assertNull(cursoEncontrado);
-     * }
      * 
      * @Test
      * public void deveExcluirOArmarioComIdInserido() throws ArmarioException {
