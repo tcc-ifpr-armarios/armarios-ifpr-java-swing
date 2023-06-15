@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
@@ -271,24 +272,20 @@ public class EmprestimoServicoTest {
 
         assertTrue(MensagemUtil.EMPRESTIMO_REMOVIDO.equals(emprestimoException.getMessage()));
     }
+
+    @Test
+    public void deveFinalizarUmEmprestimoAtivo() throws EmprestimoException {
+        System.out.println("Executando teste deveFinalizarUmEmprestimoAtivo");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        Emprestimo emprestimoFinalizado = EmprestimoServico.finalizarEmprestimo(this.emprestimo);
+
+        assertTrue(this.emprestimo.getId().equals(emprestimoFinalizado.getId()));
+        assertNotNull(this.emprestimo.getDataDevolucao());
+    }
+
     /*
-     * 
-     * 
-     * @Test
-     * public void deveAtualizarOArmarioComIdInserido() throws ArmarioException {
-     * System.out.println("Executando teste deveAtualizarOArmarioComIdInserido");
-     * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * this.armario.setNumero(NUMERO_ARMARIO + " - Atualizado");
-     * this.armario.setStatus(StatusArmario.INATIVO);
-     * 
-     * Armario armarioAtualizado = ArmarioServico.atualizar(this.armario);
-     * 
-     * assertTrue(this.armario.getNumero().equals(armarioAtualizado.getNumero()));
-     * assertEquals(this.armario.getStatus(), armarioAtualizado.getStatus());
-     * }
-     * 
      * @Test
      * public void deveAtualizarMudandoSomenteUmAtributo() throws ArmarioException {
      * System.out.println("Executando teste deveAtualizarMudandoSomenteUmAtributo");

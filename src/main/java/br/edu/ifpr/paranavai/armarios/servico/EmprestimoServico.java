@@ -1,5 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
@@ -42,7 +43,7 @@ public class EmprestimoServico {
     }
 
     public static Emprestimo finalizarEmprestimo(Emprestimo emprestimo) throws EmprestimoException {
-        // TODO: modificar o atributo do armario para liberado
+        emprestimo.setDataDevolucao(LocalDateTime.now());
         return daoEmprestimo.atualizar(emprestimo);
     }
 
