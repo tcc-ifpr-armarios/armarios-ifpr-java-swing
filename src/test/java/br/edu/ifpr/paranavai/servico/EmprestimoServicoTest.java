@@ -300,4 +300,16 @@ public class EmprestimoServicoTest {
         assertTrue(MensagemUtil.EMPRESTIMO_JA_FINALIZADO.equals(emprestimoException.getMessage()));
     }
 
+    @Test
+    public void estudanteNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException {
+        System.out.println("Executando teste estudanteNaoDevePossuirDoisEmprestimosAtivos");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        EmprestimoException emprestimoException = assertThrows(EmprestimoException.class, () -> {
+            EmprestimoServico.inserir(this.emprestimo);
+        });
+
+        assertTrue(MensagemUtil.EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO.equals(emprestimoException.getMessage()));
+    }
 }

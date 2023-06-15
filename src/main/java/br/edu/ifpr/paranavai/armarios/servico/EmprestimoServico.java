@@ -27,6 +27,7 @@ public class EmprestimoServico {
 
     public static Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException {
         verificaCamposObrigatorios(emprestimo);
+        verificaRestricoes(emprestimo);
         return daoEmprestimo.inserir(emprestimo);
     }
 
@@ -74,6 +75,14 @@ public class EmprestimoServico {
         }
         if (emprestimo.getArmario() == null || emprestimo.getArmario().getId() == 0) {
             throw new EmprestimoException(MensagemUtil.EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO);
+        }
+
+    }
+
+    private static void verificaRestricoes(Emprestimo emprestimo) throws EmprestimoException {
+        Emprestimo e = daoEmprestimo.buscarAtivoPorRaDoEstudante(emprestimo.getEstudante().getRa());
+        if (e != null) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO);
         }
     }
 }

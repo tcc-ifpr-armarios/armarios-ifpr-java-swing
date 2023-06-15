@@ -33,12 +33,14 @@ public class MensagemUtil {
     public static final String ERRO_CONFIGURACAO_BANCO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
 
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
+    public static final String EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO = "Obrigatório informar o armário!";
+    public static final String EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO = "Obrigatório informar o estudante!";
+    public static final String EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO = "Estudante possui empréstimo ativo!";
     public static final String EMPRESTIMO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o empréstimo";
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
-    public static final String EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO = "Obrigatório informar o estudante!";
-    public static final String EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO = "Obrigatório informar o armário!";
-    public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
     public static final String EMPRESTIMO_JA_FINALIZADO = "Não foi possível realizar essa operação! Este empréstimo já foi finalizado!";
+    public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
+
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
     public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
     public static final String ESTUDANTE_CAMPO_OBRIGATORIO = "Todos os campus obrigatórios (*) devem ser preenchidos!";
