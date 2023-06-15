@@ -216,28 +216,29 @@ public class EmprestimoServicoTest {
         List<Emprestimo> listaDeEmprestimos = EmprestimoServico.buscarTodos();
         assertTrue(!listaDeEmprestimos.isEmpty());
     }
+
+    @Test
+    public void deveListarSomenteAtivosPorLocalizacao() throws EmprestimoException {
+        System.out.println("Executando teste deveListarSomenteAtivosPorLocalizacao");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        List<Emprestimo> listaDeEmprestimos = EmprestimoServico.buscarAtivosPorLocalizacao(this.localizacao.getId());
+        assertTrue(!listaDeEmprestimos.isEmpty());
+    }
+
+    @Test
+    public void deveEncontrarOEmprestimoComIdInserido() throws EmprestimoException {
+        System.out.println("Executando teste deveEncontrarOEmprestimoComIdInserido");
+
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        Emprestimo emprestimoEncontrado = EmprestimoServico.buscarUnicoPorId(this.emprestimo.getId());
+        assertEquals(this.emprestimo.getId(), emprestimoEncontrado.getId());
+    }
+
     /*
-     * @Test
-     * public void deveListarSomenteAtivos() throws ArmarioException {
-     * System.out.println("Executando teste deveListarSomenteAtivos");
      * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * List<Armario> listaDeArmarios =
-     * ArmarioServico.buscarPorStatus(StatusArmario.ATIVO);
-     * assertTrue(!listaDeArmarios.isEmpty());
-     * }
-     * 
-     * @Test
-     * public void deveEncontrarOArmarioComIdInserido() throws ArmarioException {
-     * System.out.println("Executando teste deveEncontrarOArmarioComIdInserido");
-     * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * Armario cursoEncontrado =
-     * ArmarioServico.buscarUnicoPorId(this.armario.getId());
-     * assertEquals(this.armario.getId(), cursoEncontrado.getId());
-     * }
      * 
      * @Test
      * public void naoDeveEncontrarOId() throws ArmarioException {

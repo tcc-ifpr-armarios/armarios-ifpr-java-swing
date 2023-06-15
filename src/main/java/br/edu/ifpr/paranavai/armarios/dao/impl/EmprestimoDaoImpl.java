@@ -37,7 +37,8 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id and data_devolucao = null",
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.armario.localizacao.id = :id and e.dataDevolucao is null",
                 Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
