@@ -4,8 +4,11 @@ import java.util.List;
 
 import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
@@ -20,6 +23,7 @@ public class EmprestimoServico {
     }
 
     public static Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException {
+        verificaCamposObrigatorios(emprestimo);
         return daoEmprestimo.inserir(emprestimo);
     }
 
@@ -50,5 +54,11 @@ public class EmprestimoServico {
 
     public static void excluir(Emprestimo emprestimo) throws EmprestimoException {
         daoEmprestimo.excluir(emprestimo);
+    }
+
+    private static void verificaCamposObrigatorios(Emprestimo emprestimo) throws EmprestimoException {
+        if (emprestimo.getEstudante() == null || emprestimo.getEstudante().getId() == 0) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO);
+        }
     }
 }

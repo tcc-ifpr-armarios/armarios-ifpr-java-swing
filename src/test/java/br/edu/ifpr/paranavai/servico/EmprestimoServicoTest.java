@@ -51,7 +51,8 @@ public class EmprestimoServicoTest {
     private Emprestimo emprestimo;
 
     @BeforeAll
-    public void antesDeTodosOsTestes() throws CursoException, LocalizacaoException, EstudanteException, ArmarioException {
+    public void antesDeTodosOsTestes()
+            throws CursoException, LocalizacaoException, EstudanteException, ArmarioException {
         Curso curso = CursoServico.buscarUnicoPorNomeExato(NOME_CURSO);
         if (curso == null) {
             curso = new Curso();
@@ -140,30 +141,32 @@ public class EmprestimoServicoTest {
             LocalizacaoServico.excluir(localizacao);
         }
     }
+
+    @Test
+    public void naoDeveInserirEstudanteNuloOuIdInvalido() {
+        System.out.println("Executando teste naoDeveInserirEstudanteNuloOuIdInvalido");
+
+        EmprestimoException emprestimoExceptionNulo = assertThrows(EmprestimoException.class,
+                () -> {
+                    this.emprestimo.setEstudante(null);
+                    this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+                });
+
+        EmprestimoException emprestimoExceptionIdInvalido = assertThrows(EmprestimoException.class,
+                () -> {
+                    Estudante estudante = new Estudante();
+                    estudante.setId(0);
+                    this.emprestimo.setEstudante(estudante);
+                    this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+                });
+
+        assertEquals(MensagemUtil.EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO,
+                emprestimoExceptionNulo.getMessage());
+        assertEquals(MensagemUtil.EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO,
+                emprestimoExceptionIdInvalido.getMessage());
+    }
+
     /*
-     * @Test
-     * public void naoDeveInserirNumeroVazioOuNulo() {
-     * System.out.println("Executando teste naoDeveInserirNumeroVazioOuNulo");
-     * 
-     * ArmarioException armarioExceptionNulo = assertThrows(ArmarioException.class,
-     * () -> {
-     * this.armario.setNumero(null);
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * });
-     * 
-     * ArmarioException armarioExceptionVazio = assertThrows(ArmarioException.class,
-     * () -> {
-     * this.armario.setNumero("");
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * });
-     * 
-     * assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO,
-     * armarioExceptionVazio.getMessage());
-     * assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO,
-     * armarioExceptionNulo.getMessage());
-     * }
-     * 
-     * 
      * @Test
      * public void naoDeveInserirLocalizacaoNulaOuIdInvalido() {
      * System.out.
