@@ -2,6 +2,7 @@ package br.edu.ifpr.paranavai.servico;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -190,54 +191,24 @@ public class EmprestimoServicoTest {
                 emprestimoExceptionIdInvalido.getMessage());
     }
 
-    /*
-     * @Test
-     * public void naoDeveInserirLocalizacaoNulaOuIdInvalido() {
-     * System.out.
-     * println("Executando teste naoDeveInserirLocalizacaoNulaOuIdInvalido");
-     * 
-     * ArmarioException armarioExceptionIdeInvalido =
-     * assertThrows(ArmarioException.class, () -> {
-     * Localizacao local = new Localizacao();
-     * local.setId(0);
-     * this.armario.setLocalizacao(local);
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * });
-     * 
-     * ArmarioException armarioExceptionNulo = assertThrows(ArmarioException.class,
-     * () -> {
-     * this.armario.setLocalizacao(null);
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * });
-     * 
-     * assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO,
-     * armarioExceptionNulo.getMessage());
-     * assertEquals(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO,
-     * armarioExceptionIdeInvalido.getMessage());
-     * }
-     * 
-     * @Test
-     * public void deveInserirUmNovoArmario() throws ArmarioException {
-     * System.out.println("Executando teste deveInserirUmNovoArmario");
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * assertTrue(this.armario.getId() > 0);
-     * assertTrue(this.armario.getNumero().equals(NUMERO_ARMARIO));
-     * assertTrue(this.armario.getStatus().equals(StatusArmario.ATIVO));
-     * assertTrue(this.armario.getLocalizacao().getDescricao().equals(this.
-     * localizacao.getDescricao()));
-     * }
-     * 
-     * @Test
-     * public void deveListarAoMenosUm() throws ArmarioException {
-     * System.out.println("Executando teste deveListarAoMenosUm");
-     * 
-     * this.armario = ArmarioServico.inserir(this.armario);
-     * 
-     * List<Armario> listaDeArmarios = ArmarioServico.buscarTodos();
-     * assertTrue(!listaDeArmarios.isEmpty());
-     * }
-     * 
+    @Test
+    public void deveInserirUmNovoEmprestimo() throws EmprestimoException {
+        System.out.println("Executando teste deveInserirUmNovoEmprestimo");
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        assertTrue(this.emprestimo.getId() > 0);
+    }
+/*
+    @Test
+    public void deveListarAoMenosUm() throws ArmarioException {
+        System.out.println("Executando teste deveListarAoMenosUm");
+
+        this.armario = ArmarioServico.inserir(this.armario);
+
+        List<Armario> listaDeArmarios = ArmarioServico.buscarTodos();
+        assertTrue(!listaDeArmarios.isEmpty());
+    }
+    
      * @Test
      * public void deveListarSomenteAtivos() throws ArmarioException {
      * System.out.println("Executando teste deveListarSomenteAtivos");
