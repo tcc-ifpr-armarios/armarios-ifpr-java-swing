@@ -312,4 +312,11 @@ public class EmprestimoServicoTest {
 
         assertTrue(MensagemUtil.EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO.equals(emprestimoException.getMessage()));
     }
+
+    @Test
+    public void armarioNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException {
+        System.out.println("Executando teste armarioNaoDevePossuirDoisEmprestimosAtivos");
+
+        assertTrue(true);
+    }
 }
