@@ -60,5 +60,8 @@ public class EmprestimoServico {
         if (emprestimo.getEstudante() == null || emprestimo.getEstudante().getId() == 0) {
             throw new EmprestimoException(MensagemUtil.EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO);
         }
+        if (emprestimo.getArmario() == null || emprestimo.getArmario().getId() == 0) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO);
+        }
     }
 }

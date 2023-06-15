@@ -166,6 +166,30 @@ public class EmprestimoServicoTest {
                 emprestimoExceptionIdInvalido.getMessage());
     }
 
+    @Test
+    public void naoDeveInserirArmarioNuloOuIdInvalido() {
+        System.out.println("Executando teste naoDeveInserirArmarioNuloOuIdInvalido");
+
+        EmprestimoException emprestimoExceptionNulo = assertThrows(EmprestimoException.class,
+                () -> {
+                    this.emprestimo.setArmario(null);
+                    this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+                });
+
+        EmprestimoException emprestimoExceptionIdInvalido = assertThrows(EmprestimoException.class,
+                () -> {
+                    Armario armario = new Armario();
+                    armario.setId(0);
+                    this.emprestimo.setArmario(armario);
+                    this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+                });
+
+        assertEquals(MensagemUtil.EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO,
+                emprestimoExceptionNulo.getMessage());
+        assertEquals(MensagemUtil.EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO,
+                emprestimoExceptionIdInvalido.getMessage());
+    }
+
     /*
      * @Test
      * public void naoDeveInserirLocalizacaoNulaOuIdInvalido() {
