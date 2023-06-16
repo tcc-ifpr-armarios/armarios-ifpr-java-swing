@@ -84,5 +84,10 @@ public class EmprestimoServico {
         if (e != null) {
             throw new EmprestimoException(MensagemUtil.EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO);
         }
+
+        e = daoEmprestimo.buscarAtivoPorIdArmario(emprestimo.getArmario().getId());
+        if (e != null) {
+            throw new EmprestimoException(MensagemUtil.EMPRESTIMO_ARMARIO_POSSUI_EMPRESTIMO_ATIVO);
+        }
     }
 }

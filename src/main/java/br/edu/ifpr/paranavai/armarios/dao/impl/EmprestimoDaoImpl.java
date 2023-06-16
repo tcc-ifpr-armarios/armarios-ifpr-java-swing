@@ -115,4 +115,13 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     public Emprestimo buscarUnicoPorId(int identificador) {
         return this.sessao.find(Emprestimo.class, identificador);
     }
+
+    @Override
+    public Emprestimo buscarAtivoPorIdArmario(Integer idArmario) {
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.armario.id = :id and e.dataDevolucao is null", Emprestimo.class);
+        query.setParameter("id", idArmario);
+        Emprestimo resultado = (Emprestimo) query.uniqueResult();
+        return resultado;
+    }
 }

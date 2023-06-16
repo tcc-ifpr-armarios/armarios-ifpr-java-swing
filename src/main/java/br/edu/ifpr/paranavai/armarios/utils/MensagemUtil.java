@@ -32,6 +32,7 @@ public class MensagemUtil {
 
     public static final String ERRO_CONFIGURACAO_BANCO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
 
+    public static final String EMPRESTIMO_ARMARIO_POSSUI_EMPRESTIMO_ATIVO = "Armário possui empréstimo ativo!";
     public static final String EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";
     public static final String EMPRESTIMO_CAMPO_ARMARIO_OBRIGATORIO = "Obrigatório informar o armário!";
     public static final String EMPRESTIMO_CAMPO_ESTUDANTE_OBRIGATORIO = "Obrigatório informar o estudante!";

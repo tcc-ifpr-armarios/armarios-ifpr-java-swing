@@ -15,6 +15,8 @@ public interface EmprestimoDao {
 
     public Emprestimo buscarAtivoPorRaDoEstudante(String ra);
 
+    public Emprestimo buscarAtivoPorIdArmario(Integer idArmario);
+
     public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao);
 
     public List<Emprestimo> buscarTodos();

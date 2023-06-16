@@ -51,7 +51,6 @@ public class EmprestimoServicoTest {
     private static final String RA_ESTUDANTE = "2023232323";
 
     private Armario armario;
-    private Armario armarioAtualizacao;
     private Estudante estudante;
     private Localizacao localizacao;
     private Emprestimo emprestimo;
@@ -301,22 +300,55 @@ public class EmprestimoServicoTest {
     }
 
     @Test
-    public void estudanteNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException {
+    public void estudanteNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException, ArmarioException {
         System.out.println("Executando teste estudanteNaoDevePossuirDoisEmprestimosAtivos");
 
         this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        Armario outroArmario = new Armario();
+        outroArmario.setNumero(NUMERO_ARMARIO + " OUTRO");
+        outroArmario.setLocalizacao(this.localizacao);
+        outroArmario.setStatus(StatusArmario.ATIVO);
+
+        ArmarioServico.inserir(outroArmario);
+
+        this.emprestimo.setArmario(outroArmario);
 
         EmprestimoException emprestimoException = assertThrows(EmprestimoException.class, () -> {
             EmprestimoServico.inserir(this.emprestimo);
         });
 
+        ArmarioServico.excluir(outroArmario);
+
         assertTrue(MensagemUtil.EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO.equals(emprestimoException.getMessage()));
     }
 
     @Test
-    public void armarioNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException {
+    public void armarioNaoDevePossuirDoisEmprestimosAtivos() throws EmprestimoException, EstudanteException {
         System.out.println("Executando teste armarioNaoDevePossuirDoisEmprestimosAtivos");
 
-        assertTrue(true);
+        this.emprestimo = EmprestimoServico.inserir(this.emprestimo);
+
+        Curso curso = CursoServico.buscarUnicoPorNomeExato(NOME_CURSO);
+        Estudante outroEstudante = new Estudante();
+        outroEstudante.setRa(RA_ESTUDANTE + " OUTRO");
+        outroEstudante.setNome("Estudante");
+        outroEstudante.setSobrenome("Teste");
+        outroEstudante.setEmail("teste@teste.com");
+        outroEstudante.setTelefone("(44) 9 9999-9999");
+        outroEstudante.setSenha("123456");
+        outroEstudante.setCurso(curso);
+
+        EstudanteServico.inserir(outroEstudante);
+
+        this.emprestimo.setEstudante(outroEstudante);
+
+        EmprestimoException emprestimoException = assertThrows(EmprestimoException.class, () -> {
+            EmprestimoServico.inserir(this.emprestimo);
+        });
+
+        EstudanteServico.excluir(outroEstudante);
+
+        assertTrue(MensagemUtil.EMPRESTIMO_ARMARIO_POSSUI_EMPRESTIMO_ATIVO.equals(emprestimoException.getMessage()));
     }
 }
