@@ -2,9 +2,11 @@ package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.ArmarioComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.EstudanteComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
 import java.awt.Dialog;
@@ -30,7 +32,7 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
 
         LocalizacaoComboBoxModel localizacaoComboBoxModel = ComboBoxServico.inicializaComboBoxLocalizacao();
         cbxLocalizacaoArmario.setModel(localizacaoComboBoxModel);
-        
+
         EstudanteComboBoxModel estudanteComboBoxModel = ComboBoxServico.inicializaComboBoxEstudante();
         cbxEstudante.setModel(estudanteComboBoxModel);
 
@@ -76,9 +78,19 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
 
         lblLocalizacaoArmario.setText("Localização do Armário*:");
 
+        cbxLocalizacaoArmario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxLocalizacaoArmarioItemStateChanged(evt);
+            }
+        });
+
         lblArmario.setText("Armario*:");
 
+        cbxArmario.setEnabled(false);
+
         lblEstudante.setText("Estudante*:");
+
+        cbxEstudante.setEnabled(false);
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +185,21 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void cbxLocalizacaoArmarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLocalizacaoArmarioItemStateChanged
+        Localizacao localizacao = (Localizacao) cbxLocalizacaoArmario.getSelectedItem();
+        
+        if(localizacao != null){
+            ArmarioComboBoxModel armarioComboBoxModel = ComboBoxServico.inicializaComboBoxArmario(localizacao);
+            cbxArmario.setModel(armarioComboBoxModel);
+            cbxEstudante.setEnabled(true);
+            cbxArmario.setEnabled(true);
+        }else{
+            cbxEstudante.setEnabled(false);
+            cbxArmario.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_cbxLocalizacaoArmarioItemStateChanged
 
     private void fecharFormulario() {
         this.indexEmprestimoPanelUI.init();

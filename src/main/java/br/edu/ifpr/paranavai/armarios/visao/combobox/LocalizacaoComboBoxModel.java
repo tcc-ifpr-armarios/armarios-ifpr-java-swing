@@ -13,7 +13,7 @@ import javax.swing.ComboBoxModel;
 public class LocalizacaoComboBoxModel extends AbstractListModel implements ComboBoxModel {
 
     private List<Localizacao> listaDeLocalizacoes;
-    private Localizacao cursoSelecionado;
+    private Localizacao localizacaoSelecionada;
 
     public LocalizacaoComboBoxModel() {
         listaDeLocalizacoes = new ArrayList<Localizacao>();
@@ -32,14 +32,14 @@ public class LocalizacaoComboBoxModel extends AbstractListModel implements Combo
     @Override
     public void setSelectedItem(Object anItem) {
         if (anItem instanceof Localizacao) {
-            this.cursoSelecionado = (Localizacao) anItem;
-            fireContentsChanged(this.cursoSelecionado, 0, this.getSize());
+            this.localizacaoSelecionada = (Localizacao) anItem;
+            fireContentsChanged(this.localizacaoSelecionada, 0, this.getSize());
         }
     }
 
     @Override
     public Object getSelectedItem() {
-        return this.cursoSelecionado;
+        return this.localizacaoSelecionada;
     }
 
     public void addLocalizacao(Localizacao curso) {
