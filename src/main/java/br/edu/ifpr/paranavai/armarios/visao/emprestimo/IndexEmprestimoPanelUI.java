@@ -230,7 +230,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        EmprestimoUIModal criacaoEdicaoEmprestimo = new EmprestimoUIModal(this);
+        EmprestimoConcessaoUIModal criacaoEdicaoEmprestimo = new EmprestimoConcessaoUIModal(this);
         criacaoEdicaoEmprestimo.setLocationRelativeTo(this);
         criacaoEdicaoEmprestimo.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed

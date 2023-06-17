@@ -87,6 +87,7 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
         panelGeral.setMinimumSize(new java.awt.Dimension(394, 237));
         panelGeral.setRequestFocusEnabled(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo administrador", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
         lblLocalizacaoArmario.setText("Localização do Armário*:");

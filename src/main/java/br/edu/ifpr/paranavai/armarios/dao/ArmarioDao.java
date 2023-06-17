@@ -8,7 +8,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public interface ArmarioDao {
 

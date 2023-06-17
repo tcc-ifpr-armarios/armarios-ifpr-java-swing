@@ -14,7 +14,7 @@ import jakarta.persistence.NoResultException;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public class EmprestimoDaoImpl implements EmprestimoDao {
 
