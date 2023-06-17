@@ -587,7 +587,7 @@
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="lblNomeSistema" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="lblData" pref="253" max="32767" attributes="0"/>
+                          <Component id="lblData" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblDivisor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -807,7 +807,7 @@
                                   <Component id="txtEstudantesAtivos" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                          <EmptySpace pref="8" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblArmariosOcupados" alignment="0" max="32767" attributes="0"/>
                               <Component id="lblArmariosInativados" alignment="0" max="32767" attributes="0"/>
@@ -836,7 +836,7 @@
                               <Component id="txtArmariosDisponiveis" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="txtArmariosOcupados" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblEstudantesAtivos" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="lblArmariosInativados" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -985,16 +985,19 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="imgAbrirSistemaEmprestimo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblAbrirSistemaEmprestimo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="64" max="32767" attributes="0"/>
+                              <EmptySpace pref="66" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="imgAbrirSistemaEmprestimo" alignment="0" pref="116" max="32767" attributes="0"/>
-                          <Component id="lblAbrirSistemaEmprestimo" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="lblAbrirSistemaEmprestimo" min="-2" pref="101" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1035,7 +1038,7 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Desenvolvido por Allan sob supervis&#xe3;o do professor Marcelo F. Terenciani"/>
+            <Property name="text" type="java.lang.String" value="Desenvolvido por Allan F. sob supervis&#xe3;o do professor Marcelo F. Terenciani"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblData">

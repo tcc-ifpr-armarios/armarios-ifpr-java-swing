@@ -7,7 +7,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public interface EmprestimoDao {
 
@@ -33,4 +33,6 @@ public interface EmprestimoDao {
 
     public Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException;
 
+
+ 
 }

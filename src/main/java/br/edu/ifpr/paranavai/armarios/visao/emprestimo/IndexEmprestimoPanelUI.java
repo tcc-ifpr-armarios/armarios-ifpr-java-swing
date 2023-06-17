@@ -33,8 +33,8 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         AcoesEventoTabela evento = new AcoesEventoTabelaEmprestimo();
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEmprestimo.getModel();
-        tblEmprestimo.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellRenderer(new RenderizadorDasAcoesDaCelulaEmprestimo());
-        tblEmprestimo.getColumnModel().getColumn(QUANTIDADE_COLUNAS - 1).setCellEditor(new EditorDasAcoesDaCelulaTabelaEmprestimo(evento));
+        tblEmprestimo.getColumnModel().getColumn(6).setCellRenderer(new RenderizadorDasAcoesDaCelulaEmprestimo());
+        tblEmprestimo.getColumnModel().getColumn(6).setCellEditor(new EditorDasAcoesDaCelulaTabelaEmprestimo(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -42,7 +42,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
 
         for (int i = 0; i < lista.size(); i++) {
             Emprestimo mostraEmprestimo = lista.get(i);
-            Object[] dadosLinha = new Object[QUANTIDADE_COLUNAS];
+            Object[] dadosLinha = new Object[6];
             dadosLinha[0] = mostraEmprestimo.getId();
             dadosLinha[1] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataEmprestimo());
             dadosLinha[2] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataDevolucao());
@@ -152,7 +152,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Identificador", "Data Empréstimo", "Data Devolução", "Estudante", "Armário", "Localiação", "Ações"
+                "Identificador", "Data Empréstimo", "Data Devolução", "Estudante", "Armário", "Localização", "Ações"
             }
         ) {
             Class[] types = new Class [] {
@@ -230,7 +230,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        EmprestimoUIModal criacaoEdicaoEmprestimo = new EmprestimoUIModal(this);
+        EmprestimoConcessaoUIModal criacaoEdicaoEmprestimo = new EmprestimoConcessaoUIModal(this);
         criacaoEdicaoEmprestimo.setLocationRelativeTo(this);
         criacaoEdicaoEmprestimo.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed

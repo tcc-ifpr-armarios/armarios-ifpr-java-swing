@@ -1,5 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
+import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 @Entity
 @Table(name = "tb_emprestimo")
@@ -39,6 +40,7 @@ public class Emprestimo {
     @Column(name = "data_emprestimo", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dataEmprestimo = LocalDateTime.now();
 
+    
     @Column(name = "data_devolucao")
     private LocalDateTime dataDevolucao = null;
 
@@ -87,8 +89,8 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(LocalDateTime dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataDevolucao() {
+        this.dataDevolucao = OperacaoUtil.formatarDataHoraLocalDateTime(LocalDateTime.now());
     }
 
 }

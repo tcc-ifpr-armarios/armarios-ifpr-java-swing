@@ -17,6 +17,8 @@ public class MensagemUtil {
     public static final String ARMARIO_JA_CADASTRADO_NA_LOCALIZACAO = "Número de armário já cadastrado";
     public static final String ARMARIO_REMOVIDO = "Não foi possível realizar essa operação! Esse armário já foi removido!";
     public static final String ARMARIO_VINCULADO_EMPRESTIMO = "Impossível excluir esse armário, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    public static final String ARMARIO_ESCOLHA_UM = "Nenhum armário selecionado";
+    public static final String ARMARIO_EMPRESTADO = "Consta o empréstimo do armário: ";
 
     public static final String CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
     public static final String CURSO_ATUALIZACAO_SUCESSO = "Curso Atualizado com Sucesso!";
@@ -39,6 +41,10 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_ESTUDANTE_POSSUI_EMPRESTIMO_ATIVO = "Estudante possui empréstimo ativo!";
     public static final String EMPRESTIMO_EXCLUSAO_ERRO_PADRAO = "Erro não identificado ao excluir o empréstimo";
     public static final String EMPRESTIMO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao efetuar o empréstimo";
+    public static final String EMPRESTIMO_CANCELADO_USUARIO = "Empréstimo cancelado pelo usuário";
+    public static final String EMPRESTIMO_SUCESSO = "Empréstimo realizado com sucesso";
+    public static final String EMPRESTIMO_CONFIRMA_EMPRESTIMO = "Confirma o empréstimo";
+    public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO = "Confirma a devolucão do armário: ";
     public static final String EMPRESTIMO_JA_FINALIZADO = "Não foi possível realizar essa operação! Este empréstimo já foi finalizado!";
     public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
 
@@ -65,6 +71,7 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_INSERCAO_SUCESSO = "Localização Cadastrada com Sucesso!";
     public static final String LOCALIZACAO_REMOVIDA = "Não foi possível realizar essa operação! Essa localização já foi removida!";
     public static final String LOCALIZACAO_VINCULADA_ARMARIO = "Impossível excluir essa localização, pois existem armários vinculados a ela!";
+    public static final String LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar as localizações";
 
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";

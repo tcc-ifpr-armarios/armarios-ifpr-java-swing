@@ -8,7 +8,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public interface ArmarioDao {
 
@@ -32,4 +32,6 @@ public interface ArmarioDao {
     public void excluir(Armario armario) throws ArmarioException;
 
     public Armario inserir(Armario armario) throws ArmarioException;
+    
+     public List<Armario> buscarPorStatusIdLocalizacao(Integer idLocalizacao, StatusArmario status);
 }

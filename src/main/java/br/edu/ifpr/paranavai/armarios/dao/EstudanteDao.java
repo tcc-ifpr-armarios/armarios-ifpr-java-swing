@@ -28,4 +28,6 @@ public interface EstudanteDao {
     public void excluir(Estudante estudante) throws EstudanteException;
 
     public Estudante inserir(Estudante estudante) throws EstudanteException;
+
+    public List<Estudante> buscarEstudantesPorRa(String ra);
 }

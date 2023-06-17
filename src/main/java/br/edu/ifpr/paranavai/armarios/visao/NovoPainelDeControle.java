@@ -32,6 +32,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         //this.usuario = usuario;
         lblUsuarioLogado.setText(servidor.getNome());
         mostraDashboard();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -598,14 +599,16 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
             .addGroup(btnAbrirSistemaEmprestimoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(imgAbrirSistemaEmprestimo)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(lblAbrirSistemaEmprestimo)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         btnAbrirSistemaEmprestimoLayout.setVerticalGroup(
             btnAbrirSistemaEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(imgAbrirSistemaEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-            .addComponent(lblAbrirSistemaEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnAbrirSistemaEmprestimoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblAbrirSistemaEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout painelDashboardLayout = new javax.swing.GroupLayout(painelDashboard);
@@ -621,7 +624,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
                     .addGroup(painelDashboardLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(txtEstudantesAtivos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblArmariosOcupados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblArmariosInativados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -644,7 +647,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
                 .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtArmariosDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtArmariosOcupados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(112, 112, 112)
+                .addGap(127, 127, 127)
                 .addGroup(painelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstudantesAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblArmariosInativados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -663,7 +666,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         lblDesenvolvidoPor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDesenvolvidoPor.setForeground(new java.awt.Color(102, 102, 102));
         lblDesenvolvidoPor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDesenvolvidoPor.setText("Desenvolvido por Allan sob supervisão do professor Marcelo F. Terenciani");
+        lblDesenvolvidoPor.setText("Desenvolvido por Allan F. sob supervisão do professor Marcelo F. Terenciani");
 
         lblData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblData.setForeground(new java.awt.Color(8, 166, 97));
@@ -688,7 +691,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addComponent(lblNomeSistema)
                         .addGap(40, 40, 40)
-                        .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                        .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDivisor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

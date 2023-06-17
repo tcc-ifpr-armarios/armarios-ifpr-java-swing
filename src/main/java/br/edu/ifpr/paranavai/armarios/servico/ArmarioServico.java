@@ -83,7 +83,12 @@ public class ArmarioServico {
     public static List<Armario> buscarAtivoPorIdLocalizacao(Integer idLocalizacao) {
         return daoArmario.buscarAtivosPorIdLocalizacao(idLocalizacao);
     }
+    
+    public static List<Armario> buscarPorStatusIdLocalizacao(Integer idLocalizacao, StatusArmario status) {
+    return daoArmario.buscarPorStatusIdLocalizacao(idLocalizacao, status);
+    }
 
+    
     private static void verificaCamposObrigatorios(Armario armario) throws ArmarioException {
         if (armario.getNumero() == null || armario.getNumero().isEmpty()) {
             throw new ArmarioException(MensagemUtil.ARMARIO_CAMPO_OBRIGATORIO);

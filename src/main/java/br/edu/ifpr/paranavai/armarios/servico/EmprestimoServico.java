@@ -1,21 +1,18 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.dao.impl.EmprestimoDaoImpl;
-import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
-import br.edu.ifpr.paranavai.armarios.excecoes.CursoException;
+
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
-import br.edu.ifpr.paranavai.armarios.modelo.Armario;
-import br.edu.ifpr.paranavai.armarios.modelo.Curso;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando O de Andrade
  */
 public class EmprestimoServico {
 
@@ -49,7 +46,7 @@ public class EmprestimoServico {
             throw new EmprestimoException(MensagemUtil.EMPRESTIMO_JA_FINALIZADO);
         }
 
-        emprestimo.setDataDevolucao(LocalDateTime.now());
+        emprestimo.setDataDevolucao();
         return daoEmprestimo.atualizar(emprestimo);
     }
 
@@ -68,6 +65,10 @@ public class EmprestimoServico {
         }
         daoEmprestimo.excluir(emprestimo);
     }
+    public static Emprestimo atualizar(Emprestimo emprestimo) throws EmprestimoException {
+        return daoEmprestimo.atualizar(emprestimo);
+    }
+    
 
     private static void verificaCamposObrigatorios(Emprestimo emprestimo) throws EmprestimoException {
         if (emprestimo.getEstudante() == null || emprestimo.getEstudante().getId() == 0) {
