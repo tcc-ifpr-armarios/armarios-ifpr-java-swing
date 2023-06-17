@@ -38,7 +38,9 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public List<Emprestimo> buscarAtivosPorIdLocalizacao(Integer idLocalizacao) {
-        Query<Emprestimo> query = this.sessao.createQuery("from Emprestimo e where e.localizacao.id = :id and e.dataDevolucao IS NULL", Emprestimo.class);
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.armario.localizacao.id = :id and e.dataDevolucao is null",
+                Emprestimo.class);
         query.setParameter("id", idLocalizacao);
         List<Emprestimo> resultado = query.getResultList();
         return resultado;
@@ -119,5 +121,14 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
     @Override
     public Emprestimo buscarUnicoPorId(int identificador) {
         return this.sessao.find(Emprestimo.class, identificador);
+    }
+
+    @Override
+    public Emprestimo buscarAtivoPorIdArmario(Integer idArmario) {
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.armario.id = :id and e.dataDevolucao is null", Emprestimo.class);
+        query.setParameter("id", idArmario);
+        Emprestimo resultado = (Emprestimo) query.uniqueResult();
+        return resultado;
     }
 }
