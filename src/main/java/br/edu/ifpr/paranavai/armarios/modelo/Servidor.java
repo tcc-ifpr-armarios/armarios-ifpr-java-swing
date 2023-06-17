@@ -28,4 +28,11 @@ public class Servidor extends Pessoa {
     public void setSiape(String siape) {
         this.siape = siape;
     }
+
+    @Override
+    public String toString() {
+        return siape + " - " + getNomeCompleto();
+    }
+    
+    
 }

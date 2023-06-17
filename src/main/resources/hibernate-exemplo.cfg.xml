@@ -28,6 +28,7 @@
         <property name="hbm2ddl.auto">update</property>
            
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Armario" />
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Concessao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Curso" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Emprestimo" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />

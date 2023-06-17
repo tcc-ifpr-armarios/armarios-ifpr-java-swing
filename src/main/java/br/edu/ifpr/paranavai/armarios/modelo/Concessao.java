@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.modelo;
 
-import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -77,7 +72,7 @@ public class Concessao {
     }
 
     public void setDataDevolucao() {
-        this.dataDevolucao = OperacaoUtil.formatarDataHoraLocalDateTime(LocalDateTime.now());
+        this.dataDevolucao = LocalDateTime.now();
     }
 
     public Concessao() {

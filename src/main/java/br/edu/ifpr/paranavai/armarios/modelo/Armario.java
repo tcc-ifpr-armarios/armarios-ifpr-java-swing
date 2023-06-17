@@ -73,4 +73,10 @@ public class Armario {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return numero + " - " + localizacao.getDescricao();
+    }
+
+    
 }

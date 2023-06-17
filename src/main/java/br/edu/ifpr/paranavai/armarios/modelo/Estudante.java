@@ -46,4 +46,11 @@ public class Estudante extends Pessoa implements Serializable {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
+
+    @Override
+    public String toString() {
+        return ra + " - " + getNomeCompleto() + " - " + curso.getNome();
+    }
+    
+    
 }

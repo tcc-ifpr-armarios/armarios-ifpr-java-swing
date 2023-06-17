@@ -90,7 +90,7 @@ public class Emprestimo {
     }
 
     public void setDataDevolucao() {
-        this.dataDevolucao = OperacaoUtil.formatarDataHoraLocalDateTime(LocalDateTime.now());
+        this.dataDevolucao = LocalDateTime.now();
     }
 
 }
