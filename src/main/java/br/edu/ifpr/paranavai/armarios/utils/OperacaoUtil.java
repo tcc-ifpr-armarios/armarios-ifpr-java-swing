@@ -35,9 +35,13 @@ public class OperacaoUtil {
     }
 
     public static String formatarDataHora(LocalDateTime dataCriacao) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        if (dataCriacao == null) {
+            return "Ocupado";
+        } else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-        return dataCriacao.format(formatter);
+            return dataCriacao.format(formatter);
+        }
     }
 
     public static LocalDateTime formatarDataHoraLocalDateTime(LocalDateTime dataCriacao) {

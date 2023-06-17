@@ -69,6 +69,10 @@ public class EstudanteServico {
     public static Estudante buscarUnicoPorRa(String ra) {
         return daoEstudante.buscarUnicoPorRa(ra);
     }
+    
+    public static List<Estudante> buscarEstudantesPorRa(String ra) {
+        return daoEstudante.buscarEstudantesPorRa(ra);
+    }
 
     public static Estudante buscarUnicoPorEmail(String email) {
         return daoEstudante.buscarUnicoPorEmail(email);

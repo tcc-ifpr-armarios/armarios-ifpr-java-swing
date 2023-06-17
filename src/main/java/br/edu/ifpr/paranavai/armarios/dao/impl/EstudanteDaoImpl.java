@@ -114,4 +114,13 @@ public class EstudanteDaoImpl implements EstudanteDao {
         List<Estudante> resultado = query.getResultList();
         return resultado;
     }
+
+   
+    @Override
+     public List<Estudante> buscarEstudantesPorRa(String ra) {
+        Query<Estudante> query = this.sessao.createQuery("from Estudante where ra = :ra", Estudante.class);
+        query.setParameter("ra", ra);
+        List<Estudante> estudantes = query.getResultList();
+        return estudantes;
+    }
 }

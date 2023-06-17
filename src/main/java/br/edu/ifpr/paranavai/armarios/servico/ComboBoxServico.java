@@ -74,6 +74,17 @@ public class ComboBoxServico {
         }
         return armarioComboBoxModel;
     }
+    
+    public static EstudanteComboBoxModel inicializaComboBoxEstudanteBuscaRa(String ra) {
+        EstudanteComboBoxModel armarioComboBoxModel = new EstudanteComboBoxModel();
+
+        List<Estudante> estudantes = EstudanteServico.buscarEstudantesPorRa(ra);
+
+        for (Estudante estudante : estudantes) {
+            armarioComboBoxModel.addEstudante(estudante);
+        }
+        return armarioComboBoxModel;
+    }
 
     public static StatusArmarioComboBoxModel inicializaComboBoxStatus() {
         StatusArmarioComboBoxModel statusArmarioComboBoxModel = new StatusArmarioComboBoxModel();

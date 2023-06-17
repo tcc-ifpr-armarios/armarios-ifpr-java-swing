@@ -217,7 +217,7 @@
                         <Column editable="false" title="Data Devolu&#xe7;&#xe3;o" type="java.lang.String"/>
                         <Column editable="false" title="Estudante" type="java.lang.String"/>
                         <Column editable="false" title="Arm&#xe1;rio" type="java.lang.String"/>
-                        <Column editable="false" title="Localia&#xe7;&#xe3;o" type="java.lang.String"/>
+                        <Column editable="false" title="Localiza&#xe7;&#xe3;o" type="java.lang.String"/>
                         <Column editable="true" title="A&#xe7;&#xf5;es" type="java.lang.Object"/>
                       </Table>
                     </Property>
