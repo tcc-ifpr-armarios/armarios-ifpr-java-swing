@@ -1,7 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
+import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
@@ -20,11 +22,15 @@ import javax.swing.JPanel;
  */
 public class EmprestimoEstudanteUI extends javax.swing.JFrame {
 
+    private Localizacao localizacao;
+
     /**
      * Creates new form EmprestimoEstudanteUI
+     * @param localizacao
      */
-    public EmprestimoEstudanteUI() {
+    public EmprestimoEstudanteUI(Localizacao localizacao) {
         initComponents();
+        this.localizacao = localizacao;
     }
 
     /**
@@ -187,12 +193,14 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
             txtSenha.setText("");
             txtRa.setText("");
 
-            if (EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa()) == null) {
-                EstudantesEmprestimoUI estudanteEmprestimoUI = new EstudantesEmprestimoUI(this);
+            Emprestimo emprestimo = EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa());
+
+            if (emprestimo == null) {
+                EstudantesEmprestimoUI estudanteEmprestimoUI = new EstudantesEmprestimoUI(this, estudante, localizacao);
                 estudanteEmprestimoUI.setLocationRelativeTo(this);
                 estudanteEmprestimoUI.setVisible(true);
             } else {
-                EstudantesDevolucaoUI estudanteDevolucaoUUI = new EstudantesDevolucaoUI(this);
+                EstudantesDevolucaoUI estudanteDevolucaoUUI = new EstudantesDevolucaoUI(this, emprestimo);
                 estudanteDevolucaoUUI.setVisible(true);
             }
         } catch (LoginException e) {

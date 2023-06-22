@@ -1,5 +1,8 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author teren
@@ -263,8 +266,8 @@ public class InicioDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbrirSistemaEmprestimoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirSistemaEmprestimoMousePressed
-        EmprestimoEstudanteUI loginEstudanteUI = new EmprestimoEstudanteUI();
-        loginEstudanteUI.setVisible(true);
+        SelecionarLocalizacaoUI selecionarLocalizacaoUI = new SelecionarLocalizacaoUI((PainelDeControle) SwingUtilities.getWindowAncestor(this));
+        selecionarLocalizacaoUI.setVisible(true);
     }//GEN-LAST:event_btnAbrirSistemaEmprestimoMousePressed
 
 

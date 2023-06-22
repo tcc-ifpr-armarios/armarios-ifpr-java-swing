@@ -7,11 +7,9 @@ package br.edu.ifpr.paranavai.armarios.visao.estudante;
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI;
 import java.util.logging.Level;
@@ -26,17 +24,18 @@ import javax.swing.SwingUtilities;
  */
 public class EstudantesDevolucaoUI extends javax.swing.JDialog {
 
-    Estudante estudante = EstudanteServico.buscarUnicoPorRa(System.getProperty("ra"));
-    Emprestimo emprestimoEstudante = EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa());
+    private Emprestimo emprestimo;
 
     /**
      * Creates new form EstudanteDevolucaoUUI
      *
      * @param emprestimoEstudanteUI
+     * @param emprestimo
      */
-    public EstudantesDevolucaoUI(EmprestimoEstudanteUI emprestimoEstudanteUI) {
+    public EstudantesDevolucaoUI(EmprestimoEstudanteUI emprestimoEstudanteUI, Emprestimo emprestimo) {
         super((JFrame) SwingUtilities.getWindowAncestor(emprestimoEstudanteUI), true);
         initComponents();
+        this.emprestimo = emprestimo;
         setLocationRelativeTo(this);
     }
 
@@ -158,15 +157,15 @@ public class EstudantesDevolucaoUI extends javax.swing.JDialog {
 
     private void btn_devolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_devolucaoActionPerformed
 
-        int opcao = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO + emprestimoEstudante.getArmario().getNumero() + " na/no " + emprestimoEstudante.getArmario().getLocalizacao().getDescricao() + "?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        int opcao = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO + emprestimo.getArmario().getNumero() + " na/no " + emprestimo.getArmario().getLocalizacao().getDescricao() + "?", "Confirmação", JOptionPane.YES_NO_OPTION);
         if (opcao == JOptionPane.YES_OPTION) {
 
             try {
-                emprestimoEstudante.getArmario().setStatus(StatusArmario.ATIVO);
-                emprestimoEstudante.setDataDevolucao();
-                EmprestimoServico.atualizar(emprestimoEstudante);
+                emprestimo.getArmario().setStatus(StatusArmario.ATIVO);
+                emprestimo.setDataDevolucao();
+                EmprestimoServico.atualizar(emprestimo);
                 try {
-                    ArmarioServico.atualizar(emprestimoEstudante.getArmario());
+                    ArmarioServico.atualizar(emprestimo.getArmario());
                 } catch (ArmarioException ex) {
                     Logger.getLogger(EstudantesDevolucaoUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -186,11 +185,11 @@ public class EstudantesDevolucaoUI extends javax.swing.JDialog {
     }//GEN-LAST:event_sairBtnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        mensagem.setText("Olá, " + estudante.getNome() + "!");
-        dados.setText(MensagemUtil.ARMARIO_EMPRESTADO + emprestimoEstudante.getArmario().getNumero() + " na/no " + emprestimoEstudante.getArmario().getLocalizacao().getDescricao());
+        mensagem.setText("Olá, " + emprestimo.getEstudante().getNome() + "!");
+        dados.setText(MensagemUtil.ARMARIO_EMPRESTADO + emprestimo.getArmario().getNumero() + " na/no " + emprestimo.getArmario().getLocalizacao().getDescricao());
     }//GEN-LAST:event_formWindowOpened
-    private void fecharFormulario() {
 
+    private void fecharFormulario() {
         this.dispose();
     }
 

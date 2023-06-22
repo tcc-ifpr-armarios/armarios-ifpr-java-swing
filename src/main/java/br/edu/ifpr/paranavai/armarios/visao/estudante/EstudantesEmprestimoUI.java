@@ -10,11 +10,9 @@ import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
-import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.ArmarioComboBoxModel;
-import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -27,19 +25,25 @@ import javax.swing.SwingUtilities;
  */
 public class EstudantesEmprestimoUI extends javax.swing.JDialog {
 
-    private Emprestimo emprestimo = new Emprestimo();
     private EmprestimoEstudanteUI emprestimoEstudanteUI;
-    Localizacao localEscolhido = null;
-    Armario armarioEscolhido = null;
-    Estudante estudante = EstudanteServico.buscarUnicoPorRa(System.getProperty("ra"));
+    private Localizacao localizacao;
+    private Armario armarioEscolhido;
+    private Estudante estudante;
 
     /**
      * Creates new form EstudanteEmprestimoDialog
+     *
+     * @param emprestimoEstudanteUI
+     * @param estudante
+     * @param localizacao
      */
-    public EstudantesEmprestimoUI(EmprestimoEstudanteUI emprestimoEstudanteUI) {
+    public EstudantesEmprestimoUI(EmprestimoEstudanteUI emprestimoEstudanteUI, Estudante estudante, Localizacao localizacao) {
         super((JFrame) SwingUtilities.getWindowAncestor(emprestimoEstudanteUI), true);
         initComponents();
-
+        this.estudante = estudante;
+        this.localizacao = localizacao;
+        ArmarioComboBoxModel armarioComboBoxModel = ComboBoxServico.inicializaComboBoxArmarioAtivo(localizacao);
+        cbxArmario.setModel(armarioComboBoxModel);
     }
 
     /**
@@ -51,172 +55,95 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        confirmaEmprestimo1 = new javax.swing.JToggleButton();
-        localCombo = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        numeroCombo = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        sair1 = new javax.swing.JToggleButton();
-        jLabel6 = new javax.swing.JLabel();
+        painelConteudo = new javax.swing.JPanel();
+        painelEmprestimo = new javax.swing.JPanel();
+        lblArmario = new javax.swing.JLabel();
+        cbxArmario = new javax.swing.JComboBox<>();
+        btnConfirmarEmprestimo = new javax.swing.JToggleButton();
+        btnSair = new javax.swing.JToggleButton();
         campoResposta = new javax.swing.JLabel();
+        lblIconeIFPR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+        setTitle("Definir Localização");
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 0));
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        painelConteudo.setBackground(new java.awt.Color(0, 153, 0));
+        painelConteudo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        painelConteudo.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12))); // NOI18N
+        painelEmprestimo.setBackground(new java.awt.Color(255, 255, 255));
+        painelEmprestimo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12))); // NOI18N
 
-        confirmaEmprestimo1.setText("Emprestar");
-        confirmaEmprestimo1.addActionListener(new java.awt.event.ActionListener() {
+        lblArmario.setBackground(new java.awt.Color(255, 255, 255));
+        lblArmario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblArmario.setText("Selecione o armário:");
+
+        cbxArmario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbxArmario.setMaximumRowCount(10);
+
+        btnConfirmarEmprestimo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnConfirmarEmprestimo.setText("Emprestar");
+        btnConfirmarEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmaEmprestimo1ActionPerformed(evt);
+                btnConfirmarEmprestimoActionPerformed(evt);
             }
         });
 
-        localCombo.setSelectedItem(1);
-        localCombo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                localComboItemStateChanged(evt);
-            }
-        });
-        localCombo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                localComboMouseExited(evt);
-            }
-        });
-        localCombo.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                localComboActionPerformed(evt);
-            }
-        });
-        localCombo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                localComboPropertyChange(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Selecione o Local:");
+        campoResposta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        numeroCombo.setMaximumRowCount(10);
-        numeroCombo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                numeroComboMouseClicked(evt);
-            }
-        });
-        numeroCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroComboActionPerformed(evt);
-            }
-        });
-        numeroCombo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                numeroComboPropertyChange(evt);
-            }
-        });
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Selecione o número:");
-
-        sair1.setText("Sair");
-        sair1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sair1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(numeroCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(localCombo, 0, 187, Short.MAX_VALUE)))
-            .addComponent(confirmaEmprestimo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(sair1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout painelEmprestimoLayout = new javax.swing.GroupLayout(painelEmprestimo);
+        painelEmprestimo.setLayout(painelEmprestimoLayout);
+        painelEmprestimoLayout.setHorizontalGroup(
+            painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnConfirmarEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cbxArmario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblArmario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+            .addComponent(campoResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(localCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numeroCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmaEmprestimo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sair1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/IfLogo_dark.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        painelEmprestimoLayout.setVerticalGroup(
+            painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelEmprestimoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblArmario)
+                .addGap(3, 3, 3)
+                .addComponent(cbxArmario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(campoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnConfirmarEmprestimo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSair)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(campoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        painelConteudo.add(painelEmprestimo, java.awt.BorderLayout.CENTER);
+
+        lblIconeIFPR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeIFPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iflogomenor.png"))); // NOI18N
+        painelConteudo.add(lblIconeIFPR, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(painelConteudo, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmaEmprestimo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaEmprestimo1ActionPerformed
+    private void btnConfirmarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarEmprestimoActionPerformed
         if (armarioEscolhido == null) {
             campoResposta.setText(MensagemUtil.ARMARIO_ESCOLHA_UM);
         } else {
+            Emprestimo emprestimo = new Emprestimo();
             emprestimo.setArmario(armarioEscolhido);
             emprestimo.setEstudante(estudante);
 
-            int resposta = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_EMPRESTIMO + " do armário " + armarioEscolhido.getNumero() + " na/no " + localEscolhido.getDescricao() + "?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_EMPRESTIMO + " do armário " + armarioEscolhido.getNumero() + " na/no " + localizacao.getDescricao() + "?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
 
             if (resposta == JOptionPane.OK_OPTION) {
                 try {
@@ -231,68 +158,27 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
                 } catch (EmprestimoException ex) {
                     Logger.getLogger(EstudantesEmprestimoUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("Empretimo feito");
-            } 
+            }
         }
+    }//GEN-LAST:event_btnConfirmarEmprestimoActionPerformed
 
-
-    }//GEN-LAST:event_confirmaEmprestimo1ActionPerformed
-
-    private void localComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_localComboItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localComboItemStateChanged
-
-    private void localComboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localComboMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localComboMouseExited
-
-    private void localComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localComboActionPerformed
-        localEscolhido = (Localizacao) localCombo.getSelectedItem();
-        ArmarioComboBoxModel armarioComboBoxModel = ComboBoxServico.inicializaComboBoxArmarioAtivo(localEscolhido);
-        numeroCombo.setModel(armarioComboBoxModel);
-
-    }//GEN-LAST:event_localComboActionPerformed
-
-    private void localComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_localComboPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localComboPropertyChange
-
-    private void numeroComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numeroComboMouseClicked
-
-    }//GEN-LAST:event_numeroComboMouseClicked
-
-    private void numeroComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_numeroComboPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroComboPropertyChange
-
-    private void sair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair1ActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         fecharFormulario();
-    }//GEN-LAST:event_sair1ActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
     private void fecharFormulario() {
-        
         this.dispose();
     }
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        LocalizacaoComboBoxModel localizacaoComboBoxModel = ComboBoxServico.inicializaComboBoxLocalizacao();
-        localCombo.setModel(localizacaoComboBoxModel);
-    }//GEN-LAST:event_formWindowOpened
-
-    private void numeroComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroComboActionPerformed
-        armarioEscolhido = (Armario) numeroCombo.getSelectedItem();    }//GEN-LAST:event_numeroComboActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnConfirmarEmprestimo;
+    private javax.swing.JToggleButton btnSair;
     private javax.swing.JLabel campoResposta;
-    private javax.swing.JToggleButton confirmaEmprestimo1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JComboBox<String> localCombo;
-    private javax.swing.JComboBox<String> numeroCombo;
-    private javax.swing.JToggleButton sair1;
+    private javax.swing.JComboBox<String> cbxArmario;
+    private javax.swing.JLabel lblArmario;
+    private javax.swing.JLabel lblIconeIFPR;
+    private javax.swing.JPanel painelConteudo;
+    private javax.swing.JPanel painelEmprestimo;
     // End of variables declaration//GEN-END:variables
 }
