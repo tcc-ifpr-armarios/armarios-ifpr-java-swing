@@ -74,8 +74,17 @@ public class MensagemUtil {
     public static final String LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar as localizações";
 
     public static final String LOGIN_CADASTRO_INEXISTENTE = "Cadastro não encontrado. Tente novamente!";
+    public static final String LOGIN_EMAIL_OU_SIAPE_OBRIGATORIO = "Informe o e-mail ou o SIAPE";
     public static final String LOGIN_SENHA_INCORRETA = "Senha Incorreta";
+    public static final String LOGIN_RA_OBRIGATORIO = "Informe sua matrícula";
+    public static final String LOGIN_SENHA_OBRIGATORIA = "Informe sua senha";
     public static final String LOGIN_SUCESSO = "Sucesso no login!";
+
+    public static final String SISTEMA_AUTOR = "Allan Fernando Oliveira de Andrade";
+    public static final String SISTEMA_ORIENTADOR = "prof. Marcelo F. Terenciani";
+    public static final int SISTEMA_ANO = 2023;
+
+    public static final String SISTEMA_DESENVOLVIDO_POR = "Desenvolvido por " + SISTEMA_AUTOR + " sob supervisão do " + SISTEMA_ORIENTADOR + " - " + SISTEMA_ANO;
 
     public static final String SERVIDOR_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o servidor";
     public static final String SERVIDOR_ATUALIZACAO_SUCESSO = "Servidor Atualizado com Sucesso!";
@@ -94,7 +103,7 @@ public class MensagemUtil {
     public static final String TITULO_ATENCAO = "Atenção!";
     public static final String TITULO_ERRO_FATAL = "Erro Fatal!";
     public static final String TITULO_INFORMACAO = "Informação";
-    public static final String TITULO_SISTEMA = "Armários IFPR - PVAÍ";
+    public static final String TITULO_SISTEMA = "Sistema de Gerenciamento de Armários IFPR - PVAÍ";
 
     public static final String VALIDACAO_EMAIL_INVALIDO = "E-mail inválido!";
     public static final String VALIDACAO_SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";

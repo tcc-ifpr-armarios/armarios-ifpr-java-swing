@@ -24,9 +24,9 @@ import javax.swing.Timer;
  *
  * @author Marcelo
  */
-public class NovoPainelDeControle extends javax.swing.JFrame {
+public class PainelDeControle extends javax.swing.JFrame {
 
-    public NovoPainelDeControle(Servidor servidor) {
+    public PainelDeControle(Servidor servidor) {
         initComponents();
         painelAtivo = btnInicio;
         //this.usuario = usuario;
@@ -516,7 +516,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         lblDesenvolvidoPor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDesenvolvidoPor.setForeground(new java.awt.Color(102, 102, 102));
         lblDesenvolvidoPor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDesenvolvidoPor.setText("Desenvolvido por Allan F. sob supervisão do professor Marcelo F. Terenciani");
+        lblDesenvolvidoPor.setText(MensagemUtil.SISTEMA_DESENVOLVIDO_POR);
 
         lblData.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblData.setForeground(new java.awt.Color(8, 166, 97));
@@ -595,8 +595,8 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
     private void btnSairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMousePressed
         System.exit(0);
     }//GEN-LAST:event_btnSairMousePressed
-    
-    private void mostraDashboard(){
+
+    private void mostraDashboard() {
         InicioDashboard exemplo = new InicioDashboard();
         lblBreadcrumb.setText("BEM-VINDO AO SISTEMA DE GERENCIAMENTO DE ARMÁRIOS");
         panelDinamico.removeAll();
@@ -604,7 +604,7 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         panelDinamico.validate();
         panelDinamico.repaint();
     }
-    
+
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
         mostraDashboard();
     }//GEN-LAST:event_btnInicioMousePressed
@@ -775,47 +775,4 @@ public class NovoPainelDeControle extends javax.swing.JFrame {
         }
 
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovoPainelDeControle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        try {
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new NovoPainelDeControle(new Servidor()).setVisible(true);
-                }
-
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
 }

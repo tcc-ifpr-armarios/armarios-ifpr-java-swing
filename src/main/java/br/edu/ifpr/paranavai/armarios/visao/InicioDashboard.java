@@ -263,7 +263,7 @@ public class InicioDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbrirSistemaEmprestimoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirSistemaEmprestimoMousePressed
-        LoginEstudanteUI loginEstudanteUI = new LoginEstudanteUI();
+        EmprestimoEstudanteUI loginEstudanteUI = new EmprestimoEstudanteUI();
         loginEstudanteUI.setVisible(true);
     }//GEN-LAST:event_btnAbrirSistemaEmprestimoMousePressed
 

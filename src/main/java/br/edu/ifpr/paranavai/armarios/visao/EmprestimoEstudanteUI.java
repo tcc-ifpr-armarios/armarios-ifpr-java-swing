@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class EmprestimoEstudanteUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginEstudanteNovo
+     * Creates new form EmprestimoEstudanteUI
      */
     public EmprestimoEstudanteUI() {
         initComponents();
@@ -34,13 +34,15 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         painelConteudo = new JPanel() {
             public void paintComponent(Graphics g) {
                 Image img = Toolkit.getDefaultToolkit().getImage(
-                    IndexLoginUI.class.getResource("/assets/imgindex.png"));
+                    br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI.class.getResource("/assets/imgindex.png"));
                 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
@@ -55,7 +57,8 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         lblErroSenha = new javax.swing.JLabel();
-        btnEntrar = new javax.swing.JToggleButton();
+        lblResposta = new javax.swing.JLabel();
+        btnEmprestarDevolver = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -71,7 +74,7 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         lblTituloSistema.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTituloSistema.setText(MensagemUtil.TITULO_SISTEMA);
-        lblTituloSistema.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 10, 1));
+        lblTituloSistema.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 1, 30, 1));
         painelConteudo.add(lblTituloSistema, java.awt.BorderLayout.PAGE_START);
 
         lblIconeIFPR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,15 +82,18 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         painelConteudo.add(lblIconeIFPR, java.awt.BorderLayout.PAGE_END);
 
         painelCentral.setOpaque(false);
+        painelCentral.setLayout(new java.awt.GridBagLayout());
 
         painelBorda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         painelBorda.setMinimumSize(new java.awt.Dimension(500, 500));
+        painelBorda.setOpaque(false);
         painelBorda.setPreferredSize(new java.awt.Dimension(400, 450));
         painelBorda.setLayout(new java.awt.GridLayout(1, 1));
 
         painelLogin.setBackground(new java.awt.Color(0, 153, 0));
         painelLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        painelLogin.setLayout(new java.awt.GridLayout(7, 1, 0, 5));
+        painelLogin.setPreferredSize(new java.awt.Dimension(340, 448));
+        painelLogin.setLayout(new java.awt.GridLayout(8, 1, 0, 5));
 
         lblRa.setFont(new java.awt.Font("Source Sans Pro Black", 0, 24)); // NOI18N
         lblRa.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,8 +107,15 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         txtRa.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         txtRa.setMinimumSize(new java.awt.Dimension(100, 54));
         txtRa.setPreferredSize(new java.awt.Dimension(100, 54));
+        txtRa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRaFocusLost(evt);
+            }
+        });
         painelLogin.add(txtRa);
 
+        lblErroRa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblErroRa.setForeground(new java.awt.Color(204, 0, 0));
         lblErroRa.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         painelLogin.add(lblErroRa);
 
@@ -113,25 +126,37 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         painelLogin.add(lblSenha);
 
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusLost(evt);
+            }
+        });
         painelLogin.add(txtSenha);
 
+        lblErroSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblErroSenha.setForeground(new java.awt.Color(204, 0, 0));
         lblErroSenha.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblErroSenha.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         painelLogin.add(lblErroSenha);
 
-        btnEntrar.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
-        btnEntrar.setText("EMPRESTAR / DEVOLVER");
-        btnEntrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 0))); // NOI18N
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+        lblResposta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblResposta.setForeground(new java.awt.Color(204, 0, 51));
+        lblResposta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        painelLogin.add(lblResposta);
+
+        btnEmprestarDevolver.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        btnEmprestarDevolver.setText("EMPRESTAR / DEVOLVER");
+        btnEmprestarDevolver.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 0))); // NOI18N
+        btnEmprestarDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
+                btnEmprestarDevolverActionPerformed(evt);
             }
         });
-        painelLogin.add(btnEntrar);
+        painelLogin.add(btnEmprestarDevolver);
 
         painelBorda.add(painelLogin);
 
-        painelCentral.add(painelBorda);
+        painelCentral.add(painelBorda, new java.awt.GridBagConstraints());
 
         painelConteudo.add(painelCentral, java.awt.BorderLayout.CENTER);
 
@@ -140,83 +165,66 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+    private void btnEmprestarDevolverActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEmprestarDevolverActionPerformed
+        lblResposta.setText("");
+
+        String ra = this.txtRa.getText();
+        char[] caracteresSenha = this.txtSenha.getPassword();
+        String senha = new String(caracteresSenha);
+
+        if (ra == null || ra.isEmpty()) {
+            lblErroRa.setText(MensagemUtil.LOGIN_RA_OBRIGATORIO);
+            return;
+        }
+
+        if (senha.isEmpty()) {
+            lblErroSenha.setText(MensagemUtil.LOGIN_SENHA_OBRIGATORIA);
+            return;
+        }
+
         try {
-            String ra = this.txtRa.getText();
-            char[] caracteresSenha = this.txtSenha.getPassword();
-            String senha = new String(caracteresSenha);
             Estudante estudante = LoginServico.verificaEstudante(ra, senha);
             txtSenha.setText("");
             txtRa.setText("");
 
             if (EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa()) == null) {
-                System.setProperty("ra", estudante.getRa());
                 EstudantesEmprestimoUI estudanteEmprestimoUI = new EstudantesEmprestimoUI(this);
                 estudanteEmprestimoUI.setLocationRelativeTo(this);
                 estudanteEmprestimoUI.setVisible(true);
-
             } else {
-                System.setProperty("ra", estudante.getRa());
                 EstudantesDevolucaoUI estudanteDevolucaoUUI = new EstudantesDevolucaoUI(this);
                 estudanteDevolucaoUUI.setVisible(true);
             }
         } catch (LoginException e) {
-            // TODO resposta joptionpane
+            lblResposta.setText(e.getMessage());
         }
-    }//GEN-LAST:event_btnEntrarActionPerformed
+    }// GEN-LAST:event_btnEmprestarDevolverActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmprestimoEstudanteUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmprestimoEstudanteUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmprestimoEstudanteUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmprestimoEstudanteUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
+    private void txtRaFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtRaFocusLost
+        if (txtRa.getText() == null || txtRa.getText().isEmpty()) {
+            lblErroRa.setText(MensagemUtil.LOGIN_RA_OBRIGATORIO);
+        } else {
+            lblErroRa.setText("");
         }
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
+    }// GEN-LAST:event_txtRaFocusLost
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmprestimoEstudanteUI().setVisible(true);
-            }
-        });
-    }
+    private void txtSenhaFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtSenhaFocusLost
+        char[] caracteresSenha = this.txtSenha.getPassword();
+        String senha = new String(caracteresSenha);
+        if (senha.isEmpty()) {
+            lblErroSenha.setText(MensagemUtil.LOGIN_SENHA_OBRIGATORIA);
+        } else {
+            lblErroSenha.setText("");
+        }
+    }// GEN-LAST:event_txtSenhaFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnEntrar;
+    private javax.swing.JToggleButton btnEmprestarDevolver;
     private javax.swing.JLabel lblErroRa;
     private javax.swing.JLabel lblErroSenha;
     private javax.swing.JLabel lblIconeIFPR;
     private javax.swing.JLabel lblRa;
+    private javax.swing.JLabel lblResposta;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTituloSistema;
     private javax.swing.JPanel painelBorda;

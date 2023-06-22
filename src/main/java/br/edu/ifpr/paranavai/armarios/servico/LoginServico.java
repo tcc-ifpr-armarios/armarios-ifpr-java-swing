@@ -26,8 +26,7 @@ public class LoginServico {
     }
 
     public static Estudante verificaEstudante(String ra, String senha) throws LoginException {
-        //String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
-        String senhaCriptografada = senha;
+        String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
         Estudante estudante = EstudanteServico.buscarUnicoPorRa(ra);
 
         if (estudante == null) {

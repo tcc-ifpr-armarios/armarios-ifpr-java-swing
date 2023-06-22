@@ -13,7 +13,6 @@ import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI;
-import br.edu.ifpr.paranavai.armarios.visao.LoginEstudanteUI;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.ArmarioComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
 import java.util.logging.Level;
@@ -29,7 +28,7 @@ import javax.swing.SwingUtilities;
 public class EstudantesEmprestimoUI extends javax.swing.JDialog {
 
     private Emprestimo emprestimo = new Emprestimo();
-    private LoginEstudanteUI loginEstudanteUI;
+    private EmprestimoEstudanteUI emprestimoEstudanteUI;
     Localizacao localEscolhido = null;
     Armario armarioEscolhido = null;
     Estudante estudante = EstudanteServico.buscarUnicoPorRa(System.getProperty("ra"));
