@@ -27,19 +27,36 @@ public class InicioDashboard extends javax.swing.JPanel {
         imgAbrirSistemaEmprestimo = new javax.swing.JLabel();
         lblAbrirSistemaEmprestimo = new javax.swing.JLabel();
         painelIndicadores = new javax.swing.JPanel();
-        areaAlunosAtivos = new javax.swing.JPanel();
-        imgAlunosAtivos = new javax.swing.JLabel();
-        lblEstudantesAtivos = new javax.swing.JLabel();
-        lblValorEstudantesAtivos = new javax.swing.JLabel();
-        areaAlunosAtivos1 = new javax.swing.JPanel();
-        imgAlunosAtivos1 = new javax.swing.JLabel();
-        lblEstudantesAtivos1 = new javax.swing.JLabel();
-        lblValorEstudantesAtivos1 = new javax.swing.JLabel();
+        cardEstudantes = new javax.swing.JPanel();
+        detalheVisualEstudantes = new javax.swing.JPanel();
+        grupoInformacaoEstudantes = new javax.swing.JPanel();
+        painelIndicadorEstudantes = new javax.swing.JPanel();
+        lblDescricaoEstudantes = new javax.swing.JLabel();
+        lblValorEstudantes = new javax.swing.JLabel();
+        painelIconeEstudantes = new javax.swing.JPanel();
+        imgIcon = new javax.swing.JLabel();
+        cardArmarios = new javax.swing.JPanel();
+        detalheVisualArmarios = new javax.swing.JPanel();
+        grupoInformacaoArmarios = new javax.swing.JPanel();
+        painelIndicadorArmarios = new javax.swing.JPanel();
+        lblDescricaoArmarios = new javax.swing.JLabel();
+        lblValorArmarios = new javax.swing.JLabel();
+        painelIconeArmarios = new javax.swing.JPanel();
+        imgIconArmarios = new javax.swing.JLabel();
+        cardEmprestimos = new javax.swing.JPanel();
+        detalheVisualEmprestimos = new javax.swing.JPanel();
+        grupoInformacaoEmprestimos = new javax.swing.JPanel();
+        painelIndicadorEmprestimos = new javax.swing.JPanel();
+        lblDescricaoEmprestimos = new javax.swing.JLabel();
+        lblValorEmprestimos = new javax.swing.JLabel();
+        painelIconeEmprestimos = new javax.swing.JPanel();
+        imgIconEmprestimos = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        painelAbrirSistema.setBackground(new java.awt.Color(247, 248, 252));
         painelAbrirSistema.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        painelAbrirSistema.setLayout(new java.awt.GridLayout());
+        painelAbrirSistema.setLayout(new java.awt.GridLayout(1, 0));
 
         btnAbrirSistemaEmprestimo.setBackground(new java.awt.Color(8, 166, 97));
         btnAbrirSistemaEmprestimo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,7 +80,7 @@ public class InicioDashboard extends javax.swing.JPanel {
                 .addComponent(imgAbrirSistemaEmprestimo)
                 .addGap(20, 20, 20)
                 .addComponent(lblAbrirSistemaEmprestimo)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(484, Short.MAX_VALUE))
         );
         btnAbrirSistemaEmprestimoLayout.setVerticalGroup(
             btnAbrirSistemaEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,91 +92,172 @@ public class InicioDashboard extends javax.swing.JPanel {
 
         add(painelAbrirSistema, java.awt.BorderLayout.PAGE_START);
 
-        painelIndicadores.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        painelIndicadores.setBackground(new java.awt.Color(247, 248, 252));
+        painelIndicadores.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         painelIndicadores.setMinimumSize(new java.awt.Dimension(100, 100));
-        painelIndicadores.setLayout(new java.awt.GridLayout(2, 0, 5, 5));
+        painelIndicadores.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        areaAlunosAtivos.setBackground(new java.awt.Color(8, 166, 97));
-        areaAlunosAtivos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                areaAlunosAtivosMousePressed(evt);
-            }
-        });
+        cardEstudantes.setMinimumSize(new java.awt.Dimension(326, 150));
+        cardEstudantes.setPreferredSize(new java.awt.Dimension(280, 150));
+        cardEstudantes.setLayout(new java.awt.BorderLayout());
 
-        imgAlunosAtivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgAlunosAtivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/abrir-branco-64px.png"))); // NOI18N
+        detalheVisualEstudantes.setBackground(new java.awt.Color(8, 166, 97));
+        detalheVisualEstudantes.setMinimumSize(new java.awt.Dimension(5, 100));
+        detalheVisualEstudantes.setPreferredSize(new java.awt.Dimension(5, 347));
 
-        lblEstudantesAtivos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEstudantesAtivos.setForeground(new java.awt.Color(255, 255, 255));
-        lblEstudantesAtivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEstudantesAtivos.setText("Quantidade de Estudantes Ativos");
-
-        lblValorEstudantesAtivos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblValorEstudantesAtivos.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorEstudantesAtivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorEstudantesAtivos.setText("Valor");
-
-        javax.swing.GroupLayout areaAlunosAtivosLayout = new javax.swing.GroupLayout(areaAlunosAtivos);
-        areaAlunosAtivos.setLayout(areaAlunosAtivosLayout);
-        areaAlunosAtivosLayout.setHorizontalGroup(
-            areaAlunosAtivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEstudantesAtivos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(imgAlunosAtivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblValorEstudantesAtivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout detalheVisualEstudantesLayout = new javax.swing.GroupLayout(detalheVisualEstudantes);
+        detalheVisualEstudantes.setLayout(detalheVisualEstudantesLayout);
+        detalheVisualEstudantesLayout.setHorizontalGroup(
+            detalheVisualEstudantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
         );
-        areaAlunosAtivosLayout.setVerticalGroup(
-            areaAlunosAtivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(areaAlunosAtivosLayout.createSequentialGroup()
-                .addComponent(imgAlunosAtivos)
-                .addGap(5, 5, 5)
-                .addComponent(lblEstudantesAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lblValorEstudantesAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+        detalheVisualEstudantesLayout.setVerticalGroup(
+            detalheVisualEstudantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
 
-        painelIndicadores.add(areaAlunosAtivos);
+        cardEstudantes.add(detalheVisualEstudantes, java.awt.BorderLayout.LINE_START);
 
-        areaAlunosAtivos1.setBackground(new java.awt.Color(8, 166, 97));
-        areaAlunosAtivos1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                areaAlunosAtivos1MousePressed(evt);
-            }
-        });
+        grupoInformacaoEstudantes.setLayout(new java.awt.BorderLayout());
 
-        imgAlunosAtivos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgAlunosAtivos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/abrir-branco-64px.png"))); // NOI18N
+        painelIndicadorEstudantes.setBackground(new java.awt.Color(255, 255, 255));
+        painelIndicadorEstudantes.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 20, 30, 10));
+        painelIndicadorEstudantes.setLayout(new java.awt.GridLayout(2, 1));
 
-        lblEstudantesAtivos1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblEstudantesAtivos1.setForeground(new java.awt.Color(255, 255, 255));
-        lblEstudantesAtivos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEstudantesAtivos1.setText("Quantidade de Estudantes Ativos");
+        lblDescricaoEstudantes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescricaoEstudantes.setForeground(new java.awt.Color(8, 166, 97));
+        lblDescricaoEstudantes.setText("ESTUDANTES ATIVOS");
+        painelIndicadorEstudantes.add(lblDescricaoEstudantes);
 
-        lblValorEstudantesAtivos1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblValorEstudantesAtivos1.setForeground(new java.awt.Color(255, 255, 255));
-        lblValorEstudantesAtivos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblValorEstudantesAtivos1.setText("Valor");
+        lblValorEstudantes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblValorEstudantes.setText("VALOR");
+        painelIndicadorEstudantes.add(lblValorEstudantes);
 
-        javax.swing.GroupLayout areaAlunosAtivos1Layout = new javax.swing.GroupLayout(areaAlunosAtivos1);
-        areaAlunosAtivos1.setLayout(areaAlunosAtivos1Layout);
-        areaAlunosAtivos1Layout.setHorizontalGroup(
-            areaAlunosAtivos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEstudantesAtivos1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(imgAlunosAtivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblValorEstudantesAtivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        grupoInformacaoEstudantes.add(painelIndicadorEstudantes, java.awt.BorderLayout.CENTER);
+
+        painelIconeEstudantes.setBackground(new java.awt.Color(255, 255, 255));
+        painelIconeEstudantes.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
+        painelIconeEstudantes.setMinimumSize(new java.awt.Dimension(50, 100));
+        painelIconeEstudantes.setLayout(new java.awt.GridLayout(1, 0));
+
+        imgIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/estudante-cinza-64px.png"))); // NOI18N
+        imgIcon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        painelIconeEstudantes.add(imgIcon);
+
+        grupoInformacaoEstudantes.add(painelIconeEstudantes, java.awt.BorderLayout.LINE_END);
+
+        cardEstudantes.add(grupoInformacaoEstudantes, java.awt.BorderLayout.CENTER);
+
+        painelIndicadores.add(cardEstudantes);
+
+        cardArmarios.setMinimumSize(new java.awt.Dimension(326, 150));
+        cardArmarios.setPreferredSize(new java.awt.Dimension(280, 150));
+        cardArmarios.setLayout(new java.awt.BorderLayout());
+
+        detalheVisualArmarios.setBackground(new java.awt.Color(84, 199, 222));
+        detalheVisualArmarios.setMinimumSize(new java.awt.Dimension(5, 100));
+        detalheVisualArmarios.setPreferredSize(new java.awt.Dimension(5, 347));
+
+        javax.swing.GroupLayout detalheVisualArmariosLayout = new javax.swing.GroupLayout(detalheVisualArmarios);
+        detalheVisualArmarios.setLayout(detalheVisualArmariosLayout);
+        detalheVisualArmariosLayout.setHorizontalGroup(
+            detalheVisualArmariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
         );
-        areaAlunosAtivos1Layout.setVerticalGroup(
-            areaAlunosAtivos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(areaAlunosAtivos1Layout.createSequentialGroup()
-                .addComponent(imgAlunosAtivos1)
-                .addGap(5, 5, 5)
-                .addComponent(lblEstudantesAtivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(lblValorEstudantesAtivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+        detalheVisualArmariosLayout.setVerticalGroup(
+            detalheVisualArmariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
 
-        painelIndicadores.add(areaAlunosAtivos1);
+        cardArmarios.add(detalheVisualArmarios, java.awt.BorderLayout.LINE_START);
+
+        grupoInformacaoArmarios.setLayout(new java.awt.BorderLayout());
+
+        painelIndicadorArmarios.setBackground(new java.awt.Color(255, 255, 255));
+        painelIndicadorArmarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 20, 30, 10));
+        painelIndicadorArmarios.setLayout(new java.awt.GridLayout(2, 1));
+
+        lblDescricaoArmarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescricaoArmarios.setForeground(new java.awt.Color(84, 199, 222));
+        lblDescricaoArmarios.setText("ARMÁRIOS");
+        painelIndicadorArmarios.add(lblDescricaoArmarios);
+
+        lblValorArmarios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblValorArmarios.setText("VALOR");
+        painelIndicadorArmarios.add(lblValorArmarios);
+
+        grupoInformacaoArmarios.add(painelIndicadorArmarios, java.awt.BorderLayout.CENTER);
+
+        painelIconeArmarios.setBackground(new java.awt.Color(255, 255, 255));
+        painelIconeArmarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
+        painelIconeArmarios.setMinimumSize(new java.awt.Dimension(50, 100));
+        painelIconeArmarios.setLayout(new java.awt.GridLayout());
+
+        imgIconArmarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgIconArmarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/armario-cinza-64px.png"))); // NOI18N
+        imgIconArmarios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        painelIconeArmarios.add(imgIconArmarios);
+
+        grupoInformacaoArmarios.add(painelIconeArmarios, java.awt.BorderLayout.LINE_END);
+
+        cardArmarios.add(grupoInformacaoArmarios, java.awt.BorderLayout.CENTER);
+
+        painelIndicadores.add(cardArmarios);
+
+        cardEmprestimos.setMinimumSize(new java.awt.Dimension(326, 150));
+        cardEmprestimos.setPreferredSize(new java.awt.Dimension(280, 150));
+        cardEmprestimos.setLayout(new java.awt.BorderLayout());
+
+        detalheVisualEmprestimos.setBackground(new java.awt.Color(246, 194, 62));
+        detalheVisualEmprestimos.setMinimumSize(new java.awt.Dimension(5, 100));
+        detalheVisualEmprestimos.setPreferredSize(new java.awt.Dimension(5, 347));
+
+        javax.swing.GroupLayout detalheVisualEmprestimosLayout = new javax.swing.GroupLayout(detalheVisualEmprestimos);
+        detalheVisualEmprestimos.setLayout(detalheVisualEmprestimosLayout);
+        detalheVisualEmprestimosLayout.setHorizontalGroup(
+            detalheVisualEmprestimosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        detalheVisualEmprestimosLayout.setVerticalGroup(
+            detalheVisualEmprestimosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        cardEmprestimos.add(detalheVisualEmprestimos, java.awt.BorderLayout.LINE_START);
+
+        grupoInformacaoEmprestimos.setLayout(new java.awt.BorderLayout());
+
+        painelIndicadorEmprestimos.setBackground(new java.awt.Color(255, 255, 255));
+        painelIndicadorEmprestimos.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 20, 30, 10));
+        painelIndicadorEmprestimos.setLayout(new java.awt.GridLayout(2, 1));
+
+        lblDescricaoEmprestimos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescricaoEmprestimos.setForeground(new java.awt.Color(246, 194, 62));
+        lblDescricaoEmprestimos.setText("EMPRÉSTIMOS");
+        painelIndicadorEmprestimos.add(lblDescricaoEmprestimos);
+
+        lblValorEmprestimos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblValorEmprestimos.setText("VALOR");
+        painelIndicadorEmprestimos.add(lblValorEmprestimos);
+
+        grupoInformacaoEmprestimos.add(painelIndicadorEmprestimos, java.awt.BorderLayout.CENTER);
+
+        painelIconeEmprestimos.setBackground(new java.awt.Color(255, 255, 255));
+        painelIconeEmprestimos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
+        painelIconeEmprestimos.setMinimumSize(new java.awt.Dimension(50, 100));
+        painelIconeEmprestimos.setLayout(new java.awt.GridLayout());
+
+        imgIconEmprestimos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgIconEmprestimos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/chaves-cinza-64px.png"))); // NOI18N
+        imgIconEmprestimos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        painelIconeEmprestimos.add(imgIconEmprestimos);
+
+        grupoInformacaoEmprestimos.add(painelIconeEmprestimos, java.awt.BorderLayout.LINE_END);
+
+        cardEmprestimos.add(grupoInformacaoEmprestimos, java.awt.BorderLayout.CENTER);
+
+        painelIndicadores.add(cardEmprestimos);
 
         add(painelIndicadores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -169,28 +267,36 @@ public class InicioDashboard extends javax.swing.JPanel {
         loginEstudanteUI.setVisible(true);
     }//GEN-LAST:event_btnAbrirSistemaEmprestimoMousePressed
 
-    private void areaAlunosAtivosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaAlunosAtivosMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_areaAlunosAtivosMousePressed
-
-    private void areaAlunosAtivos1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaAlunosAtivos1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_areaAlunosAtivos1MousePressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel areaAlunosAtivos;
-    private javax.swing.JPanel areaAlunosAtivos1;
     private javax.swing.JPanel btnAbrirSistemaEmprestimo;
+    private javax.swing.JPanel cardArmarios;
+    private javax.swing.JPanel cardEmprestimos;
+    private javax.swing.JPanel cardEstudantes;
+    private javax.swing.JPanel detalheVisualArmarios;
+    private javax.swing.JPanel detalheVisualEmprestimos;
+    private javax.swing.JPanel detalheVisualEstudantes;
+    private javax.swing.JPanel grupoInformacaoArmarios;
+    private javax.swing.JPanel grupoInformacaoEmprestimos;
+    private javax.swing.JPanel grupoInformacaoEstudantes;
     private javax.swing.JLabel imgAbrirSistemaEmprestimo;
-    private javax.swing.JLabel imgAlunosAtivos;
-    private javax.swing.JLabel imgAlunosAtivos1;
+    private javax.swing.JLabel imgIcon;
+    private javax.swing.JLabel imgIconArmarios;
+    private javax.swing.JLabel imgIconEmprestimos;
     private javax.swing.JLabel lblAbrirSistemaEmprestimo;
-    private javax.swing.JLabel lblEstudantesAtivos;
-    private javax.swing.JLabel lblEstudantesAtivos1;
-    private javax.swing.JLabel lblValorEstudantesAtivos;
-    private javax.swing.JLabel lblValorEstudantesAtivos1;
+    private javax.swing.JLabel lblDescricaoArmarios;
+    private javax.swing.JLabel lblDescricaoEmprestimos;
+    private javax.swing.JLabel lblDescricaoEstudantes;
+    private javax.swing.JLabel lblValorArmarios;
+    private javax.swing.JLabel lblValorEmprestimos;
+    private javax.swing.JLabel lblValorEstudantes;
     private javax.swing.JPanel painelAbrirSistema;
+    private javax.swing.JPanel painelIconeArmarios;
+    private javax.swing.JPanel painelIconeEmprestimos;
+    private javax.swing.JPanel painelIconeEstudantes;
+    private javax.swing.JPanel painelIndicadorArmarios;
+    private javax.swing.JPanel painelIndicadorEmprestimos;
+    private javax.swing.JPanel painelIndicadorEstudantes;
     private javax.swing.JPanel painelIndicadores;
     // End of variables declaration//GEN-END:variables
 }
