@@ -37,7 +37,7 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        painelConteúdo = new javax.swing.JPanel();
+        painelConteudo = new javax.swing.JPanel();
         indexImg = new JPanel() {  
             public void paintComponent(Graphics g) {  
                 Image img = Toolkit.getDefaultToolkit().getImage(  
@@ -45,35 +45,38 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
                 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);  
             }  
         }; ;
-        lblTituloSistema = new javax.swing.JLabel();
+        lblResposta = new javax.swing.JLabel();
+        lblIconeIFPR = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         painelLogin = new javax.swing.JPanel();
         lblEmail = new javax.swing.JLabel();
         txtRa = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JToggleButton();
-        lblResposta = new javax.swing.JLabel();
-        lblIconeIFPR = new javax.swing.JLabel();
+        lblTituloSistema = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Empréstimo de Armários");
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        painelConteúdo.setBackground(new java.awt.Color(0, 153, 0));
-        painelConteúdo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-        painelConteúdo.setForeground(new java.awt.Color(255, 255, 255));
-        painelConteúdo.setLayout(new java.awt.GridLayout());
+        painelConteudo.setBackground(new java.awt.Color(0, 153, 0));
+        painelConteudo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        painelConteudo.setForeground(new java.awt.Color(255, 255, 255));
+        painelConteudo.setLayout(new java.awt.BorderLayout());
 
         indexImg.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 153, 0)));
+        indexImg.setLayout(new java.awt.BorderLayout());
 
-        lblTituloSistema.setFont(new java.awt.Font("Source Serif Pro Black", 0, 24)); // NOI18N
-        lblTituloSistema.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloSistema.setText(MensagemUtil.TITULO_SISTEMA);
-        lblTituloSistema.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblResposta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indexImg.add(lblResposta, java.awt.BorderLayout.PAGE_START);
+
+        lblIconeIFPR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeIFPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iflogomenor.png"))); // NOI18N
+        indexImg.add(lblIconeIFPR, java.awt.BorderLayout.PAGE_END);
 
         painelLogin.setBackground(new java.awt.Color(0, 153, 0));
         painelLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LOGIN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Source Serif Pro Black", 0, 12))); // NOI18N
@@ -144,44 +147,35 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblResposta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        lblIconeIFPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iflogomenor.png"))); // NOI18N
-
-        javax.swing.GroupLayout indexImgLayout = new javax.swing.GroupLayout(indexImg);
-        indexImg.setLayout(indexImgLayout);
-        indexImgLayout.setHorizontalGroup(
-            indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(indexImgLayout.createSequentialGroup()
-                .addContainerGap(341, Short.MAX_VALUE)
-                .addGroup(indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexImgLayout.createSequentialGroup()
-                        .addGroup(indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(painelLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTituloSistema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(69, 69, 69))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexImgLayout.createSequentialGroup()
-                        .addComponent(lblIconeIFPR)
-                        .addContainerGap())))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(painelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(89, 89, 89))
         );
-        indexImgLayout.setVerticalGroup(
-            indexImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(indexImgLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lblTituloSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(painelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(lblIconeIFPR)
-                .addContainerGap())
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
-        painelConteúdo.add(indexImg);
+        indexImg.add(jPanel1, java.awt.BorderLayout.LINE_END);
 
-        getContentPane().add(painelConteúdo);
+        lblTituloSistema.setFont(new java.awt.Font("Source Serif Pro Black", 0, 24)); // NOI18N
+        lblTituloSistema.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloSistema.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloSistema.setText(MensagemUtil.TITULO_SISTEMA);
+        lblTituloSistema.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        indexImg.add(lblTituloSistema, java.awt.BorderLayout.PAGE_START);
+
+        painelConteudo.add(indexImg, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(painelConteudo);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,42 +199,20 @@ public class LoginEstudanteUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRaMouseClicked
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        try {
-            String ra = this.txtRa.getText();
-            char[] caracteresSenha = this.txtSenha.getPassword();
-            String senha = new String(caracteresSenha);
-            Estudante estudante = LoginServico.verificaEstudante(ra, senha);
-            lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
-            txtSenha.setText("");
-            txtRa.setText("");
-            
-
-            if (EmprestimoServico.buscarAtivoPorRaDoEstudante(estudante.getRa()) == null) {
-                System.setProperty("ra", estudante.getRa());
-                EstudantesEmprestimoUI estudanteEmprestimoUI = new EstudantesEmprestimoUI(this);
-                estudanteEmprestimoUI.setLocationRelativeTo(this);
-                estudanteEmprestimoUI.setVisible(true);
-                
-            } else {
-                System.setProperty("ra", estudante.getRa());
-                EstudantesDevolucaoUI estudanteDevolucaoUUI = new EstudantesDevolucaoUI(this);
-                estudanteDevolucaoUUI.setVisible(true);
-            }
-        } catch (LoginException e) {
-            lblResposta.setText(e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEntrar;
     private javax.swing.JPanel indexImg;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblIconeIFPR;
     private javax.swing.JLabel lblResposta;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTituloSistema;
-    private javax.swing.JPanel painelConteúdo;
+    private javax.swing.JPanel painelConteudo;
     private javax.swing.JPanel painelLogin;
     private javax.swing.JTextField txtRa;
     private javax.swing.JPasswordField txtSenha;

@@ -55,7 +55,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         painelAbrirSistema.setBackground(new java.awt.Color(247, 248, 252));
-        painelAbrirSistema.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        painelAbrirSistema.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 5, 10, 5));
         painelAbrirSistema.setLayout(new java.awt.GridLayout(1, 0));
 
         btnAbrirSistemaEmprestimo.setBackground(new java.awt.Color(8, 166, 97));

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
 import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
@@ -16,10 +12,10 @@ import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI;
 import br.edu.ifpr.paranavai.armarios.visao.LoginEstudanteUI;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.ArmarioComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.combobox.LocalizacaoComboBoxModel;
-import br.edu.ifpr.paranavai.armarios.visao.emprestimo.IndexEmprestimoPanelUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -41,8 +37,8 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
     /**
      * Creates new form EstudanteEmprestimoDialog
      */
-    public EstudantesEmprestimoUI(LoginEstudanteUI loginEstudanteUI) {
-        super((JFrame) SwingUtilities.getWindowAncestor(loginEstudanteUI), true);
+    public EstudantesEmprestimoUI(EmprestimoEstudanteUI emprestimoEstudanteUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(emprestimoEstudanteUI), true);
         initComponents();
 
     }

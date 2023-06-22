@@ -13,9 +13,7 @@ import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
-import br.edu.ifpr.paranavai.armarios.visao.LoginEstudanteUI;
-import java.time.LocalDateTime;
+import br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -34,10 +32,10 @@ public class EstudantesDevolucaoUI extends javax.swing.JDialog {
     /**
      * Creates new form EstudanteDevolucaoUUI
      *
-     * @param loginEstudanteUI
+     * @param emprestimoEstudanteUI
      */
-    public EstudantesDevolucaoUI(LoginEstudanteUI loginEstudanteUI) {
-        super((JFrame) SwingUtilities.getWindowAncestor(loginEstudanteUI), true);
+    public EstudantesDevolucaoUI(EmprestimoEstudanteUI emprestimoEstudanteUI) {
+        super((JFrame) SwingUtilities.getWindowAncestor(emprestimoEstudanteUI), true);
         initComponents();
         setLocationRelativeTo(this);
     }
