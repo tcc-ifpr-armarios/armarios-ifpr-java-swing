@@ -26,8 +26,6 @@ import javax.swing.SwingUtilities;
 public class EstudantesEmprestimoUI extends javax.swing.JDialog {
 
     private EmprestimoEstudanteUI emprestimoEstudanteUI;
-    private Localizacao localizacao;
-    private Armario armarioEscolhido;
     private Estudante estudante;
 
     /**
@@ -41,7 +39,6 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
         super((JFrame) SwingUtilities.getWindowAncestor(emprestimoEstudanteUI), true);
         initComponents();
         this.estudante = estudante;
-        this.localizacao = localizacao;
         ArmarioComboBoxModel armarioComboBoxModel = ComboBoxServico.inicializaComboBoxArmarioAtivo(localizacao);
         cbxArmario.setModel(armarioComboBoxModel);
     }
@@ -136,6 +133,8 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarEmprestimoActionPerformed
+        Armario armarioEscolhido = (Armario) cbxArmario.getSelectedItem();
+        
         if (armarioEscolhido == null) {
             campoResposta.setText(MensagemUtil.ARMARIO_ESCOLHA_UM);
         } else {
@@ -143,7 +142,7 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
             emprestimo.setArmario(armarioEscolhido);
             emprestimo.setEstudante(estudante);
 
-            int resposta = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_EMPRESTIMO + " do armário " + armarioEscolhido.getNumero() + " na/no " + localizacao.getDescricao() + "?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
+            int resposta = JOptionPane.showConfirmDialog(null, MensagemUtil.EMPRESTIMO_CONFIRMA_EMPRESTIMO + " do armário " + armarioEscolhido.getNumero() + " na/no " + armarioEscolhido.getLocalizacao().getDescricao() + "?", "Confirmação", JOptionPane.OK_CANCEL_OPTION);
 
             if (resposta == JOptionPane.OK_OPTION) {
                 try {
