@@ -33,6 +33,6 @@ public interface EmprestimoDao {
 
     public Emprestimo inserir(Emprestimo emprestimo) throws EmprestimoException;
 
+    public Long quantidadeEmprestimosAtivos();
 
- 
 }

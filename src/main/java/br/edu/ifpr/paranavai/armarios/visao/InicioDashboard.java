@@ -1,6 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import javax.swing.JFrame;
+import br.edu.ifpr.paranavai.armarios.servico.IndicadorServico;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,6 +14,10 @@ public class InicioDashboard extends javax.swing.JPanel {
      */
     public InicioDashboard() {
         initComponents();
+
+        lblValorEstudantes.setText("" + IndicadorServico.quantidadeEstudantesAtivos());
+        lblValorArmarios.setText("" + IndicadorServico.quantidadeArmariosLivres());
+        lblValorEmprestimos.setText("" + IndicadorServico.quantidadeEmprestimosAtivos());
     }
 
     /**

@@ -87,9 +87,9 @@ public class ArmarioDaoImpl implements ArmarioDao {
     @Override
     public List<Armario> buscarAtivosPorIdLocalizacao(Integer idLocalizacao) {
         Query<Armario> query = this.sessao
-                .createQuery("from Armario a where a.localizacao.id = :id and a.ativo = :ativo", Armario.class);
+                .createQuery("from Armario a where a.localizacao.id = :id and a.status = :status", Armario.class);
         query.setParameter("id", idLocalizacao);
-        query.setParameter("ativo", true);
+        query.setParameter("status", StatusArmario.ATIVO);
         List<Armario> resultado = query.getResultList();
         return resultado;
     }
@@ -128,4 +128,13 @@ public class ArmarioDaoImpl implements ArmarioDao {
         Armario resultado = (Armario) query.uniqueResult();
         return resultado;
     }
+
+    @Override
+    public Long quantidadeArmariosLivres() {
+        Query query = this.sessao.createQuery(
+                "select count(*) from Armario a where a.status = :status", Long.class);
+        query.setParameter("status", StatusArmario.ATIVO);
+        return (Long) query.uniqueResult();
+    }
+
 }

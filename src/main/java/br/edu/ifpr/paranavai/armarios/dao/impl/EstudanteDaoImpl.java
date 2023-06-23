@@ -123,4 +123,14 @@ public class EstudanteDaoImpl implements EstudanteDao {
         List<Estudante> estudantes = query.getResultList();
         return estudantes;
     }
+
+    @Override
+    public Long quantidadeEstudantesAtivos() {
+        Query query = this.sessao.createQuery(
+                "select count(*) from Estudante e where e.ativo = :ativo", Long.class);
+        query.setParameter("ativo", true);
+        return (Long) query.uniqueResult();
+    }
+
+    
 }

@@ -30,4 +30,6 @@ public interface EstudanteDao {
     public Estudante inserir(Estudante estudante) throws EstudanteException;
 
     public List<Estudante> buscarEstudantesPorRa(String ra);
+
+    public Long quantidadeEstudantesAtivos();
 }

@@ -90,12 +90,11 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
                     "from Emprestimo e where e.estudante.ra = :ra and e.dataDevolucao IS NULL", Emprestimo.class);
             query.setParameter("ra", ra);
             Emprestimo resultado = query.getSingleResult();
-             return resultado;
+            return resultado;
         } catch (NoResultException e) {
             return null;
         }
 
-        
     }
 
     @Override
@@ -130,5 +129,12 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
         query.setParameter("id", idArmario);
         Emprestimo resultado = (Emprestimo) query.uniqueResult();
         return resultado;
+    }
+
+    @Override
+    public Long quantidadeEmprestimosAtivos() {
+        Query query = this.sessao.createQuery(
+                "select count(*) from Emprestimo e where e.dataDevolucao is null", Long.class);
+        return (Long) query.uniqueResult();
     }
 }
