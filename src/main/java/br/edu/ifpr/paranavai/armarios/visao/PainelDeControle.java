@@ -3,6 +3,7 @@ package br.edu.ifpr.paranavai.armarios.visao;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.armarios.IndexArmarioPanelUI;
+import br.edu.ifpr.paranavai.armarios.visao.concessao.IndexConcessaoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.curso.IndexCursoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.emprestimo.IndexEmprestimoPanelUI;
 import br.edu.ifpr.paranavai.armarios.visao.estudante.IndexEstudantePanelUI;
@@ -70,6 +71,9 @@ public class PainelDeControle extends javax.swing.JFrame {
         btnEmprestimo = new javax.swing.JPanel();
         imgEmprestimo = new javax.swing.JLabel();
         lblEmprestimo = new javax.swing.JLabel();
+        btnConcessao = new javax.swing.JPanel();
+        imgEmprestimo1 = new javax.swing.JLabel();
+        lblConcessoes = new javax.swing.JLabel();
         btnSair = new javax.swing.JPanel();
         imgSair = new javax.swing.JLabel();
         lblSair = new javax.swing.JLabel();
@@ -385,6 +389,45 @@ public class PainelDeControle extends javax.swing.JFrame {
 
         atalhosDoMenu.add(btnEmprestimo);
 
+        btnConcessao.setBackground(new java.awt.Color(9, 176, 56));
+        btnConcessao.setPreferredSize(new java.awt.Dimension(111, 40));
+        btnConcessao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConcessaohoverEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConcessaohoverExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnConcessaoMousePressed(evt);
+            }
+        });
+
+        imgEmprestimo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/historico-branco-24px.png"))); // NOI18N
+
+        lblConcessoes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblConcessoes.setForeground(new java.awt.Color(255, 255, 255));
+        lblConcessoes.setText("Concessões");
+
+        javax.swing.GroupLayout btnConcessaoLayout = new javax.swing.GroupLayout(btnConcessao);
+        btnConcessao.setLayout(btnConcessaoLayout);
+        btnConcessaoLayout.setHorizontalGroup(
+            btnConcessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnConcessaoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(imgEmprestimo1)
+                .addGap(20, 20, 20)
+                .addComponent(lblConcessoes)
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        btnConcessaoLayout.setVerticalGroup(
+            btnConcessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblConcessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(imgEmprestimo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        atalhosDoMenu.add(btnConcessao);
+
         menuLateral.add(atalhosDoMenu, java.awt.BorderLayout.CENTER);
 
         btnSair.setBackground(new java.awt.Color(9, 176, 56));
@@ -689,6 +732,23 @@ public class PainelDeControle extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnConcessaohoverEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcessaohoverEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConcessaohoverEntered
+
+    private void btnConcessaohoverExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcessaohoverExited
+        if (evt.getSource() instanceof JPanel && !evt.getSource().equals(painelAtivo)) {
+            JPanel panel = (JPanel) evt.getSource();
+            resetColor(panel);
+        }
+    }//GEN-LAST:event_btnConcessaohoverExited
+
+    private void btnConcessaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcessaoMousePressed
+        resetColor((JPanel) painelAtivo);
+        painelAtivo = evt.getSource();
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_ADMINISTRADOR, new IndexConcessaoPanelUI());
+    }//GEN-LAST:event_btnConcessaoMousePressed
+
     private void updateColorActive(MouseEvent evt) {
         Component[] components = evt.getComponent().getParent().getComponents();
         for (Component component : components) {
@@ -724,6 +784,7 @@ public class PainelDeControle extends javax.swing.JFrame {
     private javax.swing.JPanel atalhosDoMenu;
     private javax.swing.JPanel btnAdministrador;
     private javax.swing.JPanel btnArmarios;
+    private javax.swing.JPanel btnConcessao;
     private javax.swing.JPanel btnCurso;
     private javax.swing.JPanel btnEmprestimo;
     private javax.swing.JPanel btnEstudantes;
@@ -736,6 +797,7 @@ public class PainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel imgArmarios;
     private javax.swing.JLabel imgCurso;
     private javax.swing.JLabel imgEmprestimo;
+    private javax.swing.JLabel imgEmprestimo1;
     private javax.swing.JLabel imgEstudantes;
     private javax.swing.JLabel imgInicio;
     private javax.swing.JLabel imgLocalizacao;
@@ -747,6 +809,7 @@ public class PainelDeControle extends javax.swing.JFrame {
     private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblBreadcrumb;
     private javax.swing.JLabel lblCompras;
+    private javax.swing.JLabel lblConcessoes;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDesenvolvidoPor;

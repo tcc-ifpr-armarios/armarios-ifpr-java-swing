@@ -1,26 +1,27 @@
-package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
+package br.edu.ifpr.paranavai.armarios.visao.concessao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 
-public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
+public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
 
-    public VisualizarEmprestimoModalUI(JPanel parent, Emprestimo emprestimo) {
+    public VisualizarConcessaoModalUI(JPanel parent, Concessao concessao) {
         super((JFrame) SwingUtilities.getWindowAncestor(parent), true);
         initComponents();
-        preencheDados(emprestimo);
+        preencheDados(concessao);
     }
 
-    private void preencheDados(Emprestimo emprestimo) {
-        campoIdentificador.setText(emprestimo.getId().toString());
-        campoDataEmprestimo.setText(OperacaoUtil.formatarDataHora(emprestimo.getDataEmprestimo()));
-        campoDataDevolucao.setText(OperacaoUtil.formatarDataHora(emprestimo.getDataDevolucao()));
-        campoEstudante.setText(emprestimo.getEstudante().getNomeCompleto() + " " + emprestimo.getEstudante().getCurso().getNome());
-        campoArmario.setText(emprestimo.getArmario().getNumero());
-        campoLocalizacao.setText(emprestimo.getArmario().getLocalizacao().getDescricao());
+    private void preencheDados(Concessao concessao) {
+        campoIdentificador.setText(concessao.getId().toString());
+        campoDataConcessao.setText(OperacaoUtil.formatarDataHora(concessao.getDataConcessao()));
+        campoDataDevolucao.setText(OperacaoUtil.formatarDataHora(concessao.getDataDevolucao()));
+        campoServidor.setText(concessao.getServidor().getNomeCompleto() + " " + concessao.getServidor().getSiape());
+        campoArmario.setText(concessao.getArmario().getNumero());
+        campoLocalizacao.setText(concessao.getArmario().getLocalizacao().getDescricao());
+        campoDescricao.setText(concessao.getDescricao());
     }
 
     /**
@@ -35,16 +36,18 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
         panelSuperior = new javax.swing.JPanel();
         lblIdentificador = new javax.swing.JLabel();
         campoIdentificador = new javax.swing.JLabel();
-        lblDataEmprestimo = new javax.swing.JLabel();
-        campoDataEmprestimo = new javax.swing.JLabel();
+        lblDataConcessao = new javax.swing.JLabel();
+        campoDataConcessao = new javax.swing.JLabel();
         lblDataDevolucao = new javax.swing.JLabel();
         campoDataDevolucao = new javax.swing.JLabel();
         lblEstudante = new javax.swing.JLabel();
-        campoEstudante = new javax.swing.JLabel();
+        campoServidor = new javax.swing.JLabel();
         lblArmario = new javax.swing.JLabel();
         campoArmario = new javax.swing.JLabel();
         lblLocalizacao = new javax.swing.JLabel();
         campoLocalizacao = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        campoDescricao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro Acadêmico");
@@ -52,7 +55,7 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(100, 100));
         getContentPane().setLayout(new java.awt.BorderLayout(5, 0));
 
-        panelSuperior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        panelSuperior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da Concessão", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         panelSuperior.setMinimumSize(new java.awt.Dimension(100, 100));
 
         lblIdentificador.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -60,18 +63,18 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
 
         campoIdentificador.setText("...");
 
-        lblDataEmprestimo.setText("Data Empréstimo:");
+        lblDataConcessao.setText("Data Concessão:");
 
-        campoDataEmprestimo.setText("...");
+        campoDataConcessao.setText("...");
 
         lblDataDevolucao.setText("Data Devolução:");
 
         campoDataDevolucao.setText("...");
 
         lblEstudante.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEstudante.setText("Estudante:");
+        lblEstudante.setText("Servidor:");
 
-        campoEstudante.setText("...");
+        campoServidor.setText("...");
 
         lblArmario.setText("Armário:");
 
@@ -81,29 +84,43 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
 
         campoLocalizacao.setText("...");
 
+        jLabel1.setText("Descrição:");
+
+        campoDescricao.setText("...");
+
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
         panelSuperiorLayout.setHorizontalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblLocalizacao)
-                    .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblArmario)
-                        .addComponent(lblDataEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDataDevolucao)
-                        .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEstudante, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblArmario)
+                    .addComponent(lblDataConcessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDataDevolucao)
+                    .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelSuperiorLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblLocalizacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                    .addComponent(campoEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoArmario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoDataEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(5, 5, 5))
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                            .addComponent(campoServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoArmario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoDataConcessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
+                        .addComponent(campoLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addComponent(campoDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         panelSuperiorLayout.setVerticalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,8 +130,8 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
                     .addComponent(campoIdentificador))
                 .addGap(4, 4, 4)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDataEmprestimo)
-                    .addComponent(campoDataEmprestimo))
+                    .addComponent(lblDataConcessao)
+                    .addComponent(campoDataConcessao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDataDevolucao)
@@ -122,19 +139,26 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstudante)
-                    .addComponent(campoEstudante))
+                    .addComponent(campoServidor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblArmario)
                     .addComponent(campoArmario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLocalizacao)
                     .addComponent(campoLocalizacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(campoDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         getContentPane().add(panelSuperior, java.awt.BorderLayout.CENTER);
+        panelSuperior.getAccessibleContext().setAccessibleName("Dados da Concessão");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,14 +166,16 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel campoArmario;
+    private javax.swing.JLabel campoDataConcessao;
     private javax.swing.JLabel campoDataDevolucao;
-    private javax.swing.JLabel campoDataEmprestimo;
-    private javax.swing.JLabel campoEstudante;
+    private javax.swing.JLabel campoDescricao;
     private javax.swing.JLabel campoIdentificador;
     private javax.swing.JLabel campoLocalizacao;
+    private javax.swing.JLabel campoServidor;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblArmario;
+    private javax.swing.JLabel lblDataConcessao;
     private javax.swing.JLabel lblDataDevolucao;
-    private javax.swing.JLabel lblDataEmprestimo;
     private javax.swing.JLabel lblEstudante;
     private javax.swing.JLabel lblIdentificador;
     private javax.swing.JLabel lblLocalizacao;

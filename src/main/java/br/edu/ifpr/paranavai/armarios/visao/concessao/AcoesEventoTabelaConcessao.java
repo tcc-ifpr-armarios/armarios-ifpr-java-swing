@@ -1,7 +1,8 @@
-package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
+package br.edu.ifpr.paranavai.armarios.visao.concessao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+
+import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
+import br.edu.ifpr.paranavai.armarios.servico.ConcessaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Container;
@@ -10,36 +11,36 @@ import javax.swing.JTable;
 
 /**
  *
- * @author Professor Marcelo Figueiredo Terenciani
+ * @author Allan Fernando O de Andrade
  */
-public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
+public class AcoesEventoTabelaConcessao implements AcoesEventoTabela {
 
     @Override
     public void aoEditar(JTable tabela, int linha) {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
-        IndexEmprestimoPanelUI origem = getOrigem(tabela);
+        IndexConcessaoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
+        Concessao concessao = ConcessaoServico.buscarUnicoPorId(identificador);
 
-        JOptionPane.showConfirmDialog(origem, "Implementar Devolução do ID " + emprestimo);
+        JOptionPane.showConfirmDialog(origem, "Implementar Devolução do ID " + concessao);
     }
 
     @Override
     public void aoExcluir(JTable tabela, int linha) {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
-        IndexEmprestimoPanelUI origem = getOrigem(tabela);
+        IndexConcessaoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
+        Concessao concessao = ConcessaoServico.buscarUnicoPorId(identificador);
 
-        String mensagem = MensagemUtil.ESTUDANTE_EXCLUSAO_CONFIRMACAO + " '" + emprestimo.getId() + "'?";
+        String mensagem = MensagemUtil.ESTUDANTE_EXCLUSAO_CONFIRMACAO + " '" + concessao.getId() + "'?";
 
         int opcao = JOptionPane.showConfirmDialog(origem, mensagem, MensagemUtil.TITULO_ATENCAO, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
         if (opcao == 0) {
             try {
-                EmprestimoServico.excluir(emprestimo);
+                ConcessaoServico.excluir(concessao);
                 JOptionPane.showMessageDialog(origem, MensagemUtil.ESTUDANTE_EXCLUSAO_SUCESSO, MensagemUtil.TITULO_INFORMACAO, JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -53,22 +54,22 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
     public void aoVisualizar(JTable tabela, int linha) {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
-        IndexEmprestimoPanelUI origem = getOrigem(tabela);
+        IndexConcessaoPanelUI origem = getOrigem(tabela);
 
-        Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
+        Concessao concessao = ConcessaoServico.buscarUnicoPorId(identificador);
 
-        VisualizarEmprestimoModalUI form = new VisualizarEmprestimoModalUI(origem, emprestimo);
+        VisualizarConcessaoModalUI form = new VisualizarConcessaoModalUI(origem, concessao);
 
         form.setLocationRelativeTo(tabela);
         form.setVisible(true);
     }
 
-    private IndexEmprestimoPanelUI getOrigem(JTable tabela) {
-        IndexEmprestimoPanelUI origem = null;
+    private IndexConcessaoPanelUI getOrigem(JTable tabela) {
+        IndexConcessaoPanelUI origem = null;
         Container c = tabela.getParent();
         while (c != null) {
-            if (c.getParent() instanceof IndexEmprestimoPanelUI) {
-                origem = (IndexEmprestimoPanelUI) c.getParent();
+            if (c.getParent() instanceof IndexConcessaoPanelUI) {
+                origem = (IndexConcessaoPanelUI) c.getParent();
                 break;
             } else {
                 c = c.getParent();

@@ -1,4 +1,5 @@
-package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
+package br.edu.ifpr.paranavai.armarios.visao.concessao;
+
 
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
 import java.awt.Color;
@@ -11,7 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class RenderizadorDasAcoesDaCelulaEmprestimo extends DefaultTableCellRenderer {
+public class RenderizadorDasAcoesDaCelulaConcessao extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
