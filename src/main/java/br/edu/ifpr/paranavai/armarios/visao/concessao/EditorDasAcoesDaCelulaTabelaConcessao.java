@@ -1,30 +1,29 @@
-package br.edu.ifpr.paranavai.armarios.visao.ocupados;
+package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
 import java.awt.Component;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
-
 /**
  *
- * @author Allan Fernando O de Andrade
+ * @author Professor Marcelo Figueiredo Terenciani
  */
-public class EditorDasAcoesDaCelulaOcupadosUI extends DefaultCellEditor {
+public class EditorDasAcoesDaCelulaTabelaEmprestimo extends DefaultCellEditor {
 
     private AcoesEventoTabela evento;
 
-    public EditorDasAcoesDaCelulaOcupadosUI(AcoesEventoTabela evento) {
+    public EditorDasAcoesDaCelulaTabelaEmprestimo(AcoesEventoTabela evento) {
         super(new JCheckBox());
         this.evento = evento;
     }
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PainelAcoesUI acoes = new PainelAcoesUI(true, false, false);
+        PainelAcoesUI acoes = new PainelAcoesUI(true, true, true);
 
         acoes.iniciarEventos(evento, table, row);
         acoes.setBackground(table.getSelectionBackground());
