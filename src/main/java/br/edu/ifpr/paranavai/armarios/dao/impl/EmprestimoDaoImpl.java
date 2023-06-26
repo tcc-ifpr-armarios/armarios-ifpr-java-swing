@@ -10,7 +10,6 @@ import br.edu.ifpr.paranavai.armarios.dao.EmprestimoDao;
 import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import jakarta.persistence.NoResultException;
 
 /**
  *
@@ -85,16 +84,11 @@ public class EmprestimoDaoImpl implements EmprestimoDao {
 
     @Override
     public Emprestimo buscarAtivoPorRaDoEstudante(String ra) {
-        try {
-            Query<Emprestimo> query = this.sessao.createQuery(
-                    "from Emprestimo e where e.estudante.ra = :ra and e.dataDevolucao IS NULL", Emprestimo.class);
-            query.setParameter("ra", ra);
-            Emprestimo resultado = query.getSingleResult();
-            return resultado;
-        } catch (NoResultException e) {
-            return null;
-        }
-
+        Query<Emprestimo> query = this.sessao.createQuery(
+                "from Emprestimo e where e.estudante.ra = :ra and e.dataDevolucao IS NULL", Emprestimo.class);
+        query.setParameter("ra", ra);
+        Emprestimo resultado = (Emprestimo) query.uniqueResult();
+        return resultado;
     }
 
     @Override
