@@ -5,6 +5,7 @@ import br.edu.ifpr.paranavai.armarios.excecoes.LoginException;
 import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.servico.LoginServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
+import br.edu.ifpr.paranavai.armarios.visao.utils.Carregando;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -235,19 +236,19 @@ public class IndexLoginUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IndexLoginUI.class.getName())
-                    .log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IndexLoginUI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        // </editor-fold>
+        
         // </editor-fold>
         // </editor-fold>
         // </editor-fold>
@@ -260,8 +261,16 @@ public class IndexLoginUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HibernateUtil.getSession();
-                new IndexLoginUI().setVisible(true);
+                IndexLoginUI index = new IndexLoginUI();
+                Carregando carregando = new Carregando(index);
+                try {
+                    carregando.setVisible(true);
+                    HibernateUtil.getSession();
+                    carregando.setVisible(false);
+                } finally {
+                    carregando.dispose();
+                    index.setVisible(true);
+                }
             }
         });
     }
