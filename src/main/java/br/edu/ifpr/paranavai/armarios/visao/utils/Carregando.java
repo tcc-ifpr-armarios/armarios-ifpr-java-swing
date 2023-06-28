@@ -4,17 +4,22 @@ package br.edu.ifpr.paranavai.armarios.visao.utils;
  *
  * @author Ifpr
  */
-public class Carregando extends javax.swing.JDialog {
+public class Carregando extends javax.swing.JFrame {
 
     /**
      * Creates new form Carregando
      *
      * @param parent
      */
-    public Carregando(java.awt.Frame parent) {
-        super(parent, false);
+    public Carregando(java.awt.Component parent) {
         this.setLocationRelativeTo(parent);
         initComponents();
+    }
+
+    public Carregando() {
+        this.setLocationRelativeTo(null);
+        initComponents();
+        setBackground(new java.awt.Color(0.0f, 0.0f, 0.0f, 0.0f));
     }
 
     /**
@@ -29,16 +34,14 @@ public class Carregando extends javax.swing.JDialog {
         gifCarregando = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(100, 100));
         setMinimumSize(new java.awt.Dimension(100, 100));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(100, 100));
         setResizable(false);
         setSize(new java.awt.Dimension(100, 100));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
-        gifCarregando.setBackground(new java.awt.Color(255, 255, 255));
+        gifCarregando.setBackground(new java.awt.Color(0.0f, 0.0f, 0.0f, 0.0f));
         gifCarregando.setForeground(new java.awt.Color(255, 255, 255));
         gifCarregando.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gifCarregando.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/loading100px.gif"))); // NOI18N

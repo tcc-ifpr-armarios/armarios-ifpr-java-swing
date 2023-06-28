@@ -240,39 +240,17 @@ public class IndexLoginUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(IndexLoginUI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
-        // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                IndexLoginUI index = new IndexLoginUI();
-                Carregando carregando = new Carregando(index);
-                try {
-                    carregando.setVisible(true);
-                    HibernateUtil.getSession();
-                    carregando.setVisible(false);
-                } finally {
-                    carregando.dispose();
-                    index.setVisible(true);
-                }
-            }
-        });
+        Carregando carregando = new Carregando();
+        try {
+            carregando.setVisible(true);
+            HibernateUtil.getSession();
+        } finally {
+            new IndexLoginUI().setVisible(true);
+            carregando.setVisible(false);
+            carregando.dispose();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
