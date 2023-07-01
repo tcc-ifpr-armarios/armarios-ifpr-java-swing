@@ -1,11 +1,18 @@
 package br.edu.ifpr.paranavai.armarios.visao.concessao;
 
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.excecoes.ConcessaoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.ConcessaoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Container;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -20,10 +27,29 @@ public class AcoesEventoTabelaConcessao implements AcoesEventoTabela {
         int identificador = (int) tabela.getModel().getValueAt(linha, 0);
 
         IndexConcessaoPanelUI origem = getOrigem(tabela);
-
         Concessao concessao = ConcessaoServico.buscarUnicoPorId(identificador);
-
-        JOptionPane.showConfirmDialog(origem, "Implementar Devolução do ID " + concessao);
+        Armario armario = concessao.getArmario();
+        if(concessao.getDataDevolucao() == null){
+        int opcao = JOptionPane.showConfirmDialog(origem, MensagemUtil.CONCESSAO_CONFIMA_DEVOLUCAO + concessao.getArmario().getNumero() + "?");
+        if(opcao == 0){
+            concessao.setDataDevolucao();
+            armario.setStatus(StatusArmario.ATIVO);
+            try {
+                ConcessaoServico.atualizar(concessao);
+            } catch (ConcessaoException ex) {
+                Logger.getLogger(AcoesEventoTabelaConcessao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                ArmarioServico.atualizar(armario);
+                
+            } catch (ArmarioException ex) {
+                Logger.getLogger(AcoesEventoTabelaConcessao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        } else {
+            JOptionPane.showMessageDialog(origem,  MensagemUtil.CONCESSAO_JA_FINALIZADA);
+        }
     }
 
     @Override

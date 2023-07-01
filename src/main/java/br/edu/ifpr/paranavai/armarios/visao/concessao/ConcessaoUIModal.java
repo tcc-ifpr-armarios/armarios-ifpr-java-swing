@@ -25,26 +25,22 @@ import javax.swing.SwingUtilities;
  */
 public class ConcessaoUIModal extends javax.swing.JDialog {
 
-   
     private Concessao concessao;
     private IndexConcessaoPanelUI indexConcessaoPanelUI;
 
-
-    Servidor servidor = ServidorServico.buscarUnicoPorEmailOuSiape(System.getProperty("email"));
+    Servidor servidor = ServidorServico.buscarUnicoPorEmailOuSiape(System.getProperty("user"));
 
     public ConcessaoUIModal(IndexConcessaoPanelUI indexConcessaoPanelUI) {
         super((JFrame) SwingUtilities.getWindowAncestor(indexConcessaoPanelUI), true);
-
+     
         initComponents();
         this.indexConcessaoPanelUI = indexConcessaoPanelUI;
-       
+
         this.concessao = new Concessao();
 
-      
         LocalizacaoComboBoxModel localizacaoComboBoxModel = ComboBoxServico.inicializaComboBoxLocalizacao();
 
         cbxLocalizacaoArmarioConcessao.setModel(localizacaoComboBoxModel);
-        
 
         this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
     }
@@ -241,12 +237,13 @@ public class ConcessaoUIModal extends javax.swing.JDialog {
 
     private void salvarConcessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarConcessaoActionPerformed
         try {
+            System.out.print(System.getProperty("user"));
             concessao.setArmario((Armario) cbxArmarioConcessao.getSelectedItem());
             concessao.setServidor(servidor);
             concessao.setDescricao(informacoes.getText());
 
             ConcessaoServico.inserir(concessao);
-            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_SUCESSO);
+            JOptionPane.showMessageDialog(this, MensagemUtil.CONCESSAO_CONCEDIDA);
             Armario armario = ((Armario) cbxArmarioConcessao.getSelectedItem());
             armario.setStatus(StatusArmario.OCUPADO);
             ArmarioServico.atualizar(armario);
@@ -256,7 +253,7 @@ public class ConcessaoUIModal extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, e.getMessage(), MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, MensagemUtil.CONCESSAO_SERVIDOR_ERRO + e, MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_salvarConcessaoActionPerformed
 

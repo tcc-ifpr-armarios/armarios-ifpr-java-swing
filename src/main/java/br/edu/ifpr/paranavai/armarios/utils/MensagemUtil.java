@@ -47,6 +47,13 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO = "Confirma a devolucão do armário: ";
     public static final String EMPRESTIMO_JA_FINALIZADO = "Não foi possível realizar essa operação! Este empréstimo já foi finalizado!";
     public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
+        public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR = "Confirma a devolução da chave do armario ";
+    
+    public static final String CONCESSAO_CONCEDIDA = "Concessão concedida";
+    public static final String CONCESSAO_SERVIDOR_ERRO = "Erro ao salvar a concessão: Servidor não informado";
+    public static final String CONCESSAO_JA_FINALIZADA = "Concessão já finalizada";
+    public static final String CONCESSAO_CONFIMA_DEVOLUCAO = "Confirma o fim da concessão do armário número ";
+
 
     public static final String ESTUDANTE_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o estudante";
     public static final String ESTUDANTE_ATUALIZACAO_SUCESSO = "Estudante Atualizado com Sucesso!";
@@ -95,6 +102,7 @@ public class MensagemUtil {
     public static final String SERVIDOR_INSERCAO_SUCESSO = "Servidor Cadastrado com Sucesso!";
 
     public static final String TITULO_AREA_ADMINISTRADOR = "Gerenciamento de Administradores";
+    public static final String TITULO_AREA_CONCESSAO = "Gerenciamento de Concessões";
     public static final String TITULO_AREA_ARMARIO = "Gerenciamento de Armários";
     public static final String TITULO_AREA_CURSO = "Gerenciamento de Cursos";
     public static final String TITULO_AREA_EMPRESTIMO = "Gerenciamento de Empréstimos";
@@ -108,5 +116,9 @@ public class MensagemUtil {
     public static final String VALIDACAO_EMAIL_INVALIDO = "E-mail inválido!";
     public static final String VALIDACAO_SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
     public static final String VALIDACAO_TELEFONE_INVALIDO = "Telefone inválido!";
+  
+
+   
+    
 
 }

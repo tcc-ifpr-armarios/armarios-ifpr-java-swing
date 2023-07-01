@@ -34,8 +34,8 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
         AcoesEventoTabela evento = new AcoesEventoTabelaConcessao();
 
         DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblConcessao.getModel();
-        tblConcessao.getColumnModel().getColumn(6).setCellRenderer(new RenderizadorDasAcoesDaCelulaConcessao());
-        tblConcessao.getColumnModel().getColumn(6).setCellEditor(new EditorDasAcoesDaCelulaTabelaConcessao(evento));
+        tblConcessao.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaConcessao());
+        tblConcessao.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaTabelaConcessao(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
@@ -43,13 +43,14 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
 
         for (int i = 0; i < lista.size(); i++) {
             Concessao mostraConcessao = lista.get(i);
-            Object[] dadosLinha = new Object[6];
+            Object[] dadosLinha = new Object[7];
             dadosLinha[0] = mostraConcessao.getId();
             dadosLinha[1] = OperacaoUtil.formatarDataHora(mostraConcessao.getDataConcessao());
             dadosLinha[2] = OperacaoUtil.formatarDataHora(mostraConcessao.getDataDevolucao());
             dadosLinha[3] = mostraConcessao.getServidor().getNomeCompleto();
             dadosLinha[4] = mostraConcessao.getArmario().getNumero();
             dadosLinha[5] = mostraConcessao.getArmario().getLocalizacao().getDescricao();
+            dadosLinha[6] = mostraConcessao.getDescricao();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -153,14 +154,14 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Identificador", "Data Empréstimo", "Data Devolução", "Estudante", "Armário", "Localização", "Ações"
+                "Identificador", "Data Empréstimo", "Data Devolução", "Servidor", "Armário", "Localização", "Descrição", "Ações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -72,7 +72,7 @@ public class PainelDeControle extends javax.swing.JFrame {
         imgEmprestimo = new javax.swing.JLabel();
         lblEmprestimo = new javax.swing.JLabel();
         btnConcessao = new javax.swing.JPanel();
-        imgEmprestimo1 = new javax.swing.JLabel();
+        imgConcessao = new javax.swing.JLabel();
         lblConcessoes = new javax.swing.JLabel();
         btnSair = new javax.swing.JPanel();
         imgSair = new javax.swing.JLabel();
@@ -403,7 +403,7 @@ public class PainelDeControle extends javax.swing.JFrame {
             }
         });
 
-        imgEmprestimo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/historico-branco-24px.png"))); // NOI18N
+        imgConcessao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/painelcontrole/historico-branco-24px.png"))); // NOI18N
 
         lblConcessoes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblConcessoes.setForeground(new java.awt.Color(255, 255, 255));
@@ -415,7 +415,7 @@ public class PainelDeControle extends javax.swing.JFrame {
             btnConcessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnConcessaoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(imgEmprestimo1)
+                .addComponent(imgConcessao)
                 .addGap(20, 20, 20)
                 .addComponent(lblConcessoes)
                 .addContainerGap(173, Short.MAX_VALUE))
@@ -423,7 +423,7 @@ public class PainelDeControle extends javax.swing.JFrame {
         btnConcessaoLayout.setVerticalGroup(
             btnConcessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblConcessoes, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-            .addComponent(imgEmprestimo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imgConcessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         atalhosDoMenu.add(btnConcessao);
@@ -737,16 +737,13 @@ public class PainelDeControle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConcessaohoverEntered
 
     private void btnConcessaohoverExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcessaohoverExited
-        if (evt.getSource() instanceof JPanel && !evt.getSource().equals(painelAtivo)) {
-            JPanel panel = (JPanel) evt.getSource();
-            resetColor(panel);
-        }
+      
     }//GEN-LAST:event_btnConcessaohoverExited
 
     private void btnConcessaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcessaoMousePressed
         resetColor((JPanel) painelAtivo);
         painelAtivo = evt.getSource();
-        updatePanelDinamic(MensagemUtil.TITULO_AREA_ADMINISTRADOR, new IndexConcessaoPanelUI());
+        updatePanelDinamic(MensagemUtil.TITULO_AREA_CONCESSAO, new IndexConcessaoPanelUI());
     }//GEN-LAST:event_btnConcessaoMousePressed
 
     private void updateColorActive(MouseEvent evt) {
@@ -795,9 +792,9 @@ public class PainelDeControle extends javax.swing.JFrame {
     private javax.swing.JPanel iconeSistema;
     private javax.swing.JLabel imgAdministrador;
     private javax.swing.JLabel imgArmarios;
+    private javax.swing.JLabel imgConcessao;
     private javax.swing.JLabel imgCurso;
     private javax.swing.JLabel imgEmprestimo;
-    private javax.swing.JLabel imgEmprestimo1;
     private javax.swing.JLabel imgEstudantes;
     private javax.swing.JLabel imgInicio;
     private javax.swing.JLabel imgLocalizacao;

@@ -1,10 +1,17 @@
 package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
+import br.edu.ifpr.paranavai.armarios.excecoes.ArmarioException;
+import br.edu.ifpr.paranavai.armarios.excecoes.EmprestimoException;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
+import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Container;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -21,8 +28,28 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
         IndexEmprestimoPanelUI origem = getOrigem(tabela);
 
         Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
-
-        JOptionPane.showConfirmDialog(origem, "Implementar Devolução do ID " + emprestimo);
+        Armario armario = emprestimo.getArmario();
+        if(emprestimo.getDataDevolucao() == null){
+        int opcao = JOptionPane.showConfirmDialog(origem, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR + emprestimo.getArmario().getNumero() + "?");
+        if(opcao == 0){
+            emprestimo.setDataDevolucao();
+            armario.setStatus(StatusArmario.ATIVO);
+            try {
+                EmprestimoServico.atualizar(emprestimo);
+            } catch (EmprestimoException ex) {
+                Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                ArmarioServico.atualizar(armario);
+                
+            } catch (ArmarioException ex) {
+                Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        } else {
+            JOptionPane.showMessageDialog(origem, MensagemUtil.EMPRESTIMO_JA_FINALIZADO);
+        }
     }
 
     @Override
