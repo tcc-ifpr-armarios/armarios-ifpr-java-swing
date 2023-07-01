@@ -9,7 +9,6 @@ import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.excecoes.ConcessaoException;
 import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import jakarta.persistence.NoResultException;
 import br.edu.ifpr.paranavai.armarios.dao.ConcessaoDao;
 
 /**
@@ -85,17 +84,11 @@ public class ConcessaoDaoImpl implements ConcessaoDao {
 
     @Override
     public Concessao buscarAtivoPorSiapeDoServidor(String siape) {
-        try {
-            Query<Concessao> query = this.sessao.createQuery(
-                    "from Concessao e where e.servidor.siape = :siape and e.dataDevolucao IS NULL", Concessao.class);
-            query.setParameter("siape", siape);
-            Concessao resultado = query.getSingleResult();
-             return resultado;
-        } catch (NoResultException e) {
-            return null;
-        }
-
-        
+        Query<Concessao> query = this.sessao.createQuery(
+                "from Concessao e where e.servidor.siape = :siape and e.dataDevolucao IS NULL", Concessao.class);
+        query.setParameter("siape", siape);
+        Concessao resultado = (Concessao) query.uniqueResult();
+        return resultado; 
     }
 
     @Override

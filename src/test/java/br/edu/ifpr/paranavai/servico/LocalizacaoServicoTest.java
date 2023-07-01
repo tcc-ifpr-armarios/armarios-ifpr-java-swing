@@ -28,10 +28,10 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
  *
  * @author Allan Fernando O de Andrade
  */
-
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class LocalizacaoServicoTest {
+
     private final String DESCRICAO = "TESTE-LOCALIZACAO-01";
     private Localizacao localizacao;
     private Localizacao localizacaoAtualizacao;
@@ -169,8 +169,6 @@ public class LocalizacaoServicoTest {
     public void deveAtualizarALocalizacaoComIdInserido() throws LocalizacaoException {
         System.out.println("Executando teste deveAtualizarALocalizacaoComIdInserido");
 
-
-        
         this.localizacao = LocalizacaoServico.inserir(this.localizacao);
 
         this.localizacao.setDescricao(DESCRICAO + " Atualizada");
@@ -255,4 +253,5 @@ public class LocalizacaoServicoTest {
         ArmarioServico.excluir(armario);
         assertEquals(MensagemUtil.LOCALIZACAO_VINCULADA_ARMARIO, localizacaoException.getMessage());
     }
+
 }

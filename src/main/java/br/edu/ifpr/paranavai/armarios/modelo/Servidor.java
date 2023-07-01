@@ -1,14 +1,14 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
 import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_servidor")
 public class Servidor extends Pessoa {
+
     @Column
     private String siape;
 
@@ -33,6 +33,5 @@ public class Servidor extends Pessoa {
     public String toString() {
         return siape + " - " + getNomeCompleto();
     }
-    
-    
+
 }
