@@ -1,17 +1,23 @@
 package br.edu.ifpr.paranavai.armarios.visao.concessao;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
+import br.edu.ifpr.paranavai.armarios.modelo.Servidor;
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
+import br.edu.ifpr.paranavai.armarios.visao.servidor.VisualizarServidorModalUI;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 
 public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
 
+    Servidor servidor = new Servidor();
+    JPanel frame = new JPanel();
     public VisualizarConcessaoModalUI(JPanel parent, Concessao concessao) {
         super((JFrame) SwingUtilities.getWindowAncestor(parent), true);
         initComponents();
         preencheDados(concessao);
+        frame = parent;
+        servidor = concessao.getServidor();
     }
 
     private void preencheDados(Concessao concessao) {
@@ -49,6 +55,7 @@ public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
         campoLocalizacao = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         campoDescricao = new javax.swing.JLabel();
+        visualizaAluno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,36 +102,49 @@ public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
         campoDescricao.setText("...");
         campoDescricao.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        visualizaAluno.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        visualizaAluno.setText("INFO");
+        visualizaAluno.setDisabledSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/visualizar-16.png"))); // NOI18N
+        visualizaAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visualizaAlunoMouseClicked(evt);
+            }
+        });
+        visualizaAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizaAlunoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
         panelSuperiorLayout.setHorizontalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblDataDevolucao)
+                    .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSuperiorLayout.createSequentialGroup()
-                        .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblArmario)
-                            .addComponent(lblDataConcessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDataDevolucao)
-                            .addComponent(lblIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEstudante, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
-                        .addComponent(lblLocalizacao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(visualizaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblEstudante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblArmario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblLocalizacao)
+                    .addComponent(lblDataConcessao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSuperiorLayout.createSequentialGroup()
                         .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                            .addComponent(campoDataDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoArmario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoDataConcessao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoIdentificador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
-                        .addComponent(campoLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                        .addComponent(campoLocalizacao, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(panelSuperiorLayout.createSequentialGroup()
                         .addComponent(campoDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,13 +167,14 @@ public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstudante)
-                    .addComponent(campoServidor))
+                    .addComponent(campoServidor)
+                    .addComponent(visualizaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblArmario)
                     .addComponent(campoArmario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoLocalizacao)
                     .addComponent(lblLocalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,13 +203,24 @@ public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
                 .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void visualizaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizaAlunoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visualizaAlunoMouseClicked
+
+    private void visualizaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizaAlunoActionPerformed
+
+        VisualizarServidorModalUI form = new VisualizarServidorModalUI(frame, servidor);
+        form.setLocationRelativeTo(null);
+        form.setVisible(true);
+    }//GEN-LAST:event_visualizaAlunoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -209,5 +241,6 @@ public class VisualizarConcessaoModalUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblIdentificador;
     private javax.swing.JLabel lblLocalizacao;
     private javax.swing.JPanel panelSuperior;
+    private javax.swing.JButton visualizaAluno;
     // End of variables declaration//GEN-END:variables
 }

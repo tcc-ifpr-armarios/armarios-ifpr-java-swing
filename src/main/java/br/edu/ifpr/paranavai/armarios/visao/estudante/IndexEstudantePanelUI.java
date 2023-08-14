@@ -86,7 +86,6 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
 
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-        painelSuperior.setLayout(new java.awt.GridLayout(3, 0));
 
         panelEscolherFiltro.setBackground(new java.awt.Color(255, 255, 255));
         panelEscolherFiltro.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
@@ -112,13 +111,11 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         });
         panelEscolherFiltro.add(radioNome);
 
-        painelSuperior.add(panelEscolherFiltro);
-
         panelBusca.setBackground(new java.awt.Color(255, 255, 255));
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblBusca.setText("RA: ");
+        lblBusca.setText("   RA: ");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
         lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
@@ -135,7 +132,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         });
         panelBusca.add(btnBuscar);
 
-        painelSuperior.add(panelBusca);
+        panelEscolherFiltro.add(panelBusca);
 
         panelNovo.setBackground(new java.awt.Color(255, 255, 255));
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -151,7 +148,20 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         });
         panelNovo.add(btnNovo);
 
-        painelSuperior.add(panelNovo);
+        javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
+        painelSuperior.setLayout(painelSuperiorLayout);
+        painelSuperiorLayout.setHorizontalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        painelSuperiorLayout.setVerticalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSuperiorLayout.createSequentialGroup()
+                .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 

@@ -209,7 +209,7 @@ public class VisualizarEmprestimoModalUI extends javax.swing.JDialog {
     private void visualizaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizaAlunoActionPerformed
 
         VisualizarEstudanteModalUI form = new VisualizarEstudanteModalUI(frame, estudante);
-        form.setLocationRelativeTo(this);
+        form.setLocationRelativeTo(null);
         form.setVisible(true); 
     }//GEN-LAST:event_visualizaAlunoActionPerformed
 
