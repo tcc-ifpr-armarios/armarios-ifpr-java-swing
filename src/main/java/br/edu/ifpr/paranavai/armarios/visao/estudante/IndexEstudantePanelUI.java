@@ -1,7 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import br.edu.ifpr.paranavai.armarios.visao.combobox.CursoComboBoxModel;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 public class IndexEstudantePanelUI extends javax.swing.JPanel {
     private final int QUANTIDADE_COLUNAS = 8;
     
+    CursoComboBoxModel cursoCombo = ComboBoxServico.inicializaComboBoxCurso();
+    
     List<Estudante> listaDeEstudantes;
     
     public IndexEstudantePanelUI() {
@@ -22,8 +26,10 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
     }
 
     public void init() {
+       
         listaDeEstudantes = EstudanteServico.buscarTodos();
         populaTabela(listaDeEstudantes);
+        cursoComboBox.setModel(cursoCombo);
     }
 
     private void populaTabela(List<Estudante> lista) {
@@ -69,11 +75,13 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         radioRa = new javax.swing.JRadioButton();
         radioNome = new javax.swing.JRadioButton();
         panelBusca = new javax.swing.JPanel();
-        lblBusca = new javax.swing.JLabel();
-        txtBusca = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
+        txtBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        lblBusca = new javax.swing.JLabel();
+        cursoComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEstudante = new javax.swing.JTable();
@@ -85,6 +93,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
 
+        painelSuperior.setBackground(new java.awt.Color(255, 255, 255));
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
 
         panelEscolherFiltro.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,29 +123,10 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         panelBusca.setBackground(new java.awt.Color(255, 255, 255));
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
-
-        lblBusca.setText("   RA: ");
-        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
-        panelBusca.add(lblBusca);
-
-        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        panelBusca.add(txtBusca);
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        panelBusca.add(btnBuscar);
-
         panelEscolherFiltro.add(panelBusca);
 
         panelNovo.setBackground(new java.awt.Color(255, 255, 255));
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
         btnNovo.setText("Novo");
         btnNovo.setMaximumSize(new java.awt.Dimension(72, 72));
@@ -146,21 +136,81 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
                 btnNovoActionPerformed(evt);
             }
         });
-        panelNovo.add(btnNovo);
+
+        javax.swing.GroupLayout panelNovoLayout = new javax.swing.GroupLayout(panelNovo);
+        panelNovo.setLayout(panelNovoLayout);
+        panelNovoLayout.setHorizontalGroup(
+            panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        panelNovoLayout.setVerticalGroup(
+            panelNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        lblBusca.setText("   RA: ");
+        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
+
+        cursoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cursoComboBox.setPreferredSize(new java.awt.Dimension(40, 22));
+        cursoComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cursoComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Filtrar por:");
 
         javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
         painelSuperior.setLayout(painelSuperiorLayout);
         painelSuperiorLayout.setHorizontalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(painelSuperiorLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelSuperiorLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cursoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelSuperiorLayout.createSequentialGroup()
+                        .addComponent(lblBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar)))
+                .addGap(15, 15, 15))
+            .addComponent(panelNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelSuperiorLayout.createSequentialGroup()
+                .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         painelSuperiorLayout.setVerticalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cursoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(lblBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
@@ -241,10 +291,16 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         criacaoEdicaoEstudante.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    private void cursoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cursoComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JComboBox<String> cursoComboBox;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBusca;
     private javax.swing.JLabel lblTipoFiltro;
