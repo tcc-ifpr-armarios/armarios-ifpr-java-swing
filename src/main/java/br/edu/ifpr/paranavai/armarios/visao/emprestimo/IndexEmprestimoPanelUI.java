@@ -88,6 +88,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelSuperior.setLayout(new java.awt.GridLayout(3, 0));
 
+        panelEscolherFiltro.setBackground(new java.awt.Color(255, 255, 255));
         panelEscolherFiltro.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelEscolherFiltro.setLayout(new javax.swing.BoxLayout(panelEscolherFiltro, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -104,6 +105,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
 
         painelSuperior.add(panelEscolherFiltro);
 
+        panelBusca.setBackground(new java.awt.Color(255, 255, 255));
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -126,6 +128,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
 
         painelSuperior.add(panelBusca);
 
+        panelNovo.setBackground(new java.awt.Color(255, 255, 255));
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
