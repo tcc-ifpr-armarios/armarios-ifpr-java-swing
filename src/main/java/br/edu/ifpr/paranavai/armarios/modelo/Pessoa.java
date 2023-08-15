@@ -52,7 +52,7 @@ public abstract class Pessoa {
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
     @UpdateTimestamp
-    @Column(name = "data_atualizacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
     public Pessoa() {

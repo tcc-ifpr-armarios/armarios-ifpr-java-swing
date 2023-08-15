@@ -8,21 +8,20 @@
     <session-factory>
         
         <property name="hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            org.postgresql.Driver
         </property>
-        
+                
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/banco_armario
+            jdbc:postgresql://localhost/teren671_armarios_ifpr
         </property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
-        
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">postgres</property>
         <property name="connection.pool_size">3</property>
         
-        
         <property name="hibernate.dialect">
-            org.hibernate.dialect.MySQL8Dialect
+            org.hibernate.dialect.PostgreSQLDialect
         </property>
+        
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">false</property>
         <property name="hbm2ddl.auto">update</property>

@@ -15,6 +15,8 @@ public class LoginServico {
 
     public static Servidor verificaAdm(String emailOuSiape, String senha) throws LoginException {
         String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
+        
+        System.out.println(senhaCriptografada);
 
         Servidor servidor = ServidorServico.buscarUnicoPorEmailOuSiape(emailOuSiape);
         if (servidor == null) {
