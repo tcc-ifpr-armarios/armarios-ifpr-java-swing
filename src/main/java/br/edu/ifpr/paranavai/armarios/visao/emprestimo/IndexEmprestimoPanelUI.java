@@ -95,7 +95,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         lblTipoFiltro.setText("Buscar por:");
         panelEscolherFiltro.add(lblTipoFiltro);
 
-        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativos", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", " " }));
+        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empréstimos Ativos", "Empréstimos Finalizados", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", "RA" }));
         cbxFitro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbxFitroFocusLost(evt);
@@ -114,10 +114,11 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
+        lblBusca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBusca.setText("Ativos:");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(80, 16));
         panelBusca.add(lblBusca);
 
         txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -196,9 +197,17 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         String termoDeBusca = txtBusca.getText().toUpperCase();
         
         switch (filtro) {
-            case "Ativos":
+            case "Empréstimos Ativos":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getDataDevolucao() == null) {
+                        filtrado.add(e);
+                    }
+                }
+                break;
+                
+             case "Empréstimos Finalizados":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getDataDevolucao() != null) {
                         filtrado.add(e);
                     }
                 }
@@ -236,6 +245,13 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
             case "Localização":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getArmario().getLocalizacao().getDescricao().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+            break;
+             case "RA":
+                for (Emprestimo e : listaDeEmprestimos) {
+                    if (e.getEstudante().getRa().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }

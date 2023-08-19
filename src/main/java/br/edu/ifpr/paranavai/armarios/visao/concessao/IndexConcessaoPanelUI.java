@@ -97,7 +97,7 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
         lblTipoFiltro.setText("Buscar por:");
         panelEscolherFiltro.add(lblTipoFiltro);
 
-        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativos", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", " " }));
+        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concessões Ativas", "Concessões Finalizadas", "Armário", "Data Empréstimo", "Data Devolução", "Servidor", "Localizacao", "Siape" }));
         cbxFitro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbxFitroFocusLost(evt);
@@ -111,10 +111,11 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
+        lblBusca.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBusca.setText("Ativos:");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(100, 16));
         panelBusca.add(lblBusca);
 
         txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -192,39 +193,65 @@ public class IndexConcessaoPanelUI extends javax.swing.JPanel {
         ArrayList<Concessao> filtrado = new ArrayList<>();
         String filtro = cbxFitro.getSelectedItem().toString();
         String termoDeBusca = txtBusca.getText().toUpperCase();
-        
+
         switch (filtro) {
-            case "Ativos":
+            case "Concessões Ativas":
                 for (Concessao e : listaDeConcessoes) {
                     if (e.getDataDevolucao() == null) {
                         filtrado.add(e);
                     }
                 }
+                break;
+            case "Concessões Finalizadas":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getDataDevolucao() == null) {
+                        filtrado.add(e);
+                    }
+                }
+                break;
+            case "Armário":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getArmario().getNumero().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+                break;
             case "Data Empréstimo":
                 for (Concessao e : listaDeConcessoes) {
                     if (OperacaoUtil.formatarDataHora(e.getDataConcessao()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
+
             case "Data Devolução":
                 for (Concessao e : listaDeConcessoes) {
                     if (OperacaoUtil.formatarDataHora(e.getDataDevolucao()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Servidor":
                 for (Concessao e : listaDeConcessoes) {
                     if (e.getServidor().getNomeCompleto().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Localização":
                 for (Concessao e : listaDeConcessoes) {
                     if (e.getArmario().getLocalizacao().getDescricao().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
-            break;
+                break;
+                 case "Siape":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getServidor().getSiape().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+                break;
         }
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
