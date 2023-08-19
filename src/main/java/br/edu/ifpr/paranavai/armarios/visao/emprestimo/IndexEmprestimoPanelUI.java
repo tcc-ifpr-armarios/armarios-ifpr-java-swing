@@ -101,6 +101,11 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                 cbxFitroFocusLost(evt);
             }
         });
+        cbxFitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFitroActionPerformed(evt);
+            }
+        });
         panelEscolherFiltro.add(cbxFitro);
 
         painelSuperior.add(panelEscolherFiltro);
@@ -197,30 +202,37 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Curso":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getEstudante().getCurso().getNome().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Data Empréstimo":
+                
                 for (Emprestimo e : listaDeEmprestimos) {
+                    
                     if (OperacaoUtil.formatarDataHora(e.getDataEmprestimo()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Data Devolução":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (OperacaoUtil.formatarDataHora(e.getDataDevolucao()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Estudante":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getEstudante().getNomeCompleto().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
+                break;
             case "Localização":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getArmario().getLocalizacao().getDescricao().toUpperCase().contains(termoDeBusca)) {
@@ -241,6 +253,10 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     private void cbxFitroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbxFitroFocusLost
         lblBusca.setText(cbxFitro.getSelectedItem().toString() + ":");
     }//GEN-LAST:event_cbxFitroFocusLost
+
+    private void cbxFitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFitroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFitroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

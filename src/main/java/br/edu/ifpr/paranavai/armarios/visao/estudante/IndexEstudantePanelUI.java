@@ -63,20 +63,20 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
     private void initComponents() {
 
         painelGeral = new javax.swing.JPanel();
+        painelInferior = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEstudante = new javax.swing.JTable();
         painelSuperior = new javax.swing.JPanel();
         panelEscolherFiltro = new javax.swing.JPanel();
         lblTipoFiltro = new javax.swing.JLabel();
         radioRa = new javax.swing.JRadioButton();
         radioNome = new javax.swing.JRadioButton();
+        panelNovo = new javax.swing.JPanel();
         panelBusca = new javax.swing.JPanel();
         lblBusca = new javax.swing.JLabel();
         txtBusca = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
-        painelInferior = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblEstudante = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -84,86 +84,6 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
 
         painelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelGeral.setLayout(new java.awt.BorderLayout(0, 5));
-
-        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
-
-        panelEscolherFiltro.setBackground(new java.awt.Color(255, 255, 255));
-        panelEscolherFiltro.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
-        panelEscolherFiltro.setLayout(new javax.swing.BoxLayout(panelEscolherFiltro, javax.swing.BoxLayout.LINE_AXIS));
-
-        lblTipoFiltro.setText("Buscar por:");
-        panelEscolherFiltro.add(lblTipoFiltro);
-
-        radioRa.setSelected(true);
-        radioRa.setText("Ra");
-        radioRa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioRaActionPerformed(evt);
-            }
-        });
-        panelEscolherFiltro.add(radioRa);
-
-        radioNome.setText("Nome");
-        radioNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNomeActionPerformed(evt);
-            }
-        });
-        panelEscolherFiltro.add(radioNome);
-
-        panelBusca.setBackground(new java.awt.Color(255, 255, 255));
-        panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
-        panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
-
-        lblBusca.setText("   RA: ");
-        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
-        panelBusca.add(lblBusca);
-
-        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        panelBusca.add(txtBusca);
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        panelBusca.add(btnBuscar);
-
-        panelEscolherFiltro.add(panelBusca);
-
-        panelNovo.setBackground(new java.awt.Color(255, 255, 255));
-        panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
-
-        btnNovo.setText("Novo");
-        btnNovo.setMaximumSize(new java.awt.Dimension(72, 72));
-        btnNovo.setMinimumSize(new java.awt.Dimension(72, 72));
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
-        panelNovo.add(btnNovo);
-
-        javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
-        painelSuperior.setLayout(painelSuperiorLayout);
-        painelSuperiorLayout.setHorizontalGroup(
-            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        painelSuperiorLayout.setVerticalGroup(
-            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        painelGeral.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
 
         painelInferior.setBackground(new java.awt.Color(0, 153, 0));
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
@@ -199,22 +119,108 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        painelSuperior.setBackground(new java.awt.Color(255, 255, 255));
+        painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
+
+        panelEscolherFiltro.setBackground(new java.awt.Color(255, 255, 255));
+        panelEscolherFiltro.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        panelEscolherFiltro.setLayout(new javax.swing.BoxLayout(panelEscolherFiltro, javax.swing.BoxLayout.LINE_AXIS));
+
+        lblTipoFiltro.setText("Buscar por:");
+        panelEscolherFiltro.add(lblTipoFiltro);
+
+        radioRa.setSelected(true);
+        radioRa.setText("Ra");
+        radioRa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioRaActionPerformed(evt);
+            }
+        });
+        panelEscolherFiltro.add(radioRa);
+
+        radioNome.setText("Nome");
+        radioNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioNomeActionPerformed(evt);
+            }
+        });
+        panelEscolherFiltro.add(radioNome);
+
+        panelNovo.setBackground(new java.awt.Color(255, 255, 255));
+        panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
+
+        panelBusca.setBackground(new java.awt.Color(255, 255, 255));
+        panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
+
+        lblBusca.setText("   RA: ");
+        lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(50, 16));
+        panelBusca.add(lblBusca);
+
+        txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        txtBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscaActionPerformed(evt);
+            }
+        });
+        panelBusca.add(txtBusca);
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        panelBusca.add(btnBuscar);
+
+        panelNovo.add(panelBusca);
+
+        btnNovo.setText("Novo");
+        btnNovo.setMaximumSize(new java.awt.Dimension(72, 72));
+        btnNovo.setMinimumSize(new java.awt.Dimension(72, 72));
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
+        painelSuperior.setLayout(painelSuperiorLayout);
+        painelSuperiorLayout.setHorizontalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSuperiorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(panelNovo, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+        );
+        painelSuperiorLayout.setVerticalGroup(
+            painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSuperiorLayout.createSequentialGroup()
+                .addComponent(panelEscolherFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
+        );
+
+        painelInferior.add(painelSuperior, java.awt.BorderLayout.PAGE_START);
+
         painelGeral.add(painelInferior, java.awt.BorderLayout.CENTER);
 
         add(painelGeral);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radioRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRaActionPerformed
-        radioRa.setSelected(true);
-        lblBusca.setText("RA:");
-        radioNome.setSelected(false);
-    }//GEN-LAST:event_radioRaActionPerformed
-
-    private void radioNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomeActionPerformed
-        radioNome.setSelected(true);
-        lblBusca.setText("Nome:");
-        radioRa.setSelected(false);
-    }//GEN-LAST:event_radioNomeActionPerformed
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        CriacaoEdicaoEstudanteUIModal criacaoEdicaoEstudante = new CriacaoEdicaoEstudanteUIModal(this);
+        criacaoEdicaoEstudante.setLocationRelativeTo(this);
+        criacaoEdicaoEstudante.setVisible(true);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ArrayList<Estudante> filtrado = new ArrayList<>();
@@ -235,11 +241,21 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CriacaoEdicaoEstudanteUIModal criacaoEdicaoEstudante = new CriacaoEdicaoEstudanteUIModal(this);
-        criacaoEdicaoEstudante.setLocationRelativeTo(this);
-        criacaoEdicaoEstudante.setVisible(true);
-    }//GEN-LAST:event_btnNovoActionPerformed
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+
+    private void radioNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNomeActionPerformed
+        radioNome.setSelected(true);
+        lblBusca.setText("Nome:");
+        radioRa.setSelected(false);
+    }//GEN-LAST:event_radioNomeActionPerformed
+
+    private void radioRaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRaActionPerformed
+        radioRa.setSelected(true);
+        lblBusca.setText("RA:");
+        radioNome.setSelected(false);
+    }//GEN-LAST:event_radioRaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
