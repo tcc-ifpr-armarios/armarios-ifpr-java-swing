@@ -95,7 +95,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         lblTipoFiltro.setText("Buscar por:");
         panelEscolherFiltro.add(lblTipoFiltro);
 
-        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empréstimos Ativos", "Empréstimos Finalizados", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", "RA" }));
+        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empréstimos Ativos", "Empréstimos Finalizados", "Armário", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", "RA" }));
         cbxFitro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbxFitroFocusLost(evt);
@@ -195,7 +195,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         ArrayList<Emprestimo> filtrado = new ArrayList<>();
         String filtro = cbxFitro.getSelectedItem().toString();
         String termoDeBusca = txtBusca.getText().toUpperCase();
-        
+
         switch (filtro) {
             case "Empréstimos Ativos":
                 for (Emprestimo e : listaDeEmprestimos) {
@@ -204,8 +204,8 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                     }
                 }
                 break;
-                
-             case "Empréstimos Finalizados":
+
+            case "Empréstimos Finalizados":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getDataDevolucao() != null) {
                         filtrado.add(e);
@@ -219,10 +219,17 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                     }
                 }
                 break;
-            case "Data Empréstimo":
-                
+            case "Armário":
                 for (Emprestimo e : listaDeEmprestimos) {
-                    
+                    if (e.getArmario().getNumero().toUpperCase().contains(termoDeBusca)) {
+                        filtrado.add(e);
+                    }
+                }
+                break;
+            case "Data Empréstimo":
+
+                for (Emprestimo e : listaDeEmprestimos) {
+
                     if (OperacaoUtil.formatarDataHora(e.getDataEmprestimo()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
@@ -248,14 +255,14 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                         filtrado.add(e);
                     }
                 }
-            break;
-             case "RA":
+                break;
+            case "RA":
                 for (Emprestimo e : listaDeEmprestimos) {
                     if (e.getEstudante().getRa().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
-            break;
+                break;
         }
         populaTabela(filtrado);
     }//GEN-LAST:event_btnBuscarActionPerformed
