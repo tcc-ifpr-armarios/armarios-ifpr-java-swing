@@ -15,7 +15,6 @@ public class LoginServico {
 
     public static Servidor verificaAdm(String emailOuSiape, String senha) throws LoginException {
         String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
-
         Servidor servidor = ServidorServico.buscarUnicoPorEmailOuSiape(emailOuSiape);
         if (servidor == null) {
             throw new LoginException(MensagemUtil.LOGIN_CADASTRO_INEXISTENTE);
@@ -28,7 +27,6 @@ public class LoginServico {
     public static Estudante verificaEstudante(String ra, String senha) throws LoginException {
         String senhaCriptografada = AutenticacaoUtil.converteSenhaParaSha256Hex(senha);
         Estudante estudante = EstudanteServico.buscarUnicoPorRa(ra);
-
         if (estudante == null) {
             throw new LoginException(MensagemUtil.LOGIN_CADASTRO_INEXISTENTE);
         } else if (!estudante.getSenha().equals(senhaCriptografada)) {
