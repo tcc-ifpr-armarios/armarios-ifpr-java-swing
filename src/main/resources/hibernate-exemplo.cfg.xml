@@ -5,14 +5,13 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-    <session-factory>
-        
+    <session-factory>        
         <property name="hibernate.connection.driver_class">
             org.postgresql.Driver
         </property>
                 
         <property name="hibernate.connection.url">
-            jdbc:postgresql://localhost/teren671_armarios_ifpr
+            jdbc:postgresql://localhost:15432/teren671_armarios_ifpr
         </property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">postgres</property>
@@ -25,7 +24,6 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">false</property>
         <property name="hbm2ddl.auto">update</property>
-           
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Armario" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Concessao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Curso" />
@@ -33,10 +31,7 @@
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Estudante" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Localizacao" />
         <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Pessoa" />
-        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Servidor" />        
-
-       
-        
+        <mapping class="br.edu.ifpr.paranavai.armarios.modelo.Servidor" />      
     </session-factory>
 </hibernate-configuration>
         
