@@ -19,6 +19,12 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         preencheDados(estudante);
         populaTabela(estudante.getRa());
     }
+     public VisualizarEstudanteModalUI(Estudante estudante) {
+        initComponents();
+        preencheDados(estudante);
+        populaTabela(estudante.getRa());
+    }
+    
     
     private void preencheDados(Estudante estudante) {
         campoNome.setText(estudante.getNome());
@@ -89,6 +95,7 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
         setBackground(new java.awt.Color(0, 153, 0));
         getContentPane().setLayout(new java.awt.BorderLayout(5, 5));
 
+        panelSuperior.setBackground(new java.awt.Color(255, 255, 255));
         panelSuperior.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro Acadêmico", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         panelSuperior.setMinimumSize(new java.awt.Dimension(100, 150));
 
@@ -253,7 +260,7 @@ public class VisualizarEstudanteModalUI extends javax.swing.JDialog {
             .addGroup(panelInferiorLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 465, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
