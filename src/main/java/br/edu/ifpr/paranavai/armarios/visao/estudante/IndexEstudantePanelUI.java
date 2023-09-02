@@ -1,9 +1,9 @@
 package br.edu.ifpr.paranavai.armarios.visao.estudante;
 
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
-import br.edu.ifpr.paranavai.armarios.servico.ComboBoxServico;
+
 import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
-import br.edu.ifpr.paranavai.armarios.visao.combobox.CursoComboBoxModel;
+
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class IndexEstudantePanelUI extends javax.swing.JPanel {
     private final int QUANTIDADE_COLUNAS = 8;
     
-    CursoComboBoxModel cursoCombo = ComboBoxServico.inicializaComboBoxCurso();
+
     
     List<Estudante> listaDeEstudantes;
     
@@ -29,7 +29,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
        
         listaDeEstudantes = EstudanteServico.buscarTodos();
         populaTabela(listaDeEstudantes);
-        cursoComboBox.setModel(cursoCombo);
+
     }
 
     private void populaTabela(List<Estudante> lista) {
@@ -75,6 +75,7 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         painelSuperior = new javax.swing.JPanel();
         panelEscolherFiltro = new javax.swing.JPanel();
         lblTipoFiltro = new javax.swing.JLabel();
+        lblBusca = new javax.swing.JLabel();
         radioRa = new javax.swing.JRadioButton();
         radioNome = new javax.swing.JRadioButton();
         panelNovo = new javax.swing.JPanel();
@@ -264,15 +265,13 @@ public class IndexEstudantePanelUI extends javax.swing.JPanel {
         radioNome.setSelected(false);
     }//GEN-LAST:event_radioRaActionPerformed
 
-    private void cursoComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cursoComboBoxActionPerformed
+  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JComboBox<String> cursoComboBox;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBusca;
