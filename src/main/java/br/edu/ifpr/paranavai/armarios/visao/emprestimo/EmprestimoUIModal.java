@@ -229,7 +229,7 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
             emprestimo.setEstudante((Estudante) cbxPessoa.getSelectedItem());
 
             EmprestimoServico.inserir(emprestimo);
-            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_SUCESSO);
+            JOptionPane.showMessageDialog(this, MensagemUtil.EMPRESTIMO_SUCESSO);
             Armario armario = ((Armario) cbxArmario.getSelectedItem());
             armario.setStatus(StatusArmario.OCUPADO);
             ArmarioServico.atualizar(armario);
@@ -240,7 +240,7 @@ public class EmprestimoUIModal extends javax.swing.JDialog {
                     JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO,
+            JOptionPane.showMessageDialog(this, MensagemUtil.EMPRESTIMO_NAO_REALIZADO_ERRO,
                     MensagemUtil.TITULO_ERRO_FATAL, JOptionPane.ERROR_MESSAGE);
         }
     }// GEN-LAST:event_btnSalvarActionPerformed

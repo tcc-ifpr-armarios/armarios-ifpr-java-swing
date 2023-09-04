@@ -8,7 +8,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.StatusArmario;
 import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
 import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabelaEmprestimosConcessoes;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.awt.Container;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ import javax.swing.JTable;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabelaEmprestimosConcessoes {
+public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela{
 
     @Override
     public void aoEditar(JTable tabela, int linha) {

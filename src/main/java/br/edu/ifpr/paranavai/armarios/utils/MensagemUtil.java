@@ -47,7 +47,8 @@ public class MensagemUtil {
     public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO = "Confirma a devolucão do armário: ";
     public static final String EMPRESTIMO_JA_FINALIZADO = "Não foi possível realizar essa operação! Este empréstimo já foi finalizado!";
     public static final String EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
-        public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR = "Confirma a devolução da chave do armario ";
+    public static final String EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR = "Confirma a devolução da chave do armario ";
+    public static final String EMPRESTIMO_NAO_REALIZADO_ERRO = "Erro ao realizar o empréstimo";
     
     public static final String CONCESSAO_CONCEDIDA = "Concessão concedida";
     public static final String CONCESSAO_SERVIDOR_ERRO = "Erro ao salvar a concessão: Servidor não informado";
@@ -116,6 +117,7 @@ public class MensagemUtil {
     public static final String VALIDACAO_EMAIL_INVALIDO = "E-mail inválido!";
     public static final String VALIDACAO_SENHAS_NAO_CONFEREM = "As senhas digitadas não conferem";
     public static final String VALIDACAO_TELEFONE_INVALIDO = "Telefone inválido!";
+
   
 
    

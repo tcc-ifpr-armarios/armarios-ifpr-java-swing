@@ -1,6 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabelaEmprestimosConcessoes;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesEmprestimosConcessoesUI;
 import java.awt.Component;
 
@@ -14,9 +14,9 @@ import javax.swing.JTable;
  */
 public class EditorDasAcoesDaCelulaTabelaEmprestimo extends DefaultCellEditor {
 
-    private AcoesEventoTabelaEmprestimosConcessoes evento;
+    private AcoesEventoTabela evento;
 
-    public EditorDasAcoesDaCelulaTabelaEmprestimo(AcoesEventoTabelaEmprestimosConcessoes evento) {
+    public EditorDasAcoesDaCelulaTabelaEmprestimo(AcoesEventoTabela evento) {
         super(new JCheckBox());
         this.evento = evento;
     }
