@@ -279,7 +279,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         cardEmprestimos1.setPreferredSize(new java.awt.Dimension(280, 150));
         cardEmprestimos1.setLayout(new java.awt.BorderLayout());
 
-        detalheVisualConcessoes.setBackground(new java.awt.Color(246, 194, 62));
+        detalheVisualConcessoes.setBackground(new java.awt.Color(255, 153, 153));
         detalheVisualConcessoes.setMinimumSize(new java.awt.Dimension(5, 100));
         detalheVisualConcessoes.setPreferredSize(new java.awt.Dimension(5, 347));
 
@@ -303,7 +303,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         painelIndicadorConcessoes.setLayout(new java.awt.GridLayout(2, 1));
 
         lblDescricaoConcessoes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDescricaoConcessoes.setForeground(new java.awt.Color(246, 194, 62));
+        lblDescricaoConcessoes.setForeground(new java.awt.Color(255, 153, 153));
         lblDescricaoConcessoes.setText("Concessões");
         painelIndicadorConcessoes.add(lblDescricaoConcessoes);
 
@@ -316,7 +316,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         painelIconeConcessoes.setBackground(new java.awt.Color(255, 255, 255));
         painelIconeConcessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         painelIconeConcessoes.setMinimumSize(new java.awt.Dimension(50, 100));
-        painelIconeConcessoes.setLayout(new java.awt.GridLayout());
+        painelIconeConcessoes.setLayout(new java.awt.GridLayout(1, 0));
 
         imgIconConcessoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgIconConcessoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/maos-cinza64px.png"))); // NOI18N
