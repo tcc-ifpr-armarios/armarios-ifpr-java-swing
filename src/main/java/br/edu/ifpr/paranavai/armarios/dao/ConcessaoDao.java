@@ -33,6 +33,7 @@ public interface ConcessaoDao {
 
     public Concessao inserir(Concessao concessao) throws ConcessaoException;
 
+    public Long quantidadeConcessoesAtivas();
 
  
 }

@@ -18,6 +18,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         lblValorEstudantes.setText("" + IndicadorServico.quantidadeEstudantesAtivos());
         lblValorArmarios.setText("" + IndicadorServico.quantidadeArmariosLivres());
         lblValorEmprestimos.setText("" + IndicadorServico.quantidadeEmprestimosAtivos());
+        lblValorConcessoes.setText("" + IndicadorServico.quantidadeConcessoesAtivas());
     }
 
     /**
@@ -58,6 +59,14 @@ public class InicioDashboard extends javax.swing.JPanel {
         lblValorEmprestimos = new javax.swing.JLabel();
         painelIconeEmprestimos = new javax.swing.JPanel();
         imgIconEmprestimos = new javax.swing.JLabel();
+        cardEmprestimos1 = new javax.swing.JPanel();
+        detalheVisualConcessoes = new javax.swing.JPanel();
+        grupoInformacaoConcessoes = new javax.swing.JPanel();
+        painelIndicadorConcessoes = new javax.swing.JPanel();
+        lblDescricaoConcessoes = new javax.swing.JLabel();
+        lblValorConcessoes = new javax.swing.JLabel();
+        painelIconeConcessoes = new javax.swing.JPanel();
+        imgIconConcessoes = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -199,7 +208,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         painelIconeArmarios.setBackground(new java.awt.Color(255, 255, 255));
         painelIconeArmarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         painelIconeArmarios.setMinimumSize(new java.awt.Dimension(50, 100));
-        painelIconeArmarios.setLayout(new java.awt.GridLayout());
+        painelIconeArmarios.setLayout(new java.awt.GridLayout(1, 0));
 
         imgIconArmarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgIconArmarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/armario-cinza-64px.png"))); // NOI18N
@@ -253,7 +262,7 @@ public class InicioDashboard extends javax.swing.JPanel {
         painelIconeEmprestimos.setBackground(new java.awt.Color(255, 255, 255));
         painelIconeEmprestimos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         painelIconeEmprestimos.setMinimumSize(new java.awt.Dimension(50, 100));
-        painelIconeEmprestimos.setLayout(new java.awt.GridLayout());
+        painelIconeEmprestimos.setLayout(new java.awt.GridLayout(1, 0));
 
         imgIconEmprestimos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgIconEmprestimos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/chaves-cinza-64px.png"))); // NOI18N
@@ -265,6 +274,60 @@ public class InicioDashboard extends javax.swing.JPanel {
         cardEmprestimos.add(grupoInformacaoEmprestimos, java.awt.BorderLayout.CENTER);
 
         painelIndicadores.add(cardEmprestimos);
+
+        cardEmprestimos1.setMinimumSize(new java.awt.Dimension(326, 150));
+        cardEmprestimos1.setPreferredSize(new java.awt.Dimension(280, 150));
+        cardEmprestimos1.setLayout(new java.awt.BorderLayout());
+
+        detalheVisualConcessoes.setBackground(new java.awt.Color(246, 194, 62));
+        detalheVisualConcessoes.setMinimumSize(new java.awt.Dimension(5, 100));
+        detalheVisualConcessoes.setPreferredSize(new java.awt.Dimension(5, 347));
+
+        javax.swing.GroupLayout detalheVisualConcessoesLayout = new javax.swing.GroupLayout(detalheVisualConcessoes);
+        detalheVisualConcessoes.setLayout(detalheVisualConcessoesLayout);
+        detalheVisualConcessoesLayout.setHorizontalGroup(
+            detalheVisualConcessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        detalheVisualConcessoesLayout.setVerticalGroup(
+            detalheVisualConcessoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        cardEmprestimos1.add(detalheVisualConcessoes, java.awt.BorderLayout.LINE_START);
+
+        grupoInformacaoConcessoes.setLayout(new java.awt.BorderLayout());
+
+        painelIndicadorConcessoes.setBackground(new java.awt.Color(255, 255, 255));
+        painelIndicadorConcessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 20, 30, 10));
+        painelIndicadorConcessoes.setLayout(new java.awt.GridLayout(2, 1));
+
+        lblDescricaoConcessoes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescricaoConcessoes.setForeground(new java.awt.Color(246, 194, 62));
+        lblDescricaoConcessoes.setText("Concessões");
+        painelIndicadorConcessoes.add(lblDescricaoConcessoes);
+
+        lblValorConcessoes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblValorConcessoes.setText("VALOR");
+        painelIndicadorConcessoes.add(lblValorConcessoes);
+
+        grupoInformacaoConcessoes.add(painelIndicadorConcessoes, java.awt.BorderLayout.CENTER);
+
+        painelIconeConcessoes.setBackground(new java.awt.Color(255, 255, 255));
+        painelIconeConcessoes.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
+        painelIconeConcessoes.setMinimumSize(new java.awt.Dimension(50, 100));
+        painelIconeConcessoes.setLayout(new java.awt.GridLayout());
+
+        imgIconConcessoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgIconConcessoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/maos-cinza64px.png"))); // NOI18N
+        imgIconConcessoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        painelIconeConcessoes.add(imgIconConcessoes);
+
+        grupoInformacaoConcessoes.add(painelIconeConcessoes, java.awt.BorderLayout.LINE_END);
+
+        cardEmprestimos1.add(grupoInformacaoConcessoes, java.awt.BorderLayout.CENTER);
+
+        painelIndicadores.add(cardEmprestimos1);
 
         add(painelIndicadores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -279,29 +342,37 @@ public class InicioDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel btnAbrirSistemaEmprestimo;
     private javax.swing.JPanel cardArmarios;
     private javax.swing.JPanel cardEmprestimos;
+    private javax.swing.JPanel cardEmprestimos1;
     private javax.swing.JPanel cardEstudantes;
     private javax.swing.JPanel detalheVisualArmarios;
+    private javax.swing.JPanel detalheVisualConcessoes;
     private javax.swing.JPanel detalheVisualEmprestimos;
     private javax.swing.JPanel detalheVisualEstudantes;
     private javax.swing.JPanel grupoInformacaoArmarios;
+    private javax.swing.JPanel grupoInformacaoConcessoes;
     private javax.swing.JPanel grupoInformacaoEmprestimos;
     private javax.swing.JPanel grupoInformacaoEstudantes;
     private javax.swing.JLabel imgAbrirSistemaEmprestimo;
     private javax.swing.JLabel imgIcon;
     private javax.swing.JLabel imgIconArmarios;
+    private javax.swing.JLabel imgIconConcessoes;
     private javax.swing.JLabel imgIconEmprestimos;
     private javax.swing.JLabel lblAbrirSistemaEmprestimo;
     private javax.swing.JLabel lblDescricaoArmarios;
+    private javax.swing.JLabel lblDescricaoConcessoes;
     private javax.swing.JLabel lblDescricaoEmprestimos;
     private javax.swing.JLabel lblDescricaoEstudantes;
     private javax.swing.JLabel lblValorArmarios;
+    private javax.swing.JLabel lblValorConcessoes;
     private javax.swing.JLabel lblValorEmprestimos;
     private javax.swing.JLabel lblValorEstudantes;
     private javax.swing.JPanel painelAbrirSistema;
     private javax.swing.JPanel painelIconeArmarios;
+    private javax.swing.JPanel painelIconeConcessoes;
     private javax.swing.JPanel painelIconeEmprestimos;
     private javax.swing.JPanel painelIconeEstudantes;
     private javax.swing.JPanel painelIndicadorArmarios;
+    private javax.swing.JPanel painelIndicadorConcessoes;
     private javax.swing.JPanel painelIndicadorEmprestimos;
     private javax.swing.JPanel painelIndicadorEstudantes;
     private javax.swing.JPanel painelIndicadores;
