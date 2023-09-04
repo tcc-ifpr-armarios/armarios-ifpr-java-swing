@@ -61,13 +61,15 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
     private void initComponents() {
 
         panelGeral = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        txtNomeCurso = new javax.swing.JTextField();
         lblNomeCurso = new javax.swing.JLabel();
+        txtNomeCurso = new javax.swing.JTextField();
         lblAtivo = new javax.swing.JLabel();
         ckbAtivo = new javax.swing.JCheckBox();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(394, 290));
@@ -77,9 +79,12 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
         setResizable(false);
         setSize(new java.awt.Dimension(394, 290));
 
+        panelGeral.setBackground(new java.awt.Color(0, 153, 51));
         panelGeral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         panelGeral.setMinimumSize(new java.awt.Dimension(394, 237));
         panelGeral.setRequestFocusEnabled(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,45 +116,75 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblNomeCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(txtNomeCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(ckbAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(142, 142, 142)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(lblNomeCurso)
+                .addGap(6, 6, 6)
+                .addComponent(txtNomeCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(lblAtivo)
+                .addGap(6, 6, 6)
+                .addComponent(ckbAtivo)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSalvar))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/IfLogo_dark.png"))); // NOI18N
+
         javax.swing.GroupLayout panelGeralLayout = new javax.swing.GroupLayout(panelGeral);
         panelGeral.setLayout(panelGeralLayout);
         panelGeralLayout.setHorizontalGroup(
             panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeralLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(txtNomeCurso)
-                            .addComponent(lblNomeCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ckbAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelGeralLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(btnSalvar)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnCancelar)))
-                .addGap(20, 20, 20))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         panelGeralLayout.setVerticalGroup(
             panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGeralLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblNomeCurso)
-                .addGap(5, 5, 5)
-                .addComponent(txtNomeCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblAtivo)
-                .addGap(5, 5, 5)
-                .addComponent(ckbAtivo)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
-                .addGap(20, 20, 20))
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         getContentPane().add(panelGeral, java.awt.BorderLayout.CENTER);
@@ -208,6 +243,8 @@ public class CriacaoEdicaoCursoUIModal extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox ckbAtivo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAtivo;
     private javax.swing.JLabel lblNomeCurso;
     private javax.swing.JLabel lblTitulo;
