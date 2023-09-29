@@ -19,7 +19,7 @@ import javax.swing.JTable;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
+public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela{
 
     @Override
     public void aoEditar(JTable tabela, int linha) {

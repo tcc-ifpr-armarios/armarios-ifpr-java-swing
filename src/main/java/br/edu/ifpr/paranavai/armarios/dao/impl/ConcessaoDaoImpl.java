@@ -124,4 +124,11 @@ public class ConcessaoDaoImpl implements ConcessaoDao {
         Concessao resultado = (Concessao) query.uniqueResult();
         return resultado;
     }
+    
+        @Override
+    public Long quantidadeConcessoesAtivas() {
+        Query query = this.sessao.createQuery(
+                "select count(*) from Concessao e where e.dataDevolucao is null", Long.class);
+        return (Long) query.uniqueResult();
+    }
 }

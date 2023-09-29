@@ -1,6 +1,6 @@
 package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
 
-import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesUI;
+import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.PainelAcoesEmprestimosConcessoesUI;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -17,7 +17,7 @@ public class RenderizadorDasAcoesDaCelulaEmprestimo extends DefaultTableCellRend
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component componente = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-        PainelAcoesUI acoes = new PainelAcoesUI(true, true, true);
+        PainelAcoesEmprestimosConcessoesUI acoes = new PainelAcoesEmprestimosConcessoesUI(true, true, true);
 
         if (isSelected == false && row % 2 == 0) {
             acoes.setBackground(Color.white);
