@@ -11,7 +11,7 @@
         </property>
                 
         <property name="hibernate.connection.url">
-            jdbc:postgresql://localhost:15432/teren671_armarios_ifpr
+            jdbc:postgresql://localhost:5432/teren671_armarios_ifpr
         </property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">postgres</property>
