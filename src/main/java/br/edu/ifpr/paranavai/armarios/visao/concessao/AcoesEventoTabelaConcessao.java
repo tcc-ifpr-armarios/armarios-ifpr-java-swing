@@ -36,14 +36,13 @@ public class AcoesEventoTabelaConcessao implements AcoesEventoTabela {
             armario.setStatus(StatusArmario.ATIVO);
             try {
                 ConcessaoServico.atualizar(concessao);
-            } catch (ConcessaoException ex) {
-                Logger.getLogger(AcoesEventoTabelaConcessao.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
                 ArmarioServico.atualizar(armario);
-                
+            } catch (ConcessaoException ex) {
+                Logger.getLogger(AcoesEventoTabelaConcessao.class.getName()).log(Level.SEVERE, null, ex);  
             } catch (ArmarioException ex) {
                 Logger.getLogger(AcoesEventoTabelaConcessao.class.getName()).log(Level.SEVERE, null, ex);
+            }finally {
+                origem.init();
             }
             
         }
