@@ -19,7 +19,7 @@ import javax.swing.JTable;
  *
  * @author Professor Marcelo Figueiredo Terenciani
  */
-public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela{
+public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela {
 
     @Override
     public void aoEditar(JTable tabela, int linha) {
@@ -29,24 +29,22 @@ public class AcoesEventoTabelaEmprestimo implements AcoesEventoTabela{
 
         Emprestimo emprestimo = EmprestimoServico.buscarUnicoPorId(identificador);
         Armario armario = emprestimo.getArmario();
-        if(emprestimo.getDataDevolucao() == null){
-        int opcao = JOptionPane.showConfirmDialog(origem, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR + emprestimo.getArmario().getNumero() + "?");
-        if(opcao == 0){
-            emprestimo.setDataDevolucao();
-            armario.setStatus(StatusArmario.ATIVO);
-            try {
-                EmprestimoServico.atualizar(emprestimo);
-            } catch (EmprestimoException ex) {
-                Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+        if (emprestimo.getDataDevolucao() == null) {
+            int opcao = JOptionPane.showConfirmDialog(origem, MensagemUtil.EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR + emprestimo.getArmario().getNumero() + "?");
+            if (opcao == 0) {
+                emprestimo.setDataDevolucao();
+                armario.setStatus(StatusArmario.ATIVO);
+                try {
+                    EmprestimoServico.atualizar(emprestimo);
+                    ArmarioServico.atualizar(armario);
+                } catch (EmprestimoException ex) {
+                    Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ArmarioException ex) {
+                    Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    origem.init();
+                }
             }
-            try {
-                ArmarioServico.atualizar(armario);
-                
-            } catch (ArmarioException ex) {
-                Logger.getLogger(AcoesEventoTabelaEmprestimo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
         } else {
             JOptionPane.showMessageDialog(origem, MensagemUtil.EMPRESTIMO_JA_FINALIZADO);
         }
