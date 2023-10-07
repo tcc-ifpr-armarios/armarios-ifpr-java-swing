@@ -59,14 +59,14 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
         btnConfirmarEmprestimo = new javax.swing.JToggleButton();
         btnSair = new javax.swing.JToggleButton();
         campoResposta = new javax.swing.JLabel();
-        lblIconeIFPR = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Definir Localização");
 
         painelConteudo.setBackground(new java.awt.Color(0, 153, 0));
         painelConteudo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-        painelConteudo.setLayout(new java.awt.BorderLayout());
 
         painelEmprestimo.setBackground(new java.awt.Color(255, 255, 255));
         painelEmprestimo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empréstimo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 12))); // NOI18N
@@ -103,7 +103,7 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
             .addComponent(btnConfirmarEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(cbxArmario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblArmario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+            .addComponent(lblArmario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(campoResposta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelEmprestimoLayout.setVerticalGroup(
@@ -117,15 +117,39 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
                 .addComponent(btnConfirmarEmprestimo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSair)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(campoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelConteudo.add(painelEmprestimo, java.awt.BorderLayout.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/IfLogo_dark.png"))); // NOI18N
 
-        lblIconeIFPR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconeIFPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iflogomenor.png"))); // NOI18N
-        painelConteudo.add(lblIconeIFPR, java.awt.BorderLayout.PAGE_END);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/dashboard/chaves-cinza-64px.png"))); // NOI18N
+
+        javax.swing.GroupLayout painelConteudoLayout = new javax.swing.GroupLayout(painelConteudo);
+        painelConteudo.setLayout(painelConteudoLayout);
+        painelConteudoLayout.setHorizontalGroup(
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelConteudoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(painelConteudoLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addContainerGap())
+        );
+        painelConteudoLayout.setVerticalGroup(
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelConteudoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
 
         getContentPane().add(painelConteudo, java.awt.BorderLayout.CENTER);
 
@@ -175,8 +199,9 @@ public class EstudantesEmprestimoUI extends javax.swing.JDialog {
     private javax.swing.JToggleButton btnSair;
     private javax.swing.JLabel campoResposta;
     private javax.swing.JComboBox<String> cbxArmario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblArmario;
-    private javax.swing.JLabel lblIconeIFPR;
     private javax.swing.JPanel painelConteudo;
     private javax.swing.JPanel painelEmprestimo;
     // End of variables declaration//GEN-END:variables
