@@ -2,7 +2,7 @@ package br.edu.ifpr.paranavai.armarios.utils;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando Oliveira de Andrade
  */
 public class TelaLimpa1 extends javax.swing.JFrame {
 

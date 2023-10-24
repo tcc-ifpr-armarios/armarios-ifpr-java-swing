@@ -13,7 +13,7 @@ import br.edu.ifpr.paranavai.armarios.utils.MensagemUtil;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando Oliveira de Andrade
  */
 public class LocalizacaoServico {
 

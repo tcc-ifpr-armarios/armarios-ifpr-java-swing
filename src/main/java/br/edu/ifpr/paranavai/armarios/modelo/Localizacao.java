@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando Oliveira de Andrade
  */
 @Entity
 @Table(name = "tb_localizacao")

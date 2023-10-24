@@ -7,7 +7,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 
 /**
  *
- * @author suporte
+ * @author Allan Fernando Oliveira de Andrade
  */
 public interface LocalizacaoDao {
 

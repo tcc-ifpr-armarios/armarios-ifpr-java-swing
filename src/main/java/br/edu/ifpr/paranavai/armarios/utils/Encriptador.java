@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifpr.paranavai.servico;
+package br.edu.ifpr.paranavai.armarios.utils;
 
 import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
 
@@ -10,7 +10,7 @@ import br.edu.ifpr.paranavai.armarios.utils.AutenticacaoUtil;
  *
  * @author Allan Fernando
  */
-public class EncriptTest {
+public class Encriptador {
    
 
   public static void main(String args[]) {

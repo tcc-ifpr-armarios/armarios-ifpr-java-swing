@@ -61,6 +61,7 @@ public class ArmarioDaoImpl implements ArmarioDao {
             sessao.beginTransaction();
             sessao.persist(armario);
             sessao.getTransaction().commit();
+            
         } catch (Exception e) {
             throw new ArmarioException(MensagemUtil.ARMARIO_INSERCAO_ERRO_PADRAO);
         }
