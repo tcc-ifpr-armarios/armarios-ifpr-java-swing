@@ -68,3 +68,6 @@ pom.xml.tag
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Banco de Dados Local
+/data/

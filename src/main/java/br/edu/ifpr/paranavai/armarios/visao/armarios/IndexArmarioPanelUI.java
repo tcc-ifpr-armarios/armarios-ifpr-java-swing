@@ -79,6 +79,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
         painelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelSuperior.setLayout(new java.awt.GridLayout(2, 0));
 
+        panelBusca.setBackground(new java.awt.Color(255, 255, 255));
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -101,6 +102,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
 
         painelSuperior.add(panelBusca);
 
+        panelNovo.setBackground(new java.awt.Color(255, 255, 255));
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelNovo.setLayout(new java.awt.GridLayout(1, 3, 10, 0));
 
@@ -145,6 +147,7 @@ public class IndexArmarioPanelUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblArmario.setGridColor(new java.awt.Color(255, 255, 255));
         tblArmario.setRowHeight(30);
         tblArmario.setSelectionBackground(new java.awt.Color(57, 137, 111));
         tblArmario.getTableHeader().setReorderingAllowed(false);

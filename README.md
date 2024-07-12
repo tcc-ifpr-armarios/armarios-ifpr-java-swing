@@ -31,3 +31,7 @@ Hibernate é uma ferramenta de mapeamento objeto-relacional (ORM) para Java, ou 
 - Professor Marcelo Terenciani - Coordenador do Projeto
 - Allan Fernando - Desenvolvedor
 - Leonardo Simão Clariano - Desenvolvedor
+
+## Tutorial Docker - 
+https://renatogroffe.medium.com/postgresql-pgadmin-4-docker-compose-montando-rapidamente-um-ambiente-para-uso-55a2ab230b89
+

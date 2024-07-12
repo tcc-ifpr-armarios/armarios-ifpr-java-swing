@@ -83,22 +83,20 @@
                 <Component class="javax.swing.JComboBox" name="cbxFitro">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="9">
-                        <StringItem index="0" value="Empr&#xe9;stimos Ativos"/>
-                        <StringItem index="1" value="Empr&#xe9;stimos Finalizados"/>
+                      <StringArray count="8">
+                        <StringItem index="0" value="Concess&#xf5;es Ativas"/>
+                        <StringItem index="1" value="Concess&#xf5;es Finalizadas"/>
                         <StringItem index="2" value="Arm&#xe1;rio"/>
-                        <StringItem index="3" value="Curso"/>
-                        <StringItem index="4" value="Data Empr&#xe9;stimo"/>
-                        <StringItem index="5" value="Data Devolu&#xe7;&#xe3;o"/>
-                        <StringItem index="6" value="Estudante"/>
-                        <StringItem index="7" value="Localizacao"/>
-                        <StringItem index="8" value="RA"/>
+                        <StringItem index="3" value="Data Empr&#xe9;stimo"/>
+                        <StringItem index="4" value="Data Devolu&#xe7;&#xe3;o"/>
+                        <StringItem index="5" value="Servidor"/>
+                        <StringItem index="6" value="Localizacao"/>
+                        <StringItem index="7" value="Siape"/>
                       </StringArray>
                     </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cbxFitroFocusLost"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxFitroActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -131,7 +129,7 @@
                       <Dimension value="[50, 16]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[80, 16]"/>
+                      <Dimension value="[100, 16]"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -221,16 +219,17 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblEmprestimo">
+                <Component class="javax.swing.JTable" name="tblConcessao">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="0">
+                      <Table columnCount="8" rowCount="0">
                         <Column editable="false" title="Identificador" type="java.lang.Integer"/>
                         <Column editable="false" title="Data Empr&#xe9;stimo" type="java.lang.String"/>
                         <Column editable="false" title="Data Devolu&#xe7;&#xe3;o" type="java.lang.String"/>
-                        <Column editable="false" title="Estudante" type="java.lang.String"/>
+                        <Column editable="false" title="Servidor" type="java.lang.String"/>
                         <Column editable="false" title="Arm&#xe1;rio" type="java.lang.String"/>
                         <Column editable="false" title="Localiza&#xe7;&#xe3;o" type="java.lang.String"/>
+                        <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.String"/>
                         <Column editable="true" title="A&#xe7;&#xf5;es" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -271,8 +270,14 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                       </TableColumnModel>
                     </Property>
+                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
                     <Property name="rowHeight" type="int" value="30"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="6f" green="89" red="39" type="rgb"/>

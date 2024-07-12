@@ -183,11 +183,12 @@ public class IndexLoginUI extends javax.swing.JFrame {
         }
 
         try {
+            System.setProperty("user", emailOuSiape);
             Servidor servidor = LoginServico.verificaAdm(emailOuSiape, senha);
             lblResposta.setText(MensagemUtil.LOGIN_SUCESSO);
             txtSenha.setText("");
             txtEmailOuSiape.setText("");
-
+            
             PainelDeControle painelControleUI = new PainelDeControle(servidor);
             painelControleUI.setVisible(true);
             this.setVisible(false);

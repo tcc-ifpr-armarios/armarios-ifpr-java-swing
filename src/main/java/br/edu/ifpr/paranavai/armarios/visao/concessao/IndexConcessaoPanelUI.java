@@ -1,7 +1,8 @@
-package br.edu.ifpr.paranavai.armarios.visao.emprestimo;
+package br.edu.ifpr.paranavai.armarios.visao.concessao;
 
-import br.edu.ifpr.paranavai.armarios.modelo.Emprestimo;
-import br.edu.ifpr.paranavai.armarios.servico.EmprestimoServico;
+import br.edu.ifpr.paranavai.armarios.modelo.Concessao;
+import br.edu.ifpr.paranavai.armarios.servico.ConcessaoServico;
+
 import br.edu.ifpr.paranavai.armarios.utils.OperacaoUtil;
 import br.edu.ifpr.paranavai.armarios.visao.tabela.acoes.AcoesEventoTabela;
 import java.util.ArrayList;
@@ -10,45 +11,46 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author professor Marcelo F. Terenciani
+ * @author Allan Fernando O de Andrade
  */
-public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
+public class IndexConcessaoPanelUI extends javax.swing.JPanel {
 
     private final int QUANTIDADE_COLUNAS = 4;
 
-    List<Emprestimo> listaDeEmprestimos;
+    List<Concessao> listaDeConcessoes;
 
-    public IndexEmprestimoPanelUI() {
+    public IndexConcessaoPanelUI() {
         initComponents();
         init();
     }
 
     public void init() {
-        listaDeEmprestimos = EmprestimoServico.buscarTodos();
-        populaTabela(listaDeEmprestimos);
+        listaDeConcessoes = ConcessaoServico.buscarTodos();
+        populaTabela(listaDeConcessoes);
     }
 
-    private void populaTabela(List<Emprestimo> lista) {
+    private void populaTabela(List<Concessao> lista) {
 
-        AcoesEventoTabela evento = new AcoesEventoTabelaEmprestimo();
+        AcoesEventoTabela evento = new AcoesEventoTabelaConcessao();
 
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEmprestimo.getModel();
-        tblEmprestimo.getColumnModel().getColumn(6).setCellRenderer(new RenderizadorDasAcoesDaCelulaEmprestimo());
-        tblEmprestimo.getColumnModel().getColumn(6).setCellEditor(new EditorDasAcoesDaCelulaTabelaEmprestimo(evento));
+        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblConcessao.getModel();
+        tblConcessao.getColumnModel().getColumn(7).setCellRenderer(new RenderizadorDasAcoesDaCelulaConcessao());
+        tblConcessao.getColumnModel().getColumn(7).setCellEditor(new EditorDasAcoesDaCelulaTabelaConcessao(evento));
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
 
         for (int i = 0; i < lista.size(); i++) {
-            Emprestimo mostraEmprestimo = lista.get(i);
-            Object[] dadosLinha = new Object[6];
-            dadosLinha[0] = mostraEmprestimo.getId();
-            dadosLinha[1] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataEmprestimo());
-            dadosLinha[2] = OperacaoUtil.formatarDataHora(mostraEmprestimo.getDataDevolucao());
-            dadosLinha[3] = mostraEmprestimo.getEstudante().getNomeCompleto();
-            dadosLinha[4] = mostraEmprestimo.getArmario().getNumero();
-            dadosLinha[5] = mostraEmprestimo.getArmario().getLocalizacao().getDescricao();
+            Concessao mostraConcessao = lista.get(i);
+            Object[] dadosLinha = new Object[7];
+            dadosLinha[0] = mostraConcessao.getId();
+            dadosLinha[1] = OperacaoUtil.formatarDataHora(mostraConcessao.getDataConcessao());
+            dadosLinha[2] = OperacaoUtil.formatarDataHora(mostraConcessao.getDataDevolucao());
+            dadosLinha[3] = mostraConcessao.getServidor().getNomeCompleto();
+            dadosLinha[4] = mostraConcessao.getArmario().getNumero();
+            dadosLinha[5] = mostraConcessao.getArmario().getLocalizacao().getDescricao();
+            dadosLinha[6] = mostraConcessao.getDescricao();
 
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
@@ -76,7 +78,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         btnNovo = new javax.swing.JButton();
         painelInferior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmprestimo = new javax.swing.JTable();
+        tblConcessao = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(4, 4));
         setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -95,15 +97,10 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         lblTipoFiltro.setText("Buscar por:");
         panelEscolherFiltro.add(lblTipoFiltro);
 
-        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empréstimos Ativos", "Empréstimos Finalizados", "Armário", "Curso", "Data Empréstimo", "Data Devolução", "Estudante", "Localizacao", "RA" }));
+        cbxFitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concessões Ativas", "Concessões Finalizadas", "Armário", "Data Empréstimo", "Data Devolução", "Servidor", "Localizacao", "Siape" }));
         cbxFitro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbxFitroFocusLost(evt);
-            }
-        });
-        cbxFitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxFitroActionPerformed(evt);
             }
         });
         panelEscolherFiltro.add(cbxFitro);
@@ -118,7 +115,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         lblBusca.setText("Ativos:");
         lblBusca.setMaximumSize(new java.awt.Dimension(50, 16));
         lblBusca.setMinimumSize(new java.awt.Dimension(50, 16));
-        lblBusca.setPreferredSize(new java.awt.Dimension(80, 16));
+        lblBusca.setPreferredSize(new java.awt.Dimension(100, 16));
         panelBusca.add(lblBusca);
 
         txtBusca.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -156,19 +153,19 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
         painelInferior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 6));
         painelInferior.setLayout(new java.awt.BorderLayout());
 
-        tblEmprestimo.setModel(new javax.swing.table.DefaultTableModel(
+        tblConcessao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Identificador", "Data Empréstimo", "Data Devolução", "Estudante", "Armário", "Localização", "Ações"
+                "Identificador", "Data Empréstimo", "Data Devolução", "Servidor", "Armário", "Localização", "Descrição", "Ações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -179,10 +176,11 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblEmprestimo.setRowHeight(30);
-        tblEmprestimo.setSelectionBackground(new java.awt.Color(57, 137, 111));
-        tblEmprestimo.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblEmprestimo);
+        tblConcessao.setRequestFocusEnabled(false);
+        tblConcessao.setRowHeight(30);
+        tblConcessao.setSelectionBackground(new java.awt.Color(57, 137, 111));
+        tblConcessao.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblConcessao);
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -192,73 +190,64 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Emprestimo> filtrado = new ArrayList<>();
+        ArrayList<Concessao> filtrado = new ArrayList<>();
         String filtro = cbxFitro.getSelectedItem().toString();
         String termoDeBusca = txtBusca.getText().toUpperCase();
 
         switch (filtro) {
-            case "Empréstimos Ativos":
-                for (Emprestimo e : listaDeEmprestimos) {
+            case "Concessões Ativas":
+                for (Concessao e : listaDeConcessoes) {
                     if (e.getDataDevolucao() == null) {
                         filtrado.add(e);
                     }
                 }
                 break;
-
-            case "Empréstimos Finalizados":
-                for (Emprestimo e : listaDeEmprestimos) {
-                    if (e.getDataDevolucao() != null) {
-                        filtrado.add(e);
-                    }
-                }
-                break;
-            case "Curso":
-                for (Emprestimo e : listaDeEmprestimos) {
-                    if (e.getEstudante().getCurso().getNome().toUpperCase().contains(termoDeBusca)) {
+            case "Concessões Finalizadas":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getDataDevolucao() == null) {
                         filtrado.add(e);
                     }
                 }
                 break;
             case "Armário":
-                for (Emprestimo e : listaDeEmprestimos) {
+                for (Concessao e : listaDeConcessoes) {
                     if (e.getArmario().getNumero().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
                 break;
             case "Data Empréstimo":
-
-                for (Emprestimo e : listaDeEmprestimos) {
-
-                    if (OperacaoUtil.formatarDataHora(e.getDataEmprestimo()).toUpperCase().contains(termoDeBusca)) {
+                for (Concessao e : listaDeConcessoes) {
+                    if (OperacaoUtil.formatarDataHora(e.getDataConcessao()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
                 break;
+
             case "Data Devolução":
-                for (Emprestimo e : listaDeEmprestimos) {
+                for (Concessao e : listaDeConcessoes) {
                     if (OperacaoUtil.formatarDataHora(e.getDataDevolucao()).toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
                 break;
-            case "Estudante":
-                for (Emprestimo e : listaDeEmprestimos) {
-                    if (e.getEstudante().getNomeCompleto().toUpperCase().contains(termoDeBusca)) {
+            case "Servidor":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getServidor().getNomeCompleto().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
                 break;
             case "Localização":
-                for (Emprestimo e : listaDeEmprestimos) {
+                for (Concessao e : listaDeConcessoes) {
                     if (e.getArmario().getLocalizacao().getDescricao().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
                 break;
-            case "RA":
-                for (Emprestimo e : listaDeEmprestimos) {
-                    if (e.getEstudante().getRa().toUpperCase().contains(termoDeBusca)) {
+                 case "Siape":
+                for (Concessao e : listaDeConcessoes) {
+                    if (e.getServidor().getSiape().toUpperCase().contains(termoDeBusca)) {
                         filtrado.add(e);
                     }
                 }
@@ -268,18 +257,14 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        EmprestimoUIModal criacaoEdicaoEmprestimo = new EmprestimoUIModal(this);
-        criacaoEdicaoEmprestimo.setLocationRelativeTo(this);
-        criacaoEdicaoEmprestimo.setVisible(true);
+        ConcessaoUIModal criacaoEdicaoConcessao = new ConcessaoUIModal(this);
+        criacaoEdicaoConcessao.setLocationRelativeTo(this);
+        criacaoEdicaoConcessao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void cbxFitroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbxFitroFocusLost
         lblBusca.setText(cbxFitro.getSelectedItem().toString() + ":");
     }//GEN-LAST:event_cbxFitroFocusLost
-
-    private void cbxFitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxFitroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,7 +280,7 @@ public class IndexEmprestimoPanelUI extends javax.swing.JPanel {
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelEscolherFiltro;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblEmprestimo;
+    private javax.swing.JTable tblConcessao;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }
