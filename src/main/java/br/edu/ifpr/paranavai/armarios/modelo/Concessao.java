@@ -21,7 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Concessao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_concessao")
     private Integer id;
 

@@ -26,6 +26,7 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
 
     /**
      * Creates new form EmprestimoEstudanteUI
+     * 
      * @param localizacao
      */
     public EmprestimoEstudanteUI(Localizacao localizacao) {
@@ -42,13 +43,15 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         painelConteudo = new JPanel() {
             public void paintComponent(Graphics g) {
                 Image img = Toolkit.getDefaultToolkit().getImage(
-                    br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI.class.getResource("/assets/imgindex.png"));
+                        br.edu.ifpr.paranavai.armarios.visao.EmprestimoEstudanteUI.class
+                                .getResource("/assets/imgindex.png"));
                 g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
             }
         };
@@ -152,7 +155,9 @@ public class EmprestimoEstudanteUI extends javax.swing.JFrame {
 
         btnEmprestarDevolver.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
         btnEmprestarDevolver.setText("EMPRESTAR / DEVOLVER");
-        btnEmprestarDevolver.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 0))); // NOI18N
+        btnEmprestarDevolver.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 0))); // NOI18N
         btnEmprestarDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmprestarDevolverActionPerformed(evt);

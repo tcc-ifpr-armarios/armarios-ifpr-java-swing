@@ -22,7 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Emprestimo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_emprestimo")
     private Integer id;
 

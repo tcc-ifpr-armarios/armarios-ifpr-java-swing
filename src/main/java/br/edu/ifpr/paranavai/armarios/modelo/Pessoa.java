@@ -21,7 +21,7 @@ import javax.persistence.InheritanceType;
 public abstract class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_pessoa")
     private Integer id;
 

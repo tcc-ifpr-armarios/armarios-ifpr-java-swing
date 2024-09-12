@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Localizacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_localizacao")
     private Integer id;
 

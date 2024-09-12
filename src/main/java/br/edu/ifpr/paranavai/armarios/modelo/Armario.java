@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Armario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_armario")
     private Integer id;
 
